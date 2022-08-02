@@ -9,9 +9,11 @@ class Recipe(db.Model):
     title = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.String(255), nullable=False, default='https://bewitchingkitchen.files.wordpress.com/2010/11/tartine1.jpg')
     description = db.Column(db.String(2000), nullable=False)
+    # note: all times stored in ms
     prep_time = db.Column(db.Integer, nullable=False)
     bake_time = db.Column(db.Integer, nullable=False)
     active_time = db.Column(db.Integer, nullable=False)
+    # note: all degrees stored in celsius
     baking_temp = db.Column(db.Integer, nullable=False)
     total_yield = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
