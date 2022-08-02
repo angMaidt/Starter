@@ -20,10 +20,11 @@ class Recipe(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
     #relationships
-    user = db.relationship('User', back_populates='recipes')
+    user = db.relationship('User', back_populates='recipes', foreign_keys=[user_id])
     instructions = db.relationship('Instruction', back_populates='recipe')
     ingredients = db.relationship('Ingredient', back_populates='recipe')
     comments = db.relationship('Comment', back_populates='recipe', cascade="all, delete")
+
 
     def to_dict(self):
         return {
@@ -39,7 +40,7 @@ class Recipe(db.Model):
             'total_yield': self.total_yield,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            # 'instuctions': [instruction.to_dict() for instruction in self.instructions],
-            # 'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
-            # 'comments': [comment.to_dict() for comment in self.comments]
+            'instructions': [instruction.to_dict() for instruction in self.instructions],
+            'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
+            'comments': [comment.to_dict() for comment in self.comments]
         }
