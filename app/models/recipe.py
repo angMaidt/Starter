@@ -39,7 +39,7 @@ class Recipe(db.Model):
             'total_yield': self.total_yield,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'instuctions': [instruction.to_dict() for instruction in self.instructions],
-            'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
-            'comments': [comment.to_dict() for comment in self.comments]
+            # 'instuctions': [instruction.to_dict() for instruction in self.instructions],
+            # 'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
+            # 'comments': [comment.to_dict() for comment in self.comments]
         }
