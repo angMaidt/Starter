@@ -19,3 +19,5 @@ class Recipe(db.Model):
 
     #relationships
     user = db.relationship('User', back_populates='recipes')
+    instructions = db.relationship('Instruction', back_populates='recipe')
+    ingredients = db.relationship('Ingredient', back_populates='recipe')
