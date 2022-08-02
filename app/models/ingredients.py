@@ -11,4 +11,13 @@ class Ingredient(db.Model):
 
     #relationships
     recipe = db.relationship('Recipe', back_populates='ingredients')
-    units = db.relationship('MeasurementUnit', back_populates='ingredient')
+    unit = db.relationship('MeasurementUnit', back_populates='ingredient')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'amount': self.amount,
+            'food_stuff': self.food_stuff,
+            'measurement_unit': self.unit.to_dict(),
+            # 'recipe': self.recipe.to_dict()
+        }

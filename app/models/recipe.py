@@ -22,3 +22,22 @@ class Recipe(db.Model):
     instructions = db.relationship('Instruction', back_populates='recipe')
     ingredients = db.relationship('Ingredient', back_populates='recipe')
     comments = db.relationship('Comment', back_populates='recipe', cascade="all, delete")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user': self.user.to_dict(),
+            'title': self.title,
+            'image_url': self.image_url,
+            'description': self.description,
+            'prep_time': self.prep_time,
+            'bake_time': self.bake_time,
+            'active_time': self.active_time,
+            'baking_temp': self.baking_temp,
+            'total_yield': self.total_yield,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'instuctions': [instruction.to_dict() for instruction in self.instructions],
+            'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
+            'comments': [comment.to_dict() for comment in self.comments]
+        }

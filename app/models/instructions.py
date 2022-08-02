@@ -10,3 +10,11 @@ class Instruction(db.Model):
 
     #relationships
     recipe = db.relationship('Recipe', back_populates='instructions')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'list_order': self.list_order,
+            'specification': self.specification,
+            # 'recipe': self.recipe.to_dict()
+        }

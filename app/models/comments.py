@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -14,3 +15,14 @@ class Comment(db.Model):
     #relationships
     recipe = db.relationship('Recipe', back_populates='comments')
     user = db.relationship('User', back_populates='comments')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'rating': self.rating,
+            'body': self.body,
+            'user': self.user.to_dict(),
+            'recipe': self.recipe.to_dict(),
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
