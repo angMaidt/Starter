@@ -4,7 +4,8 @@ class MeasurementUnit(db.Model):
     __tablename__ = 'measurement_units'
 
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(50), nullable=False)
+    unit = db.Column(db.String(50), nullable=False)
+    system = db.Column(db.String(50), nullable=False)
 
     #relationships
     ingredient = db.relationship('Ingredient', back_populates='unit')

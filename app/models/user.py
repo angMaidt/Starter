@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(255), nullable=False)
+    profile_pic = db.Column(db.String(255), nullable=False, default='https://static.wikia.nocookie.net/adventuretimewithfinnandjake/images/1/11/Mzl.wqzlnpgv.320x480-75.jpg')
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
