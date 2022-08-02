@@ -7,7 +7,7 @@ class MeasurementUnit(db.Model):
     type = db.Column(db.String(50), nullable=False)
 
     #relationships
-    ingredient = db.Column('Ingredient', back_populates='unit')
+    ingredient = db.relationship('Ingredient', back_populates='unit')
 
     def to_dict(self):
         return {
