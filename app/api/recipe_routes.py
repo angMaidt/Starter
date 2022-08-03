@@ -149,3 +149,25 @@ def edit_instruction(inst_id):
     return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
 
 # delete a recipe
+@recipe_routes.route('/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    db.session.delete(recipe)
+    db.session.commit()
+    return { "message": "Recipe Deleted!" }
+
+# delete am ingredient
+@recipe_routes.route('/ingredients/<int:ing_id>', methods=['DELETE'])
+def delete_ingredient(ing_id):
+    ingredient = Ingredient.query.get(ing_id)
+    db.session.delete(ingredient)
+    db.session.commit()
+    return { "message": "Ingredient Deleted!" }
+
+# delete an instruction
+@recipe_routes.route('/instructions/<int:inst_id>', methods=['DELETE'])
+def delete_instruction(inst_id):
+    instruction = Instruction.query.get(inst_id)
+    db.session.delete(instruction)
+    db.session.commit()
+    return { "message": "Instruction Deleted!" }
