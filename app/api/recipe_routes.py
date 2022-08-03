@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.models import Recipe, Ingredient, Instruction, MeasurementUnit, db
-from ..forms import RecipeForm
+from app.models import Recipe, Ingredient, Instruction,  db
+from ..forms import RecipeForm, IngredientForm, InstructionForm
 from .auth_routes import validation_errors_to_error_messages
 
 
@@ -32,50 +32,46 @@ def post_recipe():
 
         db.session.add(recipe)
         db.session.commit()
-
-        # ingredients
-        if form.data.ing_1:
-            ing_1 = Ingredient(
-                amount = form.data.ing_1['amount'],
-                food_stuff = form.data.ing_1['food_stuff'],
-                measurement_unit_id = form.data.ing_1['measurement_unit_id'],
-                recipe_id = recipe.id,
-            )
-            db.session.add(ing_1)
-
-        if form.data.ing_2:
-            ing_2 = Ingredient(
-                amount = form.data.ing_2['amount'],
-                food_stuff = form.data.ing_2['food_stuff'],
-                measurement_unit_id = form.data.ing_2['measurement_unit_id'],
-                recipe_id = recipe.id,
-            )
-            db.session.add(ing_2)
-
-        # instructions
-        if form.data.inst_1:
-            inst_1 = Instruction(
-                list_order = form.data.inst_1['list_order'],
-                specification = form.data.inst_1['specification'],
-                recipe_id = recipe.id
-            )
-            db.session.add(inst_1)
-
-        if form.data.inst_2:
-            inst_2 = Instruction(
-                list_order = form.data.inst_2['list_order'],
-                specification = form.data.inst_2['specification'],
-                recipe_id = recipe.id
-            )
-            db.session.add(inst_2)
-
-        db.session.commit()
         return recipe.to_dict()
 
     return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
 
+# create ingredients for a recipe
+@recipe_routes.route('/ingredients', methods=['POST'])
+def post_ingredient():
+    form = IngredientForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        ingredient = Ingredient(
+            amount = form.data['amount'],
+            food_stuff = form.data['food_stuff'],
+            measurement_unit_id = form.data['measurement_unit_id'],
+            recipe_id = form.data['recipe_id']
+        )
 
+        db.session.add(ingredient)
+        db.session.commit()
+        return ingredient.to_dict()
 
+    return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
+
+# create instructions for a recipe
+@recipe_routes.route('/instructions', methods=['POST'])
+def post_instruction():
+    form = InstructionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        instruction = Instruction(
+            list_order = form.data['list_order'],
+            specification = form.data['specification'],
+            recipe_id = form.data['recipe_id']
+        )
+
+        db.session.add(instruction)
+        db.session.commit()
+        return instruction.to_dict()
+
+    return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
 
 # edit a recipe
 
