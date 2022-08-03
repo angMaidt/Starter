@@ -63,7 +63,7 @@ def post_recipe():
                 db.session.add(instruction)
                 db.session.commit()
                 return recipe.to_dict()
-                
+
     return {'errors': [validation_errors_to_error_messages(form1.errors), validation_errors_to_error_messages(form2.errors), validation_errors_to_error_messages(form3.errors)]}, 401
 
 
