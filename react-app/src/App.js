@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navigation/NavBar';
@@ -10,6 +10,7 @@ import User from './components/Users/User';
 import AllRecipes from './components/Recipes/AllRecipes/AllRecipes';
 import { authenticate } from './store/session';
 import { getRecipesThunk } from './store/recipe';
+import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,6 +54,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/recipes' exact={true}>
           <AllRecipes />
+        </Route>
+        <Route path='/recipes/:id'>
+          <SingleRecipe/>
         </Route>
       </Switch>
     </BrowserRouter>

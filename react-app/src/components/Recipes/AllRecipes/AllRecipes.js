@@ -7,7 +7,7 @@ import RecipeCard from '../RecipeCard/RecipeCard'
 function AllRecipes() {
     const dispatch = useDispatch()
     const recipes = useSelector(state => state.recipes)
-    if (recipes) console.log(recipes)
+    // if (recipes) console.log(recipes)
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -21,7 +21,7 @@ function AllRecipes() {
         <>
             <h1>Hey from All Recipes!</h1>
             {recipes &&
-                recipes.Object.value.forEach(recipe => (
+                Object.values(recipes).map(recipe => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
                 ))
             }
