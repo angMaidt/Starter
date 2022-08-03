@@ -13,5 +13,6 @@ class MeasurementUnit(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'type': self.type
+            'unit': self.unit,
+            'system': self.system
         }

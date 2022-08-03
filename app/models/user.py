@@ -15,8 +15,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
     #relationships
-    recipes = db.relationship('Recipe', back_populates='user')
-    comments = db.relationship('Comment', back_populates='user')
+    recipes = db.relationship('Recipe', back_populates='user', foreign_keys='[Recipe.user_id]')
+    comments = db.relationship('Comment', back_populates='user', foreign_keys='[Comment.user_id]')
 
     @property
     def password(self):
@@ -35,6 +35,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'profile_pic': self.profile_pic,
-            'recipes': [recipe.to_dict() for recipe in self.recipes],
-            'comments': [comment.to_dict() for comment in self.comments]
+            # 'recipes': [recipe.to_dict() for recipe in self.recipes],
+            # 'comments': [comment.to_dict() for comment in self.comments]
         }
