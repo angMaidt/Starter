@@ -21,8 +21,8 @@ class Recipe(db.Model):
 
     #relationships
     user = db.relationship('User', back_populates='recipes', foreign_keys=[user_id])
-    instructions = db.relationship('Instruction', back_populates='recipe')
-    ingredients = db.relationship('Ingredient', back_populates='recipe')
+    instructions = db.relationship('Instruction', back_populates='recipe', cascade="all, delete")
+    ingredients = db.relationship('Ingredient', back_populates='recipe', cascade="all, delete")
     comments = db.relationship('Comment', back_populates='recipe', cascade="all, delete")
 
 
