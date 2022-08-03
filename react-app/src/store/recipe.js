@@ -10,23 +10,31 @@ const DELETE_RECIPE ='recipes/DELETE_RECIPE'
 
 //Action Creators
 const getRecipes = (recipes) => {
-    type: GET_RECIPES,
-    recipes
+    return {
+        type: GET_RECIPES,
+        recipes
+    }
 }
 
 const postRecipe = (recipe) => {
-    type: POST_RECIPE,
-    recipe
+    return {
+        type: POST_RECIPE,
+        recipe
+    }
 }
 
 const editRecipe = (recipe) => {
-    type: EDIT_RECIPE,
-    recipe
+    return {
+        type: EDIT_RECIPE,
+        recipe
+    }
 }
 
 const deleteRecipe = (recipe) => {
-    type: DELETE_RECIPE,
-    recipe
+    return {
+        type: DELETE_RECIPE,
+        recipe
+    }
 }
 
 //Thunks
@@ -86,8 +94,10 @@ export const deleteRecipeThunk = (recipe) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        dispatch(editRecipe(data.recipe))
-        return data.recipe
+        if (data.message === "Recipe Deleted!") {
+            dispatch(deleteRecipe(recipe))
+        }
+        return recipe
     } else {
         const err = await res.json()
         throw err
@@ -95,7 +105,7 @@ export const deleteRecipeThunk = (recipe) => async (dispatch) => {
 }
 
 //Reducer
-initialState = {}
+let initialState = {}
 export default function recipe_reducer(state = initialState, action) {
     let newState = {}
     switch(action.type){

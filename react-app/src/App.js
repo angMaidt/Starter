@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/Users/UsersList';
 import User from './components/Users/User';
-import AllRecipes from './components/Recipes/AllRecipes';
+import AllRecipes from './components/Recipes/AllRecipes/AllRecipes';
 import { authenticate } from './store/session';
+import { getRecipesThunk } from './store/recipe';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  // const recipes = useSelector(state => state.recipes)
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
+    //Fetching all recipes
+    const fetchRecipes = async () => {
+      await dispatch(getRecipesThunk())
+    }
+    fetchRecipes().catch(console.error)
   }, [dispatch]);
 
   if (!loaded) {
