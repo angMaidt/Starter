@@ -44,7 +44,7 @@ function RecipeForm() {
             <NewRecipeForm />
             <button onClick={() => setCount(count + 1)}>+</button>
             <button onClick={() => setCount(count - 1)} disabled={count < 2}>-</button>
-            {Array(count).fill(<NewIngredientForm count={count}/>)}
+            {Array(count).fill(<NewIngredientForm count={count} key={count}/>)}
         </>
     )
 }

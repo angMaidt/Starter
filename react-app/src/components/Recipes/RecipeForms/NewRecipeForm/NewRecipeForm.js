@@ -37,7 +37,7 @@ function NewRecipeForm() {
 
         try {
             await dispatch(postRecipeThunk(payload))
-            history.push('/recipes')
+            // history.push('/recipes')
         } catch (e) {
             setValidationErrors(e.errors)
         }
