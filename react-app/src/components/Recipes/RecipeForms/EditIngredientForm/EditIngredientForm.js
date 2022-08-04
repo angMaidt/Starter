@@ -56,6 +56,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
     return (
         <>
             <form className="ingredient-form" onSubmit={handleSubmit}>
+                {/* {ingredient} */}
                 <div className='ingredient-input-container'>
                     <div className="input-container">
                         <label>Amount</label>
