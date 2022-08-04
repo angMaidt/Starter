@@ -8,7 +8,7 @@ function SingleRecipe() {
 
     const convert_ms = (ms) => {
         const mins = Math.floor((ms/1000)/60)
-        if (mins > 60) {
+        if (mins >= 60) {
             const hrs = Math.floor(mins/60)
             const remaining_mins = Math.floor(mins % 60)
             return [hrs, remaining_mins]
@@ -59,10 +59,10 @@ function SingleRecipe() {
                 <p>Active Time: {convert_ms(recipe.active_time)} mins</p>
                 <p>Proofing Time: {convert_ms(recipe.prep_time)} mins</p>
                 <p>Baking Time: {convert_ms(recipe.bake_time)} mins</p>
-                <p>Total Time:
+                {/* <p>Total Time:
                     {convert_ms(recipe.bake_time + recipe.active_time + recipe.prep_time)[0]} hour
                     {convert_ms(recipe.bake_time + recipe.active_time + recipe.prep_time)[1]} mins
-                </p>
+                </p> */}
                 <p>Baking Temp: {recipe.baking_temp} °C </p>
                 <p>Total Yield: {recipe.total_yield}</p>
             </div>
