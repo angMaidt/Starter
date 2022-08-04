@@ -37,19 +37,47 @@ function NewRecipeForm() {
         fetchUnits()
     }, [])
 
+    //converts time to ms before sending to db
+    const convert_to_ms = (time, unit) => {
+        if(unit === 'mins') {
+            const min_ms = time*60000
+            return min_ms
+        } else if (unit === 'hrs'){
+            const hr_ms = time*3600000
+            return hr_ms
+        }
+        return
+    }
+
+    const convert_to_celsius = (temp, system) => {
+        if (system === 'fahrenheit') {
+            const to_celsius = Math.floor((temp - 32)*(5/9))
+            return to_celsius
+        }
+        return temp
+    }
     const handleSubmit = async(e) => {
         e.preventDefault()
 
         setHasSubmitted(true)
+
+        //convert to ms before sending to db
+        const active_time_ms = convert_to_ms(active_time, active_time_unit)
+        const proofing_time_ms = convert_to_ms(proofing_time, proofing_time_unit)
+        const bake_time_ms = convert_to_ms(bake_time, bake_time_unit)
+
+        //convert to celsius before sending back
+        const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
+
         const payload = {
             user_id: sessionUser.id,
             title,
             image_url,
             description,
-            active_time,
-            prep_time: proofing_time,
-            bake_time,
-            baking_temp,
+            active_time: active_time_ms,
+            prep_time: proofing_time_ms,
+            bake_time: bake_time_ms,
+            baking_temp: degrees_celsius,
             total_yield
         }
 
@@ -61,6 +89,7 @@ function NewRecipeForm() {
             setValidationErrors(e.errors)
         }
     }
+
 
 
     return (
@@ -174,8 +203,8 @@ function NewRecipeForm() {
                             value={baking_temp_system}
                             onChange={(e) => setBaking_temp_system(e.target.value)}
                         >
-                            <option value='°F'>°F</option>
-                            <option value='°C'>°C</option>
+                            <option value='fahrenheit'>°F</option>
+                            <option value='celsius'>°C</option>
                         </select>
                     </div>
                     <div className="input-container">
