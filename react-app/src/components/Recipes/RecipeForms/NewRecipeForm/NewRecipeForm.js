@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { postRecipeThunk } from '../../../store/recipe'
+import { postRecipeThunk } from '../../../../store/recipe'
 
 function NewRecipeForm() {
     const history = useHistory()
@@ -45,9 +45,8 @@ function NewRecipeForm() {
 
     return (
         <>
-            <h1>Submit a New Recipe!</h1>
+            <h3>Recipe Body</h3>
             <form className='recipe-form' onSubmit={handleSubmit}>
-                {/* begin recipe inputs */}
                 <div className='recipe-input-container'>
                     <div className="input-container">
                         <label>Title</label>
@@ -130,7 +129,6 @@ function NewRecipeForm() {
                         />
                     </div>
                 </div>
-                {/* end recipe inputs */}
                 <button>Submit!</button>
             </form>
         </>

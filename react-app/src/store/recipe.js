@@ -44,8 +44,8 @@ export const getRecipesThunk = () => async (dispatch) => {
         const data = await res.json()
         dispatch(getRecipes(data.recipes))
     } else {
-        const err = await res.json()
-        throw err
+        const error = await res.json()
+        throw error
     }
 }
 

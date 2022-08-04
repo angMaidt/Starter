@@ -11,7 +11,7 @@ import AllRecipes from './components/Recipes/AllRecipes/AllRecipes';
 import { authenticate } from './store/session';
 import { getRecipesThunk } from './store/recipe';
 import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
-import NewRecipeForm from './components/Recipes/NewRecipeForm/NewRecipeForm';
+import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,12 +53,12 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <ProtectedRoute path='/recipes/new' exact={true} >
-          <NewRecipeForm />
-        </ProtectedRoute>
         <Route path='/recipes' exact={true}>
           <AllRecipes />
         </Route>
+        <ProtectedRoute path='/recipes/new' exact={true} >
+          <RecipeForm />
+        </ProtectedRoute>
         <Route path='/recipes/:id'>
           <SingleRecipe/>
         </Route>
