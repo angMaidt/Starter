@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 
 import { editRecipeThunk } from '../../../../store/recipe'
+import EditIngredientForm from '../EditIngredientForm/EditIngredientForm'
 
 function EditRecipeForm({ recipe, setShowEditForm }) {
     const history = useHistory()
@@ -223,7 +224,12 @@ function EditRecipeForm({ recipe, setShowEditForm }) {
                 </div>
                 <button>Submit!</button>
             </form>
+            <h3>Edit Ingredients</h3>
+            {recipe.ingredients.map(ingredient => (
+                <EditIngredientForm key={ingredient.id} measurementUnits={measurementUnits} ingredient={ingredient} recipeId={recipe.id}/>
+            ))}
 
+        {/* <button onClick={setShowEditForm(false)}>Done!</button> */}
         </>
     )
 }
