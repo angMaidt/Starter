@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
+import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 
 function SingleRecipe() {
     const { id } = useParams()
@@ -8,6 +10,8 @@ function SingleRecipe() {
     const history = useHistory()
     const recipe = useSelector(state => state.recipes[id])
     const sessionUser = useSelector(state => state.session.user)
+
+    const [showEditForm, setShowEditForm] = useState(false)
     // console.log(sessionUser)
 
     const convert_ms = (ms) => {
@@ -38,7 +42,6 @@ function SingleRecipe() {
 
     }
 
-    // if (!recipe) return null
     return (
         <>
             <h1>Welcome to Single Recipe!</h1>
@@ -86,9 +89,13 @@ function SingleRecipe() {
                         ))}
                     </ol>
                 </div>
-                {/* {sessionUser && sessionUser.id === recipe.id && */}
-                    <button onClick={handleDelete}>Delete Recipe</button>
-                {/* } */}
+                {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} />}
+                {sessionUser && sessionUser.id === recipe.user.id &&
+                <div>
+                    <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
+                    <button onClick={handleDelete}>Delete Recipe!</button>
+                </div>
+                }
             </>
             :
             <p>Looks like there's nothing here!</p>

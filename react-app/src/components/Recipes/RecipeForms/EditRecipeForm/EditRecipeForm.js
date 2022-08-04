@@ -1,34 +1,46 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { postRecipeThunk } from '../../../../store/recipe'
-import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
-import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 
-function NewRecipeForm() {
+import { editRecipeThunk } from '../../../../store/recipe'
+
+function EditRecipeForm({ recipe, setShowEditForm }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [image_url, setImage_url] = useState('')
+    const ms_converter = (ms) => {
+        let mins = ms % 3600000
+        let hrs = ms - mins
+        let secs = mins % 60000
+        mins = mins - secs
+        hrs = hrs/3600000
+        mins = mins/60000
+        return [hrs, mins]
+    }
+    // console.log(3488500 % 3,600,000)
+    // console.log(ms_converter(3488500))
 
-    const [active_time_mins, setActive_time_mins] = useState('')
-    const [active_time_hrs, setActive_time_hrs] = useState('')
+    const [title, setTitle] = useState(recipe.title)
+    const [description, setDescription] = useState(recipe.description)
+    const [image_url, setImage_url] = useState(recipe.image_url)
 
-    const [ferment_time_mins, setFerment_time_mins] = useState('') //note, change prep time to proof time in db
-    const [ferment_time_hrs, setFerment_time_hrs] = useState('') //note, change prep time to proof time in db
+    const [active_time_hrs, setActive_time_hrs] = useState(ms_converter(recipe.active_time)[0])
+    const [active_time_mins, setActive_time_mins] = useState(ms_converter(recipe.active_time)[1])
 
-    const [bake_time_mins, setBake_time_mins] = useState('')
-    const [bake_time_hrs, setBake_time_hrs] = useState('')
+    const [ferment_time_hrs, setFerment_time_hrs] = useState(ms_converter(recipe.active_time)[0]) //note, change prep time to proof time in db
+    const [ferment_time_mins, setFerment_time_mins] = useState(ms_converter(recipe.active_time)[1]) //note, change prep time to proof time in db
 
-    const [baking_temp, setBaking_temp] = useState('')
+    const [bake_time_hrs, setBake_time_hrs] = useState(ms_converter(recipe.active_time)[0])
+    const [bake_time_mins, setBake_time_mins] = useState(ms_converter(recipe.active_time)[1])
+
+    const [baking_temp, setBaking_temp] = useState(recipe.baking_temp)
+
     const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
-
-    const [total_yield, setTotal_yield] = useState('')
+    const [total_yield, setTotal_yield] = useState(recipe.total_yield)
     const [measurementUnits, setMeasurementUnits] = useState('')
-    const [recipe_id, setRecipe_id] = useState('')
+    const [recipe_id, setRecipe_id] = useState(recipe.id)
+    // console.log(recipe_id)
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -41,7 +53,7 @@ function NewRecipeForm() {
         fetchUnits()
     }, [])
 
-    //converts time to ms before sending to db
+    //convert before sending back
     const convert_to_ms = (hrs, mins) => {
         if (!hrs) hrs = 0
         if (!mins) mins = 0
@@ -73,6 +85,7 @@ function NewRecipeForm() {
         const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
 
         const payload = {
+            id: recipe.id,
             user_id: sessionUser.id,
             title,
             image_url,
@@ -85,9 +98,7 @@ function NewRecipeForm() {
         }
 
         try {
-            const data = await dispatch(postRecipeThunk(payload))
-            setRecipe_id(data.id)
-            // history.push('/recipes')
+            const data = await dispatch(editRecipeThunk(payload))
         } catch (e) {
             setValidationErrors(e.errors)
         }
@@ -95,7 +106,7 @@ function NewRecipeForm() {
 
     return (
         <>
-            <h3>Recipe Body</h3>
+            <h3>Edit Recipe!</h3>
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     <div className="input-container">
@@ -212,10 +223,9 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
-            <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
-            <NewInstructionForm recipe_id={recipe_id}/>
+
         </>
     )
 }
 
-export default NewRecipeForm
+export default EditRecipeForm
