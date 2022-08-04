@@ -7,6 +7,18 @@ function EditInstructionForm({ instruction, recipeId }) {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
 
+    const handleDelete = async(e) => {
+        e.preventDefault()
+
+        try {
+            const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
+                method: 'DELETE'
+            })
+        } catch (e) {
+            setValidationErrors(e.errors)
+        }
+    }
+
     const handleSubmit = async(e) => {
         e.preventDefault()
 
@@ -55,6 +67,7 @@ function EditInstructionForm({ instruction, recipeId }) {
                 </div>
                 <button>Submit!</button>
             </form>
+            <button onClick={handleDelete}>Delete Instruction</button>
         </>
     )
 }
