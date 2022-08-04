@@ -42,9 +42,9 @@ function RecipeForm() {
         <>
             <h1>Submit a New Recipe</h1>
             <NewRecipeForm />
+            {Array(count).fill(<NewIngredientForm count={count} />)}
             <button onClick={() => setCount(count + 1)}>+</button>
             <button onClick={() => setCount(count - 1)} disabled={count < 2}>-</button>
-            {Array(count).fill(<NewIngredientForm count={count} key={count}/>)}
         </>
     )
 }

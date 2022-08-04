@@ -9,7 +9,7 @@ function NewIngredientForm({ count }) {
     const [measurementUnits, setMeasurementUnits] = useState('')
     const [validationErrors, setValidationErrors] = useState([])
     const [ingredients, SetIngredients] = useState([])
-    console.log(ingredients)
+    // console.log(ingredients)
 
 
     useEffect(() => {
