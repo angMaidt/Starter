@@ -4,7 +4,7 @@ from app.models import db, Recipe
 # Adds a demo user, you can add other users here if you want
 def seed_recipes():
     bread1 = Recipe(
-        user_id = 2,
+        user_id = 3,
         title = 'Paul Hollywood\'s Famous Sourdough',
         description = 'Master baker Paul Hollywood\'s famous sourdough bread, fluffy and oh so flavorful. Deserves a handshake of it\'s own.',
         prep_time = 1200000,
@@ -14,7 +14,7 @@ def seed_recipes():
         total_yield = '1 loaf'
         )
     bread2 = Recipe(
-        user_id = 3,
+        user_id = 2,
         title = 'Prue Leith\'s Famous Sourdough',
         description = 'Master baker Prue Leith\'s famous sourdough bread, fluffy and oh so flavorful. Simply delightful.',
         prep_time = 1200000,
