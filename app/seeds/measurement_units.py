@@ -59,16 +59,6 @@ def seed_measurement_units():
         system='imperial'
         )
 
-    # time
-    mins = MeasurementUnit(
-        unit='mins',
-        system='time'
-    )
-    hrs = MeasurementUnit(
-        unit='hrs',
-        system='time'
-    )
-
 
 
     db.session.add(g)
@@ -84,8 +74,6 @@ def seed_measurement_units():
     db.session.add(floz)
     db.session.add(tbsp)
     db.session.add(tsp)
-    db.session.add(mins)
-    db.session.add(hrs)
 
     db.session.commit()
 

@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 
-function NewIngredientForm({ recipe_id }) {
+function NewIngredientForm({ recipe_id, measurementUnits }) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState('')
     const [unit, setUnit] = useState(1)
     const [food_stuff, setFood_stuff] = useState('')
-    const [measurementUnits, setMeasurementUnits] = useState('')
+    // const [measurementUnits, setMeasurementUnits] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
     const [ingredients, SetIngredients] = useState([])
     // console.log(ingredients)
 
 
-    useEffect(() => {
-        async function fetchUnits() {
-            const res = await fetch('/api/recipes/units')
-            const data = await res.json()
-            setMeasurementUnits(data.units)
-        }
-        fetchUnits()
-    }, [])
+    // useEffect(() => {
+    //     async function fetchUnits() {
+    //         const res = await fetch('/api/recipes/units')
+    //         const data = await res.json()
+    //         setMeasurementUnits(data.units)
+    //     }
+    //     fetchUnits()
+    // }, [])
 
     const handleSubmit = async(e) => {
         e.preventDefault()

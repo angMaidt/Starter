@@ -14,15 +14,28 @@ function NewRecipeForm() {
     const [description, setDescription] = useState('')
     const [image_url, setImage_url] = useState('')
     const [active_time, setActive_time] = useState('')
+    const [active_time_unit, setActive_time_unit] = useState('')
     const [proofing_time, setProofing_time] = useState('') //note, change prep time to proof time in db
+    const [proofing_time_unit, setProofing_time_unit] = useState('') //note, change prep time to proof time in db
     const [bake_time, setBake_time] = useState('')
+    const [bake_time_unit, setBake_time_unit] = useState('')
     const [baking_temp, setBaking_temp] = useState('')
+    const [baking_temp_system, setBaking_temp_system] = useState('')
     const [total_yield, setTotal_yield] = useState('')
-
+    const [measurementUnits, setMeasurementUnits] = useState('')
     const [recipe_id, setRecipe_id] = useState('')
     // console.log(recipe_id)
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    useEffect(() => {
+        async function fetchUnits() {
+            const res = await fetch('/api/recipes/units')
+            const data = await res.json()
+            setMeasurementUnits(data.units)
+        }
+        fetchUnits()
+    }, [])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -48,6 +61,7 @@ function NewRecipeForm() {
             setValidationErrors(e.errors)
         }
     }
+
 
     return (
         <>
@@ -93,6 +107,16 @@ function NewRecipeForm() {
                             value={active_time}
                             onChange={(e) => setActive_time(e.target.value)}
                         />
+                        <select
+                            type='text'
+                            placeholder='mins'
+                            required
+                            value={active_time_unit}
+                            onChange={(e) => setActive_time_unit(e.target.value)}
+                        >
+                            <option value='mins'>mins</option>
+                            <option value='hrs'>hrs</option>
+                        </select>
                     </div>
                     <div className="input-container">
                         <label>Proofing Time</label>
@@ -104,6 +128,16 @@ function NewRecipeForm() {
                             onChange={(e) => setProofing_time(e.target.value)}
                         />
                     </div>
+                    <select
+                        type='text'
+                        placeholder='mins'
+                        required
+                        value={proofing_time_unit}
+                        onChange={(e) => setProofing_time_unit(e.target.value)}
+                        >
+                            <option value='mins'>mins</option>
+                            <option value='hrs'>hrs</option>
+                        </select>
                     <div className="input-container">
                         <label>Bake Time</label>
                         <input
@@ -113,16 +147,36 @@ function NewRecipeForm() {
                             value={bake_time}
                             onChange={(e) => setBake_time(e.target.value)}
                         />
+                        <select
+                            type='text'
+                            placeholder='mins'
+                            required
+                            value={bake_time_unit}
+                            onChange={(e) => setBake_time_unit(e.target.value)}
+                        >
+                            <option value='mins'>mins</option>
+                            <option value='hrs'>hrs</option>
+                        </select>
                     </div>
                     <div className="input-container">
                         <label>Baking Temp</label>
                         <input
                             type='text'
-                            placeholder="200 °C"
+                            placeholder="400"
                             required
                             value={baking_temp}
                             onChange={(e) => setBaking_temp(e.target.value)}
                         />
+                        <select
+                            type='string'
+                            placeholder='°F'
+                            required
+                            value={baking_temp_system}
+                            onChange={(e) => setBaking_temp_system(e.target.value)}
+                        >
+                            <option value='°F'>°F</option>
+                            <option value='°C'>°C</option>
+                        </select>
                     </div>
                     <div className="input-container">
                         <label>Yield</label>
@@ -137,7 +191,7 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
-            <NewIngredientForm recipe_id={recipe_id}/>
+            <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
             <NewInstructionForm recipe_id={recipe_id}/>
         </>
     )
