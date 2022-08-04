@@ -7,7 +7,7 @@ function SingleRecipe() {
     // console.log(recipe)
 
     const convert_ms = (ms) => {
-        const mins = (ms/1000)/60
+        const mins = Math.floor((ms/1000)/60)
         if (mins > 60) {
             const hrs = Math.floor(mins/60)
             const remaining_mins = Math.floor(mins % 60)
