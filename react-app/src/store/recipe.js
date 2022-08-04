@@ -60,11 +60,12 @@ export const postRecipeThunk = (recipe) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        // console.log(data)
+
         if (data.errors) {
-            return;
-          }
+            return
+        }
         dispatch(postRecipe(data))
+        return data
     }
 }
 
@@ -115,7 +116,7 @@ export default function recipe_reducer(state = initialState, action) {
             return newState
         case POST_RECIPE:
             newState = { ...state }
-            console.log('heeere')
+            // console.log('heeere')
             newState[action.recipe.id] = action.recipe
             return newState
         case EDIT_RECIPE:

@@ -3,6 +3,7 @@ from app.models import db, MeasurementUnit
 
 # Adds a demo user, you can add other users here if you want
 def seed_measurement_units():
+    # metric
     g = MeasurementUnit(
         unit='g',
         system='metric'
@@ -19,6 +20,8 @@ def seed_measurement_units():
         unit='mL',
         system='metric'
         )
+
+    # imperial
     lb = MeasurementUnit(
         unit='lb',
         system='imperial'
@@ -55,6 +58,7 @@ def seed_measurement_units():
         unit='tsp.',
         system='imperial'
         )
+
 
 
     db.session.add(g)

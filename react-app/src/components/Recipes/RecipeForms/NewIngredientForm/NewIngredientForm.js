@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 
-function NewIngredientForm({ count }) {
+function NewIngredientForm({ recipe_id, measurementUnits }) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState('')
     const [unit, setUnit] = useState(1)
     const [food_stuff, setFood_stuff] = useState('')
-    const [measurementUnits, setMeasurementUnits] = useState('')
+    // const [measurementUnits, setMeasurementUnits] = useState('')
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
     const [ingredients, SetIngredients] = useState([])
     // console.log(ingredients)
 
 
-    useEffect(() => {
-        async function fetchUnits() {
-            const res = await fetch('/api/recipes/units')
-            const data = await res.json()
-            setMeasurementUnits(data.units)
-        }
-        fetchUnits()
-    }, [])
+    // useEffect(() => {
+    //     async function fetchUnits() {
+    //         const res = await fetch('/api/recipes/units')
+    //         const data = await res.json()
+    //         setMeasurementUnits(data.units)
+    //     }
+    //     fetchUnits()
+    // }, [])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -28,8 +29,10 @@ function NewIngredientForm({ count }) {
             amount,
             food_stuff,
             measurement_unit_id: unit,
-            recipe_id: 3
+            recipe_id
         }
+
+        setHasSubmitted(true)
 
         try {
             const res = await fetch('/api/recipes/ingredients', {
@@ -43,6 +46,9 @@ function NewIngredientForm({ count }) {
             if (res.ok) {
                 const data = await res.json()
                 SetIngredients([...ingredients, data])
+                setAmount('')
+                setFood_stuff('')
+                setUnit(1)
             }
         } catch (e) {
             setValidationErrors(e.errors)
@@ -53,6 +59,17 @@ function NewIngredientForm({ count }) {
     return (
         <>
             <h3>Add Ingredients!</h3>
+            {ingredients.length > 0 ?
+            <ul>
+                {Object.values(ingredients).map(ingredient => (
+                    <li key={ingredient.id}>
+                        <p>{ingredient.amount} {ingredient. measurement_unit.unit} {ingredient.food_stuff}</p>
+                    </li>
+                ))}
+            </ul>
+            :
+            null
+            }
             <form className="ingredient-form" onSubmit={handleSubmit}>
                 <div className='ingredient-input-container'>
                     <div className="input-container">
