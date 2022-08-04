@@ -14,13 +14,13 @@ function NewRecipeForm() {
     const [description, setDescription] = useState('')
     const [image_url, setImage_url] = useState('')
     const [active_time, setActive_time] = useState('')
-    const [active_time_unit, setActive_time_unit] = useState('')
+    const [active_time_unit, setActive_time_unit] = useState('mins')
     const [proofing_time, setProofing_time] = useState('') //note, change prep time to proof time in db
-    const [proofing_time_unit, setProofing_time_unit] = useState('') //note, change prep time to proof time in db
+    const [proofing_time_unit, setProofing_time_unit] = useState('mins') //note, change prep time to proof time in db
     const [bake_time, setBake_time] = useState('')
-    const [bake_time_unit, setBake_time_unit] = useState('')
+    const [bake_time_unit, setBake_time_unit] = useState('mins')
     const [baking_temp, setBaking_temp] = useState('')
-    const [baking_temp_system, setBaking_temp_system] = useState('')
+    const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
     const [total_yield, setTotal_yield] = useState('')
     const [measurementUnits, setMeasurementUnits] = useState('')
     const [recipe_id, setRecipe_id] = useState('')
@@ -54,7 +54,7 @@ function NewRecipeForm() {
             const to_celsius = Math.floor((temp - 32)*(5/9))
             return to_celsius
         }
-        return temp
+        return Number(temp)
     }
     const handleSubmit = async(e) => {
         e.preventDefault()

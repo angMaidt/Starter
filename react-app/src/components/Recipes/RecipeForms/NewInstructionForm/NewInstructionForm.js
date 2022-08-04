@@ -18,7 +18,8 @@ function NewInstructionForm({ recipe_id }) {
         }
 
         setHasSubmitted(true)
-        setList_order(list_order + 1)
+
+
 
         try {
             const res = await fetch('/api/recipes/instructions', {
@@ -32,6 +33,8 @@ function NewInstructionForm({ recipe_id }) {
             if (res.ok) {
                 const data = await res.json()
                 SetInstructions([...instructions, data])
+                setList_order(list_order + 1)
+                setSpecification('')
             }
         } catch (e) {
             setValidationErrors(e.errors)
@@ -43,9 +46,7 @@ function NewInstructionForm({ recipe_id }) {
     return (
         <>
             <h3>Add Instructions!</h3>
-            {instructions.length < 1 ?
-            <p>Add some instructions to your recipe!</p>
-            :
+            {instructions.length > 0 ?
             <ol>
                 {Object.values(instructions).map(instruction => (
                     <li key={instruction.id}>
@@ -53,6 +54,8 @@ function NewInstructionForm({ recipe_id }) {
                     </li>
                 ))}
             </ol>
+            :
+            null
             }
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">

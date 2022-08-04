@@ -46,6 +46,9 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
             if (res.ok) {
                 const data = await res.json()
                 SetIngredients([...ingredients, data])
+                setAmount('')
+                setFood_stuff('')
+                setUnit(1)
             }
         } catch (e) {
             setValidationErrors(e.errors)
@@ -56,9 +59,7 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
     return (
         <>
             <h3>Add Ingredients!</h3>
-            {ingredients.length < 1 ?
-            <p>Add some ingredients to your recipe!</p>
-            :
+            {ingredients.length > 0 ?
             <ul>
                 {Object.values(ingredients).map(ingredient => (
                     <li key={ingredient.id}>
@@ -66,6 +67,8 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
                     </li>
                 ))}
             </ul>
+            :
+            null
             }
             <form className="ingredient-form" onSubmit={handleSubmit}>
                 <div className='ingredient-input-container'>
