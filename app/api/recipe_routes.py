@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Recipe, Ingredient, Instruction,  db
+from app.models import Recipe, Ingredient, Instruction, MeasurementUnit, db
 from ..forms import RecipeForm, IngredientForm, InstructionForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -23,6 +23,7 @@ def post_recipe():
             user_id = form.data['user_id'],
             title = form.data['title'],
             description = form.data['description'],
+            image_url = form.data['image_url'],
             prep_time = form.data['prep_time'],
             bake_time = form.data['bake_time'],
             active_time = form.data['active_time'],
@@ -84,6 +85,7 @@ def edit_recipe(recipe_id):
         user_id = form.data['user_id'],
         title = form.data['title'],
         description = form.data['description'],
+        image_url = form.data['image_url'],
         prep_time = form.data['prep_time'],
         bake_time = form.data['bake_time'],
         active_time = form.data['active_time'],
@@ -127,7 +129,7 @@ def edit_ingredient(ing_id):
 
     return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
 
-# create instructions for a recipe
+# edit instructions for a recipe
 @recipe_routes.route('/instructions/<int:inst_id>', methods=['PUT'])
 def edit_instruction(inst_id):
     instruction = Instruction.query.get(inst_id)
@@ -156,7 +158,7 @@ def delete_recipe(recipe_id):
     db.session.commit()
     return { "message": "Recipe Deleted!" }
 
-# delete am ingredient
+# delete an ingredient
 @recipe_routes.route('/ingredients/<int:ing_id>', methods=['DELETE'])
 def delete_ingredient(ing_id):
     ingredient = Ingredient.query.get(ing_id)
@@ -171,3 +173,9 @@ def delete_instruction(inst_id):
     db.session.delete(instruction)
     db.session.commit()
     return { "message": "Instruction Deleted!" }
+
+# get all measurement units
+@recipe_routes.route('/units')
+def get_measurement_units():
+    units = MeasurementUnit.query.all()
+    return {"units": [unit.to_dict() for unit in units]}

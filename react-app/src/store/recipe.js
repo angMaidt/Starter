@@ -44,8 +44,8 @@ export const getRecipesThunk = () => async (dispatch) => {
         const data = await res.json()
         dispatch(getRecipes(data.recipes))
     } else {
-        const err = await res.json()
-        throw err
+        const error = await res.json()
+        throw error
     }
 }
 
@@ -60,11 +60,11 @@ export const postRecipeThunk = (recipe) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        dispatch(postRecipe(data.recipe))
-        return data.recipe
-    } else {
-        const err = await res.json()
-        throw err
+        // console.log(data)
+        if (data.errors) {
+            return;
+          }
+        dispatch(postRecipe(data))
     }
 }
 
@@ -79,8 +79,8 @@ export const editRecipeThunk = (recipe) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json()
-        dispatch(editRecipe(data.recipe))
-        return data.recipe
+        dispatch(editRecipe(data))
+        return data
     } else {
         const err = await res.json()
         throw err
@@ -115,6 +115,7 @@ export default function recipe_reducer(state = initialState, action) {
             return newState
         case POST_RECIPE:
             newState = { ...state }
+            console.log('heeere')
             newState[action.recipe.id] = action.recipe
             return newState
         case EDIT_RECIPE:
