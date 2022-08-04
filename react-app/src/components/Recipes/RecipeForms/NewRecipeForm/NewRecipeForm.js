@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { postRecipeThunk } from '../../../../store/recipe'
+import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
+import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 
 function NewRecipeForm() {
     const history = useHistory()
@@ -16,6 +18,9 @@ function NewRecipeForm() {
     const [bake_time, setBake_time] = useState('')
     const [baking_temp, setBaking_temp] = useState('')
     const [total_yield, setTotal_yield] = useState('')
+
+    const [recipe_id, setRecipe_id] = useState('')
+    // console.log(recipe_id)
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -36,7 +41,8 @@ function NewRecipeForm() {
         }
 
         try {
-            await dispatch(postRecipeThunk(payload))
+            const data = await dispatch(postRecipeThunk(payload))
+            setRecipe_id(data.id)
             // history.push('/recipes')
         } catch (e) {
             setValidationErrors(e.errors)
@@ -131,6 +137,8 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
+            <NewIngredientForm recipe_id={recipe_id}/>
+            <NewInstructionForm recipe_id={recipe_id}/>
         </>
     )
 }
