@@ -56,7 +56,7 @@ function NewIngredientForm({ recipe_id }) {
     return (
         <>
             <h3>Add Ingredients!</h3>
-            {!ingredients ?
+            {ingredients.length < 1 ?
             <p>Add some ingredients to your recipe!</p>
             :
             <ul>

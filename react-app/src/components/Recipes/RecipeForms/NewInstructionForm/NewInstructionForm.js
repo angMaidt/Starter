@@ -42,8 +42,8 @@ function NewInstructionForm({ recipe_id }) {
 
     return (
         <>
-            <h3>Add Instructions</h3>
-            {!instructions ?
+            <h3>Add Instructions!</h3>
+            {instructions.length < 1 ?
             <p>Add some instructions to your recipe!</p>
             :
             <ol>
