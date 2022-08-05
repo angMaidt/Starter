@@ -1,34 +1,53 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { postRecipeThunk } from '../../../../store/recipe'
+
+import { editRecipeThunk } from '../../../../store/recipe'
+import EditIngredientForm from '../EditIngredientForm/EditIngredientForm'
+import EditInstructionForm from '../EditInstructionForm/EditInstructionForm'
 import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 
-function NewRecipeForm() {
+function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_instructions }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [image_url, setImage_url] = useState('')
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)
 
-    const [active_time_mins, setActive_time_mins] = useState('')
-    const [active_time_hrs, setActive_time_hrs] = useState('')
+    const ms_converter = (ms) => {
+        let mins = ms % 3600000
+        let hrs = ms - mins
+        let secs = mins % 60000
+        mins = mins - secs
+        hrs = hrs/3600000
+        mins = mins/60000
+        return [hrs, mins]
+    }
+    // console.log(3488500 % 3,600,000)
+    // console.log(ms_converter(3488500))
 
-    const [ferment_time_mins, setFerment_time_mins] = useState('') //note, change prep time to ferment time in db
-    const [ferment_time_hrs, setFerment_time_hrs] = useState('') //note, change prep time to ferment time in db
+    const [title, setTitle] = useState(recipe.title)
+    const [description, setDescription] = useState(recipe.description)
+    const [image_url, setImage_url] = useState(recipe.image_url)
 
-    const [bake_time_mins, setBake_time_mins] = useState('')
-    const [bake_time_hrs, setBake_time_hrs] = useState('')
+    const [active_time_hrs, setActive_time_hrs] = useState(ms_converter(recipe.active_time)[0])
+    const [active_time_mins, setActive_time_mins] = useState(ms_converter(recipe.active_time)[1])
 
-    const [baking_temp, setBaking_temp] = useState('')
+    const [ferment_time_hrs, setFerment_time_hrs] = useState(ms_converter(recipe.active_time)[0]) //note, change prep time to proof time in db
+    const [ferment_time_mins, setFerment_time_mins] = useState(ms_converter(recipe.active_time)[1]) //note, change prep time to proof time in db
+
+    const [bake_time_hrs, setBake_time_hrs] = useState(ms_converter(recipe.active_time)[0])
+    const [bake_time_mins, setBake_time_mins] = useState(ms_converter(recipe.active_time)[1])
+
+    const [baking_temp, setBaking_temp] = useState(recipe.baking_temp)
+
     const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
-
-    const [total_yield, setTotal_yield] = useState('')
+    const [total_yield, setTotal_yield] = useState(recipe.total_yield)
     const [measurementUnits, setMeasurementUnits] = useState('')
-    const [recipe_id, setRecipe_id] = useState('')
+    const [recipe_id, setRecipe_id] = useState(recipe.id)
+    // console.log(recipe_id)
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -41,7 +60,7 @@ function NewRecipeForm() {
         fetchUnits()
     }, [])
 
-    //converts time to ms before sending to db
+    //convert before sending back
     const convert_to_ms = (hrs, mins) => {
         if (!hrs) hrs = 0
         if (!mins) mins = 0
@@ -69,34 +88,38 @@ function NewRecipeForm() {
         const ferment_time = convert_to_ms(ferment_time_hrs, ferment_time_mins)
         const bake_time = convert_to_ms(bake_time_hrs, bake_time_mins)
 
-        // convert to celsius before sending back
+        //convert to celsius before sending back
         const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
 
         const payload = {
+            id: recipe.id,
             user_id: sessionUser.id,
             title,
             image_url,
             description,
             active_time,
             prep_time: ferment_time,
-            bake_time: degrees_celsius,
-            baking_temp,
+            bake_time,
+            baking_temp: degrees_celsius,
             total_yield
         }
 
         try {
-            const data = await dispatch(postRecipeThunk(payload))
-            alert('Recipe Submitted!')
-            setRecipe_id(data.id)
-            // history.push('/recipes')
+            const data = await dispatch(editRecipeThunk(payload))
         } catch (e) {
             setValidationErrors(e.errors)
         }
     }
 
+    // let list_length
+    // if (recipe) {
+    //     list_length = recipe.ingredients.length()
+    // }
+
+    // console.log(list_length)
     return (
         <>
-            <h3>Recipe Body</h3>
+            <h3>Edit Recipe!</h3>
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     <div className="input-container">
@@ -147,7 +170,7 @@ function NewRecipeForm() {
                         />
                     </div>
                     <div className="input-container">
-                        <label>Ferment Time</label>
+                        <label>Proofing Time</label>
                         <input
                             type='text'
                             placeholder="Hours"
@@ -213,10 +236,32 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
-            <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
-            <NewInstructionForm recipe_id={recipe_id}/>
+            <h3>Edit Ingredients</h3>
+            {ordered_ingredients.map(ingredient => (
+                <EditIngredientForm key={ingredient.id} measurementUnits={measurementUnits} ingredient={ingredient} recipe_id={recipe.id}/>
+                ))}
+            {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe.id}/>}
+            {!showAddForm ?
+            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
+            :
+            <button onClick={() => setShowAddForm(false)}>Cancel</button>
+            }
+            <h3>Edit Instructions</h3>
+            {ordered_instructions.map(instruction => (
+                <>
+                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
+                </>
+            ))}
+            {}
+            {showAddInstructionForm && <NewInstructionForm recipe_id={recipe.id} />}
+            {!showAddInstructionForm ?
+                <button onClick={() => setShowAddInstructionForm(true)}>Add Instruction</button>
+                :
+                <button onClick={() => setShowAddInstructionForm(false)}>Cancel</button>
+            }
+        {/* <button onClick={setShowEditForm(false)}>Done!</button> */}
         </>
     )
 }
 
-export default NewRecipeForm
+export default EditRecipeForm

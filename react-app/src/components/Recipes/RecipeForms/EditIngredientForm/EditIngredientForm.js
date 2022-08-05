@@ -1,27 +1,31 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
+import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 
-function NewIngredientForm({ recipe_id, measurementUnits }) {
+
+function EditIngredientForm({ ingredient, measurementUnits, recipe_id }) {
     const dispatch = useDispatch()
-    const [amount, setAmount] = useState('')
-    const [unit, setUnit] = useState(1)
-    const [food_stuff, setFood_stuff] = useState('')
-    // const [measurementUnits, setMeasurementUnits] = useState('')
+    const [amount, setAmount] = useState(ingredient.amount)
+    const [unit, setUnit] = useState(ingredient.measurement_unit.id)
+    const [food_stuff, setFood_stuff] = useState(ingredient.food_stuff)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
-    const [ingredients, SetIngredients] = useState([])
-    // console.log(ingredients)
+    // const [showAddForm, setShowAddForm] = useState(false)
 
+    const handleDelete = async(e) => {
+        e.preventDefault()
 
-    // useEffect(() => {
-    //     async function fetchUnits() {
-    //         const res = await fetch('/api/recipes/units')
-    //         const data = await res.json()
-    //         setMeasurementUnits(data.units)
-    //     }
-    //     fetchUnits()
-    // }, [])
+        try {
+            const res = await fetch(`/api/recipes/ingredients/${ingredient.id}`, {
+                method: 'DELETE'
+            })
+
+            await dispatch(getRecipesThunk())
+        } catch (e) {
+            setValidationErrors(e.errors)
+        }
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -36,43 +40,32 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
         setHasSubmitted(true)
 
         try {
-            const res = await fetch('/api/recipes/ingredients', {
-                method: 'POST',
+            const res = await fetch(`/api/recipes/ingredients/${ingredient.id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(payload)
             })
-
             if (res.ok) {
                 const data = await res.json()
-                SetIngredients([...ingredients, data])
-                setAmount('')
-                setFood_stuff('')
-                setUnit(1)
-                await dispatch(getRecipesThunk())
+                // SetIngredients([...ingredients, data])
+                // setAmount('')
+                // setFood_stuff('')
+                // setUnit(1)
             }
+
+            await dispatch(getRecipesThunk())
         } catch (e) {
             setValidationErrors(e.errors)
         }
-
     }
 
     return (
         <>
-            <h3>Add Ingredients!</h3>
-            {ingredients.length > 0 ?
-            <ul>
-                {Object.values(ingredients).map(ingredient => (
-                    <li key={ingredient.id}>
-                        <p>{ingredient.amount} {ingredient. measurement_unit.unit} {ingredient.food_stuff}</p>
-                    </li>
-                ))}
-            </ul>
-            :
-            null
-            }
+            <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
             <form className="ingredient-form" onSubmit={handleSubmit}>
+                {/* {ingredient} */}
                 <div className='ingredient-input-container'>
                     <div className="input-container">
                         <label>Amount</label>
@@ -113,8 +106,15 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
                 </div>
                 <button>Submit!</button>
             </form>
+            <button onClick={handleDelete}>Delete Ingredient</button>
+            {/* {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe_id}/>}
+            {!showAddForm ?
+            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
+            :
+            <button onClick={() => setShowAddForm(false)}>Cancel</button>
+            } */}
         </>
     )
 }
 
-export default NewIngredientForm
+export default EditIngredientForm

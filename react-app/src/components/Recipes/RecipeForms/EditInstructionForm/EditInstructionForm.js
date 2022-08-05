@@ -2,14 +2,28 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
 
-function NewInstructionForm({ recipe_id, existing_list_order }) {
-    // console.log(existing_list_order)
+function EditInstructionForm({ instruction, recipe_id }) {
     const dispatch = useDispatch()
-    const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
-    const [specification, setSpecification] = useState()
+    const [list_order, setList_order] = useState(instruction.list_order)
+    const [specification, setSpecification] = useState(instruction.specification)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
-    const [instructions, SetInstructions] = useState([])
+
+    const handleDelete = async(e) => {
+        e.preventDefault()
+
+        try {
+            const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
+                method: 'DELETE'
+            })
+            if (res.ok) {
+                const data = await res.json()
+                await dispatch(getRecipesThunk())
+            }
+        } catch (e) {
+            setValidationErrors(e.errors)
+        }
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -23,8 +37,8 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
         setHasSubmitted(true)
 
         try {
-            const res = await fetch('/api/recipes/instructions', {
-                method: 'POST',
+            const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -33,10 +47,10 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
 
             if (res.ok) {
                 const data = await res.json()
+                // SetInstructions([...instructions, data])
+                // setList_order(list_order + 1)
+                // setSpecification('')
                 await dispatch(getRecipesThunk())
-                SetInstructions([...instructions, data])
-                setList_order(list_order + 1)
-                setSpecification('')
             }
         } catch (e) {
             setValidationErrors(e.errors)
@@ -45,18 +59,6 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
 
     return (
         <>
-            <h3>Add Instructions!</h3>
-            {instructions.length > 0 ?
-            <ol>
-                {Object.values(instructions).map(instruction => (
-                    <li key={instruction.id}>
-                        <p>{instruction.specification}</p>
-                    </li>
-                ))}
-            </ol>
-            :
-            null
-            }
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">
                     <div className="input-container">
@@ -72,8 +74,9 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
                 </div>
                 <button>Submit!</button>
             </form>
+            <button onClick={handleDelete}>Delete Instruction</button>
         </>
     )
 }
 
-export default NewInstructionForm
+export default EditInstructionForm
