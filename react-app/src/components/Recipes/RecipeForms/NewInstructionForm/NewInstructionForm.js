@@ -6,10 +6,19 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
     // console.log(existing_list_order)
     const dispatch = useDispatch()
     const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
-    const [specification, setSpecification] = useState()
+    const [specification, setSpecification] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
     const [instructions, SetInstructions] = useState([])
+
+    useEffect(() => {
+        let errors = []
+
+        if (!specification) errors.push('Please enter an instruction for this step.')
+        if (specification.length > 1000) errors.push('Looks like you tried to enter over 1000 characters for this step.')
+
+        setValidationErrors(errors)
+    }, [specification])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -46,6 +55,13 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
     return (
         <>
             <h3>Add Instructions!</h3>
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             {!edit && instructions.length > 0 ?
             <ol>
                 {Object.values(instructions).map(instruction => (
