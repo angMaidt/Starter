@@ -17,8 +17,8 @@ function NewRecipeForm() {
     const [active_time_mins, setActive_time_mins] = useState('')
     const [active_time_hrs, setActive_time_hrs] = useState('')
 
-    const [ferment_time_mins, setFerment_time_mins] = useState('') //note, change prep time to proof time in db
-    const [ferment_time_hrs, setFerment_time_hrs] = useState('') //note, change prep time to proof time in db
+    const [ferment_time_mins, setFerment_time_mins] = useState('') //note, change prep time to ferment time in db
+    const [ferment_time_hrs, setFerment_time_hrs] = useState('') //note, change prep time to ferment time in db
 
     const [bake_time_mins, setBake_time_mins] = useState('')
     const [bake_time_hrs, setBake_time_hrs] = useState('')
@@ -69,7 +69,7 @@ function NewRecipeForm() {
         const ferment_time = convert_to_ms(ferment_time_hrs, ferment_time_mins)
         const bake_time = convert_to_ms(bake_time_hrs, bake_time_mins)
 
-        //convert to celsius before sending back
+        // convert to celsius before sending back
         const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
 
         const payload = {
@@ -79,13 +79,14 @@ function NewRecipeForm() {
             description,
             active_time,
             prep_time: ferment_time,
-            bake_time,
-            baking_temp: degrees_celsius,
+            bake_time: degrees_celsius,
+            baking_temp,
             total_yield
         }
 
         try {
             const data = await dispatch(postRecipeThunk(payload))
+            alert('Recipe Submitted!')
             setRecipe_id(data.id)
             // history.push('/recipes')
         } catch (e) {
@@ -146,7 +147,7 @@ function NewRecipeForm() {
                         />
                     </div>
                     <div className="input-container">
-                        <label>Proofing Time</label>
+                        <label>Ferment Time</label>
                         <input
                             type='text'
                             placeholder="Hours"

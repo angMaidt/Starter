@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
+import EditIngredientForm from '../RecipeForms/EditIngredientForm/EditIngredientForm'
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 
 function SingleRecipe() {
@@ -14,20 +15,20 @@ function SingleRecipe() {
     const [showEditForm, setShowEditForm] = useState(false)
     // console.log(sessionUser)
 
-    const convert_ms = (ms) => {
-        const mins = Math.floor((ms/1000)/60)
-        if (mins >= 60) {
-            const hrs = Math.floor(mins/60)
-            const remaining_mins = Math.floor(mins % 60)
-            return [hrs, remaining_mins]
-        }
-        return mins
+    const ms_converter = (ms) => {
+        let mins = ms % 3600000
+        let hrs = ms - mins
+        let secs = mins % 60000
+        mins = mins - secs
+        hrs = hrs/3600000
+        mins = mins/60000
+        return [hrs, mins]
     }
 
-    // const convert_to_fahrenheit = (celsius) => {
-    //     const farenheit = celsius * 1.8 + 32
-    //     return farenheit
-    // }
+    const convert_to_fahrenheit = (celsius) => {
+        const farenheit = celsius * 1.8 + 32
+        return farenheit
+    }
 
     const handleDelete = async(e) => {
         e.preventDefault()
@@ -42,6 +43,18 @@ function SingleRecipe() {
 
     }
 
+    //sorts instructions by list order so they show up in correct order
+    let ordered_instructions
+    if (recipe) {
+        ordered_instructions = Object.values(recipe.instructions).sort((a, b) => (a.list_order > b.list_order ? 1: -1))
+    }
+
+    let ordered_ingredients
+    if (recipe) {
+        ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
+    }
+
+    // console.log(ordered_instructions)
     return (
         <>
             <h1>Welcome to Single Recipe!</h1>
@@ -58,41 +71,41 @@ function SingleRecipe() {
                 <p>{recipe.description}</p>
                 <div style={{ 'border': '1px solid black' }}>
                     <h3>Recipe Facts</h3>
-                    {/* <p>Hydration: {calculate_hydration(flour_amount, water_amount)}%</p> */}
-                    <p>Active Time: {convert_ms(recipe.active_time)} mins</p>
-                    <p>Proofing Time: {convert_ms(recipe.prep_time)} mins</p>
-                    <p>Baking Time: {convert_ms(recipe.bake_time)} mins</p>
-                    {/* <p>Total Time:
-                        {convert_ms(recipe.bake_time + recipe.active_time + recipe.prep_time)[0]} hour
-                        {convert_ms(recipe.bake_time + recipe.active_time + recipe.prep_time)[1]} mins
-                    </p> */}
-                    <p>Baking Temp: {recipe.baking_temp} °C </p>
+                    <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
+                    <p>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</p>
+                    <p>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</p>
+                    <p>Baking Temp: {recipe.baking_temp}</p>
                     <p>Total Yield: {recipe.total_yield}</p>
                 </div>
                 <div>
                     <h3>Ingredients</h3>
                     <ul>
-                        {recipe.ingredients.map(ingredient => (
+                        {ordered_ingredients.map(ingredient => (
                             <li key={ingredient.id}>
                                 <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+                                {/* <EditIngredientForm ingredient={ingredient} recipeId={recipe.id}/> */}
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div>
                     <h3>Instructions</h3>
-                    <ol>
-                        {recipe.instructions.map(instruction => (
-                            <li key={instruction.id}>
-                                <p>{instruction.specification}</p>
-                            </li>
+                    {/* <ul style={{ 'listStyle': 'none'}}> */}
+                        {ordered_instructions.map(instruction => (
+                            // <li key={instruction.id}>
+                                <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
+                            // </li>
                         ))}
-                    </ol>
+                    {/* </ul> */}
                 </div>
                 {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} />}
                 {sessionUser && sessionUser.id === recipe.user.id &&
                 <div>
-                    <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
+                    {!showEditForm ?
+                        <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
+                    :
+                    <button onClick={() => setShowEditForm(false)}>Cancel Edit</button>
+                    }
                     <button onClick={handleDelete}>Delete Recipe!</button>
                 </div>
                 }
