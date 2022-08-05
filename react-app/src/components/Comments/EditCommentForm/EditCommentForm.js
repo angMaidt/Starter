@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-// import { useHistory } from "react-router-dom"
-import { postCommentThunk } from '../../../store/comment'
+import { editCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
+// import { useHistory } from "react-router-dom"
 
-function NewCommentForm({ recipe }) {
+function EditCommentForm({ comment, sessionUser, setShowEdit }) {
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
 
-    const [rating, setRating] = useState(5)
-    const [body, setBody] = useState('')
+    const [rating, setRating] = useState(comment.rating)
+    const [body, setBody] = useState(comment.body)
     const [validationErrors, setValidationErrors] = useState([])
-
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -20,13 +18,12 @@ function NewCommentForm({ recipe }) {
             rating,
             body,
             user_id: sessionUser.id,
-            recipe_id: recipe.id
+            recipe_id: comment.recipe_id,
+            id: comment.id
         }
-        setRating(5)
-        setBody('')
-
+        setShowEdit(false)
         try {
-            const data = await dispatch(postCommentThunk(payload))
+            const data = await dispatch(editCommentThunk(payload))
             await dispatch(getRecipesThunk())
 
         } catch (e) {
@@ -36,7 +33,7 @@ function NewCommentForm({ recipe }) {
 
     return (
         <>
-            <h3>Leave a comment!</h3>
+            <h3>Edit Comment</h3>
             <form onSubmit={handleSubmit}>
                 <div className='comment-input-container'>
                     <div className='input-container'>
@@ -64,4 +61,4 @@ function NewCommentForm({ recipe }) {
     )
 }
 
-export default NewCommentForm
+export default EditCommentForm
