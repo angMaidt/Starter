@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import { postRecipeThunk } from '../../../../store/recipe'
 import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
+import { getRecipesThunk } from '../../../../store/recipe'
 
 function NewRecipeForm() {
     const history = useHistory()
@@ -29,8 +30,18 @@ function NewRecipeForm() {
     const [total_yield, setTotal_yield] = useState('')
     const [measurementUnits, setMeasurementUnits] = useState('')
     const [recipe_id, setRecipe_id] = useState('')
+
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
+    const [hasCreated, setHasCreated] = useState(false)
+
+    // const newRecipe = useSelector(state => {
+    //     if (recipe_id) {
+    //         return state.recipes[recipe_id]
+    //     }
+    // })
+
+    // if (newRecipe) console.log(newRecipe)
 
     useEffect(() => {
         async function fetchUnits() {
@@ -40,6 +51,13 @@ function NewRecipeForm() {
         }
         fetchUnits()
     }, [])
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            await dispatch(getRecipesThunk())
+        }
+        fetchRecipes().catch(console.error)
+    }, [dispatch])
 
     //converts time to ms before sending to db
     const convert_to_ms = (hrs, mins) => {
@@ -84,10 +102,24 @@ function NewRecipeForm() {
             total_yield
         }
 
+        setTitle('')
+        setDescription('')
+        setImage_url('')
+        setActive_time_mins('')
+        setActive_time_hrs('')
+        setFerment_time_mins('')
+        setFerment_time_hrs('')
+        setBake_time_mins('')
+        setBake_time_hrs('')
+        setBaking_temp('')
+        setBaking_temp_system('fahrenheit')
+        setTotal_yield('')
+
         try {
             const data = await dispatch(postRecipeThunk(payload))
             alert('Recipe Submitted!')
             setRecipe_id(data.id)
+            setHasCreated(true)
             // history.push('/recipes')
         } catch (e) {
             setValidationErrors(e.errors)
@@ -96,7 +128,7 @@ function NewRecipeForm() {
 
     return (
         <>
-            <h3>Recipe Body</h3>
+        <h3>Recipe Body</h3>
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     <div className="input-container">
@@ -213,6 +245,14 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
+            {/* {newRecipe &&
+                <div>
+                    <h4>Title</h4>
+                    <p>{newRecipe.title}</p>
+                    <h4>Description</h4>
+                    <p>{newRecipe.description}</p>
+                </div>
+            } */}
             <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
             <NewInstructionForm recipe_id={recipe_id}/>
         </>

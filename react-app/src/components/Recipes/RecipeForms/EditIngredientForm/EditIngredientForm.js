@@ -4,7 +4,7 @@ import { getRecipesThunk } from '../../../../store/recipe'
 import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 
 
-function EditIngredientForm({ ingredient, measurementUnits, recipe_id }) {
+function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEditIng }) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState(ingredient.amount)
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
@@ -53,6 +53,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id }) {
                 // setAmount('')
                 // setFood_stuff('')
                 // setUnit(1)
+                // setShowEditIng(false)
             }
 
             await dispatch(getRecipesThunk())
