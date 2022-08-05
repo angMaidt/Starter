@@ -20,6 +20,8 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id }) {
             const res = await fetch(`/api/recipes/ingredients/${ingredient.id}`, {
                 method: 'DELETE'
             })
+
+            await dispatch(getRecipesThunk())
         } catch (e) {
             setValidationErrors(e.errors)
         }

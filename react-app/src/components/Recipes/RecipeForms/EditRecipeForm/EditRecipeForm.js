@@ -6,8 +6,9 @@ import { editRecipeThunk } from '../../../../store/recipe'
 import EditIngredientForm from '../EditIngredientForm/EditIngredientForm'
 import EditInstructionForm from '../EditInstructionForm/EditInstructionForm'
 import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
+import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 
-function EditRecipeForm({ recipe, setShowEditForm }) {
+function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_instructions }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
@@ -110,10 +111,10 @@ function EditRecipeForm({ recipe, setShowEditForm }) {
         }
     }
 
-    let ordered_ingredients
-    if (recipe) {
-        ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
-    }
+    // let ordered_ingredients
+    // if (recipe) {
+    //     ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
+    // }
 
     return (
         <>
@@ -245,9 +246,17 @@ function EditRecipeForm({ recipe, setShowEditForm }) {
             <button onClick={() => setShowAddForm(false)}>Cancel</button>
             }
             <h3>Edit Instructions</h3>
-            {recipe.instructions.map(instruction => (
-                <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
+            {ordered_instructions.map(instruction => (
+                <>
+                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
+                    {showAddInstructionForm && <NewInstructionForm recipe_id={recipe.id} existing_list_order={instruction.list_order} />}
+                </>
             ))}
+            {!showAddInstructionForm ?
+                <button onClick={() => setShowAddInstructionForm(true)}>Add Instruction</button>
+                :
+                <button onClick={() => setShowAddInstructionForm(false)}>Cancel</button>
+            }
         {/* <button onClick={setShowEditForm(false)}>Done!</button> */}
         </>
     )

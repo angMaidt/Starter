@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 
-function NewInstructionForm({ recipe_id }) {
-    const [list_order, setList_order] = useState(1)
+function NewInstructionForm({ recipe_id, existing_list_order }) {
+    console.log(existing_list_order)
+    const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
     const [specification, setSpecification] = useState()
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])

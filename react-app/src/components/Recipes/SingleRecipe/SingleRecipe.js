@@ -98,7 +98,7 @@ function SingleRecipe() {
                         ))}
                     {/* </ul> */}
                 </div>
-                {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} />}
+                {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />}
                 {sessionUser && sessionUser.id === recipe.user.id &&
                 <div>
                     {!showEditForm ?

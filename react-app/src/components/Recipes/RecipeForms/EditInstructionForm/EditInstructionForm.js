@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { getRecipesThunk } from '../../../../store/recipe'
 
 function EditInstructionForm({ instruction, recipe_id }) {
+    const dispatch = useDispatch()
     const [list_order, setList_order] = useState(instruction.list_order)
     const [specification, setSpecification] = useState(instruction.specification)
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -14,6 +16,10 @@ function EditInstructionForm({ instruction, recipe_id }) {
             const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
                 method: 'DELETE'
             })
+            if (res.ok) {
+                const data = await res.json()
+                await dispatch(getRecipesThunk())
+            }
         } catch (e) {
             setValidationErrors(e.errors)
         }
@@ -44,6 +50,7 @@ function EditInstructionForm({ instruction, recipe_id }) {
                 // SetInstructions([...instructions, data])
                 // setList_order(list_order + 1)
                 // setSpecification('')
+                await dispatch(getRecipesThunk())
             }
         } catch (e) {
             setValidationErrors(e.errors)
