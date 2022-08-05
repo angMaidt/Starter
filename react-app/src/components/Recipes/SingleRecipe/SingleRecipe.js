@@ -126,7 +126,7 @@ function SingleRecipe() {
                     <h3>Ingredients</h3>
                     {!showEditIng ?
                     <div>
-                        <button onClick={() => setShowEditIng(true)}>Edit Ingredients</button>
+                        {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditIng(true)}>Edit Ingredients</button>}
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
@@ -162,7 +162,7 @@ function SingleRecipe() {
                     <h3>Instructions</h3>
                     {!showEditInst ?
                         <div>
-                            <button onClick={() => setShowEditInst(true)}>Edit Instructions</button>
+                            {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditInst(true)}>Edit Instructions</button>}
                             {ordered_instructions.map(instruction => (
                                 <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
                             ))}
