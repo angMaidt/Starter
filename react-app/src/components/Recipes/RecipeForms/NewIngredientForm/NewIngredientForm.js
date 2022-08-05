@@ -13,16 +13,6 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
     const [ingredients, SetIngredients] = useState([])
     // console.log(ingredients)
 
-
-    // useEffect(() => {
-    //     async function fetchUnits() {
-    //         const res = await fetch('/api/recipes/units')
-    //         const data = await res.json()
-    //         setMeasurementUnits(data.units)
-    //     }
-    //     fetchUnits()
-    // }, [])
-
     const handleSubmit = async(e) => {
         e.preventDefault()
 

@@ -84,6 +84,7 @@ function NewRecipeForm() {
         if (!total_yield || total_yield.length < 3) errors.push('Total yield is too short! Make it over 3 characters.')
         if (total_yield.length > 50) errors.push('Total yield is too long! Make it less than 50 characters.')
 
+        if (isNaN(baking_temp)) errors.push('Please enter numbers only into baking temperature fields!')
         if (!baking_temp || baking_temp < 0) errors.push('Please enter a number over 0 for your bake temperature!')
         if (baking_temp > 1000) errors.push('Did you enter a number over 1000 for bake temperature? I am skeptical, to say the least.')
 
@@ -285,16 +286,12 @@ function NewRecipeForm() {
                 </div>
                 <button>Submit!</button>
             </form>
-            {/* {newRecipe &&
+            {/* {hasCreated && */}
                 <div>
-                    <h4>Title</h4>
-                    <p>{newRecipe.title}</p>
-                    <h4>Description</h4>
-                    <p>{newRecipe.description}</p>
+                    <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
+                    <NewInstructionForm recipe_id={recipe_id}/>
                 </div>
-            } */}
-            <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
-            <NewInstructionForm recipe_id={recipe_id}/>
+            {/* } */}
         </>
     )
 }
