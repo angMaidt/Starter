@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { getRecipesThunk } from '../../../../store/recipe'
+import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 
 
-function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
+function EditIngredientForm({ ingredient, measurementUnits, recipe_id }) {
+    const dispatch = useDispatch()
     const [amount, setAmount] = useState(ingredient.amount)
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
     const [food_stuff, setFood_stuff] = useState(ingredient.food_stuff)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
+    // const [showAddForm, setShowAddForm] = useState(false)
 
     const handleDelete = async(e) => {
         e.preventDefault()
@@ -28,7 +32,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
             amount,
             food_stuff,
             measurement_unit_id: unit,
-            recipe_id: recipeId
+            recipe_id
         }
 
         setHasSubmitted(true)
@@ -48,6 +52,8 @@ function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
                 // setFood_stuff('')
                 // setUnit(1)
             }
+
+            await dispatch(getRecipesThunk())
         } catch (e) {
             setValidationErrors(e.errors)
         }
@@ -55,6 +61,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
 
     return (
         <>
+            <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
             <form className="ingredient-form" onSubmit={handleSubmit}>
                 {/* {ingredient} */}
                 <div className='ingredient-input-container'>
@@ -98,6 +105,12 @@ function EditIngredientForm({ ingredient, measurementUnits, recipeId }) {
                 <button>Submit!</button>
             </form>
             <button onClick={handleDelete}>Delete Ingredient</button>
+            {/* {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe_id}/>}
+            {!showAddForm ?
+            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
+            :
+            <button onClick={() => setShowAddForm(false)}>Cancel</button>
+            } */}
         </>
     )
 }

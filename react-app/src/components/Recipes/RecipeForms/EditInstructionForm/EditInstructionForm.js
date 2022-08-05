@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 
-function EditInstructionForm({ instruction, recipeId }) {
+function EditInstructionForm({ instruction, recipe_id }) {
     const [list_order, setList_order] = useState(instruction.list_order)
     const [specification, setSpecification] = useState(instruction.specification)
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -25,7 +25,7 @@ function EditInstructionForm({ instruction, recipeId }) {
         const payload = {
             list_order,
             specification,
-            recipe_id: recipeId
+            recipe_id
         }
 
         setHasSubmitted(true)

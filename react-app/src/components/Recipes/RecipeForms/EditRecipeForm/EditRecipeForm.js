@@ -5,11 +5,15 @@ import { useHistory } from "react-router-dom"
 import { editRecipeThunk } from '../../../../store/recipe'
 import EditIngredientForm from '../EditIngredientForm/EditIngredientForm'
 import EditInstructionForm from '../EditInstructionForm/EditInstructionForm'
+import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 
 function EditRecipeForm({ recipe, setShowEditForm }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)
 
     const ms_converter = (ms) => {
         let mins = ms % 3600000
@@ -104,6 +108,11 @@ function EditRecipeForm({ recipe, setShowEditForm }) {
         } catch (e) {
             setValidationErrors(e.errors)
         }
+    }
+
+    let ordered_ingredients
+    if (recipe) {
+        ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
     }
 
     return (
@@ -226,12 +235,18 @@ function EditRecipeForm({ recipe, setShowEditForm }) {
                 <button>Submit!</button>
             </form>
             <h3>Edit Ingredients</h3>
-            {recipe.ingredients.map(ingredient => (
-                <EditIngredientForm key={ingredient.id} measurementUnits={measurementUnits} ingredient={ingredient} recipeId={recipe.id}/>
+            {ordered_ingredients.map(ingredient => (
+                <EditIngredientForm key={ingredient.id} measurementUnits={measurementUnits} ingredient={ingredient} recipe_id={recipe.id}/>
                 ))}
+            {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe.id}/>}
+            {!showAddForm ?
+            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
+            :
+            <button onClick={() => setShowAddForm(false)}>Cancel</button>
+            }
             <h3>Edit Instructions</h3>
             {recipe.instructions.map(instruction => (
-                <EditInstructionForm key={instruction.id} instruction={instruction} recipeId={recipe.id} />
+                <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
             ))}
         {/* <button onClick={setShowEditForm(false)}>Done!</button> */}
         </>
