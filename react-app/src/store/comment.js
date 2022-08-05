@@ -61,7 +61,7 @@ export const postCommentThunk = (comment) => async (dispatch) => {
         if (data.errors) {
             return
         }
-        dispatch(postComment(data))
+        dispatch(createComment(data))
         return data
     }
 }
