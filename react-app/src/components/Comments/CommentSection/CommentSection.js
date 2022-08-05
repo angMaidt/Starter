@@ -1,16 +1,19 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import SingleComment from "../SingleComment/SingleComment"
 
 function CommentSection({ recipe }) {
-    // const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user)
     // const [showAddComment, setShowAddComment] = useState(false)
 
     return (
         <>
-            <NewCommentForm recipe={recipe}/>
-            {/* <button onClick={() => setShowAddComment(true)}>Add a comment!</button> */}
+            {sessionUser ?
+                <NewCommentForm recipe={recipe}/>
+                :
+                <p>Login to leave a comment!</p>
+            }
             {recipe.comments.length > 0 ?
                 Object.values(recipe.comments).map(comment => (
                     <SingleComment comment={comment} />

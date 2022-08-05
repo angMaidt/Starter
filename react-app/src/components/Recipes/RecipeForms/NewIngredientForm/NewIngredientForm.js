@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
 
-function NewIngredientForm({ recipe_id, measurementUnits }) {
+function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState('')
     const [unit, setUnit] = useState(1)
@@ -12,16 +12,6 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
     const [validationErrors, setValidationErrors] = useState([])
     const [ingredients, SetIngredients] = useState([])
     // console.log(ingredients)
-
-
-    // useEffect(() => {
-    //     async function fetchUnits() {
-    //         const res = await fetch('/api/recipes/units')
-    //         const data = await res.json()
-    //         setMeasurementUnits(data.units)
-    //     }
-    //     fetchUnits()
-    // }, [])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -61,7 +51,7 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
     return (
         <>
             <h3>Add Ingredients!</h3>
-            {ingredients.length > 0 ?
+            {!edit && ingredients.length > 0 ?
             <ul>
                 {Object.values(ingredients).map(ingredient => (
                     <li key={ingredient.id}>

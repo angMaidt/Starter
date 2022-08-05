@@ -1,0 +1,10 @@
+.recipe-card-photo {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.recipe-card-photo img {
+    height: 300px;
+}

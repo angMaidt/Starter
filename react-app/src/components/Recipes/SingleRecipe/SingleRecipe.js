@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
 import EditIngredientForm from '../RecipeForms/EditIngredientForm/EditIngredientForm'
+import EditInstructionForm from '../RecipeForms/EditInstructionForm/EditInstructionForm'
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
+import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
+import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
@@ -15,7 +18,34 @@ function SingleRecipe() {
     const sessionUser = useSelector(state => state.session.user)
 
     const [showEditForm, setShowEditForm] = useState(false)
+
+    const [showEditIng, setShowEditIng] = useState(false)
+    const [showAddIng, setShowAddIng] = useState(false)
+
+    const [showEditInst, setShowEditInst] = useState(false)
+    const [showAddInst, setShowAddInst] = useState(false)
+
+    const [measurementUnits, setMeasurementUnits] = useState('')
     // console.log(sessionUser)
+
+    useEffect(() => {
+        async function fetchUnits() {
+            const res = await fetch('/api/recipes/units')
+            const data = await res.json()
+            setMeasurementUnits(data.units)
+        }
+        fetchUnits()
+    }, [])
+
+    const handleDoneEditingIng = () => {
+        setShowEditIng(false)
+        setShowAddIng(false)
+    }
+
+    const handleDoneEditingInst = () => {
+        setShowAddInst(false)
+        setShowEditInst(false)
+    }
 
     const ms_converter = (ms) => {
         let mins = ms % 3600000
@@ -71,6 +101,19 @@ function SingleRecipe() {
                     <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
                 </div>
                 <p>{recipe.description}</p>
+                {sessionUser && sessionUser.id === recipe.user.id &&
+                <div>
+                    {!showEditForm ?
+                        <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
+                    :
+                    <div>
+                        <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />
+                        <button onClick={() => setShowEditForm(false)}>Done Editing</button>
+                    </div>
+                    }
+                    <button onClick={handleDelete}>Delete Recipe!</button>
+                </div>
+                }
                 <div style={{ 'border': '1px solid black' }}>
                     <h3>Recipe Facts</h3>
                     <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
@@ -81,43 +124,72 @@ function SingleRecipe() {
                 </div>
                 <div>
                     <h3>Ingredients</h3>
-                    <ul>
-                        {ordered_ingredients.map(ingredient => (
-                            <li key={ingredient.id}>
-                                <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
-                                {/* <EditIngredientForm ingredient={ingredient} recipeId={recipe.id}/> */}
-                            </li>
-                        ))}
-                    </ul>
+                    {!showEditIng ?
+                    <div>
+                        {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditIng(true)}>Edit Ingredients</button>}
+                        <ul>
+                            {ordered_ingredients.map(ingredient => (
+                                <li key={ingredient.id}>
+                                    <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    :
+                    <div>
+                        <button onClick={handleDoneEditingIng}>Done Editing</button>
+                        {!showAddIng ?
+                        <div>
+                            <button onClick={() => setShowAddIng(true)}>Add Ingredients</button>
+                        </div>
+                        :
+                        <div>
+                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
+                            <button onClick={() => setShowAddIng(false)}>Done Adding</button>
+                        </div>
+                        }
+                        <ul>
+                            {ordered_ingredients.map(ingredient => (
+                                <li key={ingredient.id}>
+                                    <EditIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} ingredient={ingredient} setShowEditIng={setShowEditIng}/>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    }
                 </div>
                 <div>
                     <h3>Instructions</h3>
-                    {/* <ul style={{ 'listStyle': 'none'}}> */}
-                        {ordered_instructions.map(instruction => (
-                            // <li key={instruction.id}>
+                    {!showEditInst ?
+                        <div>
+                            {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditInst(true)}>Edit Instructions</button>}
+                            {ordered_instructions.map(instruction => (
                                 <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
-                            // </li>
-                        ))}
-                    {/* </ul> */}
-                </div>
-                {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />}
-                {sessionUser && sessionUser.id === recipe.user.id &&
-                <div>
-                    {!showEditForm ?
-                        <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
-                    :
-                    <button onClick={() => setShowEditForm(false)}>Cancel Edit</button>
+                            ))}
+                        </div>
+                        :
+                        <div>
+                            <div>
+                                <button onClick={handleDoneEditingInst}>Done Editing</button>
+                                {ordered_instructions.map(instruction => (
+                                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} current_length={recipe.instructions.length}/>
+                                    ))}
+                            </div>
+                            {!showAddInst ?
+                                <div>
+                                    <button onClick={() => setShowAddInst(true)}>Add Instructions</button>
+                                </div>
+                                :
+                                <div>
+                                    <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length} edit={true}/>
+                                    <button onClick={() => setShowAddInst(false)}>Done Adding</button>
+                                </div>
+                                }
+                        </div>
                     }
-                    <button onClick={handleDelete}>Delete Recipe!</button>
                 </div>
-                }
                 <h2>Check out what people are saying!</h2>
                 <CommentSection recipe={recipe} />
-                {/* {recipe.comments.length > 0 ?
-                    <CommentSection recipe={recipe} />
-                    :
-                    <p>Looks like no one has commented yet!</p>
-                } */}
             </>
             :
             <p>Looks like there's nothing here!</p>

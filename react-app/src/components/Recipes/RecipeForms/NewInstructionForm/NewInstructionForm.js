@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
 
-function NewInstructionForm({ recipe_id, existing_list_order }) {
+function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
     // console.log(existing_list_order)
     const dispatch = useDispatch()
     const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
@@ -46,7 +46,7 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
     return (
         <>
             <h3>Add Instructions!</h3>
-            {instructions.length > 0 ?
+            {!edit && instructions.length > 0 ?
             <ol>
                 {Object.values(instructions).map(instruction => (
                     <li key={instruction.id}>
