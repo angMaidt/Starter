@@ -1,5 +1,6 @@
-from .db import db
 import datetime
+from sqlalchemy.sql import func
+from .db import db
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -10,7 +11,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow, onupdate=func.now())
 
     #relationships
     recipe = db.relationship('Recipe', back_populates='comments')

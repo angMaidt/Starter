@@ -1,5 +1,6 @@
-from .db import db
 import datetime
+from sqlalchemy.sql import func
+from .db import db
 
 class Recipe(db.Model):
     __tablename__ = 'recipes'
@@ -17,7 +18,7 @@ class Recipe(db.Model):
     baking_temp = db.Column(db.Integer, nullable=False)
     total_yield = db.Column(db.String(50), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow, onupdate=func.now())
 
     #relationships
     user = db.relationship('User', back_populates='recipes', foreign_keys=[user_id])
