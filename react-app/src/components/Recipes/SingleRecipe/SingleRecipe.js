@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
 import EditIngredientForm from '../RecipeForms/EditIngredientForm/EditIngredientForm'
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
+import CommentSection from '../../Comments/CommentSection/CommentSection'
+// import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
     const { id } = useParams()
@@ -109,6 +111,13 @@ function SingleRecipe() {
                     <button onClick={handleDelete}>Delete Recipe!</button>
                 </div>
                 }
+                <h2>Check out what people are saying!</h2>
+                <CommentSection recipe={recipe} />
+                {/* {recipe.comments.length > 0 ?
+                    <CommentSection recipe={recipe} />
+                    :
+                    <p>Looks like no one has commented yet!</p>
+                } */}
             </>
             :
             <p>Looks like there's nothing here!</p>
