@@ -6,6 +6,7 @@ import EditIngredientForm from '../RecipeForms/EditIngredientForm/EditIngredient
 import EditInstructionForm from '../RecipeForms/EditInstructionForm/EditInstructionForm'
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
+import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
@@ -17,6 +18,7 @@ function SingleRecipe() {
 
     const [showEditForm, setShowEditForm] = useState(false)
     const [showEditIng, setShowEditIng] = useState(false)
+    const [showAddIng, setShowAddIng] = useState(false)
     const [showEditInst, setShowEditInst] = useState(false)
     const [measurementUnits, setMeasurementUnits] = useState('')
     // console.log(sessionUser)
@@ -91,7 +93,7 @@ function SingleRecipe() {
                     :
                     <div>
                         <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />
-                        <button onClick={() => setShowEditForm(false)}>Cancel Edit</button>
+                        <button onClick={() => setShowEditForm(false)}>Done Editing</button>
                     </div>
                     }
                     <button onClick={handleDelete}>Delete Recipe!</button>
@@ -121,6 +123,16 @@ function SingleRecipe() {
                     :
                     <div>
                         <button onClick={() => setShowEditIng(false)}>Done Editing</button>
+                        {!showAddIng ?
+                        <div>
+                            <button onClick={() => setShowAddIng(true)}>Add Ingredients</button>
+                        </div>
+                        :
+                        <div>
+                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits}/>
+                            <button onClick={() => setShowAddIng(false)}>Done Adding</button>
+                        </div>
+                        }
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
