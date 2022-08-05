@@ -58,6 +58,23 @@ function NewRecipeForm() {
         if (title.length > 50) errors.push('Uh oh, your title is too long! Make it less than 50 characters.')
         if (!description || description.length < 5) errors.push('Uh oh, your description is too short! Make it over 5 characters.')
         if (description.length > 2000) errors.push('Uh oh, your description is too long! Make it less than 2000 characters.')
+        if (!image_url) errors.push('Please enter an image file for your recipe.')
+        if ((/\.(gif|jpe?g|png|webp)$/i).test(image_url)) errors.push('Please enter a filename ending in .jpg, .jpeg, .png, .gif, or .webp.')
+
+        if (active_time_mins < 0 || active_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for active time. While impressive, not very realistic.')
+        if (active_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the active time minutes! Please use hour field instead.')
+        if (active_time_hrs > 100) errors.push('Looks like you entered over 100 hours active time on this recipe. That seems a little excessive, no?.')
+
+        if (ferment_time_mins < 0 || ferment_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for ferment time. While impressive, not very realistic.')
+        if (ferment_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the ferment time minutes! Please use hour field instead.')
+        if (ferment_time_hrs > 500) errors.push('Looks like you entered over 500 hours ferment time on this recipe. That seems a little excessive, no?.')
+
+        if (bake_time_mins < 0 || bake_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for bake time. While impressive, not very realistic.')
+        if (bake_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the bake time minutes! Please use hour field instead.')
+        if (bake_time_hrs > 500) errors.push('Looks like you entered over 500 hours bake time on this recipe. That seems a little excessive, no?.')
+
+        if (!total_yield || total_yield.length < 3) errors.push('Total yield is too short! Make it over 3 characters.')
+        if (total_yield.length > 50) errors.push('Total yield is too long! Make it less than 50 characters')
         setValidationErrors(errors)
     }, [title, description, image_url, total_yield, active_time_mins, active_time_hrs, ferment_time_mins, ferment_time_hrs, bake_time_mins, bake_time_hrs, baking_temp, ])
 
