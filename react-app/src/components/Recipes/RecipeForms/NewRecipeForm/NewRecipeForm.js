@@ -35,14 +35,6 @@ function NewRecipeForm() {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [hasCreated, setHasCreated] = useState(false)
 
-    // const newRecipe = useSelector(state => {
-    //     if (recipe_id) {
-    //         return state.recipes[recipe_id]
-    //     }
-    // })
-
-    // if (newRecipe) console.log(newRecipe)
-
     useEffect(() => {
         async function fetchUnits() {
             const res = await fetch('/api/recipes/units')
@@ -59,6 +51,16 @@ function NewRecipeForm() {
         fetchRecipes().catch(console.error)
     }, [dispatch])
 
+    //validations
+    useEffect =(() => {
+        let errors = []
+        if (!title.length || title.length < 5) errors.push('Uh oh, your title is too short! Make it over 5 characters.')
+        if (title.length > 50) errors.push('Uh oh, your title is too long! Make it less than 50 characters.')
+        if (!description || description.length < 5) errors.push('Uh oh, your description is too short! Make it over 5 characters.')
+        if (description.length > 2000) errors.push('Uh oh, your description is too long! Make it less than 2000 characters.')
+        setValidationErrors(errors)
+    }, [title, description, image_url, total_yield, active_time_mins, active_time_hrs, ferment_time_mins, ferment_time_hrs, bake_time_mins, bake_time_hrs, baking_temp, ])
+
     //converts time to ms before sending to db
     const convert_to_ms = (hrs, mins) => {
         if (!hrs) hrs = 0
@@ -69,6 +71,7 @@ function NewRecipeForm() {
         return hr_ms + min_ms
     }
 
+    //convert to c before storing in db
     const convert_to_celsius = (temp, system) => {
         if (system === 'fahrenheit') {
             const to_celsius = Math.floor((temp - 32)*(5/9))

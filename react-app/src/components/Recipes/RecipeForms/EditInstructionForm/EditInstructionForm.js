@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
 
-function EditInstructionForm({ instruction, recipe_id }) {
+function EditInstructionForm({ instruction, recipe_id, current_length }) {
     const dispatch = useDispatch()
     const [list_order, setList_order] = useState(instruction.list_order)
     const [specification, setSpecification] = useState(instruction.specification)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
-
+    console.log(current_length)
     const handleDelete = async(e) => {
         e.preventDefault()
 
@@ -75,7 +75,7 @@ function EditInstructionForm({ instruction, recipe_id }) {
                 </div>
                 <button>Submit!</button>
             </form>
-            <button onClick={handleDelete}>Delete Instruction</button>
+            {instruction.list_order === current_length && <button onClick={handleDelete}>Delete Instruction</button>}
         </>
     )
 }

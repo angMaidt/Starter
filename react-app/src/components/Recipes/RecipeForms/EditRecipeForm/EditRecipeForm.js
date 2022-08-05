@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 // import { useHistory } from "react-router-dom"
 
 import { editRecipeThunk } from '../../../../store/recipe'
-import EditIngredientForm from '../EditIngredientForm/EditIngredientForm'
-import EditInstructionForm from '../EditInstructionForm/EditInstructionForm'
-import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
-import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 
 function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_instructions }) {
     // const history = useHistory()
@@ -44,20 +40,9 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
 
     const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
     const [total_yield, setTotal_yield] = useState(recipe.total_yield)
-    // const [measurementUnits, setMeasurementUnits] = useState('')
-    // const [recipe_id, setRecipe_id] = useState(recipe.id)
-    // console.log(recipe_id)
+
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
-
-    // useEffect(() => {
-    //     async function fetchUnits() {
-    //         const res = await fetch('/api/recipes/units')
-    //         const data = await res.json()
-    //         setMeasurementUnits(data.units)
-    //     }
-    //     fetchUnits()
-    // }, [])
 
     //convert before sending back
     const convert_to_ms = (hrs, mins) => {
@@ -229,30 +214,6 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                 </div>
                 <button>Submit!</button>
             </form>
-            {/* <h3>Edit Ingredients</h3>
-            {ordered_ingredients.map(ingredient => (
-                <EditIngredientForm key={ingredient.id} measurementUnits={measurementUnits} ingredient={ingredient} recipe_id={recipe.id}/>
-                ))}
-            {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe.id}/>}
-            {!showAddForm ?
-            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
-            :
-            <button onClick={() => setShowAddForm(false)}>Cancel</button>
-            } */}
-            {/* <h3>Edit Instructions</h3>
-            {ordered_instructions.map(instruction => (
-                <>
-                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
-                </>
-            ))}
-            {} */}
-            {/* {showAddInstructionForm && <NewInstructionForm recipe_id={recipe.id} />}
-            {!showAddInstructionForm ?
-                <button onClick={() => setShowAddInstructionForm(true)}>Add Instruction</button>
-                :
-                <button onClick={() => setShowAddInstructionForm(false)}>Cancel</button>
-            } */}
-        {/* <button onClick={setShowEditForm(false)}>Done!</button> */}
         </>
     )
 }

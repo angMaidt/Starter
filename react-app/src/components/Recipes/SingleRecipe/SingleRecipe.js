@@ -144,7 +144,7 @@ function SingleRecipe() {
                         </div>
                         :
                         <div>
-                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits}/>
+                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
                             <button onClick={() => setShowAddIng(false)}>Done Adding</button>
                         </div>
                         }
@@ -172,7 +172,7 @@ function SingleRecipe() {
                             <div>
                                 <button onClick={handleDoneEditingInst}>Done Editing</button>
                                 {ordered_instructions.map(instruction => (
-                                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
+                                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} current_length={recipe.instructions.length}/>
                                     ))}
                             </div>
                             {!showAddInst ?
@@ -181,31 +181,15 @@ function SingleRecipe() {
                                 </div>
                                 :
                                 <div>
-                                    <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length}/>
+                                    <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length} edit={true}/>
                                     <button onClick={() => setShowAddInst(false)}>Done Adding</button>
                                 </div>
                                 }
                         </div>
                     }
                 </div>
-                {/* {showEditForm && <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />} */}
-                {/* {sessionUser && sessionUser.id === recipe.user.id &&
-                <div>
-                    {!showEditForm ?
-                        <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
-                    :
-                    <button onClick={() => setShowEditForm(false)}>Cancel Edit</button>
-                    }
-                    <button onClick={handleDelete}>Delete Recipe!</button>
-                </div>
-                } */}
                 <h2>Check out what people are saying!</h2>
                 <CommentSection recipe={recipe} />
-                {/* {recipe.comments.length > 0 ?
-                    <CommentSection recipe={recipe} />
-                    :
-                    <p>Looks like no one has commented yet!</p>
-                } */}
             </>
             :
             <p>Looks like there's nothing here!</p>
