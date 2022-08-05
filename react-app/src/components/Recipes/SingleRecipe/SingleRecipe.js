@@ -7,6 +7,7 @@ import EditInstructionForm from '../RecipeForms/EditInstructionForm/EditInstruct
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
+import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
@@ -17,9 +18,13 @@ function SingleRecipe() {
     const sessionUser = useSelector(state => state.session.user)
 
     const [showEditForm, setShowEditForm] = useState(false)
+
     const [showEditIng, setShowEditIng] = useState(false)
     const [showAddIng, setShowAddIng] = useState(false)
+
     const [showEditInst, setShowEditInst] = useState(false)
+    const [showAddInst, setShowAddInst] = useState(false)
+
     const [measurementUnits, setMeasurementUnits] = useState('')
     // console.log(sessionUser)
 
@@ -31,6 +36,16 @@ function SingleRecipe() {
         }
         fetchUnits()
     }, [])
+
+    const handleDoneEditingIng = () => {
+        setShowEditIng(false)
+        setShowAddIng(false)
+    }
+
+    const handleDoneEditingInst = () => {
+        setShowAddInst(false)
+        setShowEditInst(false)
+    }
 
     const ms_converter = (ms) => {
         let mins = ms % 3600000
@@ -122,7 +137,7 @@ function SingleRecipe() {
                     </div>
                     :
                     <div>
-                        <button onClick={() => setShowEditIng(false)}>Done Editing</button>
+                        <button onClick={handleDoneEditingIng}>Done Editing</button>
                         {!showAddIng ?
                         <div>
                             <button onClick={() => setShowAddIng(true)}>Add Ingredients</button>
@@ -154,10 +169,22 @@ function SingleRecipe() {
                         </div>
                         :
                         <div>
-                            <button onClick={() => setShowEditInst(false)}>Done Editing</button>
-                            {ordered_instructions.map(instruction => (
-                                <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
-                            ))}
+                            <div>
+                                <button onClick={handleDoneEditingInst}>Done Editing</button>
+                                {ordered_instructions.map(instruction => (
+                                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
+                                    ))}
+                            </div>
+                            {!showAddInst ?
+                                <div>
+                                    <button onClick={() => setShowAddInst(true)}>Add Instructions</button>
+                                </div>
+                                :
+                                <div>
+                                    <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length}/>
+                                    <button onClick={() => setShowAddInst(false)}>Done Adding</button>
+                                </div>
+                                }
                         </div>
                     }
                 </div>

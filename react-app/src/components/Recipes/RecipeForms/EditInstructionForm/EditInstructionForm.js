@@ -17,6 +17,7 @@ function EditInstructionForm({ instruction, recipe_id }) {
                 method: 'DELETE'
             })
             if (res.ok) {
+                // if()
                 const data = await res.json()
                 await dispatch(getRecipesThunk())
             }
