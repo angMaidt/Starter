@@ -111,11 +111,12 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         }
     }
 
-    // let ordered_ingredients
+    // let list_length
     // if (recipe) {
-    //     ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
+    //     list_length = recipe.ingredients.length()
     // }
 
+    // console.log(list_length)
     return (
         <>
             <h3>Edit Recipe!</h3>
@@ -249,9 +250,10 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
             {ordered_instructions.map(instruction => (
                 <>
                     <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} />
-                    {showAddInstructionForm && <NewInstructionForm recipe_id={recipe.id} existing_list_order={instruction.list_order} />}
                 </>
             ))}
+            {}
+            {showAddInstructionForm && <NewInstructionForm recipe_id={recipe.id} />}
             {!showAddInstructionForm ?
                 <button onClick={() => setShowAddInstructionForm(true)}>Add Instruction</button>
                 :

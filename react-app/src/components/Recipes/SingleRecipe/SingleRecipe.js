@@ -32,9 +32,9 @@ function SingleRecipe() {
 
     const handleDelete = async(e) => {
         e.preventDefault()
+
         try {
             const res = await dispatch(deleteRecipeThunk(recipe))
-            window.alert('delete recipe successful!')
             history.push('/recipes')
 
         } catch (e) {

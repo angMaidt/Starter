@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { getRecipesThunk } from '../../../../store/recipe'
 
 function NewIngredientForm({ recipe_id, measurementUnits }) {
     const dispatch = useDispatch()
@@ -49,6 +50,7 @@ function NewIngredientForm({ recipe_id, measurementUnits }) {
                 setAmount('')
                 setFood_stuff('')
                 setUnit(1)
+                await dispatch(getRecipesThunk())
             }
         } catch (e) {
             setValidationErrors(e.errors)

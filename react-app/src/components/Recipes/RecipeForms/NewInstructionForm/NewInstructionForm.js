@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { getRecipesThunk } from '../../../../store/recipe'
 
 function NewInstructionForm({ recipe_id, existing_list_order }) {
-    console.log(existing_list_order)
+    // console.log(existing_list_order)
+    const dispatch = useDispatch()
     const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
     const [specification, setSpecification] = useState()
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -31,6 +33,7 @@ function NewInstructionForm({ recipe_id, existing_list_order }) {
 
             if (res.ok) {
                 const data = await res.json()
+                await dispatch(getRecipesThunk())
                 SetInstructions([...instructions, data])
                 setList_order(list_order + 1)
                 setSpecification('')
