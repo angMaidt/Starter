@@ -57,3 +57,11 @@ def edit_comment(comment_id):
         return comment.to_dict()
 
     return {'errors': [validation_errors_to_error_messages(form.errors)]}, 401
+
+# delete a comment
+@comment_routes.route('/<int:comment_id>', methods=['DELETE'])
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return { 'message': 'Comment Deleted!' }
