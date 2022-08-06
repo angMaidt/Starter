@@ -109,6 +109,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         e.preventDefault()
 
         setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit!')
 
         //convert to ms before sending to db
         const active_time = convert_to_ms(active_time_hrs, active_time_mins)

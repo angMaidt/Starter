@@ -8,7 +8,17 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
     const [specification, setSpecification] = useState(instruction.specification)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
-    console.log(current_length)
+
+    useEffect(() => {
+        let errors = []
+
+        if (!specification) errors.push('Please enter an instruction for this step.')
+        if (specification.length < 4) errors.push('Please enter more than 3 characters for your instruction.')
+        if (specification.length > 1000) errors.push('Looks like you tried to enter over 1000 characters for this step.')
+
+        setValidationErrors(errors)
+    }, [specification])
+
     const handleDelete = async(e) => {
         e.preventDefault()
 
@@ -60,6 +70,13 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
 
     return (
         <>
+            {validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">
                     <div className="input-container">
@@ -73,7 +90,7 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
                         </textarea>
                     </div>
                 </div>
-                <button>Submit!</button>
+                <button disabled={validationErrors.length > 0}>Submit!</button>
             </form>
             {instruction.list_order === current_length && <button onClick={handleDelete}>Delete Instruction</button>}
         </>
