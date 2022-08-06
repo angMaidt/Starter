@@ -19,7 +19,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
         if (amount < 0) errors.push('Looks like you tried to enter a negative amount. Not likely, I think.')
         if (amount > 10000) errors.push('Looks like you tried to enter an amount over 10,000. Consider scaling your recipe down.')
 
-        if (food_stuff.length < 1) errors.push('Please enter more than 1 character into ingredient name.')
+        if (food_stuff.length < 2) errors.push('Please enter more than 1 character into ingredient name.')
         if (food_stuff.length > 50) errors.push('Please enter less than 50 characters into ingeredient name.')
 
         setValidationErrors(errors)
@@ -29,6 +29,8 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
         e.preventDefault()
 
         setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit!')
+
 
         const payload = {
             amount,
@@ -36,6 +38,8 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
             measurement_unit_id: unit,
             recipe_id
         }
+
+        setHasSubmitted(false)
 
         try {
             const res = await fetch('/api/recipes/ingredients', {
