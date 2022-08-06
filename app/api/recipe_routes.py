@@ -95,6 +95,7 @@ def edit_recipe(recipe_id):
         recipe.user_id = user_id
         recipe.title = title
         recipe.description = description
+        recipe.image_url = image_url
         recipe.prep_time = prep_time
         recipe.bake_time = bake_time
         recipe.active_time = active_time
