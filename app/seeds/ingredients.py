@@ -4,25 +4,25 @@ from app.models import db, Ingredient, measurement_units
 # Adds a demo user, you can add other users here if you want
 def seed_ingredients():
     ing1 = Ingredient(
-        amount = 100,
+        amount = 250,
         food_stuff = 'sourdough starter',
         measurement_unit_id = 1,
         recipe_id = 1
         )
     ing2 = Ingredient(
-        amount = 375,
+        amount = 150,
         food_stuff = 'tepid water',
         measurement_unit_id = 4,
         recipe_id = 1
         )
     ing3 = Ingredient(
-        amount = 500,
+        amount = 375,
         food_stuff = 'strong white bread flour',
         measurement_unit_id = 4,
         recipe_id = 1
         )
     ing4 = Ingredient(
-        amount = 12,
+        amount = 7.5,
         food_stuff = 'salt',
         measurement_unit_id = 1,
         recipe_id = 1

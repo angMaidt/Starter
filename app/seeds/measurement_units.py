@@ -5,59 +5,46 @@ from app.models import db, MeasurementUnit
 def seed_measurement_units():
     # metric
     g = MeasurementUnit(
-        unit='g',
-        system='metric'
+        unit='g'
         )
     kg = MeasurementUnit(
-        unit='kg',
-        system='metric'
+        unit='kg'
         )
     l = MeasurementUnit(
-        unit='L',
-        system='metric'
+        unit='L'
         )
     ml = MeasurementUnit(
-        unit='mL',
-        system='metric'
+        unit='mL'
         )
 
     # imperial
-    lb = MeasurementUnit(
-        unit='lb',
-        system='imperial'
-        )
-    oz = MeasurementUnit(
-        unit='oz.',
-        system='imperial'
-        )
-    gal = MeasurementUnit(
-        unit='gal.',
-        system='imperial'
-        )
-    qt = MeasurementUnit(
-        unit='qt.',
-        system='imperial'
-        )
-    pt = MeasurementUnit(
-        unit='pt.',
-        system='imperial'
-        )
-    c = MeasurementUnit(
-        unit='c.',
-        system='imperial'
-        )
-    floz = MeasurementUnit(
-        unit='fl.oz.',
-        system='imperial'
-        )
-    tbsp = MeasurementUnit(
-        unit='tbsp.',
-        system='imperial'
-        )
-    tsp = MeasurementUnit(
-        unit='tsp.',
-        system='imperial'
-        )
+    # oz = MeasurementUnit(
+    #     unit='oz.'
+    #     )
+    # floz = MeasurementUnit(
+    #     unit='fl.oz.'
+    #     )
+    # tsp = MeasurementUnit(
+    #     unit='tsp.'
+    #     )
+    # tbsp = MeasurementUnit(
+    #     unit='tbsp.'
+    #     )
+    # c = MeasurementUnit(
+    #     unit='c.'
+    #     )
+    # pt = MeasurementUnit(
+    #     unit='pt.'
+    #     )
+    # qt = MeasurementUnit(
+    #     unit='qt.'
+    #     )
+    # gal = MeasurementUnit(
+    #     unit='gal.'
+    #     )
+    # lb = MeasurementUnit(
+    #     unit='lb'
+    #     )
 
 
 
@@ -65,15 +52,15 @@ def seed_measurement_units():
     db.session.add(kg)
     db.session.add(l)
     db.session.add(ml)
-    db.session.add(lb)
-    db.session.add(oz)
-    db.session.add(gal)
-    db.session.add(qt)
-    db.session.add(pt)
-    db.session.add(c)
-    db.session.add(floz)
-    db.session.add(tbsp)
-    db.session.add(tsp)
+    # db.session.add(oz)
+    # db.session.add(floz)
+    # db.session.add(tsp)
+    # db.session.add(tbsp)
+    # db.session.add(c)
+    # db.session.add(pt)
+    # db.session.add(qt)
+    # db.session.add(gal)
+    # db.session.add(lb)
 
     db.session.commit()
 

@@ -10,7 +10,7 @@ def seed_recipes():
         prep_time = 1200000,
         bake_time = 1800000,
         active_time = 1200000,
-        baking_temp = 225,
+        baking_temp = 440,
         total_yield = '1 loaf'
         )
     bread2 = Recipe(
@@ -20,7 +20,7 @@ def seed_recipes():
         prep_time = 1200000,
         bake_time = 1800000,
         active_time = 1200000,
-        baking_temp = 225,
+        baking_temp = 440,
         total_yield = '1 loaf'
         )
 
