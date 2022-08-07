@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
@@ -8,6 +8,7 @@ import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
+import { SystemContext } from '../../../context/SystemContext'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
@@ -15,6 +16,7 @@ function SingleRecipe() {
     const dispatch = useDispatch()
     const history = useHistory()
     const recipe = useSelector(state => state.recipes[id])
+    const { system } = useContext(SystemContext)
     const sessionUser = useSelector(state => state.session.user)
 
     const [showEditForm, setShowEditForm] = useState(false)
@@ -119,7 +121,8 @@ function SingleRecipe() {
                     <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
                     <p>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</p>
                     <p>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</p>
-                    <p>Baking Temp: {recipe.baking_temp}</p>
+                    {/* <p>Baking Temp: {system ? recipe.baking_temp  }</p> */}
+                    {system ? <p>{recipe.baking_temp} °C</p> : <p>{convert_to_fahrenheit(recipe.baking_temp)} °F</p>}
                     <p>Total Yield: {recipe.total_yield}</p>
                 </div>
                 <div>
