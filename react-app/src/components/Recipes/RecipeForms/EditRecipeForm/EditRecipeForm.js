@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { SystemContext } from '../../../../context/SystemContext'
 // import { useHistory } from "react-router-dom"
 
 import { editRecipeThunk } from '../../../../store/recipe'
@@ -8,9 +9,10 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
     // const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const { system } = useContext(SystemContext)
 
-    const [showAddForm, setShowAddForm] = useState(false)
-    const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)
+    // const [showAddForm, setShowAddForm] = useState(false)
+    // const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)
 
     const ms_converter = (ms) => {
         // let mins = ms % 3600000
@@ -38,9 +40,17 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
     const [bake_time_hrs, setBake_time_hrs] = useState(ms_converter(recipe.bake_time)[0])
     const [bake_time_mins, setBake_time_mins] = useState(ms_converter(recipe.bake_time)[1])
 
+    // const convert_to_fahrenheit = (celsius) => {
+    //     return Math.round(celsius * (9/5) + 32)
+    // }
+
     const [baking_temp, setBaking_temp] = useState(recipe.baking_temp)
 
-    const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
+    // const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
+
+    //Checks context and sets system
+    // system ? () => setBaking_temp_system('celsius') : () => setBaking_temp_system('fahrenheit')
+
     const [total_yield, setTotal_yield] = useState(recipe.total_yield)
 
     const [validationErrors, setValidationErrors] = useState([])
@@ -97,13 +107,10 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         return hr_ms + min_ms
     }
 
-    const convert_to_celsius = (temp, system) => {
-        if (system === 'fahrenheit') {
-            const to_celsius = Math.floor((temp - 32)*(5/9))
-            return to_celsius
-        }
-        return Number(temp)
-    }
+    // const convert_to_celsius = (temp) => {
+    //     return (temp - 32)*(5/9)
+    // }
+    // console.log(convert_to_celsius(348))
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -117,7 +124,13 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         const bake_time = convert_to_ms(bake_time_hrs, bake_time_mins)
 
         //convert to celsius before sending back
-        const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
+        // let degrees_celsius
+        // if (!system) {
+        //     degrees_celsius = convert_to_celsius(baking_temp)
+        // } else {
+        //     degrees_celsius = baking_temp
+        // }
+        // const degrees_celsius = convert_to_celsius(baking_temp)
 
         const payload = {
             id: recipe.id,
@@ -128,7 +141,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
             active_time,
             prep_time: ferment_time,
             bake_time,
-            baking_temp: degrees_celsius,
+            baking_temp,
             total_yield
         }
 
@@ -136,7 +149,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
             const data = await dispatch(editRecipeThunk(payload))
             if (data) setShowEditForm(false)
         } catch (e) {
-            setValidationErrors(e.errors)
+            // setValidationErrors(e.errors)
             // console.log()
         }
     }
@@ -243,16 +256,8 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                             value={baking_temp}
                             onChange={(e) => setBaking_temp(e.target.value)}
                         />
-                        <select
-                            type='string'
-                            placeholder='°F'
-                            required
-                            value={baking_temp_system}
-                            onChange={(e) => setBaking_temp_system(e.target.value)}
-                        >
-                            <option value='fahrenheit'>°F</option>
-                            <option value='celsius'>°C</option>
-                        </select>
+                        <label>'°F'</label>
+                        {/* {system ? () => setBaking_temp_system('celsius') : () => setBaking_temp_system('fahrenheit')} */}
                     </div>
                     <div className="input-container">
                         <label>Yield</label>
