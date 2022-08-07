@@ -11,10 +11,26 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
     const [ingredients, SetIngredients] = useState([])
-    // console.log(ingredients)
+
+    useEffect(() => {
+        let errors = []
+
+        if (!amount) errors.push('Looks like you forgot to enter an amount!')
+        if (amount < 0) errors.push('Looks like you tried to enter a negative amount. Not likely, I think.')
+        if (amount > 10000) errors.push('Looks like you tried to enter an amount over 10,000. Consider scaling your recipe down.')
+
+        if (food_stuff.length < 2) errors.push('Please enter more than 1 character into ingredient name.')
+        if (food_stuff.length > 50) errors.push('Please enter less than 50 characters into ingeredient name.')
+
+        setValidationErrors(errors)
+    }, [amount, unit, food_stuff])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
+
+        setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit!')
+
 
         const payload = {
             amount,
@@ -23,7 +39,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
             recipe_id
         }
 
-        setHasSubmitted(true)
+        setHasSubmitted(false)
 
         try {
             const res = await fetch('/api/recipes/ingredients', {
@@ -36,11 +52,13 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
 
             if (res.ok) {
                 const data = await res.json()
-                SetIngredients([...ingredients, data])
-                setAmount('')
-                setFood_stuff('')
-                setUnit(1)
-                await dispatch(getRecipesThunk())
+                if (data) {
+                    SetIngredients([...ingredients, data])
+                    setAmount('')
+                    setFood_stuff('')
+                    setUnit(1)
+                    await dispatch(getRecipesThunk())
+                }
             }
         } catch (e) {
             setValidationErrors(e.errors)
@@ -51,6 +69,13 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
     return (
         <>
             <h3>Add Ingredients!</h3>
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             {!edit && ingredients.length > 0 ?
             <ul>
                 {Object.values(ingredients).map(ingredient => (

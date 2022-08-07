@@ -25,7 +25,7 @@ function NewRecipeForm() {
     const [bake_time_hrs, setBake_time_hrs] = useState('')
 
     const [baking_temp, setBaking_temp] = useState('')
-    const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
+    // const [baking_temp_system, setBaking_temp_system] = useState('fahrenheit')
 
     const [total_yield, setTotal_yield] = useState('')
     const [measurementUnits, setMeasurementUnits] = useState('')
@@ -102,18 +102,19 @@ function NewRecipeForm() {
     }
 
     //convert to c before storing in db
-    const convert_to_celsius = (temp, system) => {
-        if (system === 'fahrenheit') {
-            const to_celsius = Math.floor((temp - 32)*(5/9))
-            return to_celsius
-        }
-        return Number(temp)
-    }
+    // const convert_to_celsius = (temp, system) => {
+    //     if (system === 'fahrenheit') {
+    //         const to_celsius = Math.floor((temp - 32)*(5/9))
+    //         return to_celsius
+    //     }
+    //     return Number(temp)
+    // }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
 
         setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit!')
 
         //convert to ms before sending to db
         const active_time = convert_to_ms(active_time_hrs, active_time_mins)
@@ -121,7 +122,7 @@ function NewRecipeForm() {
         const bake_time = convert_to_ms(bake_time_hrs, bake_time_mins)
 
         // convert to celsius before sending back
-        const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
+        // const degrees_celsius = convert_to_celsius(baking_temp, baking_temp_system)
 
         const payload = {
             user_id: sessionUser.id,
@@ -130,7 +131,7 @@ function NewRecipeForm() {
             description,
             active_time,
             prep_time: ferment_time,
-            bake_time: degrees_celsius,
+            bake_time,
             baking_temp,
             total_yield
         }
@@ -151,7 +152,7 @@ function NewRecipeForm() {
                 setBake_time_mins('')
                 setBake_time_hrs('')
                 setBaking_temp('')
-                setBaking_temp_system('fahrenheit')
+                // setBaking_temp_system('fahrenheit')
                 setTotal_yield('')
             }
             // history.push('/recipes')
@@ -262,7 +263,8 @@ function NewRecipeForm() {
                             value={baking_temp}
                             onChange={(e) => setBaking_temp(e.target.value)}
                         />
-                        <select
+                        <label>°F</label>
+                        {/* <select
                             type='string'
                             placeholder='°F'
                             required
@@ -271,7 +273,7 @@ function NewRecipeForm() {
                         >
                             <option value='fahrenheit'>°F</option>
                             <option value='celsius'>°C</option>
-                        </select>
+                        </select> */}
                     </div>
                     <div className="input-container">
                         <label>Yield</label>

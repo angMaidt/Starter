@@ -13,6 +13,19 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
     const [validationErrors, setValidationErrors] = useState([])
     // const [showAddForm, setShowAddForm] = useState(false)
 
+    useEffect(() => {
+        let errors = []
+
+        if (!amount) errors.push('Looks like you forgot to enter an amount!')
+        if (amount < 0) errors.push('Looks like you tried to enter a negative amount. Not likely, I think.')
+        if (amount > 10000) errors.push('Looks like you tried to enter an amount over 10,000. Consider scaling your recipe down.')
+
+        if (food_stuff.length < 2) errors.push('Please enter more than 1 character into ingredient name.')
+        if (food_stuff.length > 50) errors.push('Please enter less than 50 characters into ingeredient name.')
+
+        setValidationErrors(errors)
+    }, [amount, unit, food_stuff])
+
     const handleDelete = async(e) => {
         e.preventDefault()
 
@@ -38,6 +51,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
         }
 
         setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot Submit!')
 
         try {
             const res = await fetch(`/api/recipes/ingredients/${ingredient.id}`, {
@@ -64,6 +78,13 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
 
     return (
         <>
+            {validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
             <form className="ingredient-form" onSubmit={handleSubmit}>
                 {/* {ingredient} */}
@@ -105,7 +126,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                         />
                     </div>
                 </div>
-                <button>Submit!</button>
+                <button disabled={validationErrors.length > 0}>Submit!</button>
             </form>
             <button onClick={handleDelete}>Delete Ingredient</button>
             {/* {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe_id}/>}

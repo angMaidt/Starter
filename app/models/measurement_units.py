@@ -5,7 +5,6 @@ class MeasurementUnit(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     unit = db.Column(db.String(50), nullable=False)
-    system = db.Column(db.String(50), nullable=False)
 
     #relationships
     ingredient = db.relationship('Ingredient', back_populates='unit')
@@ -14,5 +13,4 @@ class MeasurementUnit(db.Model):
         return {
             'id': self.id,
             'unit': self.unit,
-            'system': self.system
         }

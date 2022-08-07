@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import DemoUser from '../auth/DemoUser';
 import LogoutButton from '../auth/LogoutButton';
+import SystemSwitch from '../SystemSwitch/SystemSwitch';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -16,11 +17,6 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
@@ -29,6 +25,9 @@ const NavBar = () => {
           <NavLink to='/recipes' exact={true} activeClassName='active'>
             Recipes
           </NavLink>
+        </li>
+        <li>
+          <SystemSwitch />
         </li>
         {sessionUser ?
           <>
@@ -43,6 +42,11 @@ const NavBar = () => {
           </>
           :
           <>
+            <li>
+              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                Sign Up
+              </NavLink>
+            </li>
             <li>
             <NavLink to='/login' exact={true} activeClassName='active'>
               Login

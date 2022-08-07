@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import { getRecipesThunk } from './store/recipe';
 import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
+// import SystemProvider from './context/SystemContext';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
