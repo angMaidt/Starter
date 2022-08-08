@@ -13,7 +13,7 @@ const NavBar = () => {
     <nav className='navbar-container'>
       <Link to='/' className='link logo-link' style={{ 'textDecoration': 'none' }}>
         <div class='nav logo-container'>
-          <img src='starter-logo.gif' alt='logo' />
+          <img src='starter-logo-moving-transparent.gif' alt='logo' />
           <h1>starter</h1>
         </div>
       </Link>
@@ -43,27 +43,27 @@ const NavBar = () => {
 
           {/* tabs */}
         <div className='nav right-link-container'>
-          {/* <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul> */}
-          <NavLink to='/' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-            <h3>Getting Started</h3>
+          <NavLink to='/' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline',  }} style={{ 'textDecoration': 'none' }}>
+            <div className='.active'>
+              <h3>Getting Started</h3>
+            </div>
           </NavLink>
           {/* note: / = login currently */}
-          {/* <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink> */}
           <NavLink to='/recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-          <h3>Explore</h3>
+            <div className='tab'>
+              <h3>Explore</h3>
+            </div>
           </NavLink>
-          <NavLink to='/my-recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-          <h3>My Recipes</h3>
-          </NavLink>
+          {/* <NavLink to='/my-recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+            <div className='tab'>
+              <h3>My Recipes</h3>
+            </div>
+          </NavLink> */}
           {/* <SystemSwitch /> */}
           <NavLink to='/home' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-            <h3>About</h3>
+            <div className='tab'>
+              <h3>About</h3>
+            </div>
           </NavLink>
         </div>
       </div>

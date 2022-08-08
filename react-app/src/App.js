@@ -42,6 +42,18 @@ function App() {
       <NavBar />
       <div className='bottom-screen'>
         <LeftNav/>
+        {/* <div className='taxonomy-bar'>
+          <p>starter-bread</p>
+          <div>
+            starter-bread
+            starter-bread
+            starter-bread
+            starter-bread
+            starter-bread
+            starter-bread
+            starter-bread
+          </div>
+        </div> */}
         <div className='view-screen'>
           <Switch>
             <Route path='/login' exact={true}>

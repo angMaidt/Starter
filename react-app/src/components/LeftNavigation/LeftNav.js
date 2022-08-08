@@ -19,10 +19,14 @@ function LeftNav() {
                     :
                     <div className='left-link-container'>
                         <NavLink to='/recipes/new' exact={true} activeClassName='left-active' style={{ 'textDecoration': 'none' }}>
-                            <h4>New Recipe!</h4>
+                            <div className=''>
+                                <i className="fa-solid fa-file-pen"></i>
+                            </div>
                         </NavLink>
                         <NavLink to='/my-recipes' exact={true} activeClassName='left-active' style={{ 'textDecoration': 'none' }}>
-                            <h4>My Recipes!</h4>
+                            <div className=''>
+                                <i className="fa-solid fa-book-bookmark"></i>
+                            </div>
                         </NavLink>
                         {/* a calculator would be great to have in here */}
                     </div>
