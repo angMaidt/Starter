@@ -43,7 +43,7 @@ function App() {
       <NavBar />
       {/* <div className='welcome-ribbon'></div> */}
       <div className='bottom-screen'>
-        <div className='view-screen'>
+        {/* <div className='view-screen'> */}
           <Switch>
             <Route path='/login' exact={true}>
               <LoginForm />
@@ -74,7 +74,7 @@ function App() {
               <SingleRecipe/>
             </Route>
           </Switch>
-        </div>
+        {/* </div> */}
     </div>
     </BrowserRouter>
   );

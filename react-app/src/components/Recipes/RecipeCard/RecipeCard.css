@@ -1,10 +1,135 @@
-.recipe-card-photo {
-    width: 300px;
-    height: 300px;
+.card-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    border-radius: 10px;
+    /* background-color: pink; */
 }
 
+.card-container:hover {
+    box-shadow: 10px 10px var(--light-blue);
+    transition: box-shadow ease .15s
+}
+
+.card-container-left {
+    width: 45%;
+}
+
+.recipe-card-photo {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--off-white);
+    border: 1px solid black;
+    /* height: 300px; */
+    /* overflow: hidden; */
+    border-radius: 2px;
+    margin: 5px;
+}
+
+
 .recipe-card-photo img {
-    height: 300px;
+    height: 200px;
+    /* width: 100%; */
+    /* width: 100%; */
+}
+
+.recipe-card-photo div {
+    display: flex;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.recipe-card-photo div p {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 18px;
+    color: var(--off-black);
+    display: flex;
+    text-align: center;
+    text-justify: center;
+}
+
+.recipe-card-photo .card-image-container {
+    /* padding-top: 15px; */
+    margin-top: 15px;
+    box-sizing: border-box;
+    height: 200px;
+    width: 90%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--off-black);
+    border-radius: 2px;
+    /* object-fit: cover; */
+}
+
+.card-container-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    /* margin: 10px; */
+    text-justify: center;
+    text-align: center;
+    min-width: 50%;
+}
+
+/* .card-container-right h3:hover {
+    background-color: var(--yellow);
+    text-decoration: underline;
+} */
+
+.user-info {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.user-info div {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid var(--off-black);
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+/* .user-info h4 {
+    display: flex;
+    text-align: center;
+    text-justify: center;
+} */
+
+.user-info div img {
+    height: 100%;
+    transform: translate(-24%, 0);
+    overflow: hidden;
+}
+
+.card-container-right h3 {
+    /* background-color: white; */
+}
+
+.card-container-right p{
+    text-indent: 15px;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* padding: 10px; */
+}
+
+.title-underline {
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-blue);
 }

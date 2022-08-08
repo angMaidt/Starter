@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getRecipesThunk } from '../../../store/recipe'
 import RecipeCard from '../RecipeCard/RecipeCard'
+import './AllRecipes.css'
 
 function AllRecipes() {
     const dispatch = useDispatch()
@@ -24,12 +25,14 @@ function AllRecipes() {
 
     return (
         <>
-            <h1>Hey from All Recipes!</h1>
-            {sorted_recipes &&
-                Object.values(sorted_recipes).map(recipe => (
-                    <RecipeCard key={recipe.id} recipe={recipe} />
-                ))
-            }
+            <h1>All Recipes</h1>
+            <div className='recipes-container'>
+                {sorted_recipes &&
+                    Object.values(sorted_recipes).map(recipe => (
+                        <RecipeCard key={recipe.id} recipe={recipe} />
+                    ))
+                }
+            </div>
         </>
     )
 }
