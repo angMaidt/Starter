@@ -110,3 +110,11 @@ span {
     font-size: 14px;
     text-transform: uppercase;
 }
+i {
+    color: var(--light-gray)
+}
+
+i:hover {
+    cursor: pointer;
+    color: var(--dark-blue)
+}

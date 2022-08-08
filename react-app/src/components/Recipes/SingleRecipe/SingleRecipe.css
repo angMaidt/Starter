@@ -7,16 +7,30 @@
     margin-right: 10%;
 }
 
+.single-image-container {
+    width: 100%;
+}
+
 .single-image-container img {
-    height: 50%;
-    object-fit: contain;
+    /* max-height: 40%; */
+    width: 100%;
+    object-fit: cover;
 }
 
 .recipe-comment-info {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    /* width: 60%; */
     margin-top: 10px;
     margin-bottom: 10px;
     /* margin: 30px; */
+}
+
+.edit-button-container {
+    display: flex;
+}
+
+.header-button-container {
+    display: flex;
+    align-items: center;
 }
