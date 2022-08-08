@@ -8,6 +8,7 @@ import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
+import './SingleRecipe.css'
 // import { SystemContext } from '../../../context/SystemContext'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
@@ -88,19 +89,29 @@ function SingleRecipe() {
 
     // console.log(ordered_instructions)
     return (
-        <>
-            <h1>Welcome to Single Recipe!</h1>
+        <div className='view-container single-recipe-view'>
+            {/* <h1>Welcome to Single Recipe!</h1> */}
             {recipe ?
             <>
                 <div>
-                    <h2>{recipe.title}</h2>
-                    <p>By {recipe.user.username}</p>
-                    <p>Posted {recipe.created_at}</p>
+                    <h1>{recipe.title}</h1>
+                    <p>{recipe.description}</p>
+                    <div className='user-info'>
+                        <h5>by {recipe.user.username}</h5>
+                        {recipe.created_at === recipe.updated_at ?
+                            <span>Posted {recipe.created_at}</span>
+                            :
+                            <span>Updated {recipe.updated_at}</span>
+                        }
+                    </div>
                 </div>
-                <div>
+                <div className='recipe-comment-info'>
+                    <span>Rating</span>
+                    <span>{recipe.comments.length} comments</span>
+                </div>
+                <div className='single-image-container'>
                     <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
                 </div>
-                <p>{recipe.description}</p>
                 {sessionUser && sessionUser.id === recipe.user.id &&
                 <div>
                     {!showEditForm ?
@@ -194,7 +205,7 @@ function SingleRecipe() {
             :
             <p>Looks like there's nothing here!</p>
             }
-        </>
+        </div>
     )
 }
 

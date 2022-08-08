@@ -3,7 +3,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /* background-color: pink; */
+    background-color: pink;
+    /* background-color: white; */
 }
 
 .card-container:hover {
@@ -22,6 +23,8 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--off-white);
+    background-color: white;
+    /* background-color: pink; */
     border: 1px solid black;
     /* height: 300px; */
     /* overflow: hidden; */
@@ -31,7 +34,7 @@
 
 
 .recipe-card-photo img {
-    height: 200px;
+    height: 100%;
     /* width: 100%; */
     /* width: 100%; */
 }
@@ -78,15 +81,16 @@
     min-width: 50%;
 }
 
-/* .card-container-right h3:hover {
+.card-container-right h3:hover {
     background-color: var(--yellow);
+    /* background-color: white; */
     text-decoration: underline;
-} */
+}
 
 .user-info {
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
+    /* justify-content: center; */
 }
 
 .user-info div {
@@ -110,9 +114,9 @@
     overflow: hidden;
 }
 
-.card-container-right h3 {
-    /* background-color: white; */
-}
+/* .card-container-right h3 {
+    background-color: white;
+} */
 
 .card-container-right p{
     text-indent: 15px;
@@ -132,4 +136,14 @@
     width: 100%;
     height: 2px;
     background-color: var(--dark-blue);
+}
+
+.card-bottom-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    color: var(--off-black);
+    /* background-color: white; */
+
 }

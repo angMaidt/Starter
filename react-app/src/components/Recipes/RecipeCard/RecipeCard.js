@@ -26,13 +26,15 @@ function RecipeCard({ recipe }) {
                 <div className='card-container-right'>
                     <h3>{recipe.title}</h3>
                     <div className='title-underline'></div>
-                    <div className='user-info'>
-                        {/* <div>
-                            <img src={recipe.user.profile_pic} alt='profile' />
-                        </div> */}
-                        <h4>By {recipe.user.username}</h4>
+                    <div className='card-bottom-info'>
+                        <div className='user-info'>
+                            {/* <div>
+                                <img src={recipe.user.profile_pic} alt='profile' />
+                            </div> */}
+                            <h4>By {recipe.user.username}</h4>
+                        </div>
+                        <p>{recipe.description}</p>
                     </div>
-                    <p>{recipe.description}</p>
                 </div>
             </div>
         </Link>

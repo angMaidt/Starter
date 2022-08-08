@@ -1,0 +1,22 @@
+.user-info span {
+    margin-left: 15px;
+}
+
+.single-recipe-view {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.single-image-container img {
+    height: 50%;
+    object-fit: contain;
+}
+
+.recipe-comment-info {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* margin: 30px; */
+}

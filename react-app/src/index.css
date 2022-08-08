@@ -4,6 +4,8 @@
 :root {
     --dark-blue: #1B4D7A;
     --light-blue: #19ACCC;
+    --pale-blue: #99f2fb;
+    --light-gray: #767677;
     --yellow: #FFD12F;
     --off-white: #FBF9EE;
     --off-black: #333333;
@@ -21,7 +23,7 @@ body {
     margin: 0;
     /* background-color: pink; */
     box-sizing: border-box;
-    /* background-color: var(--off-white); */
+    background-color: var(--off-white);
     /* font-family: Arial, Helvetica, sans-serif; */
     font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf')
@@ -35,7 +37,7 @@ body {
 button {
     width: 100px;
     height: 40px;
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
     border-radius: 5px;
     color: var(--dark-blue);
     background-color: transparent;
@@ -46,6 +48,7 @@ button {
     transparent 50%);
     background-size: 200% 100%;
     background-position: right bottom;
+    background-color: var(--off-white);
     transition: all .15s ease-out;
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
@@ -60,6 +63,7 @@ button:hover {
 h1 {
     color: var(--dark-blue);
     font-family: 'Roboto', sans-serif;
+    /* width: 100%; */
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
@@ -73,6 +77,8 @@ h3, h2 {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 /* .view-screen {
@@ -82,3 +88,25 @@ h3, h2 {
     justify-content: center;
     width: 100%;
 } */
+
+p {
+    font-family: Inter,Helvetica,sans-serif;
+    font-size: 1.25rem;
+    color: var(--off-black);
+    line-height: 1.44;
+    text-align: left;
+    padding: 0;
+}
+
+h5 {
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+span {
+    font-family: Inter,Helvetica,sans-serif;
+    color: var(--light-gray);
+    font-size: 14px;
+    text-transform: uppercase;
+}
