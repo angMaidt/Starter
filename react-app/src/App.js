@@ -41,7 +41,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <div className='bottom-screen'>
-        <LeftNav/>
+        {/* <LeftNav/> */}
         {/* <div className='taxonomy-bar'>
           <p>starter-bread</p>
           <div>
@@ -68,9 +68,9 @@ function App() {
             <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute>
-            <ProtectedRoute path='/' exact={true} >
+            <Route path='/' exact={true} >
               <h1>My Home Page</h1>
-            </ProtectedRoute>
+            </Route>
             <Route path='/recipes' exact={true}>
               <AllRecipes />
             </Route>
