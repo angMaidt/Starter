@@ -9,6 +9,7 @@ import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
 import './SingleRecipe.css'
+import Ingredient from '../../Ingredient/Ingredient'
 // import { SystemContext } from '../../../context/SystemContext'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
@@ -150,7 +151,8 @@ function SingleRecipe() {
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
-                                    <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+                                    <Ingredient ingredient={ingredient} recipe={recipe} showEditIng={showEditIng} setShowEditIng={setShowEditIng}/>
+                                    {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
                                 </li>
                             ))}
                         </ul>
