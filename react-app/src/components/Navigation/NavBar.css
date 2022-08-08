@@ -1,0 +1,50 @@
+.navbar-container {
+    display: flex;
+    box-sizing: border-box;
+    border-bottom: 2px solid black;
+    position: sticky;
+    top: 0;
+    height: 75px;
+    align-items: center;
+    background-color: var(--off-white);
+    justify-content: space-between;
+    /* background-color: white; */
+}
+
+/* logo css */
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 15%;
+    /* width: 30%; */
+}
+
+.logo-container img {
+    height: 40px;
+}
+
+.logo-container h1 {
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    /* font-family: Arial, Helvetica, sans-serif */
+}
+
+/* spacing */
+.auth-links {
+    width: 75%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right-link-container {
+    width: 75%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+/* .active {
+    text-decoration: underline;
+} */

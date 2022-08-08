@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import SystemProvider from './context/SystemContext';
+import './fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf'
 
 const store = configureStore();
 

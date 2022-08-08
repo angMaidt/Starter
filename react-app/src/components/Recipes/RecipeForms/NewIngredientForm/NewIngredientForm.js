@@ -80,7 +80,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
             <ul>
                 {Object.values(ingredients).map(ingredient => (
                     <li key={ingredient.id}>
-                        <p>{ingredient.amount} {ingredient. measurement_unit.unit} {ingredient.food_stuff}</p>
+                        <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff}</p>
                     </li>
                 ))}
             </ul>

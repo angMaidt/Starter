@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import { getRecipesThunk } from './store/recipe';
 import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
+import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
 // import SystemProvider from './context/SystemContext';
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/recipes/new' exact={true} >
           <RecipeForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/my-recipes' exact={true} >
+          <MyRecipes />
         </ProtectedRoute>
         <Route path='/recipes/:id'>
           <SingleRecipe/>
