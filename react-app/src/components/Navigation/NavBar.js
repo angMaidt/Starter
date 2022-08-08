@@ -14,7 +14,7 @@ const NavBar = () => {
       <nav className='navbar-container'>
         <Link to='/' className='link logo-link' style={{ 'textDecoration': 'none' }}>
           <div class='nav logo-container'>
-            <img src='starter-logo-moving-transparent.gif' alt='logo' />
+            <img src='../../../static/starter-logo-moving-transparent.gif' alt='logo' />
             <h1>starter</h1>
           </div>
         </Link>

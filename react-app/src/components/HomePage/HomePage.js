@@ -6,7 +6,7 @@ function HomePage() {
             {/* <div className='welcome-ribbon'></div> */}
             <div className="banner">
                 <div className='banner-image-container'>
-                    <img src='lined-up.jpg' alt='banner-1' />
+                    <img src='../../../static/lined-up.jpg' alt='banner-1' />
                 </div>
                 <div className='taxonomy-bar'>
                     Let's get Started!
