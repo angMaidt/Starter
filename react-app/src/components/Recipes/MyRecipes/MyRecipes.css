@@ -1,0 +1,28 @@
+.my-recipe-tabs {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.my-recipe-tabs h2:hover {
+    background-color: var(--yellow);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.my-recipe-tabs div:nth-child(2) {
+    margin-left: 30px;
+}
+
+
+.active-tab {
+    text-decoration: underline;
+    width: auto;
+}
+
+.active-tab h2 {
+    background-color: var(--yellow);
+}

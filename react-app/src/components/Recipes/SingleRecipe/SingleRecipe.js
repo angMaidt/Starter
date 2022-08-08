@@ -68,12 +68,11 @@ function SingleRecipe() {
 
         try {
             const res = await dispatch(deleteRecipeThunk(recipe))
-            history.push('/recipes')
+            history.push('/my-recipes')
 
         } catch (e) {
             return window.alert(`delete failed! ${e}`)
         }
-
     }
 
     //sorts instructions by list order so they show up in correct order

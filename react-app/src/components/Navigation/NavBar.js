@@ -1,64 +1,81 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import DemoUser from '../auth/DemoUser';
 import LogoutButton from '../auth/LogoutButton';
-import SystemSwitch from '../SystemSwitch/SystemSwitch';
+// import SystemSwitch from '../SystemSwitch/SystemSwitch';
+import './NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/recipes' exact={true} activeClassName='active'>
-            Recipes
-          </NavLink>
-        </li>
-        <li>
-          <SystemSwitch />
-        </li>
-        {sessionUser ?
-          <>
-          <li>
-            <NavLink to='/recipes/new' exact={true} activeClassName='active'>
-              Submit a New Recipe!
+    <>
+      <nav className='navbar-container'>
+        <Link to='/' className='link logo-link' style={{ 'textDecoration': 'none' }}>
+          <div class='nav logo-container'>
+            <img src='starter-logo-moving-transparent.gif' alt='logo' />
+            <h1>starter</h1>
+          </div>
+        </Link>
+        <div className='nav auth-links'>
+          <div>
+            {/* user auth */}
+            {sessionUser ?
+              <>
+                <LogoutButton />
+              </>
+              :
+              <>
+                  <DemoUser />
+                  {/* <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                    Sign Up
+                  </NavLink>
+                <NavLink to='/login' exact={true} activeClassName='active'>
+                  Login
+                </NavLink> */}
+              </>
+            }
+          </div>
+
+            {/* tabs */}
+          <div className='nav right-link-container'>
+            <NavLink to='/' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline',  }} style={{ 'textDecoration': 'none' }}>
+              <div className='tab'>
+                <h3>Home</h3>
+              </div>
             </NavLink>
-          </li>
-          <li>
-            <LogoutButton />
-          </li>
-          </>
-          :
-          <>
-            <li>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
+            <NavLink to='/crash-course' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+              <div className='tab'>
+                <h3>Crash Course</h3>
+              </div>
+            </NavLink>
+            <NavLink to='/recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+              <div className='tab'>
+                <h3>Explore</h3>
+              </div>
+            </NavLink>
+            {/* note: / = login currently */}
+            {sessionUser &&
+            <>
+              <NavLink to='/my-recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+                <div className='tab'>
+                  <h3>My Recipes</h3>
+                </div>
               </NavLink>
-            </li>
-            <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
+            </>
+            }
+            {/* <SystemSwitch /> */}
+            <NavLink to='/about' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+              <div className='tab'>
+                <h3>About</h3>
+              </div>
             </NavLink>
-            </li>
-            <li>
-              <DemoUser />
-            </li>
-          </>
-        }
-      </ul>
-    </nav>
+          </div>
+        </div>
+      </nav>
+      <div className='nav-bottom'></div>
+    </>
   );
 }
 
