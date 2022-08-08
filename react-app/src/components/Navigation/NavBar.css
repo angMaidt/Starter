@@ -4,12 +4,13 @@
     border-bottom: 2px solid black;
     position: sticky;
     top: 0;
-    height: 100px;
+    height: 90px;
     align-items: center;
-    /* background-color: white; */
     justify-content: space-between;
     z-index: 1;
+    /* background-color: white; */
     background-color: var(--off-white);
+    /* margin-bottom: 20px; */
 }
 
 /* logo css */
@@ -52,13 +53,24 @@
 
 .active {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     border-left: 2px solid black;
     border-right: 2px solid black;
     border-top: 2px solid black;
     width: 150px;
-    height: 70px;
+    height: 60px;
     /* background-color: var(--off-white); */
     background-color: white;
+}
+
+/* .tab {
+    border-color: black;
+    border-bottom: 40px solid white;
+    border-left: 40px solid transparent;
+} */
+
+.nav-bottom {
+    height: 20px;
+    position: sticky;
 }

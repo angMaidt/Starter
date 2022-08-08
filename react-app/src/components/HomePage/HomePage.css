@@ -1,0 +1,38 @@
+.welcome-ribbon {
+    height: 30px;
+    background-color: var(--dark-blue);
+}
+
+.banner-image-container {
+    /* height: 10%; */
+    overflow: hidden;
+}
+
+.banner-image-container img {
+    /* height: 700px; */
+    /* object-fit: cover; */
+    transform: translate(0, -40%);
+}
+
+.taxonomy-bar {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    height: 100%;
+    width: 25px;
+    background-color: var(--yellow);
+    border-right: 1px solid var(--off-black);
+    border-left: 1px solid var(--off-black);
+    padding-left: 2px;
+    padding-right: 2px;
+    /* padding-bottom: 5px; */
+}
+
+.banner {
+    display: flex;
+    border: 1px solid var(--off-black);
+    height: 50%;
+}
+
+/* .banner-container {
+    height: 500px;
+} */

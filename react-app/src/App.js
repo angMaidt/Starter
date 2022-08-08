@@ -14,6 +14,7 @@ import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
 import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
 import LeftNav from './components/LeftNavigation/LeftNav';
+import HomePage from './components/HomePage/HomePage';
 // import SystemProvider from './context/SystemContext';
 
 function App() {
@@ -40,20 +41,8 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      {/* <div className='welcome-ribbon'></div> */}
       <div className='bottom-screen'>
-        {/* <LeftNav/> */}
-        {/* <div className='taxonomy-bar'>
-          <p>starter-bread</p>
-          <div>
-            starter-bread
-            starter-bread
-            starter-bread
-            starter-bread
-            starter-bread
-            starter-bread
-            starter-bread
-          </div>
-        </div> */}
         <div className='view-screen'>
           <Switch>
             <Route path='/login' exact={true}>
@@ -69,14 +58,15 @@ function App() {
               <User />
             </ProtectedRoute>
             <Route path='/' exact={true} >
-              <h1>My Home Page</h1>
+              {/* <h1>My Home Page</h1> */}
+              <HomePage />
             </Route>
             <Route path='/recipes' exact={true}>
               <AllRecipes />
             </Route>
-            <ProtectedRoute path='/recipes/new' exact={true} >
+            {/* <ProtectedRoute path='/recipes/new' exact={true} >
               <RecipeForm />
-            </ProtectedRoute>
+            </ProtectedRoute> */}
             <ProtectedRoute path='/my-recipes' exact={true} >
               <MyRecipes />
             </ProtectedRoute>
