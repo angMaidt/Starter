@@ -16,12 +16,17 @@ function AllRecipes() {
         fetchRecipes().catch(console.error)
     }, [dispatch])
 
+    //sorts by updated_at
+    let sorted_recipes
+    if (recipes) {
+        sorted_recipes = Object.values(recipes).sort((a, b) => a.updated_at > b.updated_at ? -1: 1)
+    }
 
     return (
         <>
             <h1>Hey from All Recipes!</h1>
-            {recipes &&
-                Object.values(recipes).map(recipe => (
+            {sorted_recipes &&
+                Object.values(sorted_recipes).map(recipe => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
                 ))
             }

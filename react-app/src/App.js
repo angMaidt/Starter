@@ -13,6 +13,7 @@ import { getRecipesThunk } from './store/recipe';
 import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
 import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
+import LeftNav from './components/LeftNavigation/LeftNav';
 // import SystemProvider from './context/SystemContext';
 
 function App() {
@@ -39,35 +40,40 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
-        <Route path='/recipes' exact={true}>
-          <AllRecipes />
-        </Route>
-        <ProtectedRoute path='/recipes/new' exact={true} >
-          <RecipeForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/my-recipes' exact={true} >
-          <MyRecipes />
-        </ProtectedRoute>
-        <Route path='/recipes/:id'>
-          <SingleRecipe/>
-        </Route>
-      </Switch>
+      <div className='bottom-screen'>
+        <LeftNav/>
+        <div className='view-screen'>
+          <Switch>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/sign-up' exact={true}>
+              <SignUpForm />
+            </Route>
+            <ProtectedRoute path='/users' exact={true} >
+              <UsersList/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true} >
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute path='/' exact={true} >
+              <h1>My Home Page</h1>
+            </ProtectedRoute>
+            <Route path='/recipes' exact={true}>
+              <AllRecipes />
+            </Route>
+            <ProtectedRoute path='/recipes/new' exact={true} >
+              <RecipeForm />
+            </ProtectedRoute>
+            <ProtectedRoute path='/my-recipes' exact={true} >
+              <MyRecipes />
+            </ProtectedRoute>
+            <Route path='/recipes/:id'>
+              <SingleRecipe/>
+            </Route>
+          </Switch>
+        </div>
+    </div>
     </BrowserRouter>
   );
 }
