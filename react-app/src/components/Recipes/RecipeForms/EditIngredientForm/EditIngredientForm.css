@@ -1,19 +1,20 @@
-.edit-ingredient-container {
-    background-color: pink;
+.edit-ingredient-container, .edit-instruction-container {
+    background-color: var(--pale-blue);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
+    /* border: 1px solid var(--dark-blue) */
+    /* padding: 25px; */
 }
 
-.ingredient-input-container {
+.ingredient-input-container, .instruction-input-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
 
-.ingredient-input-container div:not(.submit-edit-button-container) {
+.ingredient-input-container div:not(.submit-edit-button-container){
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -27,10 +28,11 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding-top: 10px
 }
 
 .submit-edit-button-container .arrow-button{
-    margin-left: 5%;
+    margin-left: 15px;
 }
 
 .delete-ing-button-container {
@@ -44,5 +46,4 @@
 
 .delete-ing-button-container div{
     margin-left: 2%;
-
 }

@@ -120,9 +120,18 @@ i:not(.fa-arrow-right-long) {
 
 i:hover:not(.fa-arrow-right-long) {
     cursor: pointer;
+    font-size: 20px;
     color: var(--dark-blue);
-    background-color: var(--yellow);
-    text-decoration: underline var(--dark-blue) 3px;
+}
+
+.fa-trash-can {
+    color: var(--light-gray);
+    font-size: 18px;
+}
+
+.fa-trash-can:hover {
+    /* background-color: var(--yellow);
+    text-decoration: underline var(--dark-blue) 3px; */
 }
 
 label {

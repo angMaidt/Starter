@@ -74,9 +74,6 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
         }
     }
 
-    // if (isDone) return (
-    //     <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
-    //     );
     return (
         <div>
             <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
@@ -88,7 +85,6 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                 </ul>
             }
             <div className='edit-ingredient-container'>
-
                 <form className="form-container " onSubmit={handleSubmit}>
                     {/* {ingredient} */}
                     <div className='ingredient-input-container'>
@@ -101,7 +97,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     />
-                                    <label>Amount</label>
+                                    <label>Amount:</label>
                             </div>
                         </div>
                         <div className="input-container">
@@ -119,7 +115,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                                         ))
                                         )}
                                 </select>
-                                <label>Unit</label>
+                                <label>Unit:</label>
                             </div>
                         </div>
                         <div className="input-container">
@@ -131,25 +127,22 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                                     value={food_stuff}
                                     onChange={(e) => setFood_stuff(e.target.value)}
                                     />
-                                    <label>Ingredient</label>
+                                    <label>Ingredient:</label>
                             </div>
                         </div>
                         <div className='submit-edit-button-container'>
                             <h3>Submit Edit</h3>
-                            <button className='arrow-button edit-' disabled={validationErrors.length > 0}>
+                            <button type='submit' className='arrow-button' >
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </div>
-                        {/* <div>
-                            <button disabled={validationErrors.length > 0}>Submit Edit</button>
-                        </div> */}
                     </div>
                 </form>
             </div>
-                <div className='delete-ing-button-container'>
-                    <h3>Delete Ingredient</h3>
-                    <div onClick={handleDelete}><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
-                </div>
+            <div className='delete-ing-button-container' >
+                <h3>Delete Ingredient</h3>
+                <div onClick={handleDelete} ><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
+            </div>
         </div>
     )
 }

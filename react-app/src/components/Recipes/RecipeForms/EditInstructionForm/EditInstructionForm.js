@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
+import './EditInstructionForm.css'
 
 function EditInstructionForm({ instruction, recipe_id, current_length }) {
     const dispatch = useDispatch()
@@ -68,8 +69,10 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
         }
     }
 
+
     return (
-        <>
+        <div>
+            <p>{instruction.list_order}. {instruction.specification}</p>
             {validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -77,24 +80,43 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
                     ))}
                 </ul>
             }
-            <p>{instruction.list_order}. {instruction.specification}</p>
-            <form onSubmit={handleSubmit}>
-                <div className="instruction-input-container">
-                    <div className="input-container">
-                        <label>Step {list_order}.</label>
-                        <textarea
-                            placeholder="Step 1. Make the loaf, Step 2. Profit ?"
-                            required
-                            value={specification}
-                            onChange={(e)=> setSpecification(e.target.value)}
-                        >
-                        </textarea>
+            <div className='edit-instruction-container'>
+                <form className='form-container' onSubmit={handleSubmit}>
+                    <div className="instruction-input-container">
+                        <div className="input-container">
+                            <div>
+                                <textarea
+                                    placeholder="Step 1. Make the loaf, Step 2. Profit ?"
+                                    required
+                                    value={specification}
+                                    onChange={(e)=> setSpecification(e.target.value)}
+                                    >
+                                </textarea>
+                                <label>Step {list_order}.</label>
+                            </div>
+                        </div>
                     </div>
+                    {validationErrors.length > 0 ?
+                        <div className='submit-edit-button-container'>
+                            <h3>Please fix errors before submitting.</h3>
+                        </div>
+                    :
+                        <div className='submit-edit-button-container'>
+                            <h3>Submit Edit</h3>
+                            <button type='submit' className='arrow-button' >
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </div>
+                    }
+                </form>
+            </div>
+            {instruction.list_order === current_length &&
+                <div className='delete-ing-button-container' >
+                    <h3>Delete Instruction</h3>
+                    <div onClick={handleDelete} ><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
                 </div>
-                <button disabled={validationErrors.length > 0}>Submit!</button>
-            </form>
-            {instruction.list_order === current_length && <div onClick={handleDelete}><i className="fa-solid fa-trash-can"></i></div>}
-        </>
+            }
+        </div>
     )
 }
 
