@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import { getRecipesThunk } from '../../../store/recipe'
 import RecipeCard from '../RecipeCard/RecipeCard'
-// import RecipeForm from '../RecipeForms/RecipeForm'
 import NewRecipeForm from '../RecipeForms/NewRecipeForm/NewRecipeForm'
 import './MyRecipes.css'
 

@@ -120,3 +120,8 @@ i:hover {
     cursor: pointer;
     color: var(--dark-blue)
 }
+
+label {
+    color: var(--dark-blue);
+    height: fit-content;
+}

@@ -174,40 +174,46 @@ function NewRecipeForm() {
             }
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
+                    {/* <div className='recipe-top'> */}
                     <div className="input-container">
-                        <label>Title</label>
                         <input
+                            name='title'
                             type='text'
                             placeholder='Title'
                             required
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            style={{ 'width': '80%' }}
                         />
+                        <label for='title'>Title: </label>
                     </div>
                     <div className="input-container">
-                        <label>Description</label>
-                        <input
-                            type='text'
+                        <textarea
+                            name='description'
+                            // type='text'
                             placeholder='Description'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
+                        <label for='description'>Description</label>
                     </div>
                     <div className="input-container">
-                        <label>Image Link</label>
                         <input
+                            name='image'
                             type='text'
                             placeholder='yummy-bread.jpg'
-                            // required
                             value={image_url}
                             onChange={(e) => setImage_url(e.target.value)}
+                            style={{ 'width': '80%' }}
                         />
+                        <label for='image'>Image Link</label>
                     </div>
-                    <div className="input-container">
-                        <label>Hands On Time</label>
+                    {/* </div> */}
+                    <div className="input-container time">
                         <div>
                             <input
+                                name='active-time'
                                 type='text'
                                 placeholder="Hours"
                                 // required
@@ -215,6 +221,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setActive_time_hrs(e.target.value)}
                             />
                             <input
+                                name='active-time'
                                 type='text'
                                 placeholder="Minutes"
                                 // required
@@ -222,11 +229,13 @@ function NewRecipeForm() {
                                 onChange={(e) => setActive_time_mins(e.target.value)}
                             />
                         </div>
+                        <label for='active-time'l>Hands On Time</label>
                     </div>
-                    <div className="input-container">
-                        <label>Ferment Time</label>
+                    <div className="input-container time">
+                        {/* <div> */}
                         <div>
                             <input
+                                name='ferment'
                                 type='text'
                                 placeholder="Hours"
                                 // required
@@ -234,6 +243,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setFerment_time_hrs(e.target.value)}
                             />
                             <input
+                                name='ferment'
                                 type='text'
                                 placeholder="Mins"
                                 // required
@@ -241,11 +251,13 @@ function NewRecipeForm() {
                                 onChange={(e) => setFerment_time_mins(e.target.value)}
                             />
                         </div>
+                        <label for='ferment'>Ferment Time</label>
+                        {/* </div> */}
                     </div>
-                    <div className="input-container">
-                        <label>Bake Time</label>
+                    <div className="input-container time">
                         <div>
                             <input
+                                name='bake-time'
                                 type='text'
                                 placeholder="Hours"
                                 // required
@@ -253,6 +265,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setBake_time_hrs(e.target.value)}
                             />
                             <input
+                                name='bake-time'
                                 type='text'
                                 placeholder="Mins"
                                 // required
@@ -260,29 +273,32 @@ function NewRecipeForm() {
                                 onChange={(e) => setBake_time_mins(e.target.value)}
                             />
                         </div>
+                        <label for='bake-time'>Bake Time</label>
                     </div>
-                    <div style={{ 'display': 'flex',  }}>
+                    <div className='temp-container'>
                         <div className="input-container">
-                            <label>Baking Temp</label>
                             <input
+                                name='bake-temp'
                                 type='text'
                                 placeholder="400"
                                 required
                                 value={baking_temp}
                                 onChange={(e) => setBaking_temp(e.target.value)}
                             />
+                            <label for='bake-temp'>Baking Temp(note: all temps in °F)</label>
                         </div>
-                        <label>°F</label>
+                        {/* <label>°F</label> */}
                     </div>
                     <div className="input-container">
-                        <label>Yield</label>
                         <input
                             type='text'
+                            name='yield'
                             placeholder="e.g. 1 loaf, 12 rolls"
                             required
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
                         />
+                        <label for='yield'>Yield</label>
                     </div>
                 </div>
                 <button>Submit!</button>
