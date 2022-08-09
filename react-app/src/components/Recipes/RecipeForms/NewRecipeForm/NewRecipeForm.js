@@ -140,7 +140,7 @@ function NewRecipeForm() {
         try {
             const data = await dispatch(postRecipeThunk(payload))
             if (data) {
-                alert('Recipe Submitted!')
+                // alert('Recipe Submitted!')
                 setRecipe_id(data.id)
                 setHasCreated(true)
                 setTitle('')
@@ -155,8 +155,9 @@ function NewRecipeForm() {
                 setBaking_temp('')
                 // setBaking_temp_system('fahrenheit')
                 setTotal_yield('')
+
+                history.push(`/recipes/${data.id}`)
             }
-            // history.push('/recipes')
         } catch (e) {
             setValidationErrors(e.errors)
         }
@@ -167,11 +168,11 @@ function NewRecipeForm() {
             <h3>Give us some info about your recipe! We'll add ingredients and instructions in the next step.</h3>
         {hasSubmitted && validationErrors.length > 0 &&
             <ul className='errors'>
-            {validationErrors.map(error => (
-                <li className='error' key={error}>{error}</li>
+                {validationErrors.map(error => (
+                    <li className='error' key={error}>{error}</li>
                 ))}
-                </ul>
-            }
+            </ul>
+        }
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     {/* <div className='recipe-top'> */}
@@ -301,7 +302,10 @@ function NewRecipeForm() {
                         <label for='yield'>Yield</label>
                     </div>
                 </div>
-                <button>Submit!</button>
+                <div className='next-button-container'>
+                    <h3>Next</h3>
+                    <button className='arrow-button'><i class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
             </form>
         </div>
     )

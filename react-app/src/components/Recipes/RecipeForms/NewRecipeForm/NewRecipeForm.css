@@ -44,8 +44,40 @@ input:focus + label, textarea:focus + label{
     color: var(--dark-blue);
     text-decoration: underline;
     background-color: var(--yellow);
+    font-size: 20px;
 }
 
 input:focus, textarea:focus {
     outline: 2px solid var(--off-black)
+}
+
+.arrow-button {
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    font-size: 16px;
+    border: 1px solid var(--off-black);
+    color: var(--off-black);
+    background-color: transparent;
+    /* padding: 10px; */
+}
+
+.arrow-button:hover {
+    height: 40px;
+    width: 40px;
+    background-color: var(--yellow);
+    color: var(--dark-blue)
+}
+
+.next-button-container .arrow-button {
+    margin-left: 10px;
+}
+
+.next-button-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 15px;
+    left: 85%;
+    /* right: 30%; */
 }

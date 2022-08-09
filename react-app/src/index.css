@@ -34,7 +34,7 @@ body {
     color: red;
 }
 
-button {
+button:not(.arrow-button) {
     width: 100px;
     height: 40px;
     border: 1px solid var(--dark-blue);
@@ -111,10 +111,13 @@ span {
     font-size: 14px;
     text-transform: uppercase;
 }
-i {
+
+i:not(.fa-arrow-right-long) {
     color: var(--light-gray);
     /* font-size: 12px; */
 }
+
+/* i:not(.fa-arrow-right-long) */
 
 i:hover {
     cursor: pointer;
