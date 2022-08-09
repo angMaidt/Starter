@@ -122,6 +122,6 @@ i:hover {
 }
 
 label {
-    color: var(--dark-blue);
+    color: var(--off-black);
     height: fit-content;
 }
