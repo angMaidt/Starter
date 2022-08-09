@@ -24,10 +24,7 @@
     align-items: center;
     background-color: var(--off-white);
     background-color: white;
-    /* background-color: pink; */
     border: 1px solid black;
-    /* height: 300px; */
-    /* overflow: hidden; */
     border-radius: 2px;
     margin: 5px;
 }
@@ -81,7 +78,8 @@
     min-width: 50%;
 }
 
-.card-container-right h3:hover {
+
+.card-container-right h3 {
     background-color: var(--yellow);
     /* background-color: white; */
     text-decoration: underline;

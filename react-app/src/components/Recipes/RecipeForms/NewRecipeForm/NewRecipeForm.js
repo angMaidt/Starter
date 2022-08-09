@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { HashLinkObserver } from 'react-hash-link'
 import { postRecipeThunk } from '../../../../store/recipe'
 // import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 // import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
@@ -165,14 +166,15 @@ function NewRecipeForm() {
 
     return (
         <div className='form-container'>
+            {/* <HashLinkObserver /> */}
             <h3>Give us some info about your recipe! We'll add ingredients and instructions in the next step.</h3>
-        {hasSubmitted && validationErrors.length > 0 &&
-            <ul className='errors'>
-                {validationErrors.map(error => (
-                    <li className='error' key={error}>{error}</li>
-                ))}
-            </ul>
-        }
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     {/* <div className='recipe-top'> */}
@@ -304,7 +306,9 @@ function NewRecipeForm() {
                 </div>
                 <div className='next-button-container'>
                     <h3>Next</h3>
-                    <button className='arrow-button'><i class="fa-solid fa-arrow-right-long"></i></button>
+                    <button className='arrow-button'>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
                 </div>
             </form>
         </div>

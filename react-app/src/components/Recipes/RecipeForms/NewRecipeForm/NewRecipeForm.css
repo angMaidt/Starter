@@ -44,7 +44,7 @@ input:focus + label, textarea:focus + label{
     color: var(--dark-blue);
     text-decoration: underline;
     background-color: var(--yellow);
-    font-size: 20px;
+    font-size: 18px;
 }
 
 input:focus, textarea:focus {

@@ -138,7 +138,7 @@ function SingleRecipe() {
                 }
                 <div>
                     <div className='header-button-container inst'>
-                        <h3>Ingredients</h3>
+                        <h3 id='ingredients'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>

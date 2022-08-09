@@ -90,7 +90,7 @@ h3, h2 {
     width: 100%;
 } */
 
-p {
+p:not(.card-bottom-info p) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);
