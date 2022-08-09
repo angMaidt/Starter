@@ -22,7 +22,8 @@
     /* width: 30%; */
     /* text-decoration: underline;
     background-color: var(--yellow); */
-    color: var(--off-black)
+    color: var(--off-black);
+    /* text-decoration: underline; */
 }
 
 .view-container .tag {
