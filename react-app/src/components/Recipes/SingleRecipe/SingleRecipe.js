@@ -111,7 +111,10 @@ function SingleRecipe() {
                     <span>{recipe.comments.length} comments</span>
                 </div>
                 <div className='single-image-container'>
-                    <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
+                    <img src={recipe.image_url} onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src ='../../../../../static/default-bread.jpg'
+                    }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='header-button-container'>
                     <h3>Recipe Facts</h3>

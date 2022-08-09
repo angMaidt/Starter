@@ -16,7 +16,10 @@ function RecipeCard({ recipe }) {
                 <div className='card-container-left'>
                     <div className='recipe-card-photo'>
                         <div className='card-image-container'>
-                            <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
+                            <img src={recipe.image_url} onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src ='../../../../../static/default-bread.jpg'
+                            }} alt={`recipe-${recipe.id}`} />
                         </div>
                         <div>
                             <p>{recipe.created_at}</p>
