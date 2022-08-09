@@ -5,6 +5,7 @@ import { getRecipesThunk } from '../../../../store/recipe'
 function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
     // console.log(existing_list_order)
     const dispatch = useDispatch()
+    //might not be neccessary anymore
     const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
     const [specification, setSpecification] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)

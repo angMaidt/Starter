@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { HashLinkObserver } from 'react-hash-link'
+import { HashLink } from 'react-router-hash-link'
 import { postRecipeThunk } from '../../../../store/recipe'
 // import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 // import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
@@ -156,6 +156,7 @@ function NewRecipeForm() {
                 setBaking_temp('')
                 // setBaking_temp_system('fahrenheit')
                 setTotal_yield('')
+                setHasSubmitted(false)
 
                 history.push(`/recipes/${data.id}`)
             }
@@ -163,6 +164,13 @@ function NewRecipeForm() {
             setValidationErrors(e.errors)
         }
     }
+
+    //offsets hashlink redirect
+    // const scrollWithOffset = (el) => {
+    //     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    //     const yOffset = -80;
+    //     window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' });
+    // }
 
     return (
         <div className='form-container'>
@@ -305,12 +313,18 @@ function NewRecipeForm() {
                     </div>
                 </div>
                 <div className='next-button-container'>
+                    {/* <button>Submit!</button> */}
                     <h3>Next</h3>
                     <button className='arrow-button'>
                         <i class="fa-solid fa-arrow-right-long"></i>
                     </button>
                 </div>
             </form>
+            {/* <div className='next-button-container'>
+                    <HashLink smooth to={`/recipes/${recipe_id}#comments`} scroll={el => scrollWithOffset(el)}>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </HashLink>
+                </div> */}
         </div>
     )
 }

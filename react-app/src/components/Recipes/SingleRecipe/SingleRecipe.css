@@ -48,3 +48,14 @@
 .recipe-title-holder {
     width: 80%;
 }
+
+.add-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: pink;
+}
+
+.add-info:hover{
+    cursor: pointer;
+}

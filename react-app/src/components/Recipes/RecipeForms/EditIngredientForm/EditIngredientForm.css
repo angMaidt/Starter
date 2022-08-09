@@ -1,0 +1,48 @@
+.edit-ingredient-container {
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+
+.ingredient-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ingredient-input-container div:not(.submit-edit-button-container) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.submit-edit-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.submit-edit-button-container .arrow-button{
+    margin-left: 5%;
+}
+
+.delete-ing-button-container {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding:0
+}
+
+.delete-ing-button-container div{
+    margin-left: 2%;
+
+}

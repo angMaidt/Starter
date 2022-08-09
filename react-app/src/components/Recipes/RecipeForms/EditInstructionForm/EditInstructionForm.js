@@ -93,7 +93,7 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
                 </div>
                 <button disabled={validationErrors.length > 0}>Submit!</button>
             </form>
-            {instruction.list_order === current_length && <button onClick={handleDelete}>Delete Instruction</button>}
+            {instruction.list_order === current_length && <div onClick={handleDelete}><i className="fa-solid fa-trash-can"></i></div>}
         </>
     )
 }

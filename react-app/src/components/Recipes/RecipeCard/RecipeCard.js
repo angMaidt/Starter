@@ -4,7 +4,7 @@ import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
     // const [yellow, setYellow] = useState(false)
-    console.log('here')
+    // console.log('here')
     if(!recipe) return null
     return (
         <Link to={`/recipes/${recipe.id}`} style={{ 'textDecoration': 'none' }}>
@@ -22,7 +22,7 @@ function RecipeCard({ recipe }) {
                             }} alt={`recipe-${recipe.id}`} />
                         </div>
                         <div>
-                            <p>{recipe.created_at}</p>
+                            <p>{recipe.created_at.split(' ').slice(1, 4).join(' ')}</p>
                         </div>
                     </div>
                 </div>

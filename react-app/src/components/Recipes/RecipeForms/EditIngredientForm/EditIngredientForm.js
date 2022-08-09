@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
-import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
+// import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
+import './EditIngredientForm.css'
 
 
 function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEditIng }) {
@@ -77,7 +78,8 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
     //     <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
     //     );
     return (
-        <>
+        <div>
+            <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
             {validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -85,57 +87,70 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                     ))}
                 </ul>
             }
-            <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
-            <form className="ingredient-form" onSubmit={handleSubmit}>
-                {/* {ingredient} */}
-                <div className='ingredient-input-container'>
-                    <div className="input-container">
-                        <label>Amount</label>
-                        <input
-                            type="number"
-                            placeholder="0"
-                            required
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                        />
+            <div className='edit-ingredient-container'>
+
+                <form className="form-container " onSubmit={handleSubmit}>
+                    {/* {ingredient} */}
+                    <div className='ingredient-input-container'>
+                        <div className="input-container">
+                            <div>
+                                <input
+                                    type="number"
+                                    placeholder="0"
+                                    required
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    />
+                                    <label>Amount</label>
+                            </div>
+                        </div>
+                        <div className="input-container">
+                            <div>
+                                <select
+                                    type="number"
+                                    placeholder="0"
+                                    required
+                                    value={unit}
+                                    onChange={(e) => setUnit(e.target.value)}
+                                    >
+                                {measurementUnits && (
+                                    Object.values(measurementUnits).map(unit => (
+                                        <option key={unit.id} value={unit.id}>{unit.unit}</option>
+                                        ))
+                                        )}
+                                </select>
+                                <label>Unit</label>
+                            </div>
+                        </div>
+                        <div className="input-container">
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Flour, Water, etc."
+                                    required
+                                    value={food_stuff}
+                                    onChange={(e) => setFood_stuff(e.target.value)}
+                                    />
+                                    <label>Ingredient</label>
+                            </div>
+                        </div>
+                        <div className='submit-edit-button-container'>
+                            <h3>Submit Edit</h3>
+                            <button className='arrow-button edit-' disabled={validationErrors.length > 0}>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </div>
+                        {/* <div>
+                            <button disabled={validationErrors.length > 0}>Submit Edit</button>
+                        </div> */}
                     </div>
-                    <div className="input-container">
-                        <label>Unit</label>
-                        <select
-                            type="number"
-                            placeholder="0"
-                            required
-                            value={unit}
-                            onChange={(e) => setUnit(e.target.value)}
-                        >
-                        {measurementUnits && (
-                            Object.values(measurementUnits).map(unit => (
-                                <option key={unit.id} value={unit.id}>{unit.unit}</option>
-                            ))
-                        )}
-                        </select>
-                    </div>
-                    <div className="input-container">
-                        <label>Ingredient</label>
-                        <input
-                            type="text"
-                            placeholder="Flour, Water, etc."
-                            required
-                            value={food_stuff}
-                            onChange={(e) => setFood_stuff(e.target.value)}
-                        />
-                    </div>
+                </form>
+            </div>
+                <div className='delete-ing-button-container'>
+                    <h3>Delete Ingredient</h3>
+                    <div onClick={handleDelete}><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
                 </div>
-                <button disabled={validationErrors.length > 0}>Submit!</button>
-            </form>
-            <button onClick={handleDelete}>Delete Ingredient</button>
-            {/* {showAddForm && <NewIngredientForm measurementUnits={measurementUnits} recipe_id={recipe_id}/>}
-            {!showAddForm ?
-            <button onClick={() => setShowAddForm(true)}>Add Ingredient</button>
-            :
-            <button onClick={() => setShowAddForm(false)}>Cancel</button>
-            } */}
-        </>
+        </div>
     )
 }
 

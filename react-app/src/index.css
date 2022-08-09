@@ -80,6 +80,7 @@ h3, h2 {
     justify-content: center;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 10%;
 }
 
 /* .view-screen {
@@ -114,26 +115,17 @@ span {
 
 i:not(.fa-arrow-right-long) {
     color: var(--light-gray);
-    /* font-size: 12px; */
+    font-size: 18px;
 }
 
-/* i:not(.fa-arrow-right-long) */
-
-i:hover {
+i:hover:not(.fa-arrow-right-long) {
     cursor: pointer;
-    color: var(--dark-blue)
+    color: var(--dark-blue);
+    background-color: var(--yellow);
+    text-decoration: underline var(--dark-blue) 3px;
 }
 
 label {
     color: var(--off-black);
     height: fit-content;
 }
-
-/* img:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-image: url();
-} */
