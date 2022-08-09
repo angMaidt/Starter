@@ -1,0 +1,20 @@
+.form-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.recipe-form {
+    background-color: pink;
+    padding: 15px;
+}
+
+.input-container{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+
+}
+
+.input-container label {
+    /* margin-right: 30%; */
+}

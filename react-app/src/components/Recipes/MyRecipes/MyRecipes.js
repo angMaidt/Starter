@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { getRecipesThunk } from '../../../store/recipe'
 import RecipeCard from '../RecipeCard/RecipeCard'
-import RecipeForm from '../RecipeForms/RecipeForm'
+// import RecipeForm from '../RecipeForms/RecipeForm'
+import NewRecipeForm from '../RecipeForms/NewRecipeForm/NewRecipeForm'
 import './MyRecipes.css'
 
 function MyRecipes() {
@@ -35,7 +36,7 @@ function MyRecipes() {
     // console.log(my_recipes)
 
     return (
-        <>
+        <div className='view-container'>
             <div className='my-recipe-tabs'>
                 <div className={!showRecipeForm ? 'active-tab': 'inactive'}>
                     <h2 onClick={() => setShowRecipeForm(false)}>My recipes</h2>
@@ -45,16 +46,19 @@ function MyRecipes() {
                 </div>
             </div>
             {showRecipeForm ?
-                <RecipeForm />
+                <NewRecipeForm />
             :
-                sorted_recipes && sorted_recipes.length > 0 ?
+            <div className='recipes-container'>
+                {sorted_recipes && sorted_recipes.length > 0 ?
                     Object.values(sorted_recipes).map(recipe => (
                         <RecipeCard key={recipe.id} recipe={recipe} />
                     ))
                 :
-                    <h3>Looks like you don't have any recipes!</h3>
+                    <h3>Looks like you don't have any recipes!</h3>}
+
+            </div>
             }
-        </>
+        </div>
     )
 }
 
