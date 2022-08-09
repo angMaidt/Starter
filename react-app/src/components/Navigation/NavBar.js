@@ -45,12 +45,12 @@ const NavBar = () => {
                 <h3>Home</h3>
               </div>
             </NavLink>
-            <NavLink to='/crash-course' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+            <NavLink to='/sourdough-faq' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
-                <h3>Crash Course</h3>
+                <h3>F.A.Q.</h3>
               </div>
             </NavLink>
-            <NavLink to='/recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+            <NavLink to='/recipes' activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
                 <h3>Explore</h3>
               </div>

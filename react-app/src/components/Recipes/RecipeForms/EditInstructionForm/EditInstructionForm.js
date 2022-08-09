@@ -14,7 +14,7 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
 
         if (!specification) errors.push('Please enter an instruction for this step.')
         if (specification.length < 4) errors.push('Please enter more than 3 characters for your instruction.')
-        if (specification.length > 1000) errors.push('Looks like you tried to enter over 1000 characters for this step.')
+        if (specification.length > 999) errors.push('Looks like you tried to enter over 1000 characters for this step.')
 
         setValidationErrors(errors)
     }, [specification])
@@ -29,8 +29,8 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
             if (res.ok) {
                 // if()
                 const data = await res.json()
-                await dispatch(getRecipesThunk())
             }
+            await dispatch(getRecipesThunk())
         } catch (e) {
             setValidationErrors(e.errors)
         }
@@ -77,6 +77,7 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
                     ))}
                 </ul>
             }
+            <p>{instruction.list_order}. {instruction.specification}</p>
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">
                     <div className="input-container">

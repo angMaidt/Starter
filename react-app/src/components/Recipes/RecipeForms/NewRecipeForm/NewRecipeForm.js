@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { HashLinkObserver } from 'react-hash-link'
 import { postRecipeThunk } from '../../../../store/recipe'
-import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
-import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
+// import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
+// import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
 import { getRecipesThunk } from '../../../../store/recipe'
+import './NewRecipeForm.css'
 
 function NewRecipeForm() {
     const history = useHistory()
@@ -139,7 +141,7 @@ function NewRecipeForm() {
         try {
             const data = await dispatch(postRecipeThunk(payload))
             if (data) {
-                alert('Recipe Submitted!')
+                // alert('Recipe Submitted!')
                 setRecipe_id(data.id)
                 setHasCreated(true)
                 setTitle('')
@@ -154,147 +156,162 @@ function NewRecipeForm() {
                 setBaking_temp('')
                 // setBaking_temp_system('fahrenheit')
                 setTotal_yield('')
+
+                history.push(`/recipes/${data.id}`)
             }
-            // history.push('/recipes')
         } catch (e) {
             setValidationErrors(e.errors)
         }
     }
 
     return (
-        <>
-        <h3>Recipe Body</h3>
-        {hasSubmitted && validationErrors.length > 0 &&
-            <ul className='errors'>
-                {validationErrors.map(error => (
-                    <li className='error' key={error}>{error}</li>
-                ))}
-            </ul>
-        }
+        <div className='form-container'>
+            {/* <HashLinkObserver /> */}
+            <h3>Give us some info about your recipe! We'll add ingredients and instructions in the next step.</h3>
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
+                    {/* <div className='recipe-top'> */}
                     <div className="input-container">
-                        <label>Title</label>
                         <input
+                            name='title'
                             type='text'
                             placeholder='Title'
                             required
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            style={{ 'width': '80%' }}
                         />
+                        <label for='title'>Title: </label>
                     </div>
                     <div className="input-container">
-                        <label>Description</label>
-                        <input
-                            type='text'
+                        <textarea
+                            name='description'
+                            // type='text'
                             placeholder='Description'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
+                        <label for='description'>Description</label>
                     </div>
                     <div className="input-container">
-                        <label>Image Link</label>
                         <input
+                            name='image'
                             type='text'
                             placeholder='yummy-bread.jpg'
-                            // required
                             value={image_url}
                             onChange={(e) => setImage_url(e.target.value)}
+                            style={{ 'width': '80%' }}
                         />
+                        <label for='image'>Image Link</label>
+                    </div>
+                    {/* </div> */}
+                    <div className="input-container time">
+                        <div>
+                            <input
+                                name='active-time'
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={active_time_hrs}
+                                onChange={(e) => setActive_time_hrs(e.target.value)}
+                            />
+                            <input
+                                name='active-time'
+                                type='text'
+                                placeholder="Minutes"
+                                // required
+                                value={active_time_mins}
+                                onChange={(e) => setActive_time_mins(e.target.value)}
+                            />
+                        </div>
+                        <label for='active-time'l>Hands On Time</label>
+                    </div>
+                    <div className="input-container time">
+                        {/* <div> */}
+                        <div>
+                            <input
+                                name='ferment'
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={ferment_time_hrs}
+                                onChange={(e) => setFerment_time_hrs(e.target.value)}
+                            />
+                            <input
+                                name='ferment'
+                                type='text'
+                                placeholder="Mins"
+                                // required
+                                value={ferment_time_mins}
+                                onChange={(e) => setFerment_time_mins(e.target.value)}
+                            />
+                        </div>
+                        <label for='ferment'>Ferment Time</label>
+                        {/* </div> */}
+                    </div>
+                    <div className="input-container time">
+                        <div>
+                            <input
+                                name='bake-time'
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={bake_time_hrs}
+                                onChange={(e) => setBake_time_hrs(e.target.value)}
+                            />
+                            <input
+                                name='bake-time'
+                                type='text'
+                                placeholder="Mins"
+                                // required
+                                value={bake_time_mins}
+                                onChange={(e) => setBake_time_mins(e.target.value)}
+                            />
+                        </div>
+                        <label for='bake-time'>Bake Time</label>
+                    </div>
+                    <div className='temp-container'>
+                        <div className="input-container">
+                            <input
+                                name='bake-temp'
+                                type='text'
+                                placeholder="400"
+                                required
+                                value={baking_temp}
+                                onChange={(e) => setBaking_temp(e.target.value)}
+                            />
+                            <label for='bake-temp'>Baking Temp(note: all temps in °F)</label>
+                        </div>
+                        {/* <label>°F</label> */}
                     </div>
                     <div className="input-container">
-                        <label>Hands On Time</label>
                         <input
                             type='text'
-                            placeholder="Hours"
-                            // required
-                            value={active_time_hrs}
-                            onChange={(e) => setActive_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Minutes"
-                            // required
-                            value={active_time_mins}
-                            onChange={(e) => setActive_time_mins(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label>Ferment Time</label>
-                        <input
-                            type='text'
-                            placeholder="Hours"
-                            // required
-                            value={ferment_time_hrs}
-                            onChange={(e) => setFerment_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Mins"
-                            // required
-                            value={ferment_time_mins}
-                            onChange={(e) => setFerment_time_mins(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label>Bake Time</label>
-                        <input
-                            type='text'
-                            placeholder="Hours"
-                            // required
-                            value={bake_time_hrs}
-                            onChange={(e) => setBake_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Mins"
-                            // required
-                            value={bake_time_mins}
-                            onChange={(e) => setBake_time_mins(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label>Baking Temp</label>
-                        <input
-                            type='text'
-                            placeholder="400"
-                            required
-                            value={baking_temp}
-                            onChange={(e) => setBaking_temp(e.target.value)}
-                        />
-                        <label>°F</label>
-                        {/* <select
-                            type='string'
-                            placeholder='°F'
-                            required
-                            value={baking_temp_system}
-                            onChange={(e) => setBaking_temp_system(e.target.value)}
-                        >
-                            <option value='fahrenheit'>°F</option>
-                            <option value='celsius'>°C</option>
-                        </select> */}
-                    </div>
-                    <div className="input-container">
-                        <label>Yield</label>
-                        <input
-                            type='text'
+                            name='yield'
                             placeholder="e.g. 1 loaf, 12 rolls"
                             required
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
                         />
+                        <label for='yield'>Yield</label>
                     </div>
                 </div>
-                <button>Submit!</button>
-            </form>
-            {/* {hasCreated && */}
-                <div>
-                    <NewIngredientForm recipe_id={recipe_id} measurementUnits={measurementUnits}/>
-                    <NewInstructionForm recipe_id={recipe_id}/>
+                <div className='next-button-container'>
+                    <h3>Next</h3>
+                    <button className='arrow-button'>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
                 </div>
-            {/* } */}
-        </>
+            </form>
+        </div>
     )
 }
 

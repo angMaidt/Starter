@@ -1,0 +1,48 @@
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 25px;
+    row-gap: 50px;
+    /* padding-left: 20%;
+    padding-right: 20%; */
+    /* background-color: white; */
+}
+
+.view-container {
+    display: flex;
+    flex-direction: column;
+    /* box-sizing: border-box; */
+    /* margin-left: 10%;
+    margin-right: 10%; */
+}
+
+.view-container h1 {
+    font-size: 60px;
+    font-weight: 400;
+    /* width: 30%; */
+    /* text-decoration: underline;
+    background-color: var(--yellow); */
+    color: var(--off-black);
+    /* text-decoration: underline; */
+}
+
+.view-container .tag {
+    background-color: var(--pale-blue);
+    width: 75px;
+    display: flex;
+    text-align: center;
+    text-justify: center;
+    font-weight: 100;
+}
+.view-container .tag:hover {
+    background-color: var(--yellow);
+    transition: all .15s ease-in;
+}
+
+.page-header-underline {
+    background: linear-gradient(90deg,#99f2fb 7.15%,#fff 91.53%);
+    border: 2px solid #333;
+    border-radius: 70px;
+    height: 8px;
+    margin-bottom: 32px;
+}

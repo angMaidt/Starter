@@ -18,33 +18,33 @@ def seed_measurement_units():
         )
 
     # imperial
-    # oz = MeasurementUnit(
-    #     unit='oz.'
-    #     )
-    # floz = MeasurementUnit(
-    #     unit='fl.oz.'
-    #     )
-    # tsp = MeasurementUnit(
-    #     unit='tsp.'
-    #     )
-    # tbsp = MeasurementUnit(
-    #     unit='tbsp.'
-    #     )
-    # c = MeasurementUnit(
-    #     unit='c.'
-    #     )
-    # pt = MeasurementUnit(
-    #     unit='pt.'
-    #     )
-    # qt = MeasurementUnit(
-    #     unit='qt.'
-    #     )
-    # gal = MeasurementUnit(
-    #     unit='gal.'
-    #     )
-    # lb = MeasurementUnit(
-    #     unit='lb'
-    #     )
+    oz = MeasurementUnit(
+        unit='oz.'
+        )
+    floz = MeasurementUnit(
+        unit='fl.oz.'
+        )
+    tsp = MeasurementUnit(
+        unit='tsp.'
+        )
+    tbsp = MeasurementUnit(
+        unit='tbsp.'
+        )
+    c = MeasurementUnit(
+        unit='c.'
+        )
+    pt = MeasurementUnit(
+        unit='pt.'
+        )
+    qt = MeasurementUnit(
+        unit='qt.'
+        )
+    gal = MeasurementUnit(
+        unit='gal.'
+        )
+    lb = MeasurementUnit(
+        unit='lb'
+        )
 
 
 
@@ -52,15 +52,15 @@ def seed_measurement_units():
     db.session.add(kg)
     db.session.add(l)
     db.session.add(ml)
-    # db.session.add(oz)
-    # db.session.add(floz)
-    # db.session.add(tsp)
-    # db.session.add(tbsp)
-    # db.session.add(c)
-    # db.session.add(pt)
-    # db.session.add(qt)
-    # db.session.add(gal)
-    # db.session.add(lb)
+    db.session.add(oz)
+    db.session.add(floz)
+    db.session.add(tsp)
+    db.session.add(tbsp)
+    db.session.add(c)
+    db.session.add(pt)
+    db.session.add(qt)
+    db.session.add(gal)
+    db.session.add(lb)
 
     db.session.commit()
 

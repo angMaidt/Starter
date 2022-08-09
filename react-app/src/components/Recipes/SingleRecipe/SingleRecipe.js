@@ -8,6 +8,8 @@ import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
 import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
+import './SingleRecipe.css'
+import Ingredient from '../../Ingredient/Ingredient'
 // import { SystemContext } from '../../../context/SystemContext'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
@@ -39,15 +41,15 @@ function SingleRecipe() {
         fetchUnits()
     }, [])
 
-    const handleDoneEditingIng = () => {
-        setShowEditIng(false)
-        setShowAddIng(false)
-    }
+    // const handleDoneEditingIng = () => {
+    //     setShowEditIng(false)
+    //     setShowAddIng(false)
+    // }
 
-    const handleDoneEditingInst = () => {
-        setShowAddInst(false)
-        setShowEditInst(false)
-    }
+    // const handleDoneEditingInst = () => {
+    //     setShowAddInst(false)
+    //     setShowEditInst(false)
+    // }
 
     const ms_converter = (ms) => {
         let mins = ms % 3600000
@@ -88,66 +90,75 @@ function SingleRecipe() {
 
     // console.log(ordered_instructions)
     return (
-        <>
-            <h1>Welcome to Single Recipe!</h1>
+        <div className='view-container single-recipe-view'>
+            {/* <h1>Welcome to Single Recipe!</h1> */}
             {recipe ?
             <>
                 <div>
-                    <h2>{recipe.title}</h2>
-                    <p>By {recipe.user.username}</p>
-                    <p>Posted {recipe.created_at}</p>
+                    <h1>{recipe.title}</h1>
+                    <p>{recipe.description}</p>
+                    <div className='user-info'>
+                        <h5>by {recipe.user.username}</h5>
+                        {recipe.created_at === recipe.updated_at ?
+                            <span>Posted {recipe.created_at}</span>
+                            :
+                            <span>Updated {recipe.updated_at}</span>
+                        }
+                    </div>
                 </div>
-                <div>
+                <div className='recipe-comment-info'>
+                    <span>Rating</span>
+                    <span>{recipe.comments.length} comments</span>
+                </div>
+                <div className='single-image-container'>
                     <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
                 </div>
-                <p>{recipe.description}</p>
-                {sessionUser && sessionUser.id === recipe.user.id &&
-                <div>
-                    {!showEditForm ?
-                        <button onClick={() => setShowEditForm(true)}>Edit Recipe!</button>
-                    :
-                    <div>
-                        <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />
-                        <button onClick={() => setShowEditForm(false)}>Done Editing</button>
+                <div className='header-button-container'>
+                    <h3>Recipe Facts</h3>
+                    {sessionUser && sessionUser.id === recipe.user.id &&
+                    <div className='edit-button-container'>
+                        <div onClick={() => setShowEditForm(!showEditForm)}><i className="fa-solid fa-pen"></i></div>
+                        <div onClick={handleDelete}><i className="fa-solid fa-trash-can"></i></div>
                     </div>
                     }
-                    <button onClick={handleDelete}>Delete Recipe!</button>
+                </div>
+                {!showEditForm ?
+                    <div style={{ 'border': '1px solid black' }}>
+                        <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
+                        <p>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</p>
+                        <p>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</p>
+                        <p>Baking Temp: {recipe.baking_temp} °F</p>
+                        <p>Total Yield: {recipe.total_yield}</p>
+                    </div>
+                :
+                <div>
+                    <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />
+                    {/* <button onClick={() => setShowEditForm(false)}>Done Editing</button> */}
                 </div>
                 }
-                <div style={{ 'border': '1px solid black' }}>
-                    <h3>Recipe Facts</h3>
-                    <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
-                    <p>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</p>
-                    <p>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</p>
-                    <p>Baking Temp: {recipe.baking_temp} °F</p>
-                    <p>Total Yield: {recipe.total_yield}</p>
-                </div>
                 <div>
-                    <h3>Ingredients</h3>
+                    <div className='header-button-container inst'>
+                        <h3 id='ingredients'>Ingredients</h3>
+                        {sessionUser && sessionUser.id === recipe.user.id &&
+                            <div className='edit-button-container'>
+                                <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>
+                                <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                            </div>
+                        }
+                    </div>
                     {!showEditIng ?
                     <div>
-                        {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditIng(true)}>Edit Ingredients</button>}
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
-                                    <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+                                    <Ingredient ingredient={ingredient} recipe={recipe} showEditIng={showEditIng} setShowEditIng={setShowEditIng}/>
+                                    {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
                                 </li>
                             ))}
                         </ul>
                     </div>
                     :
                     <div>
-                        <button onClick={handleDoneEditingIng}>Done Editing</button>
-                        {!showAddIng ?
-                        <div>
-                            <button onClick={() => setShowAddIng(true)}>Add Ingredients</button>
-                        </div>
-                        :
-                        <div>
-                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
-                            <button onClick={() => setShowAddIng(false)}>Done Adding</button>
-                        </div>
-                        }
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
@@ -157,12 +168,24 @@ function SingleRecipe() {
                         </ul>
                     </div>
                     }
+                    {showAddIng &&
+                        <div>
+                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
+                        </div>
+                    }
                 </div>
                 <div>
-                    <h3>Instructions</h3>
+                    <div className='header-button-container inst'>
+                        <h3>Instructions</h3>
+                        {sessionUser && sessionUser.id === recipe.user.id &&
+                            <div className='edit-button-container'>
+                                <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
+                                <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                            </div>
+                        }
+                    </div>
                     {!showEditInst ?
                         <div>
-                            {sessionUser && sessionUser.id === recipe.user.id && <button onClick={() => setShowEditInst(true)}>Edit Instructions</button>}
                             {ordered_instructions.map(instruction => (
                                 <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
                             ))}
@@ -170,21 +193,16 @@ function SingleRecipe() {
                         :
                         <div>
                             <div>
-                                <button onClick={handleDoneEditingInst}>Done Editing</button>
+                                {/* <button onClick={handleDoneEditingInst}>Done Editing</button> */}
                                 {ordered_instructions.map(instruction => (
                                     <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} current_length={recipe.instructions.length}/>
                                     ))}
                             </div>
-                            {!showAddInst ?
-                                <div>
-                                    <button onClick={() => setShowAddInst(true)}>Add Instructions</button>
-                                </div>
-                                :
-                                <div>
-                                    <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length} edit={true}/>
-                                    <button onClick={() => setShowAddInst(false)}>Done Adding</button>
-                                </div>
-                                }
+                        </div>
+                    }
+                    {showAddInst &&
+                        <div>
+                            <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length} edit={true}/>
                         </div>
                     }
                 </div>
@@ -194,7 +212,7 @@ function SingleRecipe() {
             :
             <p>Looks like there's nothing here!</p>
             }
-        </>
+        </div>
     )
 }
 

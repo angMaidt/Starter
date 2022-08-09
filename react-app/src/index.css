@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
 /* TODO Add site wide styles */
 :root {
     --dark-blue: #1B4D7A;
     --light-blue: #19ACCC;
+    --pale-blue: #99f2fb;
+    --light-gray: #767677;
     --yellow: #FFD12F;
     --off-white: #FBF9EE;
     --off-black: #333333;
@@ -21,7 +23,7 @@ body {
     margin: 0;
     /* background-color: pink; */
     box-sizing: border-box;
-    /* background-color: var(--off-white); */
+    background-color: var(--off-white);
     /* font-family: Arial, Helvetica, sans-serif; */
     font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf')
@@ -32,10 +34,10 @@ body {
     color: red;
 }
 
-button {
+button:not(.arrow-button) {
     width: 100px;
     height: 40px;
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
     border-radius: 5px;
     color: var(--dark-blue);
     background-color: transparent;
@@ -46,6 +48,7 @@ button {
     transparent 50%);
     background-size: 200% 100%;
     background-position: right bottom;
+    background-color: var(--off-white);
     transition: all .15s ease-out;
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
@@ -60,6 +63,8 @@ button:hover {
 h1 {
     color: var(--dark-blue);
     font-family: 'Roboto', sans-serif;
+    width: fit-content;
+    /* width: 100%; */
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
@@ -70,8 +75,56 @@ h3, h2 {
 
 .bottom-screen {
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-.view-screen {
+/* .view-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+} */
+
+p:not(.card-bottom-info p) {
+    font-family: Inter,Helvetica,sans-serif;
+    font-size: 1.25rem;
+    color: var(--off-black);
+    line-height: 1.44;
+    text-align: left;
+    padding: 0;
+}
+
+h5 {
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+span {
+    font-family: Inter,Helvetica,sans-serif;
+    color: var(--light-gray);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+i:not(.fa-arrow-right-long) {
+    color: var(--light-gray);
+    /* font-size: 12px; */
+}
+
+/* i:not(.fa-arrow-right-long) */
+
+i:hover {
+    cursor: pointer;
+    color: var(--dark-blue)
+}
+
+label {
+    color: var(--off-black);
+    height: fit-content;
 }

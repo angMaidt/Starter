@@ -11,9 +11,9 @@ import AllRecipes from './components/Recipes/AllRecipes/AllRecipes';
 import { authenticate } from './store/session';
 import { getRecipesThunk } from './store/recipe';
 import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
-import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
+// import RecipeForm from './components/Recipes/RecipeForms/RecipeForm';
 import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
-import LeftNav from './components/LeftNavigation/LeftNav';
+// import LeftNav from './components/LeftNavigation/LeftNav';
 import HomePage from './components/HomePage/HomePage';
 // import SystemProvider from './context/SystemContext';
 
@@ -43,7 +43,7 @@ function App() {
       <NavBar />
       {/* <div className='welcome-ribbon'></div> */}
       <div className='bottom-screen'>
-        <div className='view-screen'>
+        {/* <div className='view-screen'> */}
           <Switch>
             <Route path='/login' exact={true}>
               <LoginForm />
@@ -74,7 +74,7 @@ function App() {
               <SingleRecipe/>
             </Route>
           </Switch>
-        </div>
+        {/* </div> */}
     </div>
     </BrowserRouter>
   );

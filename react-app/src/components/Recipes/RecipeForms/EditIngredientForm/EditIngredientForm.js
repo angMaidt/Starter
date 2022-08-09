@@ -10,6 +10,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
     const [food_stuff, setFood_stuff] = useState(ingredient.food_stuff)
     const [hasSubmitted, setHasSubmitted] = useState(false)
+    // const [isDone, setIsDone] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
     // const [showAddForm, setShowAddForm] = useState(false)
 
@@ -63,11 +64,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
             })
             if (res.ok) {
                 const data = await res.json()
-                // SetIngredients([...ingredients, data])
-                // setAmount('')
-                // setFood_stuff('')
-                // setUnit(1)
-                // setShowEditIng(false)
+                // setIsDone(true)
             }
 
             await dispatch(getRecipesThunk())
@@ -76,6 +73,9 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
         }
     }
 
+    // if (isDone) return (
+    //     <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+    //     );
     return (
         <>
             {validationErrors.length > 0 &&
