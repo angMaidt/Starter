@@ -63,6 +63,7 @@ button:hover {
 h1 {
     color: var(--dark-blue);
     font-family: 'Roboto', sans-serif;
+    width: fit-content;
     /* width: 100%; */
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
@@ -111,7 +112,8 @@ span {
     text-transform: uppercase;
 }
 i {
-    color: var(--light-gray)
+    color: var(--light-gray);
+    /* font-size: 12px; */
 }
 
 i:hover {

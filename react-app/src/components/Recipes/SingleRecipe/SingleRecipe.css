@@ -28,9 +28,23 @@
 
 .edit-button-container {
     display: flex;
+    justify-content: space-between;
+    width: 50px;
 }
 
 .header-button-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.single-recipe-view h1 {
+    background-color: var(--yellow);
+    /* width: 50%; */
+    text-decoration: underline;
+    color: var(--dark-blue)
+}
+
+.recipe-title-holder {
+    width: 80%;
 }
