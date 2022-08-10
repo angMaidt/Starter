@@ -1,22 +1,38 @@
-.edit-ingredient-container, .edit-instruction-container, .edit-recipe-form {
+.edit-ingredient-container,
+ .edit-instruction-container,
+ .edit-recipe-form {
     /* background-color: var(--pale-blue); */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.ingredient-input-container, .instruction-input-container {
+.form-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 100%
 }
 
-.ingredient-input-container div:not(.submit-edit-button-container){
+.ingredient-input-container,
+.instruction-input-container {
+    /* display: flex; */
+    align-items: flex-start;
+    justify-content: space-between;
+    /* width: 140%; */
+}
+
+.ingredient-input-container:first-child {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.ingredient-input-container div{
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
     width: 100%;
 }
 
@@ -44,4 +60,17 @@
 
 .delete-ing-button-container div{
     margin-left: 2%;
+}
+
+.edit-button-container.ingredient {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.ingredient-input-container .input-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
 }
