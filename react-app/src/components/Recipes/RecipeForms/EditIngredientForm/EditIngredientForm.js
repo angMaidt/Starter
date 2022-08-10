@@ -5,7 +5,7 @@ import { getRecipesThunk } from '../../../../store/recipe'
 import './EditIngredientForm.css'
 
 
-function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEditIng }) {
+function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEditSingleIng, setShowEditSingleIng, showEditIng, setShowEditIng}) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState(ingredient.amount)
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
@@ -65,6 +65,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
             })
             if (res.ok) {
                 const data = await res.json()
+                setShowEditSingleIng(!showEditSingleIng)
                 // setIsDone(true)
             }
 
@@ -74,9 +75,10 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
         }
     }
 
+    // if (!showEditIng) setShowEdit(!showEdit)
     return (
         <div>
-            <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p>
+            {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -141,7 +143,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
             </div>
             <div className='delete-ing-button-container' >
                 <h3>Delete Ingredient</h3>
-                <div onClick={handleDelete} ><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
+                <div onClick={handleDelete}><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
             </div>
         </div>
     )

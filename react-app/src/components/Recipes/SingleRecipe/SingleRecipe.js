@@ -24,10 +24,14 @@ function SingleRecipe() {
 
     const [showEditForm, setShowEditForm] = useState(false)
 
+    //edit ingredient states
     const [showEditIng, setShowEditIng] = useState(false)
+    const [showEditSingleIng, setShowEditSingleIng] = useState(false)
     const [showAddIng, setShowAddIng] = useState(false)
 
+    //edit instruction states
     const [showEditInst, setShowEditInst] = useState(false)
+    const [showEditSingleInst, setShowEditSingleInst] = useState(false)
     const [showAddInst, setShowAddInst] = useState(false)
 
     const [measurementUnits, setMeasurementUnits] = useState('')
@@ -153,8 +157,10 @@ function SingleRecipe() {
                     {/* <button onClick={() => setShowEditForm(false)}>Done Editing</button> */}
                 </div>
                 }
+
+                {/* Ingredients */}
                 <div>
-                    <div className='header-button-container inst'>
+                    <div className='header-button-container ing'>
                         <h3 id='ingredients'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
@@ -163,8 +169,10 @@ function SingleRecipe() {
                             </div>
                         }
                     </div>
-                    {!showEditIng ?
+
                     <div>
+                        
+                        {/* if your recipe and no ingredients, prompt to add some ingredients */}
                         {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length &&
                             <div className='add-info' onClick={() => setShowAddIng(!showAddIng)}>
                                 <h2>Click here to add Ingredients to your recipe!</h2>
@@ -174,25 +182,20 @@ function SingleRecipe() {
                         <ul>
                             {ordered_ingredients.map(ingredient => (
                                 <li key={ingredient.id}>
-                                    <Ingredient ingredient={ingredient} recipe={recipe} showEditIng={showEditIng} setShowEditIng={setShowEditIng}/>
+                                    <Ingredient
+                                        ingredient={ingredient}
+                                        recipe={recipe}
+                                        showEditIng={showEditIng}
+                                        showEditSingleIng={showEditSingleIng}
+                                        setShowEditSingleIng={setShowEditSingleIng}
+                                        setShowEditIng={setShowEditIng}
+                                        measurementUnits={measurementUnits}/>
                                     {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
                                 </li>
                             ))}
                         </ul>
-                        {/* <button onClick={() => ingRef.current.scrollIntoView({ behavior: 'smooth' })}>Test</button> */}
+                    </div>
 
-                    </div>
-                    :
-                    <div>
-                        <ul>
-                            {ordered_ingredients.map(ingredient => (
-                                <li key={ingredient.id}>
-                                    <EditIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} ingredient={ingredient} setShowEditIng={setShowEditIng}/>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    }
                     {showAddIng &&
                         <div>
                             <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
