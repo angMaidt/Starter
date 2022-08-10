@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -41,6 +41,12 @@ const SignUpForm = () => {
   if (user) {
     return <Redirect to='/' />;
   }
+
+  //make into handlelogin
+  // const handleSignUp = () => {
+  //   setShowModal(false)
+  //   //return <Redirect to="/sign-up" />
+  // }
 
   return (
     <form onSubmit={onSignUp}>
