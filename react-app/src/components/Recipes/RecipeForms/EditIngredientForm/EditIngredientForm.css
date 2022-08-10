@@ -17,8 +17,8 @@
 .ingredient-input-container,
 .instruction-input-container {
     /* display: flex; */
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    /* justify-content: space-between; */
     /* width: 140%; */
 }
 
@@ -64,13 +64,30 @@
 
 .edit-button-container.ingredient {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
-    margin-top: 4px;
+    margin-top: 10px;
 }
 
 .ingredient-input-container .input-container {
     width: fit-content;
     display: flex;
     align-items: center;
+    margin-right: 10px;
+}
+
+.ing.submit {
+    background-color: transparent;
+    border: none;
+
+}
+
+.ing.submit:hover {
+    cursor: pointer;
+    color: var(--dark-blue)
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    color: red;
 }

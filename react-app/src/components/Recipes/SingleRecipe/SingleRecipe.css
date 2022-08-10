@@ -66,7 +66,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* width: 100%; */
 }
 
 .ingredient-container div span:first-child,
@@ -75,7 +74,8 @@
 }
 
 .ingredient-container div:first-child span:hover,
-.instruction-container div:first-child span:hover {
+.instruction-container div:first-child span:hover,
+.done:hover {
     cursor: pointer;
     color: var(--dark-blue);
 }
@@ -89,4 +89,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.done {
+    margin-right: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.edit-pen {
+    margin-right: 10px;
 }

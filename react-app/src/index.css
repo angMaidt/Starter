@@ -118,19 +118,19 @@ h6 {
     margin: 0;
 }
 
-span {
+span, .ing.submit {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
     font-size: 14px;
     text-transform: uppercase;
 }
 
-i:not(.fa-arrow-right-long) {
+i:not(.fa-arrow-right-long, .add) {
     color: var(--light-gray);
     font-size: 18px;
 }
 
-i:hover:not(.fa-arrow-right-long) {
+i:hover:not(.fa-arrow-right-long, .add) {
     cursor: pointer;
     font-size: 20px;
     color: var(--dark-blue);

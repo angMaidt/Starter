@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
+import './NewIngredientForm.css'
 
 function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
     const dispatch = useDispatch()
@@ -88,7 +89,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
             null
             }
             <form className="ingredient-form" onSubmit={handleSubmit}>
-                <div className='ingredient-input-container'>
+                <div className='add-ingredient-input-container'>
                     <div className="input-container">
                         <input
                             type="number"
@@ -126,7 +127,14 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
                         <label>Ingredient:</label>
                     </div>
                 </div>
-                <button>Submit!</button>
+                <div className='add-button-wrapper'>
+                    <div className='next-button-container add-button'>
+                        <h3 className='small-submit'>Add</h3>
+                        <button className='arrow-button'>
+                            <i className="fa-solid fa-plus add"></i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </>
     )

@@ -1,0 +1,22 @@
+.ingredient-form {
+    background-color: pink;
+    box-shadow: 10px 10px var(--light-blue);
+    padding: 15px;
+    padding-left: 25px;
+    align-items: center;
+}
+
+.small-submit h3 {
+    font-size: 20px;
+}
+
+.next-button-container.add-button {
+    margin: 10px 10px 0 0;
+}
+
+.add-button-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
+}
