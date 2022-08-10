@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteRecipeThunk } from '../../../store/recipe'
-import EditIngredientForm from '../RecipeForms/EditIngredientForm/EditIngredientForm'
-import EditInstructionForm from '../RecipeForms/EditInstructionForm/EditInstructionForm'
 import EditRecipeForm from '../RecipeForms/EditRecipeForm/EditRecipeForm'
 import CommentSection from '../../Comments/CommentSection/CommentSection'
 import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientForm'
@@ -11,32 +9,25 @@ import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstruction
 import './SingleRecipe.css'
 import Ingredient from '../../Ingredient/Ingredient'
 import Instruction from '../../Instruction/Instruction'
-// import { SystemContext } from '../../../context/SystemContext'
-// import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
 function SingleRecipe() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
     const recipe = useSelector(state => state.recipes[id])
-    // const ingRef = useRef()
-    // const { system } = useContext(SystemContext)
     const sessionUser = useSelector(state => state.session.user)
 
     const [showEditForm, setShowEditForm] = useState(false)
 
     //edit ingredient states
     const [showEditIng, setShowEditIng] = useState(false)
-    const [showEditSingleIng, setShowEditSingleIng] = useState(false)
     const [showAddIng, setShowAddIng] = useState(false)
 
     //edit instruction states
     const [showEditInst, setShowEditInst] = useState(false)
-    const [showEditSingleInst, setShowEditSingleInst] = useState(false)
     const [showAddInst, setShowAddInst] = useState(false)
 
     const [measurementUnits, setMeasurementUnits] = useState('')
-    // console.log(sessionUser)
 
     useEffect(() => {
         async function fetchUnits() {
@@ -94,6 +85,7 @@ function SingleRecipe() {
     //     top: offsetPosition,
     //     behavior: 'smooth'
     // })
+
 
     return (
         <div className='view-container single-recipe-view'>
@@ -158,8 +150,16 @@ function SingleRecipe() {
                             <div className='edit-button-container'>
                                 {recipe.ingredients.length > 0 &&
                                 <>
-                                    <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>
-                                    <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                                    {showEditIng ?
+                                        <span onClick={() => setShowEditIng(!showEditIng)} className='done'>Done</span>
+                                    :
+                                        <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>
+                                    }
+                                    {showAddIng ?
+                                        <span onClick={() => setShowAddIng(!showAddIng)} className='done'>Done</span>
+                                    :
+                                        <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                                    }
                                 </>
                                 }
                             </div>
@@ -204,7 +204,11 @@ function SingleRecipe() {
                             <div className='edit-button-container'>
                                 {recipe.instructions.length > 0 &&
                                 <>
-                                    <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
+                                    {showEditInst ?
+                                        <span onClick={() => setShowEditInst(!showEditInst)} className='done'>Done</span>
+                                    :
+                                        <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
+                                    }
                                     <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
                                 </>
                                 }

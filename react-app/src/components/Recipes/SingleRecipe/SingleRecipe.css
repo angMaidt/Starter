@@ -75,7 +75,8 @@
 }
 
 .ingredient-container div:first-child span:hover,
-.instruction-container div:first-child span:hover {
+.instruction-container div:first-child span:hover,
+.done:hover {
     cursor: pointer;
     color: var(--dark-blue);
 }
@@ -89,4 +90,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.done {
+    margin-right: 5px;
 }
