@@ -28,9 +28,10 @@ function SingleComment({ comment }) {
             <EditCommentForm
                 comment={comment}
                 sessionUser={sessionUser}
+                showEdit={showEdit}
                 setShowEdit={setShowEdit}/>
         :
-            <div style={{ 'border': '1px solid black' }}>
+            <div className='comment-form'>
                 <div style={{ 'height': '30px', 'width': '30px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
                     <img src={comment.user.image_url} alt='profile-pic' />
                 </div>
@@ -41,8 +42,8 @@ function SingleComment({ comment }) {
                 {/* {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>} */}
                 {sessionUser && sessionUser.id === comment.user.id &&
                     <div>
-                        <button onClick={handleDelete}>Delete Comment</button>
-                        <button onClick={() => setShowEdit(true)}>Edit Comment</button>
+                        <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
+                        <div onClick={handleDelete}><span>delete</span></div>
                     </div>
                 }
             </div>

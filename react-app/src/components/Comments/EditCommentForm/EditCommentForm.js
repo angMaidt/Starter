@@ -4,7 +4,7 @@ import { editCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
 // import { useHistory } from "react-router-dom"
 
-function EditCommentForm({ comment, sessionUser, setShowEdit }) {
+function EditCommentForm({ comment, sessionUser, showEdit, setShowEdit }) {
     const dispatch = useDispatch()
 
     const [rating, setRating] = useState(comment.rating)
@@ -34,7 +34,9 @@ function EditCommentForm({ comment, sessionUser, setShowEdit }) {
             recipe_id: comment.recipe_id,
             id: comment.id
         }
-        setShowEdit(false)
+
+        setShowEdit(!showEdit)
+
         try {
             const data = await dispatch(editCommentThunk(payload))
             await dispatch(getRecipesThunk())
@@ -68,7 +70,7 @@ function EditCommentForm({ comment, sessionUser, setShowEdit }) {
                             <option value={4}>4</option>
                             <option value={5}>5</option>
                         </select>
-                        <label>Rating</label>
+                        <label>*Rating</label>
                     </div>
                     <div className='input-container'>
                         <textarea
@@ -81,6 +83,7 @@ function EditCommentForm({ comment, sessionUser, setShowEdit }) {
                     </div>
                 </div>
                 <div className='submit-comment'>
+                    <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
                     <button>Submit</button>
                 </div>
             </form>

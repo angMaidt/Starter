@@ -15,3 +15,8 @@
     width: 95%;
     margin-top: 10px;
 }
+
+.submit-comment .cancel-button {
+    margin-top: 15px;
+    margin-right: 10px;
+}

@@ -72,7 +72,7 @@ function NewCommentForm({ recipe }) {
                             <option value={4}>4</option>
                             <option value={5}>5</option>
                         </select>
-                        <label>Rating</label>
+                        <label>*Rating</label>
                     </div>
                     <div className='input-container'>
                         <textarea
