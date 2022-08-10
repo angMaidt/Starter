@@ -76,8 +76,28 @@ input:focus, textarea:focus {
 .next-button-container {
     display: flex;
     align-items: center;
+    width: fit-content;
+    /* justify-content: space-between; */
     position: relative;
     margin-top: 15px;
-    left: 85%;
+    left: 62%;
     /* right: 30%; */
+}
+
+.footnotes {
+    margin-top: 10px;
+}
+
+.footnotes h6 {
+    color: var(--off-black);
+    font-style: italic;
+    font-weight: 100;
+    font-size: 16px;
+    width: fit-content;
+}
+
+.form-bottom-container {
+    display: flex;
+    align-items: center;
+
 }

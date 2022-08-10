@@ -196,18 +196,18 @@ function NewRecipeForm() {
                             onChange={(e) => setTitle(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='title'>Title: </label>
+                        <label for='title'>*Title: </label>
                     </div>
                     <div className="input-container">
                         <textarea
                             name='description'
                             // type='text'
-                            placeholder='Description'
+                            placeholder='*Description'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <label for='description'>Description</label>
+                        <label for='description'>*Description</label>
                     </div>
                     <div className="input-container">
                         <input
@@ -218,7 +218,7 @@ function NewRecipeForm() {
                             onChange={(e) => setImage_url(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='image'>Image Link</label>
+                        <label for='image'>*Image Link</label>
                     </div>
                     {/* </div> */}
                     <div className="input-container time">
@@ -240,7 +240,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setActive_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='active-time'l>Hands On Time</label>
+                        <label for='active-time'l>*Hands On Time</label>
                     </div>
                     <div className="input-container time">
                         {/* <div> */}
@@ -262,7 +262,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setFerment_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='ferment'>Ferment Time</label>
+                        <label for='ferment'>*Ferment Time</label>
                         {/* </div> */}
                     </div>
                     <div className="input-container time">
@@ -284,7 +284,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setBake_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='bake-time'>Bake Time</label>
+                        <label for='bake-time'>*Bake Time</label>
                     </div>
                     <div className='temp-container'>
                         <div className="input-container">
@@ -296,7 +296,7 @@ function NewRecipeForm() {
                                 value={baking_temp}
                                 onChange={(e) => setBaking_temp(e.target.value)}
                             />
-                            <label for='bake-temp'>Baking Temp(note: all temps in °F)</label>
+                            <label for='bake-temp'>*†Baking Temp</label>
                         </div>
                         {/* <label>°F</label> */}
                     </div>
@@ -309,15 +309,20 @@ function NewRecipeForm() {
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
                         />
-                        <label for='yield'>Yield</label>
+                        <label for='yield'>*Yield</label>
                     </div>
                 </div>
-                <div className='next-button-container'>
-                    {/* <button>Submit!</button> */}
-                    <h3>Next</h3>
-                    <button className='arrow-button'>
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </button>
+                <div className='form-bottom-container'>
+                    <div className='footnotes'>
+                        <h6>* = required</h6>
+                        <h6>† = all temps in °F</h6>
+                    </div>
+                    <div className='next-button-container'>
+                        <h3>Next</h3>
+                        <button className='arrow-button'>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </button>
+                    </div>
                 </div>
             </form>
             {/* <div className='next-button-container'>
