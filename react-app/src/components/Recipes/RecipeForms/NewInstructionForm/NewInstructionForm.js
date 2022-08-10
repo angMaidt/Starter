@@ -78,7 +78,7 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
             :
             null
             }
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="ingredient-form" >
                 <div className="instruction-input-container">
                     <div className="input-container">
                         <textarea
@@ -91,7 +91,14 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
                         <label>Step {list_order}.</label>
                     </div>
                 </div>
-                <button>Submit!</button>
+                <div className='add-button-wrapper'>
+                    <div className='next-button-container add-button'>
+                        <h3 className='small-submit'>Add</h3>
+                        <button className='arrow-button'>
+                            <i className="fa-solid fa-plus add"></i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </>
     )

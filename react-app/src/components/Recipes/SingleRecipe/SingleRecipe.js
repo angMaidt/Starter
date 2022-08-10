@@ -205,11 +205,15 @@ function SingleRecipe() {
                                 {recipe.instructions.length > 0 &&
                                 <>
                                     {showEditInst ?
-                                        <span onClick={() => setShowEditInst(!showEditInst)} className='done'>Done</span>
+                                        <span onClick={() => setShowEditInst(!showEditInst)} className='done'>Done editing</span>
                                     :
                                         <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
                                     }
-                                    <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                                    {showAddInst ?
+                                        <span onClick={() => setShowAddInst(!showAddInst)} className='done'>Done Adding</span>
+                                    :
+                                        <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                                    }
                                 </>
                                 }
                             </div>

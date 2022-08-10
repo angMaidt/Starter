@@ -10,5 +10,12 @@
 }
 
 .next-button-container.add-button {
-    margin: 0;
+    margin: 10px 10px 0 0;
+}
+
+.add-button-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-end;
 }

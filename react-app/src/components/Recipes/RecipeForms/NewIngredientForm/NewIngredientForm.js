@@ -127,11 +127,11 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
                         <label>Ingredient:</label>
                     </div>
                 </div>
-                <div >
+                <div className='add-button-wrapper'>
                     <div className='next-button-container add-button'>
                         <h3 className='small-submit'>Add</h3>
                         <button className='arrow-button'>
-                        <i className="fa-solid fa-plus add"></i>
+                            <i className="fa-solid fa-plus add"></i>
                         </button>
                     </div>
                 </div>
