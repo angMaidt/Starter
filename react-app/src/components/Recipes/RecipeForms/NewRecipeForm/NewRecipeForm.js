@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { HashLinkObserver } from 'react-hash-link'
+import { HashLink } from 'react-router-hash-link'
 import { postRecipeThunk } from '../../../../store/recipe'
 // import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 // import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'
@@ -68,16 +68,19 @@ function NewRecipeForm() {
         if (!image_url) errors.push('Please enter an image file for your recipe.')
         if (!(filetypes_regex).test(image_url)) errors.push('Please enter a filename ending in .jpg, .jpeg, .png, .gif, or .webp.')
 
+        if (!active_time_mins && !active_time_hrs) errors.push('Please enter an active time in minutes, hours, or both.')
         if (isNaN(active_time_mins) || isNaN(active_time_hrs)) errors.push('Please enter numbers only into active time fields!')
         if (active_time_mins < 0 || active_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for active time. While impressive, not very realistic.')
         if (active_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the active time minutes! Please use hour field instead.')
         if (active_time_hrs > 100) errors.push('Looks like you entered over 100 hours active time on this recipe. That seems a little excessive, no?.')
 
+        if (!ferment_time_mins && !ferment_time_hrs) errors.push('Please enter a ferment time in minutes, hours, or both.')
         if (isNaN(ferment_time_mins) || isNaN(ferment_time_hrs)) errors.push('Please enter numbers only into ferment time fields!')
         if (ferment_time_mins < 0 || ferment_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for ferment time. While impressive, not very realistic.')
         if (ferment_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the ferment time minutes! Please use hour field instead.')
         if (ferment_time_hrs > 500) errors.push('Looks like you entered over 500 hours ferment time on this recipe. That seems a little excessive, no?.')
 
+        if (!bake_time_mins && !bake_time_hrs) errors.push('Please enter a bake time in minutes, hours, or both.')
         if (isNaN(bake_time_mins) || isNaN(bake_time_hrs)) errors.push('Please enter numbers only into bake time fields!')
         if (bake_time_mins < 0 || bake_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for bake time. While impressive, not very realistic.')
         if (bake_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the bake time minutes! Please use hour field instead.')
@@ -116,7 +119,7 @@ function NewRecipeForm() {
         e.preventDefault()
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
         //convert to ms before sending to db
         const active_time = convert_to_ms(active_time_hrs, active_time_mins)
@@ -156,6 +159,7 @@ function NewRecipeForm() {
                 setBaking_temp('')
                 // setBaking_temp_system('fahrenheit')
                 setTotal_yield('')
+                setHasSubmitted(false)
 
                 history.push(`/recipes/${data.id}`)
             }
@@ -164,16 +168,26 @@ function NewRecipeForm() {
         }
     }
 
+    //offsets hashlink redirect
+    // const scrollWithOffset = (el) => {
+    //     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    //     const yOffset = -80;
+    //     window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' });
+    // }
+
     return (
         <div className='form-container'>
             {/* <HashLinkObserver /> */}
-            <h3>Give us some info about your recipe! We'll add ingredients and instructions in the next step.</h3>
+            <h3 id='new-recipe-header'>Give us some info about your recipe! We'll visit the recipe page next, you can add ingredients and instructions there.</h3>
             {hasSubmitted && validationErrors.length > 0 &&
+            <div className='error-container'>
+                <h3 className='error'>Please fix errors before continuing!</h3>
                 <ul className='errors'>
                     {validationErrors.map(error => (
                         <li className='error' key={error}>{error}</li>
                     ))}
                 </ul>
+            </div>
             }
             <form className='recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
@@ -182,24 +196,24 @@ function NewRecipeForm() {
                         <input
                             name='title'
                             type='text'
-                            placeholder='Title'
+                            placeholder="Title"
                             required
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='title'>Title: </label>
+                        <label for='title'>*Title: </label>
                     </div>
                     <div className="input-container">
                         <textarea
                             name='description'
                             // type='text'
-                            placeholder='Description'
+                            placeholder='Please provide a short description of your bread.'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <label for='description'>Description</label>
+                        <label for='description'>*Description</label>
                     </div>
                     <div className="input-container">
                         <input
@@ -210,7 +224,7 @@ function NewRecipeForm() {
                             onChange={(e) => setImage_url(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='image'>Image Link</label>
+                        <label for='image'>*Image Link</label>
                     </div>
                     {/* </div> */}
                     <div className="input-container time">
@@ -232,7 +246,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setActive_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='active-time'l>Hands On Time</label>
+                        <label for='active-time'l>*Hands On Time</label>
                     </div>
                     <div className="input-container time">
                         {/* <div> */}
@@ -248,13 +262,13 @@ function NewRecipeForm() {
                             <input
                                 name='ferment'
                                 type='text'
-                                placeholder="Mins"
+                                placeholder="Minutes"
                                 // required
                                 value={ferment_time_mins}
                                 onChange={(e) => setFerment_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='ferment'>Ferment Time</label>
+                        <label for='ferment'>*Ferment Time</label>
                         {/* </div> */}
                     </div>
                     <div className="input-container time">
@@ -270,13 +284,13 @@ function NewRecipeForm() {
                             <input
                                 name='bake-time'
                                 type='text'
-                                placeholder="Mins"
+                                placeholder="Minutes"
                                 // required
                                 value={bake_time_mins}
                                 onChange={(e) => setBake_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='bake-time'>Bake Time</label>
+                        <label for='bake-time'>*Bake Time</label>
                     </div>
                     <div className='temp-container'>
                         <div className="input-container">
@@ -288,7 +302,7 @@ function NewRecipeForm() {
                                 value={baking_temp}
                                 onChange={(e) => setBaking_temp(e.target.value)}
                             />
-                            <label for='bake-temp'>Baking Temp(note: all temps in °F)</label>
+                            <label for='bake-temp'>*†Baking Temperature</label>
                         </div>
                         {/* <label>°F</label> */}
                     </div>
@@ -301,16 +315,27 @@ function NewRecipeForm() {
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
                         />
-                        <label for='yield'>Yield</label>
+                        <label for='yield'>*Yield</label>
                     </div>
                 </div>
-                <div className='next-button-container'>
-                    <h3>Next</h3>
-                    <button className='arrow-button'>
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </button>
+                <div className='form-bottom-container'>
+                    <div className='footnotes'>
+                        <h6>* = required</h6>
+                        <h6>† = all temps displayed in °F</h6>
+                    </div>
+                    <div className='next-button-container'>
+                        <h3>Next</h3>
+                        <button className='arrow-button'>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </button>
+                    </div>
                 </div>
             </form>
+            {/* <div className='next-button-container'>
+                    <HashLink smooth to={`/recipes/${recipe_id}#comments`} scroll={el => scrollWithOffset(el)}>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </HashLink>
+                </div> */}
         </div>
     )
 }

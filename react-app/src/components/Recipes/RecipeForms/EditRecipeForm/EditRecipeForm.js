@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { SystemContext } from '../../../../context/SystemContext'
 // import { useHistory } from "react-router-dom"
+import './EditRecipeForm.css'
 
 import { editRecipeThunk } from '../../../../store/recipe'
 
@@ -164,113 +165,130 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                 ))}
             </ul>
         }
-            <form className='recipe-form' onSubmit={handleSubmit}>
+            <form className='edit-recipe-form' onSubmit={handleSubmit}>
                 <div className='recipe-input-container'>
                     <div className="input-container">
-                        <label>Title</label>
                         <input
                             type='text'
                             placeholder='Title'
                             required
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                        />
+                            />
+                            <label>Title:</label>
                     </div>
                     <div className="input-container">
-                        <label>Description</label>
                         <input
                             type='text'
                             placeholder='Description'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                        />
+                            />
+                            <label>Description:</label>
                     </div>
                     <div className="input-container">
-                        <label>Image Link</label>
                         <input
                             type='text'
                             placeholder='Link an image that ends in .jpg, .jpeg, .png, or .gif'
                             // required
                             value={image_url}
                             onChange={(e) => setImage_url(e.target.value)}
-                        />
+                            />
+                            <label>Image Link:</label>
                     </div>
-                    <div className="input-container">
+                    <div className="input-container time">
+                        <div>
+                            <input
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={active_time_hrs}
+                                onChange={(e) => setActive_time_hrs(e.target.value)}
+                                />
+                            <input
+                                type='text'
+                                placeholder="Minutes"
+                                // required
+                                value={active_time_mins}
+                                onChange={(e) => setActive_time_mins(e.target.value)}
+                            />
+                        </div>
                         <label>Hands On Time</label>
-                        <input
-                            type='text'
-                            placeholder="Hours"
-                            // required
-                            value={active_time_hrs}
-                            onChange={(e) => setActive_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Minutes"
-                            // required
-                            value={active_time_mins}
-                            onChange={(e) => setActive_time_mins(e.target.value)}
-                        />
+                    </div>
+                    <div className="input-container time">
+                        <div>
+                            <input
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={ferment_time_hrs}
+                                onChange={(e) => setFerment_time_hrs(e.target.value)}
+                                />
+                            <input
+                                type='text'
+                                placeholder="Mins"
+                                // required
+                                value={ferment_time_mins}
+                                onChange={(e) => setFerment_time_mins(e.target.value)}
+                            />
+                        </div>
+                        <label>Proofing Time:</label>
+                    </div>
+                    <div className="input-container time">
+                        <div>
+                            <input
+                                type='text'
+                                placeholder="Hours"
+                                // required
+                                value={bake_time_hrs}
+                                onChange={(e) => setBake_time_hrs(e.target.value)}
+                            />
+                            <input
+                                type='text'
+                                placeholder="Mins"
+                                // required
+                                value={bake_time_mins}
+                                onChange={(e) => setBake_time_mins(e.target.value)}
+                            />
+                        </div>
+                        <label>Bake Time:</label>
                     </div>
                     <div className="input-container">
-                        <label>Proofing Time</label>
-                        <input
-                            type='text'
-                            placeholder="Hours"
-                            // required
-                            value={ferment_time_hrs}
-                            onChange={(e) => setFerment_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Mins"
-                            // required
-                            value={ferment_time_mins}
-                            onChange={(e) => setFerment_time_mins(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label>Bake Time</label>
-                        <input
-                            type='text'
-                            placeholder="Hours"
-                            // required
-                            value={bake_time_hrs}
-                            onChange={(e) => setBake_time_hrs(e.target.value)}
-                        />
-                        <input
-                            type='text'
-                            placeholder="Mins"
-                            // required
-                            value={bake_time_mins}
-                            onChange={(e) => setBake_time_mins(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-container">
-                        <label>Baking Temp</label>
                         <input
                             type='text'
                             placeholder="400"
                             required
                             value={baking_temp}
                             onChange={(e) => setBaking_temp(e.target.value)}
-                        />
-                        <label>'°F'</label>
+                            />
+                            {/* <label>°F</label> */}
+                        <label>Baking Temp:</label>
                         {/* {system ? () => setBaking_temp_system('celsius') : () => setBaking_temp_system('fahrenheit')} */}
                     </div>
                     <div className="input-container">
-                        <label>Yield</label>
                         <input
                             type='text'
                             placeholder="e.g. 1 loaf, 12 rolls"
                             required
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
-                        />
+                            />
+                        <label>Yield:</label>
                     </div>
                 </div>
-                <button disabled={validationErrors.length > 0}>Submit!</button>
+                {validationErrors.length > 0 ?
+                        <div className='submit-edit-button-container'>
+                            <h3>Please fix errors before submitting.</h3>
+                        </div>
+                    :
+                        <div className='submit-edit-button-container'>
+                            <h3>Submit Edit</h3>
+                            <button type='submit' className='arrow-button' >
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </div>
+                    }
             </form>
         </>
     )

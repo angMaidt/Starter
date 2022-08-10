@@ -4,7 +4,7 @@ import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
     // const [yellow, setYellow] = useState(false)
-    console.log('here')
+    // console.log('here')
     if(!recipe) return null
     return (
         <Link to={`/recipes/${recipe.id}`} style={{ 'textDecoration': 'none' }}>
@@ -16,10 +16,13 @@ function RecipeCard({ recipe }) {
                 <div className='card-container-left'>
                     <div className='recipe-card-photo'>
                         <div className='card-image-container'>
-                            <img src={recipe.image_url} alt={`recipe-${recipe.id}`} />
+                            <img src={recipe.image_url} onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src ='../../../../../static/default-bread.jpg'
+                            }} alt={`recipe-${recipe.id}`} />
                         </div>
                         <div>
-                            <p>{recipe.created_at}</p>
+                            <p>{recipe.created_at.split(' ').slice(1, 4).join(' ')}</p>
                         </div>
                     </div>
                 </div>

@@ -34,7 +34,14 @@ body {
     color: red;
 }
 
-button:not(.arrow-button) {
+.error-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+button:not(.arrow-button, .submit) {
     width: 100px;
     height: 40px;
     border: 1px solid var(--dark-blue);
@@ -54,7 +61,7 @@ button:not(.arrow-button) {
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
 
-button:hover {
+button:hover:not(.submit) {
     cursor: pointer;
     background-position: left bottom;
     /* color: var(--off-white) */
@@ -80,6 +87,7 @@ h3, h2 {
     justify-content: center;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 10%;
 }
 
 /* .view-screen {
@@ -105,6 +113,11 @@ h5 {
     margin: 0;
 }
 
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
 span {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
@@ -114,17 +127,28 @@ span {
 
 i:not(.fa-arrow-right-long) {
     color: var(--light-gray);
-    /* font-size: 12px; */
+    font-size: 18px;
 }
 
-/* i:not(.fa-arrow-right-long) */
-
-i:hover {
+i:hover:not(.fa-arrow-right-long) {
     cursor: pointer;
-    color: var(--dark-blue)
+    font-size: 20px;
+    color: var(--dark-blue);
 }
+
+.fa-trash-can {
+    color: var(--light-gray);
+    font-size: 18px;
+}
+
 
 label {
     color: var(--off-black);
     height: fit-content;
+}
+
+.view-container:not(.view-container.single-recipe-view, .viewcontainer.all-recipes) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

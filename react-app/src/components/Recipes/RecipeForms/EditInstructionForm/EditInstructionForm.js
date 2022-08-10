@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getRecipesThunk } from '../../../../store/recipe'
+import './EditInstructionForm.css'
 
-function EditInstructionForm({ instruction, recipe_id, current_length }) {
+function EditInstructionForm({ instruction, recipe_id, showEdit2, setShowEdit2 }) {
     const dispatch = useDispatch()
     const [list_order, setList_order] = useState(instruction.list_order)
     const [specification, setSpecification] = useState(instruction.specification)
@@ -19,22 +20,22 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
         setValidationErrors(errors)
     }, [specification])
 
-    const handleDelete = async(e) => {
-        e.preventDefault()
+    // const handleDelete = async(e) => {
+    //     e.preventDefault()
 
-        try {
-            const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
-                method: 'DELETE'
-            })
-            if (res.ok) {
-                // if()
-                const data = await res.json()
-            }
-            await dispatch(getRecipesThunk())
-        } catch (e) {
-            setValidationErrors(e.errors)
-        }
-    }
+    //     try {
+    //         const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
+    //             method: 'DELETE'
+    //         })
+    //         if (res.ok) {
+    //             // if()
+    //             const data = await res.json()
+    //         }
+    //         await dispatch(getRecipesThunk())
+    //     } catch (e) {
+    //         setValidationErrors(e.errors)
+    //     }
+    // }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -58,6 +59,7 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
 
             if (res.ok) {
                 const data = await res.json()
+                setShowEdit2(!showEdit2)
                 // SetInstructions([...instructions, data])
                 // setList_order(list_order + 1)
                 // setSpecification('')
@@ -68,8 +70,10 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
         }
     }
 
+
     return (
-        <>
+        <div>
+            {/* <p>{instruction.list_order}. {instruction.specification}</p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -77,24 +81,35 @@ function EditInstructionForm({ instruction, recipe_id, current_length }) {
                     ))}
                 </ul>
             }
-            <p>{instruction.list_order}. {instruction.specification}</p>
-            <form onSubmit={handleSubmit}>
-                <div className="instruction-input-container">
-                    <div className="input-container">
-                        <label>Step {list_order}.</label>
-                        <textarea
-                            placeholder="Step 1. Make the loaf, Step 2. Profit ?"
-                            required
-                            value={specification}
-                            onChange={(e)=> setSpecification(e.target.value)}
-                        >
-                        </textarea>
+            <div className='edit-instruction-container'>
+                <form className='form-container' onSubmit={handleSubmit}>
+                    <div className="instruction-input-container">
+                        <div className="input-container">
+                            <div>
+                                <textarea
+                                    placeholder="Step 1. Make the loaf, Step 2. Profit ?"
+                                    required
+                                    value={specification}
+                                    onChange={(e)=> setSpecification(e.target.value)}
+                                    >
+                                </textarea>
+                                <label>Step {list_order}.</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <button disabled={validationErrors.length > 0}>Submit!</button>
-            </form>
-            {instruction.list_order === current_length && <button onClick={handleDelete}>Delete Instruction</button>}
-        </>
+                    {validationErrors.length > 0 ?
+                        <div className='submit-edit-button-container'>
+                            <h3>Please fix errors before submitting.</h3>
+                        </div>
+                    :
+                    <div className='edit-button-container instruction'>
+                        <button type='submit' className='submit'>Save</button>
+                        <span onClick={() => setShowEdit2(!showEdit2)}>Cancel</span>
+                    </div>
+                    }
+                </form>
+            </div>
+        </div>
     )
 }
 

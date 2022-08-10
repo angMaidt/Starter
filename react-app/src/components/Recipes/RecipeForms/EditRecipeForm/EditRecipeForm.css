@@ -1,0 +1,9 @@
+.edit-recipe-form {
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+.submit-edit-button-container:not(.submit-edit-button-container.ingredient) {
+    position: relative;
+    left: 40%;
+}

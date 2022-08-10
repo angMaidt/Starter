@@ -5,6 +5,7 @@ import { getRecipesThunk } from '../../../../store/recipe'
 function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
     // console.log(existing_list_order)
     const dispatch = useDispatch()
+    //might not be neccessary anymore
     const [list_order, setList_order] = useState(!existing_list_order ? 1 : existing_list_order + 1)
     const [specification, setSpecification] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -80,14 +81,14 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">
                     <div className="input-container">
-                        <label>Step {list_order}.</label>
                         <textarea
                             placeholder="Step 1. Make the loaf, Step 2. Profit ?"
                             required
                             value={specification}
                             onChange={(e)=> setSpecification(e.target.value)}
-                        >
+                            >
                         </textarea>
+                        <label>Step {list_order}.</label>
                     </div>
                 </div>
                 <button>Submit!</button>

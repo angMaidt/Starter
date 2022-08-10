@@ -1,0 +1,11 @@
+.instruction-input-container {
+    margin-top: 15px;
+}
+
+.instruction-input-container div:not(.submit-edit-button-container){
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}

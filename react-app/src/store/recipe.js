@@ -70,7 +70,7 @@ export const postRecipeThunk = (recipe) => async (dispatch) => {
 }
 
 export const editRecipeThunk = (recipe) => async (dispatch) => {
-    console.log(recipe)
+    // console.log(recipe)
     const res = await fetch(`/api/recipes/${recipe.id}`, {
         method: 'PUT',
         headers: {
