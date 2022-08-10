@@ -130,7 +130,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, setShowEd
                                     <label>Ingredient:</label>
                             </div>
                         </div>
-                        <div className='submit-edit-button-container'>
+                        <div className='submit-edit-button-container ingredient'>
                             <h3>Submit Edit</h3>
                             <button type='submit' className='arrow-button' >
                                 <i class="fa-solid fa-arrow-right-long"></i>

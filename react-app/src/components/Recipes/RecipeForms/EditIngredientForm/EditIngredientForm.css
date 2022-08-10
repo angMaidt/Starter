@@ -1,4 +1,4 @@
-.edit-ingredient-container, .edit-instruction-container {
+.edit-ingredient-container, .edit-instruction-container, .edit-recipe-form {
     background-color: var(--pale-blue);
     display: flex;
     flex-direction: column;
