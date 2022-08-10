@@ -35,11 +35,12 @@ function Ingredient({ recipe, ingredient, showEditIng, wsetShoEditIng, measureme
             />
         :
         showEditIng ?
-            <div>
+            <div className='ingredient-container'>
                 <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff}</p>
-                {/* <div onClick={() => setShowEdit(!showEdit)}><i className="fa-solid fa-pen"></i></div> */}
-                <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
-                <div onClick={handleDelete}><span>delete</span></div>
+                <div>
+                    <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
+                    <div onClick={handleDelete}><span>delete</span></div>
+                </div>
             </div>
             :
             <div className='header-button-container'>

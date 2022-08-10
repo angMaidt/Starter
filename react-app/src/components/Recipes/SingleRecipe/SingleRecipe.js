@@ -170,8 +170,7 @@ function SingleRecipe() {
                         {/* if your recipe and no ingredients, prompt to add some ingredients */}
                         {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length &&
                             <div className='add-info' onClick={() => setShowAddIng(!showAddIng)}>
-                                <h2>Click here to add Ingredients to your recipe!</h2>
-                                {/* <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div> */}
+                                <h2>Step 2. Click here to add Ingredients to your recipe!</h2>
                             </div>
                         }
                         <ul>
@@ -189,6 +188,7 @@ function SingleRecipe() {
                         </ul>
                     </div>
 
+                    {/* MAKE INTO MODAL */}
                     {showAddIng &&
                         <div>
                             <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
@@ -214,8 +214,7 @@ function SingleRecipe() {
                         <div>
                             {sessionUser && sessionUser.id === recipe.user.id && !recipe.instructions.length &&
                                 <div className='add-info' onClick={() => setShowAddInst(!showAddInst)}>
-                                    <h2>Click here to add Instructions to your recipe!</h2>
-                                    {/* <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div> */}
+                                    <h2>Step 3. Click here to add Instructions to your recipe!</h2>
                                 </div>
                             }
                             {ordered_instructions.map(instruction => (
