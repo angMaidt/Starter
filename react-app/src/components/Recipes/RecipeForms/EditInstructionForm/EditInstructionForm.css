@@ -9,3 +9,15 @@
     justify-content: center;
     width: 100%;
 }
+
+.edit-button-container-instruction {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+    /* justify-content: flex-end; */
+}
+
+.edit-button-container-instruction .cancel-button {
+    margin-top: 1px;
+}

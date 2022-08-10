@@ -47,6 +47,7 @@ function EditInstructionForm({ instruction, recipe_id, showEdit2, setShowEdit2 }
         }
 
         setHasSubmitted(true)
+        if (validationErrors.length) return
 
         try {
             const res = await fetch(`/api/recipes/instructions/${instruction.id}`, {
@@ -72,7 +73,7 @@ function EditInstructionForm({ instruction, recipe_id, showEdit2, setShowEdit2 }
 
 
     return (
-        <div>
+        <div >
             {/* <p>{instruction.list_order}. {instruction.specification}</p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
@@ -81,7 +82,7 @@ function EditInstructionForm({ instruction, recipe_id, showEdit2, setShowEdit2 }
                     ))}
                 </ul>
             }
-            <div className='edit-instruction-container'>
+            <div className='edit-instruction-container' style={{ 'backgroundColor': 'pink', 'padding': '10px' }}>
                 <form className='form-container' onSubmit={handleSubmit}>
                     <div className="instruction-input-container">
                         <div className="input-container">
@@ -96,17 +97,12 @@ function EditInstructionForm({ instruction, recipe_id, showEdit2, setShowEdit2 }
                                 <label>Step {list_order}.</label>
                             </div>
                         </div>
-                    </div>
-                    {validationErrors.length > 0 ?
-                        <div className='submit-edit-button-container'>
-                            <h3>Please fix errors before submitting.</h3>
+                        <div className='edit-button-container-instruction'>
+                            <span onClick={() => setShowEdit2(!showEdit2)} className='cancel-button'>Cancel</span>
+                            <button type='submit' className='ing submit'>Save</button>
                         </div>
-                    :
-                    <div className='edit-button-container instruction'>
-                        <button type='submit' className='submit'>Save</button>
-                        <span onClick={() => setShowEdit2(!showEdit2)}>Cancel</span>
                     </div>
-                    }
+
                 </form>
             </div>
         </div>

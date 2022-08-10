@@ -77,7 +77,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
 
     // if (!showEditIng) setShowEdit(!showEdit)
     return (
-        <div style={{ 'backgroundColor': 'pink', 'padding': '10px' }}>
+        <div >
             {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
@@ -87,7 +87,9 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
                 </ul>
             }
             {/* <div> */}
-                <form className="form-container " onSubmit={handleSubmit}>
+                <form className="form-container"
+                    onSubmit={handleSubmit}
+                    style={{ 'backgroundColor': 'pink', 'padding': '10px' }}>
                     {/* {ingredient} */}
                     <div className='form-wrapper'>
                         <div className='ingredient-input-container'>
@@ -133,10 +135,10 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
                                         <label>Ingredient:</label>
                                 {/* </div> */}
                             </div>
-                        <div className='edit-button-container ingredient'>
-                            <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
-                            <button type='submit' className='ing submit'>Save</button>
-                        </div>
+                            <div className='edit-button-container ingredient'>
+                                <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
+                                <button type='submit' className='ing submit'>Save</button>
+                            </div>
                         </div>
                     </div>
                 </form>

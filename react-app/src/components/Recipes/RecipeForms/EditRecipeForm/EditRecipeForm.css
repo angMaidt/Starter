@@ -1,6 +1,7 @@
 .edit-recipe-form {
     padding-left: 5%;
     padding-top: 2%;
+    background-color: pink;
 }
 
 .submit-edit-button-container:not(.submit-edit-button-container.ingredient) {
