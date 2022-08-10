@@ -53,7 +53,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
         }
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
         try {
             const res = await fetch(`/api/recipes/ingredients/${ingredient.id}`, {
@@ -77,7 +77,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
 
     // if (!showEditIng) setShowEdit(!showEdit)
     return (
-        <div className='form-wrapper'>
+        <div style={{ 'backgroundColor': 'pink', 'padding': '10px' }}>
             {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
@@ -133,10 +133,10 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
                                         <label>Ingredient:</label>
                                 {/* </div> */}
                             </div>
-                        </div>
                         <div className='edit-button-container ingredient'>
-                            <button type='submit' className='submit'>Save</button>
-                            <span onClick={() => setShowEdit(!showEdit)}>Cancel</span>
+                            <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
+                            <button type='submit' className='ing submit'>Save</button>
+                        </div>
                         </div>
                     </div>
                 </form>

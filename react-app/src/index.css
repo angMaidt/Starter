@@ -118,7 +118,7 @@ h6 {
     margin: 0;
 }
 
-span {
+span, .ing.submit {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
     font-size: 14px;
