@@ -26,7 +26,7 @@
     /* margin: 30px; */
 }
 
-.edit-button-container {
+.edit-button-container:not(.edit-button-container.ingredient) {
     display: flex;
     justify-content: space-between;
     width: 50px;
@@ -61,21 +61,32 @@
     cursor: pointer;
 }
 
-.ingredient-container, .ingredient-container div {
+.ingredient-container,
+.ingredient-container div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* width: 100%; */
 }
 
-.ingredient-container div span:first-child{
+.ingredient-container div span:first-child,
+.instruction-container div span:first-child{
     margin-right: 10px;
 }
 
-.ingredient-container div:first-child span:hover {
+.ingredient-container div:first-child span:hover,
+.instruction-container div:first-child span:hover {
     cursor: pointer;
     color: var(--dark-blue);
 }
-.ingredient-container div div span:hover {
+.ingredient-container div div span:hover,
+.instruction-container div div span:hover {
     cursor: pointer;
     color: red;
+}
+
+.instruction-container div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }

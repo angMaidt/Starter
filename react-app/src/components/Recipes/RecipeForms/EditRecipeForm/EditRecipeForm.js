@@ -262,9 +262,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                             value={baking_temp}
                             onChange={(e) => setBaking_temp(e.target.value)}
                             />
-                            {/* <label>°F</label> */}
                         <label>Baking Temp:</label>
-                        {/* {system ? () => setBaking_temp_system('celsius') : () => setBaking_temp_system('fahrenheit')} */}
                     </div>
                     <div className="input-container">
                         <input
@@ -283,7 +281,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                         </div>
                     :
                         <div className='submit-edit-button-container'>
-                            <h3>Submit Edit</h3>
+                            <h3>Save</h3>
                             <button type='submit' className='arrow-button' >
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </button>

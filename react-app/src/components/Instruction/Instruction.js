@@ -36,10 +36,12 @@ function Instruction({ instruction, recipe_id, showEditInst, setShowEditInst, cu
                 />
         :
         showEditInst ?
-            <div>
+            <div className='instruction-container'>
                 <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
-                <div onClick={() => setShowEdit2(!showEdit2)}><span>edit</span></div>
-                {instruction.list_order === currentLength && <div onClick={handleDelete}><span>delete</span></div>}
+                <div>
+                    <div onClick={() => setShowEdit2(!showEdit2)}><span>edit</span></div>
+                    {instruction.list_order === currentLength && <div onClick={handleDelete}><span>delete</span></div>}
+                </div>
             </div>
             :
             <div className='header-button-container'>
