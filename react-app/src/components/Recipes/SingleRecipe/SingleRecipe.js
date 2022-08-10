@@ -156,8 +156,12 @@ function SingleRecipe() {
                         <h3 id='ingredients'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
-                                {recipe.ingredients.length > 0 && <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>}
-                                <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                                {recipe.ingredients.length > 0 &&
+                                <>
+                                    <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>
+                                    <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                                </>
+                                }
                             </div>
                         }
                     </div>
@@ -198,8 +202,12 @@ function SingleRecipe() {
                         <h3 id='instructions'>Instructions</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
-                                {recipe.instructions.length > 0 && <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>}
-                                <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                                {recipe.instructions.length > 0 &&
+                                <>
+                                    <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
+                                    <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                                </>
+                                }
                             </div>
                         }
                     </div>

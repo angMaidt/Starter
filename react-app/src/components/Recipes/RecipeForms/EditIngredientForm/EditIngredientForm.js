@@ -86,7 +86,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
                     ))}
                 </ul>
             }
-            <div className='edit-ingredient-container'>
+            <div>
                 <form className="form-container " onSubmit={handleSubmit}>
                     {/* {ingredient} */}
                     <div className='ingredient-input-container'>

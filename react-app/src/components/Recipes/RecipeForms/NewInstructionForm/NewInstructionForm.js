@@ -81,14 +81,14 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
             <form onSubmit={handleSubmit}>
                 <div className="instruction-input-container">
                     <div className="input-container">
-                        <label>Step {list_order}.</label>
                         <textarea
                             placeholder="Step 1. Make the loaf, Step 2. Profit ?"
                             required
                             value={specification}
                             onChange={(e)=> setSpecification(e.target.value)}
-                        >
+                            >
                         </textarea>
+                        <label>Step {list_order}.</label>
                     </div>
                 </div>
                 <button>Submit!</button>

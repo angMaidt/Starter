@@ -90,33 +90,32 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
             <form className="ingredient-form" onSubmit={handleSubmit}>
                 <div className='ingredient-input-container'>
                     <div className="input-container">
-                        <label>Amount</label>
                         <input
                             type="number"
                             placeholder="0"
                             required
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
-                        />
+                            />
+                        <label>Amount:</label>
                     </div>
                     <div className="input-container">
-                        <label>Unit</label>
                         <select
                             type="number"
                             placeholder="0"
                             required
                             value={unit}
                             onChange={(e) => setUnit(e.target.value)}
-                        >
+                            >
                         {measurementUnits && (
                             Object.values(measurementUnits).map(unit => (
                                 <option key={unit.id} value={unit.id}>{unit.unit}</option>
-                            ))
-                        )}
+                                ))
+                                )}
                         </select>
+                        <label>Unit:</label>
                     </div>
                     <div className="input-container">
-                        <label>Ingredient</label>
                         <input
                             type="text"
                             placeholder="Flour, Water, etc."
@@ -124,6 +123,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
                             value={food_stuff}
                             onChange={(e) => setFood_stuff(e.target.value)}
                         />
+                        <label>Ingredient:</label>
                     </div>
                 </div>
                 <button>Submit!</button>
