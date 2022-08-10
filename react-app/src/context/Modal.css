@@ -1,0 +1,42 @@
+@import url('https://fonts.cdnfonts.com/css/px-sans-nouveaux');
+
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'px sans nouveaux', sans-serif;
+  color: #14f217;
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #1c381b;
+  border: 2px solid #14f217;
+  border-radius: 15px;
+  margin: 15px 0;
+  width: 35%;
+  height: 50%;
+  overflow: auto;
+}
+
+#modal-content::-webkit-scrollbar {
+  display: none;
+}
