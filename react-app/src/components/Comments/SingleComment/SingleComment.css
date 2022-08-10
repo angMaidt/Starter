@@ -1,0 +1,7 @@
+.comment-body-container {
+    padding: 5px;
+}
+
+#delete:hover {
+    color: red;
+}

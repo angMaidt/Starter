@@ -20,7 +20,7 @@ function AllRecipes() {
     //sorts by updated_at
     let sorted_recipes
     if (recipes) {
-        sorted_recipes = Object.values(recipes).sort((a, b) => a.updated_at > b.updated_at ? -1: 1)
+        sorted_recipes = Object.values(recipes).sort((a, b) => a.updated_at > b.updated_at ? -1 : 1)
     }
 
     return (

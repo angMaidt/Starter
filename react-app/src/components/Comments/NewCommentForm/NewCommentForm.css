@@ -1,0 +1,24 @@
+.comment-form {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid var(--dark-blue);
+    width: 75%;
+    margin-bottom: 10px;
+}
+
+.comment-input-container .input-container select,
+.comment-input-container .input-container textarea {
+    border: 1px solid var(--off-black);
+}
+
+.submit-comment {
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    margin-top: 10px;
+}
+
+.submit-comment .cancel-button {
+    margin-top: 15px;
+    margin-right: 10px;
+}

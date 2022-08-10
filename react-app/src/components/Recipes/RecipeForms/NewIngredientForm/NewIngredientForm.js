@@ -30,7 +30,7 @@ function NewIngredientForm({ recipe_id, measurementUnits, edit }) {
         e.preventDefault()
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
 
         const payload = {
