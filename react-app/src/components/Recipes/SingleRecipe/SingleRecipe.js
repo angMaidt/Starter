@@ -171,7 +171,7 @@ function SingleRecipe() {
                     </div>
 
                     <div>
-                        
+
                         {/* if your recipe and no ingredients, prompt to add some ingredients */}
                         {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length &&
                             <div className='add-info' onClick={() => setShowAddIng(!showAddIng)}>
@@ -186,8 +186,8 @@ function SingleRecipe() {
                                         ingredient={ingredient}
                                         recipe={recipe}
                                         showEditIng={showEditIng}
-                                        showEditSingleIng={showEditSingleIng}
-                                        setShowEditSingleIng={setShowEditSingleIng}
+                                        // showEditSingleIng={showEditSingleIng}
+                                        // setShowEditSingleIng={setShowEditSingleIng}
                                         setShowEditIng={setShowEditIng}
                                         measurementUnits={measurementUnits}/>
                                     {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}

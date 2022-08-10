@@ -5,7 +5,7 @@ import { getRecipesThunk } from '../../../../store/recipe'
 import './EditIngredientForm.css'
 
 
-function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEditSingleIng, setShowEditSingleIng, showEditIng, setShowEditIng}) {
+function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit, setShowEdit, showEditIng, setShowEditIng}) {
     const dispatch = useDispatch()
     const [amount, setAmount] = useState(ingredient.amount)
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
@@ -65,7 +65,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEditS
             })
             if (res.ok) {
                 const data = await res.json()
-                setShowEditSingleIng(!showEditSingleIng)
+                setShowEdit(!showEdit)
                 // setIsDone(true)
             }
 
@@ -114,8 +114,8 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEditS
                                 {measurementUnits && (
                                     Object.values(measurementUnits).map(unit => (
                                         <option key={unit.id} value={unit.id}>{unit.unit}</option>
-                                        ))
-                                        )}
+                                    ))
+                                )}
                                 </select>
                                 <label>Unit:</label>
                             </div>
@@ -132,19 +132,17 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEditS
                                     <label>Ingredient:</label>
                             </div>
                         </div>
-                        <div className='submit-edit-button-container ingredient'>
-                            <h3>Submit Edit</h3>
-                            <button type='submit' className='arrow-button' >
-                                <i class="fa-solid fa-arrow-right-long"></i>
-                            </button>
+                        <div className='edit-button-container ingredient'>
+                            <button type='submit' className='submit'>Submit</button>
+                            <span onClick={() => setShowEdit(!showEdit)}>Cancel</span>
                         </div>
                     </div>
                 </form>
             </div>
-            <div className='delete-ing-button-container' >
+            {/* <div className='delete-ing-button-container' >
                 <h3>Delete Ingredient</h3>
                 <div onClick={handleDelete}><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
-            </div>
+            </div> */}
         </div>
     )
 }

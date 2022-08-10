@@ -34,7 +34,7 @@ body {
     color: red;
 }
 
-button:not(.arrow-button) {
+button:not(.arrow-button, .submit) {
     width: 100px;
     height: 40px;
     border: 1px solid var(--dark-blue);
@@ -54,7 +54,7 @@ button:not(.arrow-button) {
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
 
-button:hover {
+button:hover:not(.submit) {
     cursor: pointer;
     background-position: left bottom;
     /* color: var(--off-white) */

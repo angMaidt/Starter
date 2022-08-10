@@ -1,10 +1,8 @@
 .edit-ingredient-container, .edit-instruction-container, .edit-recipe-form {
-    background-color: var(--pale-blue);
+    /* background-color: var(--pale-blue); */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid var(--dark-blue) */
-    /* padding: 25px; */
 }
 
 .ingredient-input-container, .instruction-input-container {
