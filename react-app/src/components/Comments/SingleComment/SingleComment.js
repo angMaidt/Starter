@@ -4,6 +4,7 @@ import { deleteCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
 
 import EditCommentForm from '../EditCommentForm/EditCommentForm'
+import './SingleComment.css'
 
 function SingleComment({ comment }) {
     const dispatch = useDispatch()
@@ -32,20 +33,24 @@ function SingleComment({ comment }) {
                 setShowEdit={setShowEdit}/>
         :
             <div className='comment-form'>
-                <div style={{ 'height': '30px', 'width': '30px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
-                    <img src={comment.user.image_url} alt='profile-pic' />
-                </div>
-                <p>{ comment.user.username }</p>
-                <p>{ comment.rating }</p>
-                <p>{ comment.created_at }</p>
-                <p>{ comment.body }</p>
-                {/* {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>} */}
-                {sessionUser && sessionUser.id === comment.user.id &&
-                    <div>
-                        <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
-                        <div onClick={handleDelete}><span>delete</span></div>
+                <div className='user-info'>
+                    <div style={{ 'height': '50px', 'width': '50px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
+                        <img src={comment.user.profile_pic} alt='profile-pic' />
                     </div>
-                }
+                    <h4>{ comment.user.username }</h4>
+                </div>
+                <span>Posted {comment.created_at}</span>
+                <p>{ comment.rating }</p>
+                <div className='comment-body-container'>
+                    <p>{ comment.body }</p>
+                    {/* {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>} */}
+                    {sessionUser && sessionUser.id === comment.user.id &&
+                        <div className='ingredient-container'>
+                            <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
+                            <div onClick={handleDelete} id='delete' className='cancel-button'><span>delete</span></div>
+                        </div>
+                    }
+                </div>
             </div>
 
         )

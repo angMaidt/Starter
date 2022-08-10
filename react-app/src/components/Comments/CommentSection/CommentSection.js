@@ -7,6 +7,8 @@ function CommentSection({ recipe }) {
     const sessionUser = useSelector(state => state.session.user)
     // const [showAddComment, setShowAddComment] = useState(false)
 
+    const ordered_comments = Object.values(recipe.comments).sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+
     return (
         <>
             {sessionUser ?
@@ -15,7 +17,7 @@ function CommentSection({ recipe }) {
                 <p>Login to leave a comment!</p>
             }
             {recipe.comments.length > 0 ?
-                Object.values(recipe.comments).map(comment => (
+                ordered_comments.map(comment => (
                     <SingleComment comment={comment} />
                 ))
                 :

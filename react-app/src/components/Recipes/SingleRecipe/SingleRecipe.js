@@ -195,7 +195,10 @@ function SingleRecipe() {
                     {/* MAKE INTO MODAL */}
                     {showAddIng &&
                         <div>
-                            <NewIngredientForm recipe_id={recipe.id} measurementUnits={measurementUnits} edit={true}/>
+                            <NewIngredientForm
+                                recipe_id={recipe.id}
+                                measurementUnits={measurementUnits}
+                                edit={true}/>
                         </div>
                     }
                 </div>
@@ -211,12 +214,16 @@ function SingleRecipe() {
                                     {showEditInst ?
                                         <span onClick={() => setShowEditInst(!showEditInst)} className='done'>Done editing</span>
                                     :
-                                        <div onClick={() => setShowEditInst(!showEditInst)}><i className="fa-solid fa-pen"></i></div>
+                                        <div onClick={() => setShowEditInst(!showEditInst)}>
+                                            <i className="fa-solid fa-pen"></i>
+                                        </div>
                                     }
                                     {showAddInst ?
                                         <span onClick={() => setShowAddInst(!showAddInst)} className='done'>Done Adding</span>
                                     :
-                                        <div onClick={() => setShowAddInst(!showAddInst)}><i className="fa-solid fa-plus"></i></div>
+                                        <div onClick={() => setShowAddInst(!showAddInst)}>
+                                            <i className="fa-solid fa-plus"></i>
+                                        </div>
                                     }
                                 </>
                                 }
@@ -250,6 +257,7 @@ function SingleRecipe() {
                     }
                 </div>
                 <h2 id='comments'>Check out what people are saying!</h2>
+                <div className='page-header-underline'></div>
                 <CommentSection recipe={recipe} />
                 {/* <button onClick={() => ingRef.current.scrollIntoView({ behavior: 'smooth' })}>Test</button> */}
             </>
