@@ -147,7 +147,7 @@ label {
     height: fit-content;
 }
 
-.view-container:not(.view-container.single-recipe-view) {
+.view-container:not(.view-container.single-recipe-view, .viewcontainer.all-recipes) {
     display: flex;
     flex-direction: column;
     align-items: center;

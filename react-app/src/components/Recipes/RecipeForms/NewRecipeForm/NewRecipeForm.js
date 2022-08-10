@@ -119,7 +119,7 @@ function NewRecipeForm() {
         e.preventDefault()
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
         //convert to ms before sending to db
         const active_time = convert_to_ms(active_time_hrs, active_time_mins)
@@ -208,7 +208,7 @@ function NewRecipeForm() {
                         <textarea
                             name='description'
                             // type='text'
-                            placeholder='Provide a short description of your loaf.'
+                            placeholder='Please provide a short description of your bread.'
                             required
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
