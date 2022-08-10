@@ -14,6 +14,7 @@ function NewCommentForm({ recipe }) {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
 
+    //validations
     useEffect(() => {
         let errors = []
 
@@ -62,7 +63,6 @@ function NewCommentForm({ recipe }) {
                     <div className='input-container'>
                         <select
                             type='number'
-                            placeholder='5 Stars! Good Show!'
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
                             >
@@ -71,7 +71,7 @@ function NewCommentForm({ recipe }) {
                             <option value={3}>3</option>
                             <option value={4}>4</option>
                             <option value={5}>5</option>
-                            </select>
+                        </select>
                         <label>Rating</label>
                     </div>
                     <div className='input-container'>

@@ -9,10 +9,23 @@ function EditCommentForm({ comment, sessionUser, setShowEdit }) {
 
     const [rating, setRating] = useState(comment.rating)
     const [body, setBody] = useState(comment.body)
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
+
+    //validations
+    useEffect(() => {
+        let errors = []
+
+        if (!rating) errors.push('Please leave a rating before submitting!')
+        if (body.length > 750) errors.push('Please enter less than 750 characters!')
+        setValidationErrors(errors)
+    }, [rating, body])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
+
+        setHasSubmitted(true)
+        if (validationErrors.length) return
 
         const payload = {
             rating,
@@ -34,28 +47,42 @@ function EditCommentForm({ comment, sessionUser, setShowEdit }) {
     return (
         <>
             <h3>Edit Comment</h3>
-            <form onSubmit={handleSubmit}>
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
+            <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
                     <div className='input-container'>
-                        <label>Rating</label>
-                        <input
+                        <select
                             type='number'
-                            placeholder='5 Stars! Good Show!'
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
-                        />
+                            >
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select>
+                        <label>Rating</label>
                     </div>
                     <div className='input-container'>
-                        <label>Comment</label>
                         <textarea
-                            placeholder='Love this recipe! Yas queen~!'
+                            placeholder='Join the discussion...'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
-                        >
+                            >
                         </textarea>
+                        <label>Comment</label>
                     </div>
                 </div>
-                <button>Submit</button>
+                <div className='submit-comment'>
+                    <button>Submit</button>
+                </div>
             </form>
         </>
     )

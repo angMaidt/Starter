@@ -24,22 +24,30 @@ function SingleComment({ comment }) {
     }
 
     return (
-        <div style={{ 'border': '1px solid black' }}>
-            <div style={{ 'height': '30px', 'width': '30px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
-                <img src={comment.user.image_url} alt='profile-pic' />
-            </div>
-            <p>{ comment.user.username }</p>
-            <p>{ comment.rating }</p>
-            <p>{ comment.created_at }</p>
-            <p>{ comment.body }</p>
-            {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>}
-            {sessionUser && sessionUser.id === comment.user.id &&
-                <div>
-                    <button onClick={handleDelete}>Delete Comment</button>
-                    <button onClick={() => setShowEdit(true)}>Edit Comment</button>
+        (showEdit ?
+            <EditCommentForm
+                comment={comment}
+                sessionUser={sessionUser}
+                setShowEdit={setShowEdit}/>
+        :
+            <div style={{ 'border': '1px solid black' }}>
+                <div style={{ 'height': '30px', 'width': '30px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
+                    <img src={comment.user.image_url} alt='profile-pic' />
                 </div>
-            }
-        </div>
+                <p>{ comment.user.username }</p>
+                <p>{ comment.rating }</p>
+                <p>{ comment.created_at }</p>
+                <p>{ comment.body }</p>
+                {/* {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>} */}
+                {sessionUser && sessionUser.id === comment.user.id &&
+                    <div>
+                        <button onClick={handleDelete}>Delete Comment</button>
+                        <button onClick={() => setShowEdit(true)}>Edit Comment</button>
+                    </div>
+                }
+            </div>
+
+        )
     )
 }
 
