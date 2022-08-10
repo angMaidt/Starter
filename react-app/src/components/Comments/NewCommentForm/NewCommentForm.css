@@ -1,0 +1,17 @@
+.comment-form {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid var(--dark-blue)
+}
+
+.comment-input-container .input-container input,
+.comment-input-container .input-container textarea {
+    border: 1px solid black;
+}
+
+.submit-comment {
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    margin-top: 10px;
+}

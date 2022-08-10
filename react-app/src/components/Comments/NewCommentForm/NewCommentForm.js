@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 // import { useHistory } from "react-router-dom"
 import { postCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
+import './NewCommentForm.css'
 
 function NewCommentForm({ recipe }) {
     const dispatch = useDispatch()
@@ -10,11 +11,23 @@ function NewCommentForm({ recipe }) {
 
     const [rating, setRating] = useState(5)
     const [body, setBody] = useState('')
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
+
+    useEffect(() => {
+        let errors = []
+
+        if (!rating) errors.push('Please leave a rating before submitting!')
+        if (body.length > 750) errors.push('Please enter less than 750 characters!')
+        setValidationErrors(errors)
+    }, [rating, body])
 
 
     const handleSubmit = async(e) => {
         e.preventDefault()
+
+        setHasSubmitted(true)
+        if (validationErrors.length) return
 
         const payload = {
             rating,
@@ -36,29 +49,44 @@ function NewCommentForm({ recipe }) {
 
     return (
         <>
-            <h3>Leave a comment!</h3>
-            <form onSubmit={handleSubmit}>
+            <h3>Rate and Comment</h3>
+            {hasSubmitted && validationErrors.length > 0 &&
+                <ul className='errors'>
+                    {validationErrors.map(error => (
+                        <li className='error' key={error}>{error}</li>
+                    ))}
+                </ul>
+            }
+            <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
                     <div className='input-container'>
-                        <label>Rating</label>
-                        <input
+                        <select
                             type='number'
                             placeholder='5 Stars! Good Show!'
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
-                        />
+                            >
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            </select>
+                        <label>Rating</label>
                     </div>
                     <div className='input-container'>
-                        <label>Comment</label>
                         <textarea
-                            placeholder='Love this recipe! Yas queen~!'
+                            placeholder='Join the discussion...'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
-                        >
+                            >
                         </textarea>
+                        <label>Comment</label>
                     </div>
                 </div>
-                <button>Submit</button>
+                <div className='submit-comment'>
+                    <button>Submit</button>
+                </div>
             </form>
         </>
     )
