@@ -10,8 +10,11 @@
 
 .recipe-form {
     background-color: pink;
-    padding: 25px 25px 25px 5%;
+    padding: 3% 3% 1% 3%;
     box-shadow: 10px 10px var(--light-blue);
+    /* width: 80%; */
+    /* display: flex; */
+    /* align-items: center; */
 }
 
 .input-container{
@@ -77,11 +80,12 @@ input:focus, textarea:focus {
     display: flex;
     align-items: center;
     width: fit-content;
-    /* justify-content: space-between; */
-    position: relative;
     margin-top: 15px;
-    left: 62%;
-    /* right: 30%; */
+    margin-right: 15px;
+}
+
+.next-button-container h3 {
+    font-size: 24px;
 }
 
 .footnotes {
@@ -99,5 +103,19 @@ input:focus, textarea:focus {
 .form-bottom-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
 
+.error-container h3 {
+    text-decoration: underline;
+    margin: 0;
+}
+
+#new-recipe-header {
+    font-size: 24px;
+    text-align: center;
+}
+
+.recipe-form label {
+    font-size: 18px;
 }
