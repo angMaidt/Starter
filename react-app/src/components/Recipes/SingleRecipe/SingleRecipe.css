@@ -100,3 +100,11 @@
 .edit-pen {
     margin-right: 10px;
 }
+
+.recipe-facts {
+    display: flex;
+    background-color: white;
+    justify-content: space-around;
+    /* padding: 15px; */
+}
+

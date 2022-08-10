@@ -125,12 +125,16 @@ function SingleRecipe() {
                     }
                 </div>
                 {!showEditForm ?
-                    <div style={{ 'border': '1px solid black' }}>
-                        <p>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins</p>
-                        <p>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</p>
-                        <p>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</p>
-                        <p>Baking Temp: {recipe.baking_temp} °F</p>
-                        <p>Total Yield: {recipe.total_yield}</p>
+                    <div style={{ 'border': '1px solid black' }} className='recipe-facts'>
+                        <div>
+                            <h3>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins </h3>
+                            <h3>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</h3>
+                            <h3>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</h3>
+                        </div>
+                        <div>
+                            <h3>Baking Temp: {recipe.baking_temp} °F</h3>
+                            <h3>Total Yield: {recipe.total_yield}</h3>
+                        </div>
                     </div>
                 :
                 <div>
