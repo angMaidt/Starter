@@ -151,12 +151,12 @@ function SingleRecipe() {
                                 {recipe.ingredients.length > 0 &&
                                 <>
                                     {showEditIng ?
-                                        <span onClick={() => setShowEditIng(!showEditIng)} className='done'>Done</span>
+                                        <span onClick={() => setShowEditIng(!showEditIng)} className='done'>Done Editing</span>
                                     :
-                                        <div onClick={() => setShowEditIng(!showEditIng)}><i className="fa-solid fa-pen"></i></div>
+                                        <div onClick={() => setShowEditIng(!showEditIng)} className='edit-pen'><i className="fa-solid fa-pen"></i></div>
                                     }
                                     {showAddIng ?
-                                        <span onClick={() => setShowAddIng(!showAddIng)} className='done'>Done</span>
+                                        <span onClick={() => setShowAddIng(!showAddIng)} className='done'>Done Adding</span>
                                     :
                                         <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
                                     }
@@ -168,7 +168,7 @@ function SingleRecipe() {
 
                     <div>
                         {/* if your recipe and no ingredients, prompt to add some ingredients */}
-                        {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length &&
+                        {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length && !showAddIng &&
                             <div className='add-info' onClick={() => setShowAddIng(!showAddIng)}>
                                 <h2>Step 2. Click here to add Ingredients to your recipe!</h2>
                             </div>

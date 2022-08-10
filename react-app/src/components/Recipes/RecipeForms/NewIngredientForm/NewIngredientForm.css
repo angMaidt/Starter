@@ -1,0 +1,14 @@
+.ingredient-form {
+    background-color: pink;
+    padding: 15px;
+    padding-left: 25px;
+    align-items: center;
+}
+
+.small-submit h3 {
+    font-size: 20px;
+}
+
+.next-button-container.add-button {
+    margin: 0;
+}

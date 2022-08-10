@@ -66,7 +66,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* width: 100%; */
 }
 
 .ingredient-container div span:first-child,
@@ -93,5 +92,10 @@
 }
 
 .done {
-    margin-right: 5px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.edit-pen {
+    margin-right: 10px;
 }

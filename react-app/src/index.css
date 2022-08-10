@@ -125,12 +125,12 @@ span, .ing.submit {
     text-transform: uppercase;
 }
 
-i:not(.fa-arrow-right-long) {
+i:not(.fa-arrow-right-long, .add) {
     color: var(--light-gray);
     font-size: 18px;
 }
 
-i:hover:not(.fa-arrow-right-long) {
+i:hover:not(.fa-arrow-right-long, .add) {
     cursor: pointer;
     font-size: 20px;
     color: var(--dark-blue);

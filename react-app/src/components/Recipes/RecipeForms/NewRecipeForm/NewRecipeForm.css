@@ -86,7 +86,7 @@ input:focus, textarea:focus {
     margin-right: 15px;
 }
 
-.next-button-container h3 {
+.next-button-container h3:not(.small-submit) {
     font-size: 24px;
 }
 
