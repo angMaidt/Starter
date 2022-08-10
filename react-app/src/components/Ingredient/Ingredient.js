@@ -18,7 +18,7 @@ function Ingredient({ recipe, ingredient, showEditIng, wsetShoEditIng, measureme
 
             await dispatch(getRecipesThunk())
         } catch (e) {
-            console.log('delete failed!' + e)
+            console.log('delete ingredient failed! ' + e)
         }
     }
 
@@ -35,7 +35,7 @@ function Ingredient({ recipe, ingredient, showEditIng, wsetShoEditIng, measureme
             />
         :
         showEditIng ?
-            <div className='header-button-containr'>
+            <div>
                 <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff}</p>
                 {/* <div onClick={() => setShowEdit(!showEdit)}><i className="fa-solid fa-pen"></i></div> */}
                 <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>

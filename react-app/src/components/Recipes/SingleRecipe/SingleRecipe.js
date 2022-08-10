@@ -10,6 +10,7 @@ import NewIngredientForm from '../RecipeForms/NewIngredientForm/NewIngredientFor
 import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstructionForm'
 import './SingleRecipe.css'
 import Ingredient from '../../Ingredient/Ingredient'
+import Instruction from '../../Instruction/Instruction'
 // import { SystemContext } from '../../../context/SystemContext'
 // import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm'
 
@@ -45,18 +46,6 @@ function SingleRecipe() {
         }
         fetchUnits()
     }, [])
-
-    //if recipe and no ingredients, redirect to the header
-    // useEffect(() => {
-        // }, [])
-
-    // componentDidMount() {
-    //     console.log
-    //         // ingRef.current.scrollIntoView({ behavior: 'smooth' })
-
-    // }
-
-
 
     const ms_converter = (ms) => {
         let mins = ms % 3600000
@@ -108,8 +97,6 @@ function SingleRecipe() {
 
     return (
         <div className='view-container single-recipe-view'>
-
-            {/* <h1>Welcome to Single Recipe!</h1> */}
             {recipe ?
             <>
                 <div>
@@ -138,7 +125,9 @@ function SingleRecipe() {
                     <h3>Recipe Facts</h3>
                     {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
-                        <div onClick={() => setShowEditForm(!showEditForm)}><i className="fa-solid fa-pen"></i></div>
+                        <div onClick={() => setShowEditForm(!showEditForm)}>
+                            <i className="fa-solid fa-pen"></i>
+                        </div>
                         <div onClick={handleDelete}><i className="fa-solid fa-trash-can"></i></div>
                     </div>
                     }
@@ -153,8 +142,11 @@ function SingleRecipe() {
                     </div>
                 :
                 <div>
-                    <EditRecipeForm recipe={recipe} setShowEditForm={setShowEditForm} ordered_ingredients={ordered_ingredients} ordered_instructions={ordered_instructions} />
-                    {/* <button onClick={() => setShowEditForm(false)}>Done Editing</button> */}
+                    <EditRecipeForm
+                        recipe={recipe}
+                        setShowEditForm={setShowEditForm}
+                        ordered_ingredients={ordered_ingredients}
+                        ordered_instructions={ordered_instructions} />
                 </div>
                 }
 
@@ -171,7 +163,6 @@ function SingleRecipe() {
                     </div>
 
                     <div>
-
                         {/* if your recipe and no ingredients, prompt to add some ingredients */}
                         {sessionUser && sessionUser.id === recipe.user.id && !recipe.ingredients.length &&
                             <div className='add-info' onClick={() => setShowAddIng(!showAddIng)}>
@@ -186,11 +177,9 @@ function SingleRecipe() {
                                         ingredient={ingredient}
                                         recipe={recipe}
                                         showEditIng={showEditIng}
-                                        // showEditSingleIng={showEditSingleIng}
-                                        // setShowEditSingleIng={setShowEditSingleIng}
                                         setShowEditIng={setShowEditIng}
-                                        measurementUnits={measurementUnits}/>
-                                    {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
+                                        measurementUnits={measurementUnits}
+                                        />
                                 </li>
                             ))}
                         </ul>
@@ -202,6 +191,8 @@ function SingleRecipe() {
                         </div>
                     }
                 </div>
+
+                {/* Instructions */}
                 <div>
                     <div className='header-button-container inst'>
                         <h3 id='instructions'>Instructions</h3>
@@ -212,7 +203,6 @@ function SingleRecipe() {
                             </div>
                         }
                     </div>
-                    {!showEditInst ?
                         <div>
                             {sessionUser && sessionUser.id === recipe.user.id && !recipe.instructions.length &&
                                 <div className='add-info' onClick={() => setShowAddInst(!showAddInst)}>
@@ -221,22 +211,22 @@ function SingleRecipe() {
                                 </div>
                             }
                             {ordered_instructions.map(instruction => (
-                                <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
+                                <Instruction
+                                    key={instruction.id}
+                                    instruction={instruction}
+                                    recipe_id={recipe.id}
+                                    showEditInst={showEditInst}
+                                    setShowEditInst={setShowEditInst}
+                                    currentLength={recipe.instructions.length}
+                                    />
                             ))}
                         </div>
-                        :
-                        <div>
-                            <div>
-                                {/* <button onClick={handleDoneEditingInst}>Done Editing</button> */}
-                                {ordered_instructions.map(instruction => (
-                                    <EditInstructionForm key={instruction.id} instruction={instruction} recipe_id={recipe.id} current_length={recipe.instructions.length}/>
-                                    ))}
-                            </div>
-                        </div>
-                    }
                     {showAddInst &&
                         <div>
-                            <NewInstructionForm recipe_id={recipe.id} existing_list_order={recipe.instructions.length} edit={true}/>
+                            <NewInstructionForm
+                                recipe_id={recipe.id}
+                                existing_list_order={recipe.instructions.length}
+                                edit={true}/>
                         </div>
                     }
                 </div>

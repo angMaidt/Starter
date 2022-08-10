@@ -133,16 +133,12 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
                             </div>
                         </div>
                         <div className='edit-button-container ingredient'>
-                            <button type='submit' className='submit'>Submit</button>
+                            <button type='submit' className='submit'>Save</button>
                             <span onClick={() => setShowEdit(!showEdit)}>Cancel</span>
                         </div>
                     </div>
                 </form>
             </div>
-            {/* <div className='delete-ing-button-container' >
-                <h3>Delete Ingredient</h3>
-                <div onClick={handleDelete}><i className="fa-solid fa-trash-can edit-form-delete"></i></div>
-            </div> */}
         </div>
     )
 }
