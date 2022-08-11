@@ -5,7 +5,7 @@ import { signUp } from '../../store/session';
 import LoginFormModal from './LoginFormModal';
 import './SignUpForm.css'
 
-const SignUpForm = ({ setShowModal }) => {
+const SignUpForm = ({ showModal, setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -16,12 +16,15 @@ const SignUpForm = ({ setShowModal }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data)
       }
     }
+    else setErrors(['Passwords must match.'])
+
   };
 
   const updateUsername = (e) => {
@@ -106,8 +109,7 @@ const SignUpForm = ({ setShowModal }) => {
       <div className='signup-form-bottom'>
         <div className='wavy-red-underline'></div>
         <h3>Already have an account? Login here!</h3>
-        <LoginFormModal onClick={() => setShowModal(false)}/>
-        {/* render login modal here */}
+          <LoginFormModal setShowModal={setShowModal} showModal={showModal} />
       </div>
     </form>
   );

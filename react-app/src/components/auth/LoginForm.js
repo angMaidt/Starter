@@ -6,7 +6,7 @@ import DemoUser from './DemoUser';
 import './LoginForm.css'
 import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
 
-const LoginForm = ({ setShowModal }) => {
+const LoginForm = ({ setShowModal2 }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
