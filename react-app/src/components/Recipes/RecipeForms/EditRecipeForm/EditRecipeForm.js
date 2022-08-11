@@ -16,12 +16,6 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
     // const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)
 
     const ms_converter = (ms) => {
-        // let mins = ms % 3600000
-        // let hrs = ms - mins
-        // let secs = mins % 60000
-        // mins = mins - secs
-        // hrs = hrs/3600000
-        // mins = mins/60000
         let hrs = Math.floor(ms / 3600000)
         let mins = Math.floor((ms - (hrs * 3600000)) / 60000)
         return [hrs, mins]
@@ -72,16 +66,19 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         if (!image_url) errors.push('Please enter an image file for your recipe.')
         if (!(filetypes_regex).test(image_url)) errors.push('Please enter a filename ending in .jpg, .jpeg, .png, .gif, or .webp.')
 
+        if (!active_time_mins && !active_time_hrs) errors.push('Please enter an active time in minutes, hours, or both.')
         if (isNaN(active_time_mins) || isNaN(active_time_hrs)) errors.push('Please enter numbers only into active time fields!')
         if (active_time_mins < 0 || active_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for active time. While impressive, not very realistic.')
         if (active_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the active time minutes! Please use hour field instead.')
         if (active_time_hrs > 100) errors.push('Looks like you entered over 100 hours active time on this recipe. That seems a little excessive, no?.')
 
+        if (!ferment_time_mins && !ferment_time_hrs) errors.push('Please enter a ferment time in minutes, hours, or both.')
         if (isNaN(ferment_time_mins) || isNaN(ferment_time_hrs)) errors.push('Please enter numbers only into ferment time fields!')
         if (ferment_time_mins < 0 || ferment_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for ferment time. While impressive, not very realistic.')
         if (ferment_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the ferment time minutes! Please use hour field instead.')
         if (ferment_time_hrs > 500) errors.push('Looks like you entered over 500 hours ferment time on this recipe. That seems a little excessive, no?.')
 
+        if (!bake_time_mins && !bake_time_hrs) errors.push('Please enter a bake time in minutes, hours, or both.')
         if (isNaN(bake_time_mins) || isNaN(bake_time_hrs)) errors.push('Please enter numbers only into bake time fields!')
         if (bake_time_mins < 0 || bake_time_hrs < 0) errors.push('Looks like you tried to enter a negative number for bake time. While impressive, not very realistic.')
         if (bake_time_mins > 59) errors.push('Looks like you tried to enter 60 or more in the bake time minutes! Please use hour field instead.')

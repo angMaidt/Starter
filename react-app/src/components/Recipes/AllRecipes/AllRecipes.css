@@ -3,9 +3,6 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 25px;
     row-gap: 50px;
-    /* padding-left: 20%;
-    padding-right: 20%; */
-    /* background-color: white; */
 }
 
 .view-container {
