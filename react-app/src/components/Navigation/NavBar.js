@@ -20,8 +20,8 @@ const NavBar = () => {
             <h1>starter</h1>
           </div>
         </Link>
-        <div className='nav auth-links'>
-          <div>
+        <div className='nav links'>
+          <div className='auth-links'>
             {/* user auth */}
             {sessionUser ?
               <>
@@ -32,12 +32,6 @@ const NavBar = () => {
                   <DemoUser />
                   <SignUpFormModal />
                   <LoginFormModal />
-                  {/* <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                    Sign Up
-                  </NavLink>
-                <NavLink to='/login' exact={true} activeClassName='active'>
-                  Login
-                </NavLink> */}
               </>
             }
           </div>
@@ -49,11 +43,11 @@ const NavBar = () => {
                 <h3>Home</h3>
               </div>
             </NavLink>
-            <NavLink to='/sourdough-faq' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+            {/* <NavLink to='/sourdough-faq' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
                 <h3>F.A.Q.</h3>
               </div>
-            </NavLink>
+            </NavLink> */}
             <NavLink to='/recipes' activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
                 <h3>Explore</h3>
