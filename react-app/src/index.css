@@ -69,12 +69,7 @@ button:hover:not(.submit) {
 
 h1 {
     color: var(--dark-blue);
-    /* font-family: 'Roboto', sans-serif; */
     width: fit-content;
-    /* font-weight: 300; */
-    /* width: 100%; */
-    /* font-family: 'SpaceGrotesk';
-    src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
 
 h3, h2 {
