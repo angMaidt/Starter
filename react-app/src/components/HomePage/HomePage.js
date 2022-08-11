@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './HomePage.css'
 
 function HomePage() {
@@ -24,8 +25,23 @@ function HomePage() {
                     <h2>Loaf Lover?</h2>
                     <h2>Crust Connoisseur?</h2>
                     <h2>Welcome to Starter!</h2>
-                    <p>Here to help you get moving on your bread journey.</p>
+                    <div className='next-button-container homepage-arrow'>
+                        <h3>Explore Recipes</h3>
+                        <Link to='/recipes'>
+                            <button className='arrow-button'>
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </button>
+                        </Link>
+                    </div>
                 </div>
+            </div>
+            <div className='github-links-container'>
+                <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-white)' }}>
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href='https://www.linkedin.com/in/angie-maidt-69b6b8248/' style={{ 'color': 'var(--off-white)' }}>
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
             </div>
             {/* <div className='welcome-ribbon'></div> */}
         </div>

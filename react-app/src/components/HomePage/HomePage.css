@@ -51,6 +51,8 @@
     flex-direction: column;
     width: 50%;
     padding: 25px;
+    color: var(--off-black);
+    font-size: 30px;
     /* align-items: ; */
 }
 
@@ -95,4 +97,43 @@
     font-weight: 500;
     font-size: 18px;
     text-transform: uppercase;
+}
+
+.homepage-arrow {
+    /* margin-left: 20vw; */
+}
+
+.github-links-container {
+    height: 18vh;
+    width: 100vw;
+    background-color: var(--dark-blue);
+    color: var(--off-white);
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none
+}
+
+.github-links-container i:first-child:hover{
+    color: var(--yellow);
+    cursor: pointer;
+    font-size: 80px;
+    transition: all .15s ease-in;
+}
+
+.github-links-container i:first-child:hover{
+    color: var(--yellow);
+    cursor: pointer;
+    font-size: 80px;
+    transition: all .15s ease-in;
+    /* text-decoration: none */
+}
+
+.github-links-container:nth-child(2):hover{
+    color: var(--pale-blue);
+    cursor: pointer;
+    /* font-size: 80px; */
+    transition: all .15s ease-in;
+    /* text-decoration: none */
 }
