@@ -37,10 +37,10 @@
     text-decoration-style: wavy;
     text-decoration-color: red;
     text-decoration-line: underline;
-    animation-name: wavy-red;
+    /* animation-name: wavy-red;
     animation-duration: 2s;
-    animation-iteration-count: infinite;
-    /* animation: animate 1s linear infinite; */
+    animation-iteration-count: infinite; */
+    animation: wavy-red 1s linear infinite;
 }
 
 @keyframes wavy-red {
