@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom';
 import DemoUser from '../auth/DemoUser';
 import LogoutButton from '../auth/LogoutButton';
+import LoginFormModal from '../auth/LoginFormModal';
+import SignUpFormModal from '../auth/SignUpFormModal/SignUpFormModal';
 // import SystemSwitch from '../SystemSwitch/SystemSwitch';
 import './NavBar.css'
 
@@ -28,6 +30,8 @@ const NavBar = () => {
               :
               <>
                   <DemoUser />
+                  <SignUpFormModal />
+                  <LoginFormModal />
                   {/* <NavLink to='/sign-up' exact={true} activeClassName='active'>
                     Sign Up
                   </NavLink>
@@ -57,15 +61,14 @@ const NavBar = () => {
             </NavLink>
             {/* note: / = login currently */}
             {sessionUser &&
-            <>
-              <NavLink to='/my-recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-                <div className='tab'>
-                  <h3>My Recipes</h3>
-                </div>
-              </NavLink>
-            </>
+              <>
+                <NavLink to='/my-recipes' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
+                  <div className='tab'>
+                    <h3>My Recipes</h3>
+                  </div>
+                </NavLink>
+              </>
             }
-            {/* <SystemSwitch /> */}
             <NavLink to='/about' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
                 <h3>About</h3>

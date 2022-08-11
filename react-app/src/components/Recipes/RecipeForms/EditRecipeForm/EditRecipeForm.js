@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { SystemContext } from '../../../../context/SystemContext'
+// import { SystemContext } from '../../../../context/SystemContext'
 // import { useHistory } from "react-router-dom"
 import './EditRecipeForm.css'
 
@@ -10,7 +10,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
     // const history = useHistory()
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
-    const { system } = useContext(SystemContext)
+    // const { system } = useContext(SystemContext)
 
     // const [showAddForm, setShowAddForm] = useState(false)
     // const [showAddInstructionForm, setShowAddInstructionForm] = useState(false)

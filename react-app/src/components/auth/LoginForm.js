@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import DemoUser from './DemoUser';
+import './LoginForm.css'
+import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
 
-const LoginForm = () => {
+const LoginForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,32 +34,47 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className='login-form'>
+      <h2>Welcome Back!</h2>
       <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+      {errors.length > 0 && (
+          <ul className='errors'>
+            {errors.map(error => (
+                <li className='error' key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
+      <div className='login-input-container'>
+        <div className='input-container'>
+          <input
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={updateEmail}
+          />
+          <label htmlFor='email'>Email</label>
+        </div>
+        <div className='input-container signup-last'>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+          />
+          <label htmlFor='password'>Password</label>
+        </div>
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
+      <div className='submit-login'>
         <button type='submit'>Login</button>
+      </div>
+      <div className='signup-form-bottom'>
+        <div className='wavy-red-underline'></div>
+          <h3>Don't have an account? Sign up here!</h3>
+          <SignUpFormModal />
+        {/* render signup modal here */}
       </div>
     </form>
   );

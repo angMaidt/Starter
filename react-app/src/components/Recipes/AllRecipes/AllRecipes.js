@@ -25,7 +25,7 @@ function AllRecipes() {
 
     return (
         <div className='all-recipes-view-container'>
-            <div className='tag'><span>RECIPES</span></div>
+            {/* <div className='tag'><span>RECIPES</span></div> */}
             <h1>All Recipes</h1>
             <div className='page-header-underline'></div>
             <div className='recipes-container'>

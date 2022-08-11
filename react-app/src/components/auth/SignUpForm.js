@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import LoginFormModal from './LoginFormModal';
+import './SignUpForm.css'
 
-const SignUpForm = () => {
+const SignUpForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data)
       }
@@ -42,51 +44,71 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  //make into handlelogin
+  // const handleSignUp = () => {
+  //   setShowModal(false)
+  //   //return <Redirect to="/sign-up" />
+  // }
+
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className='signup-form'>
+      <h2>Sign up to share your recipes and leave comments!</h2>
       <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+       {errors.length > 0 && (
+          <ul className='errors'>
+            {errors.map(error => (
+                <li className='error' key={error}>{error}</li>
+            ))}
+          </ul>
+        )}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className='input-container'>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          ></input>
+          <label>*User Name</label>
       </div>
-      <div>
-        <label>Email</label>
+      <div className='input-container'>
         <input
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
-        ></input>
+          ></input>
+          <label>*Email</label>
       </div>
-      <div>
-        <label>Password</label>
+      <div className='input-container'>
         <input
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
+          ></input>
+          <label>*Password</label>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className='input-container signup-last'>
         <input
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+          ></input>
+          <label>*Confirm Password</label>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='footnotes signup-footnotes'>
+        <h6>* = required field</h6>
+        <button type='submit'>Sign Up</button>
+      </div>
+      <div className='signup-form-bottom'>
+        <div className='wavy-red-underline'></div>
+        <h3>Already have an account? Login here!</h3>
+        <LoginFormModal onClick={() => setShowModal(false)}/>
+        {/* render login modal here */}
+      </div>
     </form>
   );
 };
