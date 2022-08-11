@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { HashLink } from 'react-router-hash-link'
+// import { HashLink } from 'react-router-hash-link'
 import { postRecipeThunk } from '../../../../store/recipe'
 // import NewIngredientForm from '../NewIngredientForm/NewIngredientForm'
 // import NewInstructionForm from '../NewInstructionForm/NewInstructionForm'

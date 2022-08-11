@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -12,14 +12,24 @@ const SignUpForm = ({ setShowModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  // validations
+  // useEffect(() => {
+  //   let errors = []
+
+  //   if (!username) errors.
+
+
+  // },[username, email, password, repeatPassword])
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data)
       }
     }
+    setErrors(['Passwords must match.'])
   };
 
   const updateUsername = (e) => {
@@ -51,46 +61,53 @@ const SignUpForm = ({ setShowModal }) => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        {errors.map((error, ind) => (
+        {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+        ))} */}
+       {errors.length > 0 && (
+              <ul className='errors'>
+                {errors.map(error => (
+                    <li className='error' key={error}>{error}</li>
+                ))}
+              </ul>
+        )}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className='input-container'>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          ></input>
+          <label>User Name</label>
       </div>
-      <div>
-        <label>Email</label>
+      <div className='input-container'>
         <input
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
-        ></input>
+          ></input>
+          <label>Email</label>
       </div>
-      <div>
-        <label>Password</label>
+      <div className='input-container'>
         <input
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
+          ></input>
+          <label>Password</label>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className='input-container'>
         <input
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+          ></input>
+          <label>Confirm Password</label>
       </div>
       <button type='submit'>Sign Up</button>
     </form>
