@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom';
 import DemoUser from '../auth/DemoUser';
 import LogoutButton from '../auth/LogoutButton';
+import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal/SignUpFormModal';
 // import SystemSwitch from '../SystemSwitch/SystemSwitch';
 import './NavBar.css'
@@ -29,7 +30,8 @@ const NavBar = () => {
               :
               <>
                   <DemoUser />
-                  <SignUpFormModal/>
+                  <SignUpFormModal />
+                  <LoginFormModal />
                   {/* <NavLink to='/sign-up' exact={true} activeClassName='active'>
                     Sign Up
                   </NavLink>

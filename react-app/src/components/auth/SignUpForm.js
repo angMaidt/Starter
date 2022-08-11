@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import LoginFormModal from './LoginFormModal';
 import './SignUpForm.css'
 
 const SignUpForm = ({ setShowModal }) => {
@@ -13,15 +14,6 @@ const SignUpForm = ({ setShowModal }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  // validations
-  // useEffect(() => {
-  //   let errors = []
-
-  //   if (!username) errors.
-
-
-  // },[username, email, password, repeatPassword])
-
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
@@ -30,7 +22,6 @@ const SignUpForm = ({ setShowModal }) => {
         setErrors(data)
       }
     }
-    // setErrors(['Passwords must match.'])
   };
 
   const updateUsername = (e) => {
@@ -63,15 +54,12 @@ const SignUpForm = ({ setShowModal }) => {
     <form onSubmit={onSignUp} className='signup-form'>
       <h2>Sign up to share your recipes and leave comments!</h2>
       <div>
-        {/* {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))} */}
        {errors.length > 0 && (
-              <ul className='errors'>
-                {errors.map(error => (
-                    <li className='error' key={error}>{error}</li>
-                ))}
-              </ul>
+          <ul className='errors'>
+            {errors.map(error => (
+                <li className='error' key={error}>{error}</li>
+            ))}
+          </ul>
         )}
       </div>
       <div className='input-container'>
@@ -118,6 +106,7 @@ const SignUpForm = ({ setShowModal }) => {
       <div className='signup-form-bottom'>
         <div className='wavy-red-underline'></div>
         <h3>Already have an account? Login here!</h3>
+        <LoginFormModal onClick={() => setShowModal(false)}/>
         {/* render login modal here */}
       </div>
     </form>

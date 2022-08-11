@@ -22,7 +22,7 @@
     margin-top: 10px;
 }
 
-.input-container input:not(.signup-form input), textarea, select {
+.input-container input:not(.signup-form input, .login-form input), textarea, select {
     width: 50%;
     border: none;
     border-radius: 2px;
