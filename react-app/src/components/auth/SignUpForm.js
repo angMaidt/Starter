@@ -29,7 +29,7 @@ const SignUpForm = ({ setShowModal }) => {
         setErrors(data)
       }
     }
-    setErrors(['Passwords must match.'])
+    // setErrors(['Passwords must match.'])
   };
 
   const updateUsername = (e) => {
