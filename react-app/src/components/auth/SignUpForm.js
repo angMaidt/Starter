@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
 
 const SignUpForm = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
@@ -59,7 +60,8 @@ const SignUpForm = ({ setShowModal }) => {
   // }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className='signup-form'>
+      <h2>Sign up to share your recipes and leave comments!</h2>
       <div>
         {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -79,7 +81,7 @@ const SignUpForm = ({ setShowModal }) => {
           onChange={updateUsername}
           value={username}
           ></input>
-          <label>User Name</label>
+          <label>*User Name</label>
       </div>
       <div className='input-container'>
         <input
@@ -88,7 +90,7 @@ const SignUpForm = ({ setShowModal }) => {
           onChange={updateEmail}
           value={email}
           ></input>
-          <label>Email</label>
+          <label>*Email</label>
       </div>
       <div className='input-container'>
         <input
@@ -97,9 +99,9 @@ const SignUpForm = ({ setShowModal }) => {
           onChange={updatePassword}
           value={password}
           ></input>
-          <label>Password</label>
+          <label>*Password</label>
       </div>
-      <div className='input-container'>
+      <div className='input-container signup-last'>
         <input
           type='password'
           name='repeat_password'
@@ -107,9 +109,17 @@ const SignUpForm = ({ setShowModal }) => {
           value={repeatPassword}
           required={true}
           ></input>
-          <label>Confirm Password</label>
+          <label>*Confirm Password</label>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='footnotes signup-footnotes'>
+        <h6>* = required field</h6>
+        <button type='submit'>Sign Up</button>
+      </div>
+      <div className='signup-form-bottom'>
+        <div className='wavy-red-underline'></div>
+        <h3>Already have an account? Login here!</h3>
+        {/* render login modal here */}
+      </div>
     </form>
   );
 };

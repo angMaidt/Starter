@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { SystemContext } from '../../context/SystemContext'
+// import { SystemContext } from '../../context/SystemContext'
 
 function SystemSwitch() {
     const { system, setSystem } = useContext(SystemContext)
