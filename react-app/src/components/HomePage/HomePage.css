@@ -1,6 +1,25 @@
+.homepage {
+    box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.banner {
+    display: flex;
+    /* justify-content: ; */
+    border-bottom: 1px solid var(--off-black);
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
 .welcome-ribbon {
-    height: 30px;
+    height: 50px;
+    width: 100%;
     background-color: var(--dark-blue);
+    padding-bottom: 10px;
 }
 
 .banner-image-container {
@@ -27,12 +46,94 @@
     /* padding-bottom: 5px; */
 }
 
-.banner {
+.banner-text {
     display: flex;
-    border: 1px solid var(--off-black);
-    height: 50%;
+    flex-direction: column;
+    width: 50%;
+    padding: 25px;
+    color: var(--off-black);
+    font-size: 30px;
+    /* align-items: ; */
 }
 
-/* .banner-container {
-    height: 500px;
-} */
+.welcome-ribbon-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* padding-bottom: 15px; */
+    /* line-height: 2em; */
+    /* padding-left: 2vw;
+    padding-right: 2vw; */
+}
+
+.welcome-ribbon-text span:first-child {
+    color: var(--off-white);
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.welcome-ribbon-text span:nth-child(2) {
+    color: var(--yellow);
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.welcome-ribbon-text span:nth-child(3) {
+    color: var(--pale-blue);
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.welcome-ribbon-text h3:first-child() {
+
+}
+
+.welcome-ribbon-text h3:nth-child(2) {
+    color: var(--off-white);
+    font-family: roboto;
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.homepage-arrow {
+    /* margin-left: 20vw; */
+}
+
+.github-links-container {
+    height: 18vh;
+    width: 100vw;
+    background-color: var(--dark-blue);
+    color: var(--off-white);
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none
+}
+
+.github-links-container i:first-child:hover{
+    color: var(--yellow);
+    cursor: pointer;
+    font-size: 80px;
+    transition: all .15s ease-in;
+}
+
+.github-links-container i:first-child:hover{
+    color: var(--yellow);
+    cursor: pointer;
+    font-size: 80px;
+    transition: all .15s ease-in;
+    /* text-decoration: none */
+}
+
+.github-links-container:nth-child(2):hover{
+    color: var(--pale-blue);
+    cursor: pointer;
+    /* font-size: 80px; */
+    transition: all .15s ease-in;
+    /* text-decoration: none */
+}

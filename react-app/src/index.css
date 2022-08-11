@@ -72,7 +72,7 @@ h1 {
     width: fit-content;
 }
 
-h3, h2 {
+h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
     color: var(--dark-blue);
 }
 
@@ -114,19 +114,19 @@ h6 {
     margin: 0;
 }
 
-span, .ing.submit {
+span:not(.welcome-ribbon span), .ing.submit {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
     font-size: 14px;
     text-transform: uppercase;
 }
 
-i:not(.fa-arrow-right-long, .add) {
+i:not(.fa-arrow-right-long, .add, .fa-github, .fa-linkedin) {
     color: var(--light-gray);
     font-size: 18px;
 }
 
-i:hover:not(.fa-arrow-right-long, .add) {
+i:hover:not(.fa-arrow-right-long, .add, .fa-github, .fa-linkedin) {
     cursor: pointer;
     font-size: 20px;
     color: var(--dark-blue);
