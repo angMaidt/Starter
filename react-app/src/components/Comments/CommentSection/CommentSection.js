@@ -1,16 +1,19 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import SingleComment from "../SingleComment/SingleComment"
+import StarRating from '../../StarRating'
 
 function CommentSection({ recipe }) {
     const sessionUser = useSelector(state => state.session.user)
+    // const [rating, setRating] = useState(0)
     // const [showAddComment, setShowAddComment] = useState(false)
 
     const ordered_comments = Object.values(recipe.comments).sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 
     return (
         <>
+            <StarRating/>
             {sessionUser ?
                 <NewCommentForm recipe={recipe}/>
                 :
