@@ -36,7 +36,7 @@ function SingleComment({ comment }) {
             <div className='comment-form'>
                 <div className='user-info comment-header'>
                     <div>
-                        {sessionUser && <img src={sessionUser.profile_pic} alt='profile-pic' />}
+                        <img src={comment.user.profile_pic} alt='profile-pic' />
                     </div>
                     <h4>{ comment.user.username }</h4>
                     <div className='posted-rating'>
