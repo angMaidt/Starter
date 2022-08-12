@@ -29,9 +29,9 @@ const NavBar = () => {
               </>
               :
               <>
+                  <DemoUser />
                   <SignUpFormModal />
                   <LoginFormModal />
-                  <DemoUser />
               </>
             }
           </div>

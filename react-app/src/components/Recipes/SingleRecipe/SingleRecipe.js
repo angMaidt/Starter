@@ -18,6 +18,7 @@ function SingleRecipe() {
     const sessionUser = useSelector(state => state.session.user)
 
     const [showEditForm, setShowEditForm] = useState(false)
+    if (recipe) console.log(recipe.comments)
 
     //edit ingredient states
     const [showEditIng, setShowEditIng] = useState(false)
@@ -86,6 +87,19 @@ function SingleRecipe() {
     //     behavior: 'smooth'
     // })
 
+    //calculate rating
+    const find_average = (recipe) => {
+        //find the avg
+        //add all comment.ratings together
+        //divide by length
+        //return
+        let sum = 0
+        recipe.comments.forEach(comment => {
+            sum += comment.rating
+        })
+        return sum/recipe.comments.length
+    }
+
 
     return (
         <div className='view-container single-recipe-view'>
@@ -105,6 +119,7 @@ function SingleRecipe() {
                 </div>
                 <div className='recipe-comment-info'>
                     <span>Rating</span>
+                    <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p>
                     <span>{recipe.comments.length} comments</span>
                 </div>
                 <div className='single-image-container'>

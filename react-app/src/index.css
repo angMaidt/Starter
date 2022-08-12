@@ -9,6 +9,7 @@
     --yellow: #FFD12F;
     --off-white: #FBF9EE;
     --off-black: #333333;
+    --red-orange: #ff575d;
 }
 
 @font-face {
@@ -83,7 +84,9 @@ h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
     justify-content: center;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 10%;
+    /* padding-left: 30%;
+    padding-right: 30%; */
+    /* margin-bottom: 10%; */
 }
 
 /* .view-screen {
@@ -94,7 +97,7 @@ h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
     width: 100%;
 } */
 
-p:not(.card-bottom-info p) {
+p:not(.card-bottom-info p, .comment-text) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);
@@ -114,7 +117,7 @@ h6 {
     margin: 0;
 }
 
-span:not(.welcome-ribbon span), .ing.submit {
+span:not(.welcome-ribbon span, .asterisk), .ing.submit {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
     font-size: 14px;

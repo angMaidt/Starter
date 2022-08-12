@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux"
 // import { useHistory } from "react-router-dom"
 import { postCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
+import StarRating from '../../StarRating'
 import './NewCommentForm.css'
 
 function NewCommentForm({ recipe }) {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
-    const [rating, setRating] = useState(5)
+    const [rating, setRating] = useState(null)
+    // console.log(rating)
     const [body, setBody] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
@@ -36,11 +38,16 @@ function NewCommentForm({ recipe }) {
             user_id: sessionUser.id,
             recipe_id: recipe.id
         }
-        setRating(5)
-        setBody('')
+        // console.log(payload)
+
 
         try {
             const data = await dispatch(postCommentThunk(payload))
+            if (data) {
+                setHasSubmitted(false)
+                setRating(null)
+                setBody('')
+            }
             await dispatch(getRecipesThunk())
 
         } catch (e) {
@@ -50,7 +57,6 @@ function NewCommentForm({ recipe }) {
 
     return (
         <>
-            <h3>Rate and Comment</h3>
             {hasSubmitted && validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -60,31 +66,33 @@ function NewCommentForm({ recipe }) {
             }
             <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
-                    <div className='input-container'>
-                        <select
-                            type='number'
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
-                            >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                        <label>*Rating</label>
+                    <div className='star-input-container'>
+                        <label>
+                            <span className='asterisk'>*</span>Rate and comment
+                        </label>
+                        <StarRating rating={rating} setRating={setRating}/>
                     </div>
-                    <div className='input-container'>
+                    <div className='comment-body'>
+                        <div className='user-info'>
+                            <div>
+                                <img src={sessionUser.profile_pic} alt='profile-pic' />
+                            </div>
+                        </div>
                         <textarea
                             placeholder='Join the discussion...'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
+                            style={{ 'fontSize': '15px' }}
                             >
                         </textarea>
-                        <label>Comment</label>
+                        {/* <label>Comment</label> */}
                     </div>
                 </div>
                 <div className='submit-comment'>
+                    <h6>
+                        <span className='asterisk'>*</span>
+                        Rating = required
+                    </h6>
                     <button>Submit</button>
                 </div>
             </form>
