@@ -87,6 +87,7 @@
 .user-info {
     display: flex;
     align-items: center;
+    height: 100px;
 }
 
 .card-container-right p{
