@@ -33,34 +33,39 @@ function SingleComment({ comment }) {
                 showEdit={showEdit}
                 setShowEdit={setShowEdit}/>
         :
-            <div className='comment-form'>
-                <div className='user-info comment-header'>
+            <div className='comment-wrapper'>
+                <div className='user-info'>
                     <div>
                         <img src={comment.user.profile_pic} alt='profile-pic' />
                     </div>
-                    <h4>{ comment.user.username }</h4>
-                    <div className='posted-rating'>
-                        {/* <p className='dot'>●</p> */}
-                        <span>Posted {comment.created_at.split(' ').slice(1, 4).join(' ')}</span>
-                        <p className='dot'>●</p>
-                        <p>{ [...Array(comment.rating)].map(star => <FaStar className='rated' />) }</p>
-                        <p>{ [...Array(5 - comment.rating)].map(star => <FaStar color='#DCDCDC' className='rated'/>) }</p>
-
-                    </div>
                 </div>
-                <div className='comment-body-wrapper'>
-                    <div className='comment-body-container'>
-                        <p className='comment-text'>{ comment.body }</p>
-                        {sessionUser && sessionUser.id === comment.user.id &&
-                            <div className='comment-edit-button-container'>
-                                <div onClick={() => setShowEdit(!showEdit)}>
-                                    <span className='edit'>edit</span>
+                <div className='comment-right'>
+
+                    <div className='comment-header'>
+                        <h4>{ comment.user.username }</h4>
+                        <div className='posted-rating'>
+                            {/* <p className='dot'>●</p> */}
+                            <span>Posted {comment.created_at.split(' ').slice(1, 4).join(' ')}</span>
+                            <p className='dot'>●</p>
+                            <p className='comment-stars'>{ [...Array(comment.rating)].map(star => <FaStar className='rated' />) }</p>
+                            <p className='comment-stars'>{ [...Array(5 - comment.rating)].map(star => <FaStar color='#DCDCDC' className='rated'/>) }</p>
+
+                        </div>
+                    </div>
+                    <div className='comment-body-wrapper'>
+                        <div className='comment-body-container'>
+                            <p className='comment-text'>{ comment.body }</p>
+                            {sessionUser && sessionUser.id === comment.user.id &&
+                                <div className='comment-edit-button-container'>
+                                    <div onClick={() => setShowEdit(!showEdit)}>
+                                        <span className='edit'>edit</span>
+                                    </div>
+                                    <div onClick={handleDelete} >
+                                        <span className='cancel-button'>delete</span>
+                                    </div>
                                 </div>
-                                <div onClick={handleDelete} >
-                                    <span className='cancel-button'>delete</span>
-                                </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
