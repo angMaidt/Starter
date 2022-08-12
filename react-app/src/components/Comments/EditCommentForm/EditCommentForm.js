@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { editCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
 // import { useHistory } from "react-router-dom"
+import './EditCommentForm.css'
+import StarRating from '../../StarRating'
 
 function EditCommentForm({ comment, sessionUser, showEdit, setShowEdit }) {
     const dispatch = useDispatch()
@@ -48,7 +50,7 @@ function EditCommentForm({ comment, sessionUser, showEdit, setShowEdit }) {
 
     return (
         <>
-            <h3>Edit Comment</h3>
+            {/* <h3>Edit Comment</h3> */}
             {hasSubmitted && validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -56,35 +58,36 @@ function EditCommentForm({ comment, sessionUser, showEdit, setShowEdit }) {
                     ))}
                 </ul>
             }
-            <form onSubmit={handleSubmit} className='comment-form'>
-                <div className='comment-input-container'>
-                    <div className='input-container'>
-                        <select
-                            type='number'
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
-                            >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                        <label>*Rating</label>
-                    </div>
-                    <div className='input-container'>
-                        <textarea
-                            placeholder='Join the discussion...'
-                            value={body}
-                            onChange={(e) => setBody(e.target.value)}
-                            >
-                        </textarea>
-                        <label>Comment</label>
+            <form onSubmit={handleSubmit} className='edit-comment-wrapper'>
+                <div className='user-info'>
+                    <div>
+                        <img src={comment.user.profile_pic} alt='profile-pic' />
                     </div>
                 </div>
-                <div className='submit-comment'>
-                    <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
-                    <button>Submit</button>
+                <div className='comment-right'>
+                    <div className='comment-input-container'>
+                        <div className='edit-star-input-container'>
+                            <label className='edit-comment-label'>
+                                Edit rating and comment!
+                            </label>
+                            <StarRating rating={rating} setRating={setRating} />
+                        </div>
+                        <div className='comment-body'>
+                            <textarea
+                                className='edit-comment-textarea'
+                                placeholder='Join the discussion...'
+                                value={body}
+                                onChange={(e) => setBody(e.target.value)}
+                                style={{ 'fontSize': '15px' }}
+                                >
+                            </textarea>
+                            {/* <label>Comment</label> */}
+                        </div>
+                    </div>
+                    <div className='submit-edit-comment'>
+                        <span onClick={() => setShowEdit(!showEdit)} className='cancel-button'>Cancel</span>
+                        <button>Submit</button>
+                    </div>
                 </div>
             </form>
         </>

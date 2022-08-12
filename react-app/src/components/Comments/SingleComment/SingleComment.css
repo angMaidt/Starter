@@ -3,9 +3,10 @@
     flex-direction: column;
     /* align-items: center; */
     padding: 5px;
+    margin-right: 20px;
     word-break: break-all;
     overflow-wrap: break-word;
-    width: 500px;
+    width: 95%;
 }
 
 .comment-body-wrapper {
@@ -63,6 +64,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-top: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 
 .edit {
@@ -83,4 +87,10 @@
     width: 75%;
     margin-bottom: 10px;
     align-items: flex-start;
+}
+
+.comment-right {
+    width: 100%;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
