@@ -73,6 +73,7 @@
     width: 150px;
     height: 60px;
     background-color: var(--off-white);
+    transition: all .15s ease-in;
 }
 
 .auth-links {
