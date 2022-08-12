@@ -84,7 +84,9 @@ h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
     justify-content: center;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 10%;
+    /* padding-left: 30%;
+    padding-right: 30%; */
+    /* margin-bottom: 10%; */
 }
 
 /* .view-screen {

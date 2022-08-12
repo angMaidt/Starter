@@ -51,7 +51,7 @@
     /* font-size: 20px; */
 }
 
-.user-info div{
+.user-info div:not(.posted-rating){
     height: 60px;
     width: 60px;
     overflow: hidden;

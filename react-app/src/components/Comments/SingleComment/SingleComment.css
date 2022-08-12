@@ -1,7 +1,46 @@
 .comment-body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 5px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 650px;
+}
+
+.comment-body-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #delete:hover {
     color: red;
+}
+
+.rated {
+    color: var(--red-orange);
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+}
+
+.comment-header .dot {
+    color: var(--off-black);
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.posted-rating {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    width: 50%;
+    margin-top: 2px;
+    /* justify-content: space-between; */
 }

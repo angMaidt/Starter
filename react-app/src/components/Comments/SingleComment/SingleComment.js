@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaStar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
@@ -33,23 +34,34 @@ function SingleComment({ comment }) {
                 setShowEdit={setShowEdit}/>
         :
             <div className='comment-form'>
-                <div className='user-info'>
-                    <div style={{ 'height': '50px', 'width': '50px', 'borderRadius': '100%', 'overflow': 'hidden' }}>
-                        <img src={comment.user.profile_pic} alt='profile-pic' />
+                <div className='user-info comment-header'>
+                    <div>
+                        {sessionUser && <img src={sessionUser.profile_pic} alt='profile-pic' />}
                     </div>
                     <h4>{ comment.user.username }</h4>
+                    <div className='posted-rating'>
+                        {/* <p className='dot'>●</p> */}
+                        <span>Posted {comment.created_at.split(' ').slice(1, 4).join(' ')}</span>
+                        <p className='dot'>●</p>
+                        <p>{ [...Array(comment.rating)].map(star => <FaStar className='rated' />) }</p>
+                        <p>{ [...Array(5 - comment.rating)].map(star => <FaStar color='#DCDCDC' className='rated'/>) }</p>
+
+                    </div>
                 </div>
-                <span>Posted {comment.created_at}</span>
-                <p>{ comment.rating }</p>
-                <div className='comment-body-container'>
-                    <p>{ comment.body }</p>
-                    {/* {showEdit && <EditCommentForm comment={comment} sessionUser={sessionUser} setShowEdit={setShowEdit}/>} */}
-                    {sessionUser && sessionUser.id === comment.user.id &&
-                        <div className='ingredient-container'>
-                            <div onClick={() => setShowEdit(!showEdit)}><span>edit</span></div>
-                            <div onClick={handleDelete} id='delete' className='cancel-button'><span>delete</span></div>
-                        </div>
-                    }
+                <div className='comment-body-wrapper'>
+                    <div className='comment-body-container'>
+                        <p>{ comment.body }</p>
+                        {sessionUser && sessionUser.id === comment.user.id &&
+                            <div>
+                                <div onClick={() => setShowEdit(!showEdit)}>
+                                    <span>edit</span>
+                                </div>
+                                <div onClick={handleDelete} id='delete' className='cancel-button'>
+                                    <span>delete</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
 

@@ -68,7 +68,7 @@ function NewCommentForm({ recipe }) {
                 <div className='comment-input-container'>
                     <div className='star-input-container'>
                         <label>
-                            <span className='asterisk'>*</span> Rate and comment
+                            <span className='asterisk'>*</span>Rate and comment
                         </label>
                         <StarRating rating={rating} setRating={setRating}/>
                     </div>
