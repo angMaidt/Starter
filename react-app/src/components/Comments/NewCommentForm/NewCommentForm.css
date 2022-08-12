@@ -22,3 +22,12 @@
     margin-top: 15px;
     margin-right: 10px;
 }
+
+.star-input-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.star-input-container label:not(.star-label) {
+    margin-right: 10px;
+}

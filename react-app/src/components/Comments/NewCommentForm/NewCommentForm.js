@@ -57,7 +57,7 @@ function NewCommentForm({ recipe }) {
 
     return (
         <>
-            <h3>Rate and Comment</h3>
+            {/* <h3>Rate and Comment</h3> */}
             {hasSubmitted && validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -67,20 +67,9 @@ function NewCommentForm({ recipe }) {
             }
             <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
-                    <div className='input-container'>
-                    <StarRating rating={rating} setRating={setRating}/>
-                        {/* <select
-                            type='number'
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
-                            >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select> */}
-                        <label>*Rating</label>
+                    <div className='star-input-container'>
+                        <label>*Rate and comment</label>
+                        <StarRating rating={rating} setRating={setRating}/>
                     </div>
                     <div className='input-container'>
                         <textarea
@@ -89,7 +78,7 @@ function NewCommentForm({ recipe }) {
                             onChange={(e) => setBody(e.target.value)}
                             >
                         </textarea>
-                        <label>Comment</label>
+                        {/* <label>Comment</label> */}
                     </div>
                 </div>
                 <div className='submit-comment'>
