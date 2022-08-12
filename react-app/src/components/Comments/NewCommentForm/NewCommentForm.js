@@ -57,7 +57,6 @@ function NewCommentForm({ recipe }) {
 
     return (
         <>
-            {/* <h3>Rate and Comment</h3> */}
             {hasSubmitted && validationErrors.length > 0 &&
                 <ul className='errors'>
                     {validationErrors.map(error => (
@@ -68,20 +67,32 @@ function NewCommentForm({ recipe }) {
             <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
                     <div className='star-input-container'>
-                        <label>*Rate and comment</label>
+                        <label>
+                            <span className='asterisk'>*</span> Rate and comment
+                        </label>
                         <StarRating rating={rating} setRating={setRating}/>
                     </div>
-                    <div className='input-container'>
+                    <div className='comment-body'>
+                        <div className='user-info'>
+                            <div>
+                                <img src={sessionUser.profile_pic} alt='profile-pic' />
+                            </div>
+                        </div>
                         <textarea
                             placeholder='Join the discussion...'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
+                            style={{ 'fontSize': '15px' }}
                             >
                         </textarea>
                         {/* <label>Comment</label> */}
                     </div>
                 </div>
                 <div className='submit-comment'>
+                    <h6>
+                        <span className='asterisk'>*</span>
+                        Rating = required
+                    </h6>
                     <button>Submit</button>
                 </div>
             </form>

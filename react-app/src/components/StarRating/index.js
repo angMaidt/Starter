@@ -25,7 +25,6 @@ function StarRating({ rating, setRating }) {
                             onMouseOver={() => setHover(ratingValue + 1)}
                             onMouseLeave={() => setHover(null)}
                             />
-                            {/* {console.log(rating)} */}
                     </label>
                 )
             })}

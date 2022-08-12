@@ -16,7 +16,7 @@ function SingleComment({ comment }) {
         e.preventDefault()
 
         try {
-            const res = await dispatch(deleteCommentThunk(comment))
+            await dispatch(deleteCommentThunk(comment))
             await dispatch(getRecipesThunk())
 
         } catch (e) {
