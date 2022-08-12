@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import SingleComment from "../SingleComment/SingleComment"
-import StarRating from '../../StarRating'
+// import StarRating from '../../StarRating'
 
 function CommentSection({ recipe }) {
     const sessionUser = useSelector(state => state.session.user)
@@ -13,7 +13,7 @@ function CommentSection({ recipe }) {
 
     return (
         <>
-            <StarRating/>
+            {/* <StarRating/> */}
             {sessionUser ?
                 <NewCommentForm recipe={recipe}/>
                 :

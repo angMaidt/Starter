@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux"
 // import { useHistory } from "react-router-dom"
 import { postCommentThunk } from '../../../store/comment'
 import { getRecipesThunk } from '../../../store/recipe'
+import StarRating from '../../StarRating'
 import './NewCommentForm.css'
 
 function NewCommentForm({ recipe }) {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
 
-    const [rating, setRating] = useState(5)
+    const [rating, setRating] = useState(null)
+    // console.log(rating)
     const [body, setBody] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
@@ -36,11 +38,16 @@ function NewCommentForm({ recipe }) {
             user_id: sessionUser.id,
             recipe_id: recipe.id
         }
-        setRating(5)
-        setBody('')
+        // console.log(payload)
+
 
         try {
             const data = await dispatch(postCommentThunk(payload))
+            if (data) {
+                setHasSubmitted(false)
+                setRating(null)
+                setBody('')
+            }
             await dispatch(getRecipesThunk())
 
         } catch (e) {
@@ -61,7 +68,8 @@ function NewCommentForm({ recipe }) {
             <form onSubmit={handleSubmit} className='comment-form'>
                 <div className='comment-input-container'>
                     <div className='input-container'>
-                        <select
+                    <StarRating rating={rating} setRating={setRating}/>
+                        {/* <select
                             type='number'
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
@@ -71,7 +79,7 @@ function NewCommentForm({ recipe }) {
                             <option value={3}>3</option>
                             <option value={4}>4</option>
                             <option value={5}>5</option>
-                        </select>
+                        </select> */}
                         <label>*Rating</label>
                     </div>
                     <div className='input-container'>
