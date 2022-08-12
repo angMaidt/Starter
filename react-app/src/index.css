@@ -97,7 +97,7 @@ h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
     width: 100%;
 } */
 
-p:not(.card-bottom-info p) {
+p:not(.card-bottom-info p, .comment-text) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);

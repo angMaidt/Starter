@@ -50,14 +50,14 @@ function SingleComment({ comment }) {
                 </div>
                 <div className='comment-body-wrapper'>
                     <div className='comment-body-container'>
-                        <p>{ comment.body }</p>
+                        <p className='comment-text'>{ comment.body }</p>
                         {sessionUser && sessionUser.id === comment.user.id &&
-                            <div>
+                            <div className='comment-edit-button-container'>
                                 <div onClick={() => setShowEdit(!showEdit)}>
-                                    <span>edit</span>
+                                    <span className='edit'>edit</span>
                                 </div>
-                                <div onClick={handleDelete} id='delete' className='cancel-button'>
-                                    <span>delete</span>
+                                <div onClick={handleDelete} >
+                                    <span className='cancel-button'>delete</span>
                                 </div>
                             </div>
                         }
