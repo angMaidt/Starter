@@ -120,14 +120,12 @@ function SingleRecipe() {
                     </div>
                 </div>
                 <div
-                    className='recipe-comment-info'
-                    // onClick={() => window.scrollTo({ top: comments, behavior: 'smooth' })}
-                    style={{ 'backgroundColor': 'var(--yellow)' }}
+                    className='recipe-comment-info bubble bubble-bottom-left'
                     onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
                     >
                     {/* <span>Rating</span>
                     <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
-                    <span>{recipe.comments.length} comments</span>
+                    <div>{recipe.comments.length}<h6>comments</h6></div>
                 </div>
                 <div className='single-image-container'>
                     <img src={recipe.image_url} onError={({ currentTarget }) => {
