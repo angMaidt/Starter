@@ -8,7 +8,7 @@
 .navbar-container {
     display: flex;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--dark-blue);
+    border-bottom: 2px solid var(--dark-blue);
     position: sticky;
     top: 0;
     height: 90px;
@@ -67,9 +67,9 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    border-left: 1px solid var(--dark-blue);
-    border-right: 1px solid var(--dark-blue);
-    border-top: 1px solid var(--dark-blue);
+    border-left: 2px solid var(--dark-blue);
+    border-right: 2px solid var(--dark-blue);
+    border-top: 2px solid var(--dark-blue);
     width: 150px;
     height: 60px;
     background-color: var(--off-white);

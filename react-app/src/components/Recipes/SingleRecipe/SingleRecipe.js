@@ -14,6 +14,8 @@ function SingleRecipe() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const commentRef = useRef()
+    const recipeRef = useRef()
     const recipe = useSelector(state => state.recipes[id])
     const sessionUser = useSelector(state => state.session.user)
 
@@ -77,9 +79,9 @@ function SingleRecipe() {
     }
 
     //scroll to ingredients header
-    // const ingEl = document.getElementById('recipe-ingredients')
+    // const comments = document.getElementById('comments')
     // const headerOffset = 45
-    // const elementPosition = ingEl.getBoundingClientRect().top
+    // const elementPosition = comments.getBoundingClientRect().top
     // const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
     // window.scrollTo({
@@ -105,10 +107,10 @@ function SingleRecipe() {
         <div className='view-container single-recipe-view'>
             {recipe ?
             <>
-                <div>
+                <div className='recipe-header-container'>
                     <h1>{recipe.title}</h1>
                     <p>{recipe.description}</p>
-                    <div className='user-info'>
+                    <div className='user-info posted-recipe'>
                         <h5>by {recipe.user.username}</h5>
                         {recipe.created_at === recipe.updated_at ?
                             <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
@@ -117,9 +119,14 @@ function SingleRecipe() {
                         }
                     </div>
                 </div>
-                <div className='recipe-comment-info'>
-                    <span>Rating</span>
-                    <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p>
+                <div
+                    className='recipe-comment-info'
+                    // onClick={() => window.scrollTo({ top: comments, behavior: 'smooth' })}
+                    style={{ 'backgroundColor': 'var(--yellow)' }}
+                    onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                    {/* <span>Rating</span>
+                    <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
                     <span>{recipe.comments.length} comments</span>
                 </div>
                 <div className='single-image-container'>
@@ -271,7 +278,8 @@ function SingleRecipe() {
                         </div>
                     }
                 </div>
-                <h2 id='comments'>Check out what people are saying!</h2>
+                <h2 id='comments'
+                    ref={commentRef}>Check out what people are saying!</h2>
                 <div className='page-header-underline'></div>
                 <CommentSection recipe={recipe} />
                 {/* <button onClick={() => ingRef.current.scrollIntoView({ behavior: 'smooth' })}>Test</button> */}
