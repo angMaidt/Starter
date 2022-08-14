@@ -109,6 +109,12 @@ function SingleRecipe() {
             <>
                 <div className='recipe-header-container'>
                     <h1>{recipe.title}</h1>
+                    <div
+                        className='jump-to-recipe'
+                        onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
+                        >
+                         <h5>Jump to Recipe</h5>
+                    </div>
                     <p>{recipe.description}</p>
                     <div className='user-info posted-recipe'>
                         <h5>by {recipe.user.username}</h5>
@@ -133,7 +139,7 @@ function SingleRecipe() {
                             currentTarget.src ='../../../../../static/default-bread.jpg'
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
-                <div className='header-button-container'>
+                <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
                     <h3>Recipe Facts</h3>
                     {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
@@ -277,7 +283,9 @@ function SingleRecipe() {
                     }
                 </div>
                 <h2 id='comments'
-                    ref={commentRef}>Check out what people are saying!</h2>
+                    ref={commentRef}
+                    style={{ 'scrollMarginTop': '100px' }}
+                    >Check out what people are saying!</h2>
                 <div className='page-header-underline'></div>
                 <CommentSection recipe={recipe} />
                 {/* <button onClick={() => ingRef.current.scrollIntoView({ behavior: 'smooth' })}>Test</button> */}

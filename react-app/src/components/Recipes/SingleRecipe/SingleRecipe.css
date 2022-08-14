@@ -15,7 +15,7 @@
 }
 
 .recipe-header-container {
-    word-break: break-all;
+    /* word-break: break-all; */
     overflow-wrap: break-word;
 }
 
@@ -72,8 +72,9 @@
     width: fit-content;
     background-color: var(--tan);
     margin-top: 10px;
-    margin-bottom: 10px;
-    /* margin: 30px; */
+    margin-bottom: 15px;
+    margin-right: 10px;
+    align-self: flex-end;
 }
 
 .recipe-comment-info:hover {
@@ -106,10 +107,14 @@
 }
 
 .single-recipe-view h1 {
-    background-color: var(--yellow);
+    /* background-color: var(--yellow); */
     /* width: 50%; */
-    text-decoration: underline;
-    color: var(--dark-blue)
+    /* text-decoration: underline; */
+    /* font-weight: 100px; */
+    color: var(--off-black);
+    letter-spacing: -.5px;
+    /* margin: 0; */
+
 }
 
 .recipe-title-holder {
