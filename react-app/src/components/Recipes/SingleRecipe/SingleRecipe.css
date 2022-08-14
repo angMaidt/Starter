@@ -179,3 +179,65 @@
     justify-content: space-around;
     /* padding: 15px; */
 }
+
+.recipe-ref-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jump-to-recipe {
+    border: 1px solid var(--off-black);
+    width: fit-content;
+    padding: 2px 5px 2px 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    background-color: var(--yellow);
+    align-self: center;
+}
+
+.jump-to-recipe:hover {
+    background-color: white;
+    transition: all .15s ease;
+    cursor: pointer;
+}
+
+.jump-to-recipe h5 {
+    margin: 0 5px;
+    font-size: 16px;
+    width: 152px;
+
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 1px 1px 2px;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--off-black);
+    color: var(--off-black);
+    font-size: 12px;
+    background-color: white;
+}
+
+.line-container {
+    display:flex;
+    align-items: center;
+    width: 100%;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: var(--off-black);
+}
+
+.recipe-ref-container {
+    margin-bottom: 40px;
+}

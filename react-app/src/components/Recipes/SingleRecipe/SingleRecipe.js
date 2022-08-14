@@ -109,11 +109,25 @@ function SingleRecipe() {
             <>
                 <div className='recipe-header-container'>
                     <h1>{recipe.title}</h1>
-                    <div
-                        className='jump-to-recipe'
-                        onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
-                        >
-                         <h5>Jump to Recipe</h5>
+                    <div className='recipe-ref-container'>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
+                        <div
+                            className='jump-to-recipe'
+                            onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
+                            >
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <h5>Jump to Recipe</h5>
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
                     </div>
                     <p>{recipe.description}</p>
                     <div className='user-info posted-recipe'>
