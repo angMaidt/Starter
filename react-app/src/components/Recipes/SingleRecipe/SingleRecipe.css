@@ -109,12 +109,14 @@
 
 
 .single-recipe-view h1 {
-    /* background-color: var(--yellow); */
-    /* width: 50%; */
-    /* text-decoration: underline; */
+    background-color: var(--yellow);
+    width: fit-content;
+    text-decoration: underline;
     /* font-weight: 100px; */
     color: var(--off-black);
     letter-spacing: -.5px;
+    font-size: 40px;
+
     /* margin: 0; */
 
 }

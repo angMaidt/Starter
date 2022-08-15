@@ -59,7 +59,7 @@
 .card-container-right h3 {
     /* background-color: var(--yellow);
     text-decoration: underline; */
-    color: var(--off-black);
+    color: var(--dark-blue);
     letter-spacing: .5px;
     font-size: 20px;
     margin: 30px 0 0 0;
@@ -98,7 +98,7 @@
 
 .card-container-right p{
     /* font-style: italic; */
-    color: var(--light-gray);
+    color: var(--off-black);
     text-align: left;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -133,4 +133,11 @@
     align-self: flex-end;
     justify-self: flex-end;
     /* margin-top: 50px; */
+}
+
+.yellow-bg {
+    color: var(--dark-blue);
+    text-decoration: underline;
+    background-color: var(--yellow);
+    font-size: 28px;
 }

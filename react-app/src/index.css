@@ -73,7 +73,7 @@ h1:not(#all-recipes) {
     /* color: var(--dark-blue);
     width: fit-content; */
     text-transform: uppercase;
-    color: var(--off-black);
+    color: var(--dark-blue);
     letter-spacing: 5px;
 }
 

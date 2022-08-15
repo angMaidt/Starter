@@ -14,7 +14,7 @@
 }
 
 #all-recipes {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: var(--dark-blue);
     background-color: var(--yellow);
     letter-spacing: 5px;

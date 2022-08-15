@@ -1,42 +1,26 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
-    // const [yellow, setYellow] = useState(false)
-    // console.log('here')
+    const [hover, setHover] = useState(false)
     if(!recipe) return null
     return (
         <Link to={`/recipes/${recipe.id}`} style={{ 'textDecoration': 'none' }}>
             <div
-            // onMouseEnter={() => setYellow(true)}
-            // onMouseLeave={() => setYellow(false)}
-            style={{ 'border': '1px solid black' }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            style={{ 'border': '1px solid var(--off-black)' }}
             className='card-container'>
                 <div className='card-container-left'>
-                    {/* <div className='recipe-card-photo'>
-                        <div className='card-image-container'>
-                            <img src={recipe.image_url} onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src ='../../../../../static/default-bread.jpg'
-                            }} alt={`recipe-${recipe.id}`} />
-                        </div>
-                        <div>
-                            <p>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</p>
-                        </div>
-                    </div> */}
-                    {/* <div className='recipe-card-photo'> */}
-                        {/* <div className='card-image-container'> */}
-                            <img src={recipe.image_url} onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src ='../../../../../static/default-bread.jpg'
-                            }} alt={`recipe-${recipe.id}`} />
-                        {/* </div> */}
-                    {/* </div> */}
+                    <img src={recipe.image_url} onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src ='../../../../../static/default-bread.jpg'
+                    }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='card-container-right'>
                     <div className='card-bottom-info'>
-                    <h3>{recipe.title}</h3>
+                    <h3 className={hover ? 'yellow-bg': null }>{recipe.title}</h3>
                     {/* <div className='title-underline'></div> */}
                         <p>{recipe.description}</p>
                         <div className='username-info'>
