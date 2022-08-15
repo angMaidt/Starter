@@ -6,6 +6,11 @@
     margin-top: 50px;
 }
 
+.my-recipe-tabs h2 {
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+}
+
 .my-recipe-tabs h2:hover {
     background-color: var(--yellow);
     text-decoration: underline;

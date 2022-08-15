@@ -12,6 +12,7 @@
     background-color: white;
     padding-right: 5%;
     padding-left: 5%;
+    padding-top: 5%;
 }
 
 .recipe-header-container {
@@ -108,12 +109,14 @@
 
 
 .single-recipe-view h1 {
-    /* background-color: var(--yellow); */
-    /* width: 50%; */
-    /* text-decoration: underline; */
+    background-color: var(--yellow);
+    width: fit-content;
+    text-decoration: underline;
     /* font-weight: 100px; */
     color: var(--off-black);
     letter-spacing: -.5px;
+    font-size: 40px;
+
     /* margin: 0; */
 
 }
@@ -188,6 +191,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 5%;
 }
 
 .jump-to-recipe {

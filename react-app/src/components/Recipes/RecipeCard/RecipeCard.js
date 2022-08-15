@@ -1,47 +1,34 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
-    // const [yellow, setYellow] = useState(false)
-    // console.log('here')
+    const [hover, setHover] = useState(false)
     if(!recipe) return null
     return (
         <Link to={`/recipes/${recipe.id}`} style={{ 'textDecoration': 'none' }}>
             <div
-            // onMouseEnter={() => setYellow(true)}
-            // onMouseLeave={() => setYellow(false)}
-            style={{ 'border': '1px solid black' }}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            style={{ 'border': '1px solid var(--off-black)' }}
             className='card-container'>
                 <div className='card-container-left'>
-                    <div className='recipe-card-photo'>
-                        <div className='card-image-container'>
-                            <img src={recipe.image_url} onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src ='../../../../../static/default-bread.jpg'
-                            }} alt={`recipe-${recipe.id}`} />
-                        </div>
-                        <div>
-                            <p>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</p>
-                        </div>
-                    </div>
+                    <img src={recipe.image_url} onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src ='../../../../../static/default-bread.jpg'
+                    }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='card-container-right'>
-                    <h3>{recipe.title}</h3>
-                    <div className='title-underline'></div>
                     <div className='card-bottom-info'>
-                    <div className='user-info'>
-                        <div style={{ 'borderRadius': '100%', 'height': '40px', 'width': '40px'  }}>
-                            <img src={recipe.user.profile_pic} alt='profile-pic' />
-                        </div>
-                        <h4 style={{ 'fontFamily': 'Roboto', 'fontSize': '18px', 'color': 'var(--off-black)' }}>by {recipe.user.username}</h4>
-                    </div>
-                        {/* <div className='user-info'> */}
-                            {/* <div>
-                                <img src={recipe.user.profile_pic} alt='profile' />
-                            </div> */}
-                        {/* </div> */}
+                    <h3 className={hover ? 'yellow-bg': null }>{recipe.title}</h3>
+                    {/* <div className='title-underline'></div> */}
                         <p>{recipe.description}</p>
+                        <div className='username-info'>
+                            <h4>by {recipe.user.username}</h4>
+                        </div>
+                    </div>
+                    <div className='recipe-card-arrow'>
+                        <i class="fa-solid fa-arrow-right-long"></i>
                     </div>
                 </div>
             </div>

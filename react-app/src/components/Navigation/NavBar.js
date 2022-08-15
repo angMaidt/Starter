@@ -9,6 +9,7 @@ import SignUpFormModal from '../auth/SignUpFormModal/SignUpFormModal';
 import './NavBar.css'
 
 const NavBar = () => {
+  // const [hover, setHover] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
 
   return (
@@ -28,8 +29,9 @@ const NavBar = () => {
                 <LogoutButton />
               </>
               :
-              <>
-                  <DemoUser />
+              <>  <div className='demo-user-container'>
+                    <DemoUser />
+                  </div>
                   <SignUpFormModal />
                   <LoginFormModal />
               </>
@@ -41,7 +43,7 @@ const NavBar = () => {
             <NavLink
               to='/' exact={true}
               activeClassName='active'
-              activeStyle={{ 'textDecoration': 'underline',  }}
+              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
               style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
               <div className='tab'>
                 <h3>Home</h3>
@@ -54,7 +56,7 @@ const NavBar = () => {
             </NavLink> */}
             <NavLink to='/recipes'
               activeClassName='active'
-              activeStyle={{ 'textDecoration': 'underline' }}
+              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
               style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
               <div className='tab'>
                 <h3>Explore</h3>
@@ -65,7 +67,7 @@ const NavBar = () => {
               <>
                 <NavLink to='/my-recipes' exact={true}
                   activeClassName='active'
-                  activeStyle={{ 'textDecoration': 'underline' }}
+                  activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
                   style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
                   <div className='tab'>
                     <h3>My Recipes</h3>

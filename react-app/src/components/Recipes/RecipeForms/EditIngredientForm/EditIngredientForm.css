@@ -91,3 +91,7 @@
     cursor: pointer;
     color: red;
 }
+
+.edit-ingredients-container li {
+    list-style: none;
+}

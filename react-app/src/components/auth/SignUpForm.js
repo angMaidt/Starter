@@ -72,7 +72,7 @@ const SignUpForm = ({ showModal, setShowModal }) => {
           onChange={updateUsername}
           value={username}
           ></input>
-          <label>*User Name</label>
+          <label><span className='asterisk'>*</span>User Name</label>
       </div>
       <div className='input-container'>
         <input
@@ -81,7 +81,7 @@ const SignUpForm = ({ showModal, setShowModal }) => {
           onChange={updateEmail}
           value={email}
           ></input>
-          <label>*Email</label>
+          <label><span className='asterisk'>*</span>Email</label>
       </div>
       <div className='input-container'>
         <input
@@ -90,7 +90,7 @@ const SignUpForm = ({ showModal, setShowModal }) => {
           onChange={updatePassword}
           value={password}
           ></input>
-          <label>*Password</label>
+          <label><span className='asterisk'>*</span>Password</label>
       </div>
       <div className='input-container signup-last'>
         <input
@@ -100,10 +100,10 @@ const SignUpForm = ({ showModal, setShowModal }) => {
           value={repeatPassword}
           required={true}
           ></input>
-          <label>*Confirm Password</label>
+          <label><span className='asterisk'>*</span>Confirm Password</label>
       </div>
       <div className='footnotes signup-footnotes'>
-        <h6>* = required field</h6>
+        <h6><span className='asterisk'>*</span> = required field</h6>
         <button type='submit'>Sign Up</button>
       </div>
       <div className='signup-form-bottom'>

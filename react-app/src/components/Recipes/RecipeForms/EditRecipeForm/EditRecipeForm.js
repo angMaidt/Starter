@@ -114,7 +114,7 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
         e.preventDefault()
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
         //convert to ms before sending to db
         const active_time = convert_to_ms(active_time_hrs, active_time_mins)
@@ -272,18 +272,17 @@ function EditRecipeForm({ recipe, setShowEditForm, ordered_ingredients, ordered_
                         <label>Yield:</label>
                     </div>
                 </div>
-                {validationErrors.length > 0 ?
+                {/* {validationErrors.length > 0 ?
                         <div className='submit-edit-button-container'>
                             <h3>Please fix errors before submitting.</h3>
                         </div>
-                    :
+                    : */}
                         <div className='submit-edit-button-container'>
                             <h3>Save</h3>
                             <button type='submit' className='arrow-button' >
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </button>
                         </div>
-                    }
             </form>
         </>
     )

@@ -30,28 +30,36 @@
 .banner-image-container img {
     /* height: 700px; */
     /* object-fit: cover; */
-    transform: translate(0, -40%);
+    transform: translate(0, -10%);
 }
 
 .taxonomy-bar {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    height: 100%;
+    height: 110%;
     width: 25px;
     background-color: var(--yellow);
     border-right: 1px solid var(--off-black);
     border-left: 1px solid var(--off-black);
     padding-left: 2px;
     padding-right: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--off-black);
     /* padding-bottom: 5px; */
 }
 
 .banner-text {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40vw;
     padding: 25px;
     color: var(--off-black);
+    /* margin-top: 70px; */
+    font-weight: 200;
+    /* font-family: 'Roboto'; */
+    letter-spacing: 1px;
+    /* background-color: var(--pale-blue); */
     font-size: 30px;
     /* align-items: ; */
 }
@@ -60,10 +68,6 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    /* padding-bottom: 15px; */
-    /* line-height: 2em; */
-    /* padding-left: 2vw;
-    padding-right: 2vw; */
 }
 
 .welcome-ribbon-text span:first-child {
@@ -87,10 +91,6 @@
     letter-spacing: 2px;
 }
 
-.welcome-ribbon-text h3:first-child() {
-
-}
-
 .welcome-ribbon-text h3:nth-child(2) {
     color: var(--off-white);
     font-family: roboto;
@@ -100,40 +100,30 @@
 }
 
 .homepage-arrow {
-    /* margin-left: 20vw; */
+    text-transform: uppercase;
+    align-self: flex-end;
+    justify-self: flex-end;
 }
 
 .github-links-container {
     height: 18vh;
     width: 100vw;
-    background-color: var(--dark-blue);
-    color: var(--off-white);
-    font-size: 75px;
+    /* background-color: var(--dark-blue); */
+    background-color: white;
+    /* color: var(--dark-blue); */
+    font-size: 80px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    text-decoration: none
+    text-decoration: none;
+    text-shadow: 0 0 2px var(--light-gray);
 }
 
 .github-links-container i:first-child:hover{
     color: var(--yellow);
+    /* text-shadow: 4px 4px var(--red-orange); */
     cursor: pointer;
-    font-size: 80px;
-    transition: all .15s ease-in;
-}
-
-.github-links-container i:first-child:hover{
-    color: var(--yellow);
-    cursor: pointer;
-    font-size: 80px;
-    transition: all .15s ease-in;
-    /* text-decoration: none */
-}
-
-.github-links-container:nth-child(2):hover{
-    color: var(--pale-blue);
-    cursor: pointer;
-    /* font-size: 80px; */
-    transition: all .15s ease-in;
+    font-size: 90px;
+    transition: all .2s ease-in;
     /* text-decoration: none */
 }

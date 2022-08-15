@@ -24,18 +24,21 @@ function AllRecipes() {
     }
 
     return (
-        <div className='all-recipes-view-container'>
-            {/* <div className='tag'><span>RECIPES</span></div> */}
-            <h1>All Recipes</h1>
-            <div className='page-header-underline'></div>
-            <div className='recipes-container'>
-                {sorted_recipes &&
-                    Object.values(sorted_recipes).map(recipe => (
-                        <RecipeCard key={recipe.id} recipe={recipe} />
-                    ))
-                }
+        <>  <div>
+                <h1 id='all-recipes'>All Recipes</h1>
+                {/* <div className='page-header-underline'></div> */}
             </div>
-        </div>
+            <div className='all-recipes-view-container'>
+                {/* <div className='tag'><span>RECIPES</span></div> */}
+                <div className='recipes-container'>
+                    {sorted_recipes &&
+                        Object.values(sorted_recipes).map(recipe => (
+                            <RecipeCard key={recipe.id} recipe={recipe} />
+                        ))
+                    }
+                </div>
+            </div>
+        </>
     )
 }
 
