@@ -3,7 +3,7 @@
     padding: 20px;
     border: 2px solid var(--dark-blue);
     width: 75%;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .comment-input-container .input-container select,
@@ -51,7 +51,7 @@
     /* font-size: 20px; */
 }
 
-.user-info div:not(.posted-rating){
+.user-info div:not(.posted-rating, .posted-recipe div){
     height: 60px;
     width: 60px;
     overflow: hidden;

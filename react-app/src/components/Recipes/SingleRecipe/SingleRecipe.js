@@ -129,23 +129,25 @@ function SingleRecipe() {
                             <div className='line'></div>
                         </div>
                     </div>
-                    <p>{recipe.description}</p>
-                    <div className='user-info posted-recipe'>
-                        <h5>by {recipe.user.username}</h5>
-                        {recipe.created_at === recipe.updated_at ?
-                            <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
-                            :
-                            <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
-                        }
+                    <p id='recipe-description'>{recipe.description}</p>
+                    <div className='posted-recipe'>
+                        <div className='.posted-info'>
+                            <h5>by {recipe.user.username}</h5>
+                            {recipe.created_at === recipe.updated_at ?
+                                <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
+                                :
+                                <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
+                            }
+                        </div>
+                        <div
+                            className='recipe-comment-info bubble bubble-bottom-left'
+                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
+                            >
+                            {/* <span>Rating</span>
+                            <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
+                            <div>{recipe.comments.length}<h6>comments</h6></div>
+                        </div>
                     </div>
-                </div>
-                <div
-                    className='recipe-comment-info bubble bubble-bottom-left'
-                    onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
-                    >
-                    {/* <span>Rating</span>
-                    <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
-                    <div>{recipe.comments.length}<h6>comments</h6></div>
                 </div>
                 <div className='single-image-container'>
                     <img src={recipe.image_url} onError={({ currentTarget }) => {
@@ -154,7 +156,7 @@ function SingleRecipe() {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
-                    <h3>Recipe Facts</h3>
+                    <h3 className='wavy-underline'>Recipe Facts</h3>
                     {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
                         <div onClick={() => setShowEditForm(!showEditForm)}>
@@ -165,7 +167,7 @@ function SingleRecipe() {
                     }
                 </div>
                 {!showEditForm ?
-                    <div style={{ 'border': '1px solid black' }} className='recipe-facts'>
+                    <div className='recipe-facts'>
                         <div>
                             <h3>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins </h3>
                             <h3>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</h3>
@@ -189,7 +191,7 @@ function SingleRecipe() {
                 {/* Ingredients */}
                 <div>
                     <div className='header-button-container ing'>
-                        <h3 id='ingredients'>Ingredients</h3>
+                        <h3 id='ingredients' className='straight-underline'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.ingredients.length > 0 &&
@@ -231,8 +233,6 @@ function SingleRecipe() {
                             ))}
                         </ul>
                     </div>
-
-                    {/* MAKE INTO MODAL */}
                     {showAddIng &&
                         <div>
                             <NewIngredientForm
@@ -245,8 +245,8 @@ function SingleRecipe() {
 
                 {/* Instructions */}
                 <div>
-                    <div className='header-button-container inst'>
-                        <h3 id='instructions'>Instructions</h3>
+                    <div className='header-button-container inst-container'>
+                        <h3 id='instructions' className='straight-underline'>Instructions</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.instructions.length > 0 &&

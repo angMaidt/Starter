@@ -107,7 +107,7 @@ p:not(.card-bottom-info p, .comment-text) {
     padding: 0;
 }
 
-h5:not(.jump-to-recipe h5) {
+h5:not(.jump-to-recipe h5, .posted-recipe h5) {
     font-size: 18px;
     padding: 0;
     margin: 0;
@@ -164,3 +164,7 @@ label {
 /* .bottom-screen {
     background-color: white;
 } */
+
+li {
+    color: var(--red-orange)
+}
