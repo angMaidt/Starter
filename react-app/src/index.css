@@ -59,6 +59,8 @@ button:not(.arrow-button, .submit) {
     background-position: right bottom;
     background-color: var(--off-white);
     transition: all .15s ease-out;
+    box-shadow: 0 0 1px var(--light-gray);
+
     /* font-family: 'SpaceGrotesk';
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }

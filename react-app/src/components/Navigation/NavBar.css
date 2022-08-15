@@ -31,16 +31,17 @@
 }
 
 .logo-container img {
-    height: 80px;
+    height: 75px;
 }
 
 .logo-container h1 {
     font-size: 60px;
     color: var(--dark-blue);
-    margin-top: 75px;
-    /* font-family: 'SpaceGrotesk';
-    src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf'); */
+    margin-top: 70px;
     font-weight: 400;
+    font-family: 'Roboto';
+    letter-spacing: -2px;
+    /* line-height: 50px; */
 }
 
 .logo-container h1:hover {
