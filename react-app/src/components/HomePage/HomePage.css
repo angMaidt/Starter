@@ -108,19 +108,19 @@
 .github-links-container {
     height: 18vh;
     width: 100vw;
-    /* background-color: var(--dark-blue); */
-    background-color: white;
-    /* color: var(--dark-blue); */
+    background-color: var(--tan);
+    /* background-color: white; */
+    /* color: var(--tan); */
     font-size: 80px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     text-decoration: none;
-    text-shadow: 0 0 2px var(--light-gray);
 }
 
 .github-links-container i:first-child:hover{
-    color: var(--yellow);
+    color: var(--light-blue);
+    text-shadow: 0 0 2px var(--light-gray);
     /* text-shadow: 4px 4px var(--red-orange); */
     cursor: pointer;
     font-size: 90px;
