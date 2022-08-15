@@ -35,12 +35,13 @@
 }
 
 .logo-container h1 {
-    font-size: 60px;
+    font-size: 50px;
     color: var(--dark-blue);
     margin-top: 70px;
     font-weight: 400;
     font-family: 'Roboto';
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
+    font-stretch: expanded;
     /* line-height: 50px; */
 }
 

@@ -79,7 +79,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
 
     // if (!showEditIng) setShowEdit(!showEdit)
     return (
-        <div >
+        <div className='edit-ingredients-wrapper'>
             {/* <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff} </p> */}
             {validationErrors.length > 0 &&
                 <ul className='errors'>
