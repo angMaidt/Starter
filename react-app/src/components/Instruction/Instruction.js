@@ -37,7 +37,9 @@ function Instruction({ instruction, recipe_id, showEditInst, setShowEditInst, cu
         :
         showEditInst ?
             <div className='instruction-container'>
-                <p key={instruction.id}>{instruction.list_order}. {instruction.specification}</p>
+                <p key={instruction.id} className='instruction'>
+                    {instruction.list_order}. {instruction.specification}
+                </p>
                 <div>
                     <div onClick={() => setShowEdit2(!showEdit2)}><span>edit</span></div>
                     {instruction.list_order === currentLength && <div onClick={handleDelete}><span>delete</span></div>}

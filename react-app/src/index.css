@@ -8,6 +8,7 @@
     --light-gray: #767677;
     --yellow: #FFD12F;
     --off-white: #FBF9EE;
+    --tan: #f3edcf;
     --off-black: #333333;
     --red-orange: #ff575d;
 }
@@ -106,7 +107,7 @@ p:not(.card-bottom-info p, .comment-text) {
     padding: 0;
 }
 
-h5 {
+h5:not(.jump-to-recipe h5, .posted-recipe h5) {
     font-size: 18px;
     padding: 0;
     margin: 0;
@@ -124,12 +125,20 @@ span:not(.welcome-ribbon span, .asterisk), .ing.submit {
     text-transform: uppercase;
 }
 
-i:not(.fa-arrow-right-long, .add, .fa-github, .fa-linkedin) {
+i:not(.fa-arrow-right-long,
+            .add,
+            .fa-github,
+            .fa-linkedin,
+            .fa-arrow-down) {
     color: var(--light-gray);
     font-size: 18px;
 }
 
-i:hover:not(.fa-arrow-right-long, .add, .fa-github, .fa-linkedin) {
+i:hover:not(.fa-arrow-right-long,
+            .add,
+            .fa-github,
+            .fa-linkedin,
+            .fa-arrow-down) {
     cursor: pointer;
     font-size: 20px;
     color: var(--dark-blue);
@@ -155,3 +164,7 @@ label {
 /* .bottom-screen {
     background-color: white;
 } */
+
+li {
+    color: var(--red-orange)
+}

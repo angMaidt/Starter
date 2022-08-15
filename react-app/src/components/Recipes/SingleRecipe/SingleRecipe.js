@@ -14,6 +14,8 @@ function SingleRecipe() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const commentRef = useRef()
+    const recipeRef = useRef()
     const recipe = useSelector(state => state.recipes[id])
     const sessionUser = useSelector(state => state.session.user)
 
@@ -77,9 +79,9 @@ function SingleRecipe() {
     }
 
     //scroll to ingredients header
-    // const ingEl = document.getElementById('recipe-ingredients')
+    // const comments = document.getElementById('comments')
     // const headerOffset = 45
-    // const elementPosition = ingEl.getBoundingClientRect().top
+    // const elementPosition = comments.getBoundingClientRect().top
     // const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
     // window.scrollTo({
@@ -105,22 +107,47 @@ function SingleRecipe() {
         <div className='view-container single-recipe-view'>
             {recipe ?
             <>
-                <div>
+                <div className='recipe-header-container'>
                     <h1>{recipe.title}</h1>
-                    <p>{recipe.description}</p>
-                    <div className='user-info'>
-                        <h5>by {recipe.user.username}</h5>
-                        {recipe.created_at === recipe.updated_at ?
-                            <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
-                            :
-                            <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
-                        }
+                    <div className='recipe-ref-container'>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
+                        <div
+                            className='jump-to-recipe'
+                            onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
+                            >
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <h5>Jump to Recipe</h5>
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
                     </div>
-                </div>
-                <div className='recipe-comment-info'>
-                    <span>Rating</span>
-                    <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p>
-                    <span>{recipe.comments.length} comments</span>
+                    <p id='recipe-description'>{recipe.description}</p>
+                    <div className='posted-recipe'>
+                        <div className='.posted-info'>
+                            <h5>by {recipe.user.username}</h5>
+                            {recipe.created_at === recipe.updated_at ?
+                                <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
+                                :
+                                <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
+                            }
+                        </div>
+                        <div
+                            className='recipe-comment-info bubble bubble-bottom-left'
+                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
+                            >
+                            {/* <span>Rating</span>
+                            <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
+                            <div>{recipe.comments.length}<h6>comments</h6></div>
+                        </div>
+                    </div>
                 </div>
                 <div className='single-image-container'>
                     <img src={recipe.image_url} onError={({ currentTarget }) => {
@@ -128,8 +155,8 @@ function SingleRecipe() {
                             currentTarget.src ='../../../../../static/default-bread.jpg'
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
-                <div className='header-button-container'>
-                    <h3>Recipe Facts</h3>
+                <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
+                    <h3 className='wavy-underline'>Recipe Facts</h3>
                     {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
                         <div onClick={() => setShowEditForm(!showEditForm)}>
@@ -140,7 +167,7 @@ function SingleRecipe() {
                     }
                 </div>
                 {!showEditForm ?
-                    <div style={{ 'border': '1px solid black' }} className='recipe-facts'>
+                    <div className='recipe-facts'>
                         <div>
                             <h3>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins </h3>
                             <h3>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</h3>
@@ -164,7 +191,7 @@ function SingleRecipe() {
                 {/* Ingredients */}
                 <div>
                     <div className='header-button-container ing'>
-                        <h3 id='ingredients'>Ingredients</h3>
+                        <h3 id='ingredients' className='straight-underline'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.ingredients.length > 0 &&
@@ -206,8 +233,6 @@ function SingleRecipe() {
                             ))}
                         </ul>
                     </div>
-
-                    {/* MAKE INTO MODAL */}
                     {showAddIng &&
                         <div>
                             <NewIngredientForm
@@ -220,8 +245,8 @@ function SingleRecipe() {
 
                 {/* Instructions */}
                 <div>
-                    <div className='header-button-container inst'>
-                        <h3 id='instructions'>Instructions</h3>
+                    <div className='header-button-container inst-container'>
+                        <h3 id='instructions' className='straight-underline'>Instructions</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.instructions.length > 0 &&
@@ -271,7 +296,10 @@ function SingleRecipe() {
                         </div>
                     }
                 </div>
-                <h2 id='comments'>Check out what people are saying!</h2>
+                <h2 id='comments'
+                    ref={commentRef}
+                    style={{ 'scrollMarginTop': '100px' }}
+                    >Check out what people are saying!</h2>
                 <div className='page-header-underline'></div>
                 <CommentSection recipe={recipe} />
                 {/* <button onClick={() => ingRef.current.scrollIntoView({ behavior: 'smooth' })}>Test</button> */}
