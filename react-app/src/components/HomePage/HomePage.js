@@ -35,10 +35,10 @@ function HomePage() {
                 </div>
             </div>
             <div className='github-links-container'>
-                <a href='https://github.com/angMaidt' style={{ 'color': 'var(--dark-blue)' }}>
+                <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-black)' }}>
                     <i class="fa-brands fa-github"></i>
                 </a>
-                <a href='https://www.linkedin.com/in/angie-maidt-69b6b8248/' style={{ 'color': 'var(--light-blue)' }}>
+                <a href='https://www.linkedin.com/in/angie-maidt-69b6b8248/' style={{ 'color': 'var(--off-black)' }}>
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
             </div>

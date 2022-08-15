@@ -63,7 +63,7 @@ function SingleRecipe() {
             history.push('/my-recipes')
 
         } catch (e) {
-            return window.alert(`delete failed! ${e}`)
+            return window.alert(`Delete failed! Please try again.`)
         }
     }
 

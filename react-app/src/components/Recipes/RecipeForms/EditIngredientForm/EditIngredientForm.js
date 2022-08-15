@@ -20,8 +20,8 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
     useEffect(() => {
         let errors = []
 
-        if (!amount) errors.push('Looks like you forgot to enter an amount!')
-        if (amount < 0) errors.push('Looks like you tried to enter a negative amount. Not likely, I think.')
+        // if (!amount) errors.push('Looks like you forgot to enter an amount!')
+        if (amount <= 0) errors.push('Looks like you tried to enter a negative amount or zero. Not likely, I think.')
         if (amount > 10000) errors.push('Looks like you tried to enter an amount over 10,000. Consider scaling your recipe down.')
 
         if (food_stuff.length < 2) errors.push('Please enter more than 1 character into ingredient name.')
