@@ -69,7 +69,7 @@ button:hover:not(.submit) {
     /* color: var(--off-white) */
 }
 
-h1:not(#all-recipes) {
+h1:not(#all-recipes, .logo-container h1) {
     /* color: var(--dark-blue);
     width: fit-content; */
     text-transform: uppercase;
