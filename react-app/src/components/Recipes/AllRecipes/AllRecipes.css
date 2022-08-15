@@ -13,14 +13,15 @@
     margin-right: 10%; */
 }
 
-.view-container h1 {
-    font-size: 60px;
-    font-weight: 400;
-    /* width: 30%; */
-    /* text-decoration: underline;
-    background-color: var(--yellow); */
-    color: var(--off-black);
-    /* text-decoration: underline; */
+#all-recipes {
+    text-transform: uppercase;
+    color: var(--dark-blue);
+    background-color: var(--yellow);
+    letter-spacing: 5px;
+    text-decoration: underline;
+    font-size: 50px;
+    /* text-decoration: underline 3px wavy var(--red-orange);
+    text-underline-offset: 7px; */
 }
 
 .view-container .tag {

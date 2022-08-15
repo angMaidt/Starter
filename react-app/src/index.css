@@ -69,9 +69,12 @@ button:hover:not(.submit) {
     /* color: var(--off-white) */
 }
 
-h1 {
-    color: var(--dark-blue);
-    width: fit-content;
+h1:not(#all-recipes) {
+    /* color: var(--dark-blue);
+    width: fit-content; */
+    text-transform: uppercase;
+    color: var(--off-black);
+    letter-spacing: 5px;
 }
 
 h3:not(
@@ -128,20 +131,24 @@ span:not(.welcome-ribbon span, .asterisk), .ing.submit {
     text-transform: uppercase;
 }
 
-i:not(.fa-arrow-right-long,
-            .add,
-            .fa-github,
-            .fa-linkedin,
-            .fa-arrow-down) {
+i:not(
+    .fa-arrow-right-long,
+    .add,
+    .fa-github,
+    .fa-linkedin,
+    .fa-arrow-down
+    ) {
     color: var(--light-gray);
     font-size: 18px;
 }
 
-i:hover:not(.fa-arrow-right-long,
-            .add,
-            .fa-github,
-            .fa-linkedin,
-            .fa-arrow-down) {
+i:hover:not(
+    .fa-arrow-right-long,
+    .add,
+    .fa-github,
+    .fa-linkedin,
+    .fa-arrow-down
+    ) {
     cursor: pointer;
     font-size: 20px;
     color: var(--dark-blue);
@@ -158,7 +165,10 @@ label {
     height: fit-content;
 }
 
-.view-container:not(.view-container.single-recipe-view, .viewcontainer.all-recipes) {
+.view-container:not(
+    .view-container.single-recipe-view,
+    .viewcontainer.all-recipes
+    ) {
     display: flex;
     flex-direction: column;
     align-items: center;
