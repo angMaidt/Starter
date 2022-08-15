@@ -83,7 +83,7 @@
     display: flex;
     background-color: white;
     padding: 0 20px 20px 20px;
-    border: 2px solid var(--dark-blue);
+    border: 1px solid var(--dark-blue);
     width: 75%;
     margin-bottom: 10px;
     align-items: flex-start;

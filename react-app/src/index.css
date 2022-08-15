@@ -74,7 +74,10 @@ h1 {
     width: fit-content;
 }
 
-h3:not(.welcome-ribbon h3), h2:not(.banner-text h2) {
+h3:not(
+    .welcome-ribbon h3,
+    .card-container-right h3
+    ), h2:not(.banner-text h2) {
     color: var(--dark-blue);
 }
 
