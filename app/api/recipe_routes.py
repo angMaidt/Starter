@@ -192,7 +192,7 @@ def get_search_results():
         search_term = form.data['search_term']
 
         recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
-        
+
         # print('RECIPE RESULTS', recipe_results)
         # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
         # if not recipe_results:
