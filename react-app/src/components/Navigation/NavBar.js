@@ -7,6 +7,7 @@ import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal/SignUpFormModal';
 // import SystemSwitch from '../SystemSwitch/SystemSwitch';
 import './NavBar.css'
+import SearchBar from '../SearchBar';
 
 const NavBar = () => {
   // const [hover, setHover] = useState(false)
@@ -36,6 +37,9 @@ const NavBar = () => {
                   <LoginFormModal />
               </>
             }
+          </div>
+          <div>
+            <SearchBar />
           </div>
 
             {/* tabs */}
