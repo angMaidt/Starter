@@ -192,9 +192,11 @@ def get_search_results():
         search_term = form.data['search_term']
 
         recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
+        
+        # print('RECIPE RESULTS', recipe_results)
         # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
-        if not recipe_results:
-            return {'search_results': 'There are no recipe titles that match this description!'}
+        # if not recipe_results:
+        #     return {'search_results': 'There are no recipe titles that match this description!'}
         return {'search_results': [recipe.to_dict() for recipe in recipe_results]}
 
     return {'error': 'Unable to complete search'}
