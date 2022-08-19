@@ -4,14 +4,14 @@ import { Link, useHistory } from 'react-router-dom'
 import { getRecipesThunk } from '../../store/recipe'
 import './SearchBar.css'
 
-function SearchBar() {
+function SearchBar({ setShowSearch }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const [searchTerm, setSearchTerm] = useState('')
     const [filteredResults, setFilteredResults] = useState([])
     const recipes = useSelector(state => state.recipes)
 
-    console.log(recipes)
+    // console.log(recipes)
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -37,13 +37,7 @@ function SearchBar() {
     const clearInput = () => {
         setFilteredResults([])
         setSearchTerm('')
-        // history.push()
     }
-
-    // const cancelSearch = () => {
-    //     setFilteredResults([])
-    //     setSearchTerm('')
-    // }
 
 
     return (
@@ -59,29 +53,25 @@ function SearchBar() {
                     onChange={handleFilter}
                     placeholder='Search recipes...'/>
                 <div className='clear-search-container'>
-                    {!searchTerm.length ?
-                        null
-                    :
-                        <>
-                            {/* <div onClick={cancelSearch}>Cancel Search</div> */}
-                            <i className="fa-solid fa-xmark clear-search"
-                                onClick={clearInput}
-                                title='Clear Search'></i>
-                            {/* <div className='clear-search' onClick={clearInput}>X</div> */}
-                        </>
-                    }
+                    <i className="fa-solid fa-xmark clear-search"
+                        onClick={searchTerm.length ? clearInput : () => setShowSearch(false)}
+                        title={searchTerm.length ? 'Clear Search' : 'Close Search'}></i>
                 </div>
             </form>
             {filteredResults.length > 0 && (
                 <div className='data-result'>
                     {filteredResults && (
-                        filteredResults.slice(0, 5).map((result, idx) => (
-                        <div key={idx} className='search-result'>
-                            <Link to={`/recipes/${result.id}`} style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>>
-                                {result.title}
-                                {/* {console.log(result.title)} */}
+                        filteredResults.slice(0, 4).map((result, idx) => (
+                            <Link
+                                to={`/recipes/${result.id}`} style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
+                                <div
+                                    key={idx}
+                                    className='search-result'
+                                    onClick={() => setShowSearch(false)}>
+                                    {result.title}
+                                    {console.log(result.title)}
+                                </div>
                             </Link>
-                        </div>
                         ))
                     )}
                 </div>

@@ -55,7 +55,7 @@ const NavBar = () => {
                 onClick={() => setShowSearch(!showSearch)}
                 title='Search'/>
             {showSearch && (
-              <SearchBar />
+              <SearchBar setShowSearch={setShowSearch}/>
               )}
             </div>
 
