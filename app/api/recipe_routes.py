@@ -184,19 +184,19 @@ def get_measurement_units():
 
 
 # search for a recipe
-@recipe_routes.route('/search', methods=['POST'])
-def get_search_results():
-    form = SearchForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        search_term = form.data['search_term']
+# @recipe_routes.route('/search', methods=['POST'])
+# def get_search_results():
+#     form = SearchForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         search_term = form.data['search_term']
 
-        recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
+#         recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
 
-        # print('RECIPE RESULTS', recipe_results)
-        # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
-        # if not recipe_results:
-        #     return {'search_results': 'There are no recipe titles that match this description!'}
-        return {'search_results': [recipe.to_dict() for recipe in recipe_results]}
+#         # print('RECIPE RESULTS', recipe_results)
+#         # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
+#         # if not recipe_results:
+#         #     return {'search_results': 'There are no recipe titles that match this description!'}
+#         return {'search_results': [recipe.to_dict() for recipe in recipe_results]}
 
-    return {'error': 'Unable to complete search'}
+#     return {'error': 'Unable to complete search'}

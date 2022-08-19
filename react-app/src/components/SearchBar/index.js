@@ -1,59 +1,82 @@
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom'
+import { getRecipesThunk } from '../../store/recipe'
 
 function SearchBar() {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [searchTerm, setSearchTerm] = useState('')
-    const [results, setResults] = useState([])
-    console.log(typeof results.search_results)
+    const [filteredResults, setFilteredResults] = useState([])
+    const recipes = useSelector(state => state.recipes)
 
-    const handleSearch = async (e) => {
-        // e.preventDefault()
-        setSearchTerm(e.target.value)
-        if (searchTerm === '') {
-            setResults([])
-            return
+    console.log(recipes)
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            await dispatch(getRecipesThunk())
         }
+        fetchRecipes().catch(console.error)
+    }, [dispatch])
 
-        const payload = {
-            search_term: searchTerm
-        }
-
-        const res = await fetch('/api/recipes/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
+    const handleFilter = (e) => {
+        const searchWord = e.target.value
+        setSearchTerm(searchWord)
+        const newFilter = Object.values(recipes).filter(recipe => {
+            return recipe.title.toLowerCase().includes(searchWord.toLowerCase())
         })
 
-        if (res.ok) {
-            const data = await res.json()
-            setResults(data)
+        if (searchWord === '') {
+            setFilteredResults([])
+        } else {
+            setFilteredResults(newFilter)
         }
     }
 
-    // const search_results = Object.values(results.search_results)
+    const clearInput = () => {
+        setFilteredResults([])
+        setSearchTerm('')
+        // history.push()
+    }
+
+    const cancelSearch = () => {
+        setFilteredResults([])
+        setSearchTerm('')
+    }
+
 
     return (
         <div className='search'>
-            <div className='search-inputs'>
+            <form className='search-inputs'>
                 <input
                     type='text'
                     value={searchTerm}
-                    onChange={handleSearch}
+                    onChange={handleFilter}
                     placeholder='Search recipes by title!'/>
-                <div className='search-icon'></div>
-            </div>
-            <div className='data-result' style={{ 'height': '100%', 'backgroundColor': 'white'}}>
-                {results.search_results && (
-                    results.search_results.map((result, idx) => (
-                    <Link key={idx} to={`/recipes/${result.id}`}>
-                        {result.title}
-                    </Link>
-                        // <div key={idx}>{result.title}</div>
-                    ))
-                )}
-            </div>
+                <div className='search-icon'>
+                    {!searchTerm.length ?
+                        <div>Search!</div>
+                    :
+                        <>
+                            <div onClick={cancelSearch}>Cancel Search</div>
+                            <div onClick={clearInput}></div>
+                        </>
+                    }
+                </div>
+            </form>
+            {filteredResults.length > 0 && (
+                <div className='data-result' style={{ 'height': '100%', 'backgroundColor': 'white'}}>
+                    {filteredResults && (
+                        filteredResults.map((result, idx) => (
+                        <div key={idx}>
+                            <Link to={`/recipes/${result.id}`}>
+                                {result.title}
+                            </Link>
+                        </div>
+                        ))
+                    )}
+                </div>
+            )}
         </div>
     )
 }
