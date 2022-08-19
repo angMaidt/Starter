@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Link } from 'react-router-dom'
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -8,10 +8,12 @@ function SearchBar() {
 
     const handleSearch = async (e) => {
         // e.preventDefault()
-        if (!searchTerm) {
-            setResults([])
-        }
         setSearchTerm(e.target.value)
+        if (searchTerm === '') {
+            setResults([])
+            return
+        }
+
         const payload = {
             search_term: searchTerm
         }
@@ -45,7 +47,10 @@ function SearchBar() {
             <div className='data-result' style={{ 'height': '100%', 'backgroundColor': 'white'}}>
                 {results.search_results && (
                     results.search_results.map((result, idx) => (
-                        <div key={idx}>{result.title}</div>
+                    <Link key={idx} to={`/recipes/${result.id}`}>
+                        {result.title}
+                    </Link>
+                        // <div key={idx}>{result.title}</div>
                     ))
                 )}
             </div>
