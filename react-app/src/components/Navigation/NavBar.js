@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom';
 import DemoUser from '../auth/DemoUser';
@@ -11,6 +11,7 @@ import SearchBar from '../SearchBar';
 
 const NavBar = () => {
   // const [hover, setHover] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
 
   return (
@@ -38,9 +39,25 @@ const NavBar = () => {
               </>
             }
           </div>
-          <div>
-            <SearchBar />
-          </div>
+          {/* <div>
+            <img
+              src='../../../static/icon-search.svg'
+              alt='icon-search'
+              id='icon-search' />
+          </div> */}
+
+          {/* search */}
+            <div className='nav search-container'>
+              <img
+                src='../../../static/icon-search.svg'
+                alt='icon-search'
+                id='icon-search'
+                onClick={() => setShowSearch(!showSearch)}
+                title='Search'/>
+            {showSearch && (
+              <SearchBar />
+              )}
+            </div>
 
             {/* tabs */}
           <div className='nav right-link-container'>

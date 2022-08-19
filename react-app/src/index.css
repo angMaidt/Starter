@@ -106,7 +106,7 @@ h3:not(
     width: 100%;
 } */
 
-p:not(.card-bottom-info p, .comment-text) {
+p:not(.card-bottom-info p, .comment-text, .search-result p) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);

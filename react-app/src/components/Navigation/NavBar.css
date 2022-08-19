@@ -90,6 +90,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-right: 30px;
 }
 
 .auth-links * {
@@ -98,4 +99,11 @@
 
 .demo-user-container {
     margin-right: 30px;
+}
+
+.nav.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom'
 import { getRecipesThunk } from '../../store/recipe'
+import './SearchBar.css'
 
 function SearchBar() {
     const dispatch = useDispatch()
@@ -39,38 +40,46 @@ function SearchBar() {
         // history.push()
     }
 
-    const cancelSearch = () => {
-        setFilteredResults([])
-        setSearchTerm('')
-    }
+    // const cancelSearch = () => {
+    //     setFilteredResults([])
+    //     setSearchTerm('')
+    // }
 
 
     return (
         <div className='search'>
             <form className='search-inputs'>
+                {/* <img
+                    src='../../../static/icon-search.svg'
+                    alt='icon-search'
+                    id='icon-search' /> */}
                 <input
                     type='text'
                     value={searchTerm}
                     onChange={handleFilter}
-                    placeholder='Search recipes by title!'/>
-                <div className='search-icon'>
+                    placeholder='Search recipes...'/>
+                <div className='clear-search-container'>
                     {!searchTerm.length ?
-                        <div>Search!</div>
+                        null
                     :
                         <>
-                            <div onClick={cancelSearch}>Cancel Search</div>
-                            <div onClick={clearInput}></div>
+                            {/* <div onClick={cancelSearch}>Cancel Search</div> */}
+                            <i className="fa-solid fa-xmark clear-search"
+                                onClick={clearInput}
+                                title='Clear Search'></i>
+                            {/* <div className='clear-search' onClick={clearInput}>X</div> */}
                         </>
                     }
                 </div>
             </form>
             {filteredResults.length > 0 && (
-                <div className='data-result' style={{ 'height': '100%', 'backgroundColor': 'white'}}>
+                <div className='data-result'>
                     {filteredResults && (
-                        filteredResults.map((result, idx) => (
-                        <div key={idx}>
-                            <Link to={`/recipes/${result.id}`}>
+                        filteredResults.slice(0, 5).map((result, idx) => (
+                        <div key={idx} className='search-result'>
+                            <Link to={`/recipes/${result.id}`} style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>>
                                 {result.title}
+                                {/* {console.log(result.title)} */}
                             </Link>
                         </div>
                         ))
