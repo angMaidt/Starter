@@ -63,12 +63,13 @@ const NavBar = () => {
           <div className='nav right-link-container'>
             <NavLink
               to='/' exact={true}
+              className='tab'
               activeClassName='active'
               activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
               style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
-              <div className='tab'>
+              {/* <div className='tab'> */}
                 <h3>Home</h3>
-              </div>
+              {/* </div> */}
             </NavLink>
             {/* <NavLink to='/sourdough-faq' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
               <div className='tab'>
@@ -76,23 +77,26 @@ const NavBar = () => {
               </div>
             </NavLink> */}
             <NavLink to='/recipes'
+              className='tab'
               activeClassName='active'
               activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
               style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
-              <div className='tab'>
+              {/* <div className='tab'> */}
                 <h3>Explore</h3>
-              </div>
+              {/* </div> */}
             </NavLink>
             {/* note: / = login currently */}
             {sessionUser &&
               <>
-                <NavLink to='/my-recipes' exact={true}
+                <NavLink to='/my-recipes'
+                  exact={true}
+                  className='tab'
                   activeClassName='active'
                   activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
                   style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
-                  <div className='tab'>
+                  {/* <div className='tab'> */}
                     <h3>My Recipes</h3>
-                  </div>
+                  {/* </div> */}
                 </NavLink>
               </>
             }
