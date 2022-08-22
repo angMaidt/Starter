@@ -7,7 +7,7 @@ import LoginFormModal from '../auth/LoginFormModal';
 import SignUpFormModal from '../auth/SignUpFormModal/SignUpFormModal';
 // import SystemSwitch from '../SystemSwitch/SystemSwitch';
 import './NavBar.css'
-import SearchBar from '../SearchBar';
+import SearchBar from '../Search/SearchBar';
 
 const NavBar = () => {
   // const [hover, setHover] = useState(false)

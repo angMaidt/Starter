@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom'
-import { getRecipesThunk } from '../../store/recipe'
+import { getRecipesThunk } from '../../../store/recipe'
 import './SearchBar.css'
 
 function SearchBar({ setShowSearch }) {
@@ -39,14 +39,20 @@ function SearchBar({ setShowSearch }) {
         setSearchTerm('')
     }
 
+    const handleSubmit = () => {
+        //push to new page with search results
+        history.push(`/recipes/search/title=${searchTerm}`)
+        //clear input and close search bar
+        setFilteredResults([])
+        setSearchTerm('')
+        setShowSearch(false)
+    }
+
 
     return (
         <div className='search'>
-            <form className='search-inputs'>
-                {/* <img
-                    src='../../../static/icon-search.svg'
-                    alt='icon-search'
-                    id='icon-search' /> */}
+            <form className='search-inputs'
+                onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={searchTerm}
