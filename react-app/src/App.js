@@ -15,6 +15,7 @@ import SingleRecipe from './components/Recipes/SingleRecipe/SingleRecipe';
 import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
 // import LeftNav from './components/LeftNavigation/LeftNav';
 import HomePage from './components/HomePage/HomePage';
+import SearchResults from './components/Search/SearchResults';
 // import SystemProvider from './context/SystemContext';
 
 function App() {
@@ -64,9 +65,9 @@ function App() {
             <Route path='/recipes' exact={true}>
               <AllRecipes />
             </Route>
-            {/* <ProtectedRoute path='/recipes/new' exact={true} >
-              <RecipeForm />
-            </ProtectedRoute> */}
+            <Route path='/recipes/search/:term' exact={true}>
+              <SearchResults />
+            </Route>
             <ProtectedRoute path='/my-recipes' exact={true} >
               <MyRecipes />
             </ProtectedRoute>

@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from ..forms.search_form import SearchForm
 from app.models import Recipe, Ingredient, Instruction, MeasurementUnit, db
 from ..forms import RecipeForm, IngredientForm, InstructionForm
 from .auth_routes import validation_errors_to_error_messages
@@ -180,3 +181,22 @@ def delete_instruction(inst_id):
 def get_measurement_units():
     units = MeasurementUnit.query.all()
     return {"units": [unit.to_dict() for unit in units]}
+
+
+# search for a recipe
+# @recipe_routes.route('/search', methods=['POST'])
+# def get_search_results():
+#     form = SearchForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         search_term = form.data['search_term']
+
+#         recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
+
+#         # print('RECIPE RESULTS', recipe_results)
+#         # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
+#         # if not recipe_results:
+#         #     return {'search_results': 'There are no recipe titles that match this description!'}
+#         return {'search_results': [recipe.to_dict() for recipe in recipe_results]}
+
+#     return {'error': 'Unable to complete search'}
