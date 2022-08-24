@@ -180,6 +180,10 @@ function SingleRecipe() {
                 </div>
                 {!showEditForm ?
                     <div className='recipe-facts'>
+                        <img
+                            src='../../../../static/icon-timer.svg'
+                            alt='icon-timer'
+                            id='icon-timer'/>
                         <div>
                             <h3>Active Time: {active_time_converted[0] <= 0 ? null : active_time_converted[0] + ' hrs'}
                                 {active_time_converted[1] <= 0 ? null : active_time_converted[1] + ' mins'}</h3>
@@ -191,6 +195,10 @@ function SingleRecipe() {
                                 {total_time_converted[1] <= 0 ? null : total_time_converted[1] + ' mins'}</h3>
 
                         </div>
+                        <img
+                            src='../../../../static/icon-servings.svg'
+                            alt='icon-timer'
+                            id='icon-servings'/>
                         <div>
                             <h3>Baking Temp: {recipe.baking_temp} °F</h3>
                             <h3>Total Yield: {recipe.total_yield}</h3>

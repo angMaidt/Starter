@@ -182,10 +182,18 @@
 .recipe-facts {
     display: flex;
     background-color: white;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     border: 1px solid var(--dark-blue);
     box-shadow: 5px 5px 0 var(--tan)
     /* padding: 15px; */
+}
+
+#icon-timer {
+    height: 40px;
+}
+
+#icon-servings {
+    height: 40px;
 }
 
 .recipe-ref-container {
