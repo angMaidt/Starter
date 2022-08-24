@@ -43,7 +43,7 @@ function Ingredient({ recipe, ingredient, showEditIng, wsetShoEditIng, measureme
                 </div>
             </div>
             :
-            <div className='header-button-container'>
+            <div className='header-button-container-ing'>
                 <p>{ingredient.amount} {ingredient.measurement_unit.unit} {ingredient.food_stuff}</p>
             </div>)
         // ingredient, measurementUnits, recipe_id, showEdit, setShowEdit

@@ -35,7 +35,7 @@
     color: transparent;
     /* margin-top: -35px; */
     text-decoration-style: wavy;
-    text-decoration-color: red;
+    text-decoration-color: var(--red-orange);
     text-decoration-line: underline;
     /* animation-name: wavy-red;
     animation-duration: 2s;
@@ -70,4 +70,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.red-underline {
+    height: 3px;
+    width: 100%;
+    background-color: var(--red-orange);
+    margin-top: 30px;
+    margin-bottom: 10px;
 }

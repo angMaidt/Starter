@@ -72,11 +72,8 @@ button:hover:not(.submit) {
 }
 
 h1:not(#all-recipes, .logo-container h1) {
-    /* color: var(--dark-blue);
-    width: fit-content; */
-    text-transform: uppercase;
-    color: var(--dark-blue);
-    letter-spacing: 5px;
+    letter-spacing: .5px;
+    font-weight: 400;
 }
 
 h3:not(
@@ -106,7 +103,11 @@ h3:not(
     width: 100%;
 } */
 
-p:not(.card-bottom-info p, .comment-text, .search-result p) {
+p:not(
+    .card-bottom-info p,
+    .comment-text,
+    .search-result p,
+    #recipe-description) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);

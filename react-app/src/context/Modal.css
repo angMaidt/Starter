@@ -20,16 +20,16 @@
   left: 0;
   bottom: 0;
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
   /* -webkit-transition: 0.5s; */
   overflow: auto;
-  /* transition: all 0.3s linear;
-  -webkit-filter: blur(25px);
-  -moz-filter: blur(25px);
-  -o-filter: blur(25px);
-  -ms-filter: blur(25px);
-  filter: blur(25px); */
-  /* background-color: rgba(0, 0, 0, 0.7); */
+  transition: all 0.3s linear;
+  /* -webkit-filter: blur(25px); */
+  /* -moz-filter: blur(25px); */
+  /* -o-filter: blur(25px); */
+  /* -ms-filter: blur(25px); */
+  /* filter: blur(25px); */
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #modal-content {
