@@ -20,16 +20,18 @@ function RecipeCard({ recipe }) {
                 </div>
                 <div className='card-container-right'>
                     <div className='card-bottom-info'>
-                    <h3 className={hover ? 'yellow-bg': null }>{recipe.title}</h3>
+                        <h3
+                            className={hover ? 'yellow-bg': null }
+                            style={{ 'fontWeight': '500' }}>{recipe.title}</h3>
                     {/* <div className='title-underline'></div> */}
-                        <p>{recipe.description}</p>
+                        {/* <p>{recipe.description}</p> */}
                         <div className='username-info'>
                             <h4>by {recipe.user.username}</h4>
                         </div>
                     </div>
-                    <div className='recipe-card-arrow'>
+                    {/* <div className='recipe-card-arrow'>
                         <i class="fa-solid fa-arrow-right-long"></i>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </Link>

@@ -19,7 +19,8 @@ const NavBar = () => {
       <nav className='navbar-container'>
         <Link to='/' className='link logo-link' style={{ 'textDecoration': 'none' }}>
           <div class='nav logo-container'>
-            <img src='../../../static/starter-logo-moving-transparent.gif' alt='logo' />
+            <img src='../../../static/starter-logo-moving-transparent.gif' alt='logo' id='jar-logo'/>
+            {/* <img src='../../../static/bubble-logo.png' alt='bubble-logo' id='bubble-logo'/> */}
             <h1>starter</h1>
           </div>
         </Link>
