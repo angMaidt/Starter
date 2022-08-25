@@ -25,13 +25,62 @@
 .banner-image-container {
     /* height: 10%; */
     overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: pink;
 }
 
-.banner-image-container img {
-    /* height: 700px; */
-    /* object-fit: cover; */
-    transform: translate(0, -10%);
+.banner-image-container > * {
+    animation: 25s autoplay5 infinite linear;
+    /* position: absolute; */
+    /* top: 10%;
+    left: 46%; */
+    /* opacity: 0.0 */
 }
+
+
+/* @keyframes autoplay5 {
+    0% {opacity: 0.0}
+    3% {opacity: 1.0}
+    17% {opacity: 1.0}
+    20% {opacity: 0.0}
+    100% {opacity: 0.0}
+} */
+
+/* .banner-image-container > *:nth-child(1) {animation-delay: 0s;}
+.banner-image-container > *:nth-child(1) {animation-delay: 2s;}
+.banner-image-container > *:nth-child(1) {animation-delay: 4s;}
+.banner-image-container > *:nth-child(1) {animation-delay: 8s;} */
+
+.banner-image-container img {
+    /* height: 400px;*/
+    animation: rotation 8s infinite linear;
+    margin-right: 50px;
+    margin-left: 50px;
+    width: 70%;
+    /* object-fit: cover; */
+    /* transform: translate(0, -10%); */
+}
+
+.banner-image-container img:hover {
+    cursor: pointer;
+    width: 100%;
+    transition: width ease .5s;
+    /* z-index: 4; */
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+
 
 .taxonomy-bar {
     writing-mode: vertical-rl;

@@ -1,7 +1,13 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import bread1 from '../../images/boule.png'
+import bread2 from '../../images/baguette.png'
+import bread3 from '../../images/batard.png'
+import bread4 from '../../images/seeded.png'
 import './HomePage.css'
 
 function HomePage() {
+
     return (
         <div className='homepage'>
             <div className='welcome-ribbon'>
@@ -12,9 +18,22 @@ function HomePage() {
             </div>
             <div className="banner">
                 <div className='banner-image-container'>
-                    <img src='../../../static/shaping.jpg' alt='banner-1' />
+                    {/* <img src='../../../static/shaping.jpg' alt='banner-1' /> */}
+                    {/* <img src={`../../../static/${bread_arr[i]}.png`} alt='banner-1' /> */}
+                    <div>
+                        <img id='b-4' alt='sourdough seeded' src={bread4}/>
+                    </div>
+                    <div>
+                        <img id='b-2' alt='sourdough baguette' src={bread2}/>
+                    </div>
+                    <div>
+                        <img id='b-1' alt='sourdough boule' src={bread1}/>
+                    </div>
+                    <div>
+                        <img id='b-3' alt='sourdough batard' src={bread3}/>
+                    </div>
                 </div>
-                <div className='taxonomy-bar'>
+                {/* <div className='taxonomy-bar'>
                     Let's get Started!
                     Let's get Started!
                     Let's get Started!
@@ -32,7 +51,7 @@ function HomePage() {
                             </button>
                         </Link>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className='github-links-container'>
                 <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-black)' }}>
