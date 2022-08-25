@@ -30,12 +30,16 @@
     padding-left: 15%;
 }
 
-.logo-container img {
+#jar-logo {
     height: 75px;
 }
 
+/* #bubble-logo {
+    height: 120px;
+} */
+
 .logo-container h1 {
-    font-size: 50px;
+    font-size: 60px;
     color: var(--dark-blue);
     margin-top: 70px;
     font-weight: 400;
