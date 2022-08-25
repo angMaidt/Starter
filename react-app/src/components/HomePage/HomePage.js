@@ -15,11 +15,11 @@ function HomePage() {
                 setCount(count => count + 1)
             }, 2500)
             return () => clearInterval(interval)
-    }, []);
+        }, []);
 
-    if (count > 4) setCount(1)
-    return (
-        <div className='homepage'>
+        if (count > 4) setCount(1)
+        return (
+            <div className='homepage'>
             <div className='welcome-ribbon'>
                 <div className='welcome-ribbon-text'>
                     <h3><span>Explore sourdough recipes.</span> <span>Share your own.</span></h3>
@@ -30,15 +30,28 @@ function HomePage() {
                 <div className='banner-image-container'
                     style={
                         count === 1 ?
-                            {'backgroundColor': 'var(--red-orange)'}
+                        {'backgroundColor': 'var(--red-orange)'}
                         :
                         count === 2 ?
-                            {'backgroundColor': 'var(--light-blue)'}
+                        {'backgroundColor': 'var(--light-blue)'}
                         :
                         count === 3 ?
-                            {'backgroundColor': 'pink'}
+                        {'backgroundColor': 'pink'}
                         :
                         {'backgroundColor': 'var(--pale-blue)'}}>
+                    {/* <h1
+                        id='welcome'
+                        style={
+                            count === 1 ?
+                                {'textShadow': '2px 4px var(--light-blue)'}
+                            :
+                            count === 2 ?
+                                {'textShadow': '2px 4px var(--red-orange)'}
+                            :
+                            count === 3 ?
+                                {'textShadow': '2px 4px var(--light-blue)'}
+                            :
+                            {'textShadow': '2px 4px var(--red-orange)'}}>Welcome!</h1> */}
                     <div>
                         <img id='b-1' alt='sourdough boule' src={bread1}/>
                     </div>

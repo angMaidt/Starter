@@ -25,12 +25,10 @@
 #welcome {
     position: absolute;
     /* z-index: 1; */
-    font-size: 120px;
+    font-size: 125px;
+    /* width: 100%; */
+    /* font-stretch: condensed; */
     color: var(--yellow);
-    /* text-shadow: 2px 4px var(--dark-blue); */
-    /* left: 0; */
-    /* bottom: 10%; */
-    /* right: 0 */
 }
 
 .banner-image-container {
