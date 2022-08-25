@@ -25,9 +25,11 @@ function AllRecipes() {
     }
 
     return (
-        <>  <div>
+        <>
+            <div id='all-recipes-header'>
                 <h1 id='all-recipes'>All Recipes</h1>
-                {/* <div className='page-header-underline'></div> */}
+                {/* <p>Explore a variety of sourdough recipes posted by users!</p> */}
+                <div className='page-header-underline'></div>
             </div>
             <div className='all-recipes-view-container'>
                 {/* <div className='tag'><span>RECIPES</span></div> */}

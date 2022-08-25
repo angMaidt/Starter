@@ -16,14 +16,14 @@
 }
 
 #all-recipes {
-    /* text-transform: uppercase; */
-    color: var(--dark-blue);
-    background-color: var(--yellow);
+    color: var(--off-black);
     letter-spacing: 5px;
-    text-decoration: underline;
     font-size: 50px;
-    /* text-decoration: underline 3px wavy var(--red-orange);
-    text-underline-offset: 7px; */
+    margin-bottom: 5px;
+}
+
+#all-recipes-header {
+    width: 100%;
 }
 
 .view-container .tag {
@@ -44,5 +44,5 @@
     border: 2px solid #333;
     border-radius: 70px;
     height: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 50px;
 }
