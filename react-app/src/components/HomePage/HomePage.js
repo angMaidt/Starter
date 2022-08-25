@@ -39,6 +39,18 @@ function HomePage() {
                             {'backgroundColor': 'pink'}
                         :
                         {'backgroundColor': 'var(--pale-blue)'}}>
+                    <div>
+                        <img id='b-1' alt='sourdough boule' src={bread1}/>
+                    </div>
+                    <div>
+                        <img id='b-2' alt='sourdough baguette' src={bread2} style={{'width': '110%'}} />
+                    </div>
+                    <div>
+                        <img id='b-3' alt='sourdough batard' src={bread3}/>
+                    </div>
+                    <div>
+                        <img id='b-4' alt='sourdough seeded' src={bread4}/>
+                    </div>
                     <h1
                         id='welcome'
                         style={
@@ -52,18 +64,6 @@ function HomePage() {
                                 {'textShadow': '2px 4px var(--light-blue)'}
                             :
                             {'textShadow': '2px 4px var(--red-orange)'}}>Welcome to Starter!</h1>
-                    <div>
-                        <img id='b-1' alt='sourdough boule' src={bread1}/>
-                    </div>
-                    <div>
-                        <img id='b-2' alt='sourdough baguette' src={bread2} style={{'width': '110%'}} />
-                    </div>
-                    <div>
-                        <img id='b-3' alt='sourdough batard' src={bread3}/>
-                    </div>
-                    <div>
-                        <img id='b-4' alt='sourdough seeded' src={bread4}/>
-                    </div>
                 </div>
 
                 {/* <div className='taxonomy-bar'>

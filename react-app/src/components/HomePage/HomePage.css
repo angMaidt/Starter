@@ -24,7 +24,7 @@
 
 #welcome {
     position: absolute;
-    z-index: 2;
+    /* z-index: 1; */
     font-size: 120px;
     color: var(--yellow);
     /* text-shadow: 2px 4px var(--dark-blue); */
