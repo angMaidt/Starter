@@ -7,7 +7,21 @@ import bread4 from '../../images/seeded.png'
 import './HomePage.css'
 
 function HomePage() {
+    //make count state
+    const [count, setCount] = useState(1)
+    console.log(count)
+    //render bread + text based on state
+    //button to inc and dec count needed on text screen
+    //only checking count once, need it to check every iteration
 
+    useEffect(() => {
+            const interval = setInterval(() => {
+                setCount(count => count + 1)
+            }, 2500)
+            return () => clearInterval(interval)
+    }, []);
+
+    if (count > 3) setCount(1)
     return (
         <div className='homepage'>
             <div className='welcome-ribbon'>
@@ -20,38 +34,54 @@ function HomePage() {
                 <div className='banner-image-container'>
                     {/* <img src='../../../static/shaping.jpg' alt='banner-1' /> */}
                     {/* <img src={`../../../static/${bread_arr[i]}.png`} alt='banner-1' /> */}
-                    <div>
-                        <img id='b-4' alt='sourdough seeded' src={bread4}/>
-                    </div>
-                    <div>
-                        <img id='b-2' alt='sourdough baguette' src={bread2}/>
-                    </div>
+                    {count === 1 && (
+                        // <div>
+                        //     <img id='b-4' alt='sourdough seeded' src={bread4}/>
+                        // </div>
                     <div>
                         <img id='b-1' alt='sourdough boule' src={bread1}/>
                     </div>
-                    <div>
-                        <img id='b-3' alt='sourdough batard' src={bread3}/>
-                    </div>
+                    )}
+                    {count === 2 && (
+                        <div>
+                            <img id='b-2' alt='sourdough baguette' src={bread2}/>
+                        </div>
+                    )}
+                    {count === 3 && (
+                        <div>
+                            <img id='b-3' alt='sourdough batard' src={bread3}/>
+                        </div>
+                    )}
                 </div>
-                {/* <div className='taxonomy-bar'>
+                <div className='taxonomy-bar'>
                     Let's get Started!
                     Let's get Started!
                     Let's get Started!
                     Let's get
                 </div>
                 <div className='banner-text'>
-                    <h2>Loaf Lover?</h2>
-                    <h2>Crust Connoisseur?</h2>
-                    <p>Welcome to Starter! Here you can explore sourdough recipes and share your own. Don't forget to leave a comment and let us know how your bake went. Happy fermenting!</p>
-                    <div className='next-button-container homepage-arrow'>
-                        <h3>Explore Recipes</h3>
-                        <Link to='/recipes'>
-                            <button className='arrow-button'>
-                                <i class="fa-solid fa-arrow-right-long"></i>
-                            </button>
-                        </Link>
-                    </div>
-                </div> */}
+                    {count === 1 && (
+                        <h2>Loaf Lover?</h2>
+                    )}
+                    {count === 2 && (
+                        <h2>Crust Connoisseur?</h2>
+                    )}
+                    {count === 3 && (
+                        <>
+                            <h2>Welcome to Starter!</h2>
+                            {/* <p>Welcome to Starter! Here you can explore sourdough recipes and share your own. Don't forget to leave a comment and let us know how your bake went. Happy fermenting!</p> */}
+                            {/* <div className='next-button-container homepage-arrow'>
+                                <h3>Explore Recipes</h3>
+                                <Link to='/recipes'>
+                                    <button className='arrow-button'>
+                                        <i class="fa-solid fa-arrow-right-long"></i>
+                                    </button>
+                                </Link>
+                            </div> */}
+                        </>
+                    )}
+                    {/* <button onClick={() => setCount(count + 1)}></button> */}
+                </div>
             </div>
             <div className='github-links-container'>
                 <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-black)' }}>

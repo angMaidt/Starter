@@ -33,7 +33,7 @@
 }
 
 .banner-image-container > * {
-    animation: 25s autoplay5 infinite linear;
+    /* animation: 10s autoplay5 infinite linear; */
     /* position: absolute; */
     /* top: 10%;
     left: 46%; */
@@ -59,16 +59,16 @@
     animation: rotation 8s infinite linear;
     margin-right: 50px;
     margin-left: 50px;
-    width: 70%;
+    width: 90%;
     /* object-fit: cover; */
     /* transform: translate(0, -10%); */
 }
 
 .banner-image-container img:hover {
-    cursor: pointer;
-    width: 100%;
-    transition: width ease .5s;
-    /* z-index: 4; */
+    /* cursor: pointer;
+    width: 90%;
+    transition: width ease .5s; */
+    /* z-index: 4;*/
 }
 
 @keyframes rotation {
@@ -79,8 +79,6 @@
         transform: rotate(359deg);
     }
 }
-
-
 
 .taxonomy-bar {
     writing-mode: vertical-rl;
@@ -101,7 +99,7 @@
 .banner-text {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 50%;
     padding: 25px;
     color: var(--off-black);
     /* margin-top: 70px; */
