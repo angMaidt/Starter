@@ -374,6 +374,6 @@
 
 .header-button-container p::first-letter {
     font-weight: 700;
-    font-size: 25px;
+    /* font-size: 25px; */
     /* color: red; */
 }

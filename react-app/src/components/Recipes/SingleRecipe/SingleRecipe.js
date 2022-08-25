@@ -139,31 +139,11 @@ function SingleRecipe() {
                         </div>
                     </div>
                     <p id='recipe-description'>{recipe.description}</p>
-                    {/* <div className='recipe-ref-container'>
-                        <div className='line-container'>
-                            <div className='line'></div>
-                        </div>
-                        <div
-                            className='jump-to-recipe'
-                            onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
-                            >
-                            <div className='circle'>
-                                <i className="fa-solid fa-arrow-down"></i>
-                            </div>
-                            <h5>Jump to Recipe</h5>
-                            <div className='circle'>
-                                <i className="fa-solid fa-arrow-down"></i>
-                            </div>
-                        </div>
-                        <div className='line-container'>
-                            <div className='line'></div>
-                        </div>
-                    </div> */}
                     <div className='posted-recipe'>
                         <div className='posted-info'>
-                            <div className='round-profile-pic'>
+                            {/* <div className='round-profile-pic'>
                                 <img src={recipe.user.profile_pic} alt='profile-pic' />
-                            </div>
+                            </div> */}
                             <h5>by {recipe.user.username}</h5>
                             {recipe.created_at === recipe.updated_at ?
                                 <span>Published {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
