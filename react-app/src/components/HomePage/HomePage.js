@@ -1,25 +1,40 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+// import { Link } from 'react-router-dom'
 import bread1 from '../../images/boule.png'
 import bread2 from '../../images/baguette.png'
 import bread3 from '../../images/batard.png'
 import bread4 from '../../images/seeded.png'
+import { getRecipesThunk } from '../../store/recipe'
 import './HomePage.css'
+import RecipeCard from '../Recipes/RecipeCard/RecipeCard'
 
 function HomePage() {
+    const dispatch = useDispatch()
+    const recipes = useSelector(state => Object.values(state.recipes).slice(0, 4))
     const [count, setCount] = useState(1)
 
-    //changes banner color every 2.5s
+    //changes banner color every 2s
     useEffect(() => {
             const interval = setInterval(() => {
                 setCount(count => count + 1)
-            }, 2500)
+            }, 2000)
             return () => clearInterval(interval)
-        }, []);
+    }, []);
 
-        if (count > 4) setCount(1)
-        return (
-            <div className='homepage'>
+    //fetch featured recipes
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            await dispatch(getRecipesThunk())
+        }
+        fetchRecipes().catch(console.error)
+    }, [dispatch])
+
+    //resets bg color count
+    if (count > 4) setCount(1)
+
+    return (
+        <div className='homepage'>
             <div className='welcome-ribbon'>
                 <div className='welcome-ribbon-text'>
                     <h3><span>Explore sourdough recipes.</span> <span>Share your own.</span></h3>
@@ -78,71 +93,20 @@ function HomePage() {
                             :
                             {'textShadow': '2px 4px var(--red-orange)'}}>Welcome to Starter!</h1>
                 </div>
-
-                {/* <div className='taxonomy-bar'>
-                    Let's get Started!
-                    Let's get Started!
-                    Let's get Started!
-                    Let's get
-                </div>
-                <div className='banner-text'>
-                    <h2
-                        style={{
-                            'color': 'var(--dark-blue)',
-                            // 'textDecoration': 'underline',
-                            'backgroundColor': 'var(--yellow)',
-                            'fontSize': '70px'
-                        }}>Welcome to Starter!</h2>
-                    <p>Your one-stop shop for all things sourdough. Explore Don't forget to leave a comment and let us know how your bake went. Happy fermenting!</p>
-                    <div className='next-button-container homepage-arrow'>
-                        <h3>Explore Recipes</h3>
-                        <Link to='/recipes'>
-                            <button className='arrow-button'>
-                                <i class="fa-solid fa-arrow-right-long"></i>
-                            </button>
-                        </Link>
-                    </div> */}
-                    {/* {count === 1 && (
-                        // <h2 style={{ 'color': 'var(--red-orange)' }}>Loaf Lover?</h2>
-                        <h2 >Loaf Lover?</h2>
-                    )}
-                    {count === 2 && (
-                        // <h2 style={{ 'color': 'var(--yellow)' }}>Can't get enough Crust?</h2>
-                        <h2>Can't get enough Crust?</h2>
-                    )}
-                    {count === 3 && (
-                        <>
-                            <h2
-                                style={{
-                                    'color': 'var(--dark-blue)',
-                                    'textDecoration': 'underline',
-                                    'backgroundColor': 'var(--yellow)',
-                                    'fontSize': '70px'
-                                }}>Welcome to Starter!</h2>
-                            <p>Welcome to Starter! Here you can explore sourdough recipes and share your own. Don't forget to leave a comment and let us know how your bake went. Happy fermenting!</p>
-                            <div className='next-button-container homepage-arrow'>
-                                <h3>Explore Recipes</h3>
-                                <Link to='/recipes'>
-                                    <button className='arrow-button'>
-                                        <i class="fa-solid fa-arrow-right-long"></i>
-                                    </button>
-                                </Link>
-                            </div>
-                        </>
-                    )} */}
-                    {/* <button onClick={() => setCount(count + 1)}></button> */}
-                {/* </div> */}
             </div>
-            {/* <Footer /> */}
-            {/* <div className='github-links-container'>
-                <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-black)' }}>
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href='https://www.linkedin.com/in/angie-maidt-69b6b8248/' style={{ 'color': 'var(--off-black)' }}>
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-            </div> */}
-            {/* <div className='welcome-ribbon'></div> */}
+            <div className='featured-recipes'>
+                <h2 id='featured-recipes'>Featured Recipes</h2>
+                <div className='page-header-underline'></div>
+                <div id='featured-recipe-wrapper'>
+                    <div className='recipes-container'>
+                        {recipes && (
+                            recipes.map(recipe => (
+                                <RecipeCard key={recipe.id} recipe={recipe} />
+                            ))
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
