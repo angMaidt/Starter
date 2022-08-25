@@ -117,7 +117,7 @@ function SingleRecipe() {
             {recipe ?
             <>
                 <div className='recipe-header-container'>
-                    <h1>{recipe.title}</h1>
+                    <h1 style={{ 'fontWeight': '500' }}>{recipe.title}</h1>
                     <div className='recipe-ref-container'>
                         <div className='line-container'>
                             <div className='line'></div>
@@ -139,6 +139,26 @@ function SingleRecipe() {
                         </div>
                     </div>
                     <p id='recipe-description'>{recipe.description}</p>
+                    {/* <div className='recipe-ref-container'>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
+                        <div
+                            className='jump-to-recipe'
+                            onClick={() => recipeRef.current.scrollIntoView({ behavior: 'smooth' })}
+                            >
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <h5>Jump to Recipe</h5>
+                            <div className='circle'>
+                                <i className="fa-solid fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        <div className='line-container'>
+                            <div className='line'></div>
+                        </div>
+                    </div> */}
                     <div className='posted-recipe'>
                         <div className='posted-info'>
                             <div className='round-profile-pic'>
@@ -168,40 +188,72 @@ function SingleRecipe() {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
-                    <h3 className='wavy-underline'>Recipe Facts</h3>
-                    {sessionUser && sessionUser.id === recipe.user.id &&
+                    {/* <h3 className='wavy-underline'>Recipe Facts</h3> */}
+                    {/* {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
                         <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
                             <i className="fa-solid fa-pen"></i>
                         </div>
                         <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
                     </div>
-                    }
+                    } */}
                 </div>
                 {!showEditForm ?
                     <div className='recipe-facts'>
-                        <img
-                            src='../../../../static/icon-timer.svg'
-                            alt='icon-timer'
-                            id='icon-timer'/>
-                        <div>
-                            <h3>Active Time: {active_time_converted[0] <= 0 ? null : active_time_converted[0] + ' hrs'}
-                                {active_time_converted[1] <= 0 ? null : active_time_converted[1] + ' mins'}</h3>
-                            <h3>Ferment Time: {prep_time_converted[0] <= 0 ? null : prep_time_converted[0] + ' hrs'}
-                                {prep_time_converted[1] <= 0 ? null : prep_time_converted[1] + ' mins'}</h3>
-                            <h3>Baking Time: {bake_time_converted[0] <= 0 ? null : bake_time_converted[0] + ' hrs'}
-                                {bake_time_converted[1] <= 0 ? null : bake_time_converted[1] + ' mins'}</h3>
-                            <h3>Total Time: {total_time_converted[0] <= 0 ? null : total_time_converted[0] + ' hrs'}
-                                {total_time_converted[1] <= 0 ? null : total_time_converted[1] + ' mins'}</h3>
-
+                        <div className='facts-header-container'>
+                            <div>
+                                <h3 className='facts-header'>Recipe Facts</h3>
+                                <img
+                                    src='../../../../static/icon-ketchup-squirt.svg'
+                                    alt='icon-ketchup'
+                                    id='icon-ketchup'/>
+                            </div>
+                            {sessionUser && sessionUser.id === recipe.user.id &&
+                                <div className='edit-button-container'>
+                                    <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
+                                        <i className="fa-solid fa-pen"></i>
+                                    </div>
+                                    <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
+                                </div>
+                                }
                         </div>
-                        <img
-                            src='../../../../static/icon-servings.svg'
-                            alt='icon-timer'
-                            id='icon-servings'/>
-                        <div>
-                            <h3>Baking Temp: {recipe.baking_temp} °F</h3>
-                            <h3>Total Yield: {recipe.total_yield}</h3>
+                        <div className='facts'>
+                            <div className='facts-left'>
+                                <img
+                                    src='../../../../static/icon-timer.svg'
+                                    alt='icon-timer'
+                                    id='icon-timer'
+                                    title='time'/>
+                                <div>
+                                    <h3>Active: {active_time_converted[0] <= 0 ? null : active_time_converted[0] + ' hrs '}
+                                        {active_time_converted[1] <= 0 ? null : active_time_converted[1] + ' mins'}</h3>
+                                    <h3>Proof: {prep_time_converted[0] <= 0 ? null : prep_time_converted[0] + ' hrs '}
+                                        {prep_time_converted[1] <= 0 ? null : prep_time_converted[1] + ' mins'}</h3>
+                                    <h3>Baking: {bake_time_converted[0] <= 0 ? null : bake_time_converted[0] + ' hrs '}
+                                        {bake_time_converted[1] <= 0 ? null : bake_time_converted[1] + ' mins'}</h3>
+                                    <h3 className='yellow-highlight'>Total Time: {total_time_converted[0] <= 0 ? null : total_time_converted[0] + ' hrs '}
+                                        {total_time_converted[1] <= 0 ? null : total_time_converted[1] + ' mins'}</h3>
+                                </div>
+                            </div>
+                            <div className='facts-right'>
+                                <img
+                                    src='../../../../static/icon-servings.svg'
+                                    alt='icon-servings'
+                                    id='icon-servings'
+                                    title='servings'/>
+                                <div className='text-right'>
+                                    <h3>Baking Temp: {recipe.baking_temp} °F</h3>
+                                    <h3 className='yellow-highlight'>Total Yield: {recipe.total_yield}</h3>
+                                </div>
+                                {/* {sessionUser && sessionUser.id === recipe.user.id &&
+                                <div className='edit-button-container'>
+                                    <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
+                                        <i className="fa-solid fa-pen"></i>
+                                    </div>
+                                    <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
+                                </div>
+                                } */}
+                            </div>
                         </div>
                     </div>
                 :
