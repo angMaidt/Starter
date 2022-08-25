@@ -7,13 +7,9 @@ import bread4 from '../../images/seeded.png'
 import './HomePage.css'
 
 function HomePage() {
-    //make count state
     const [count, setCount] = useState(1)
-    console.log(count)
-    //render bread + text based on state
-    //button to inc and dec count needed on text screen
-    //only checking count once, need it to check every iteration
 
+    //changes banner color every 2.5s
     useEffect(() => {
             const interval = setInterval(() => {
                 setCount(count => count + 1)
@@ -56,26 +52,6 @@ function HomePage() {
                                 {'textShadow': '2px 4px var(--light-blue)'}
                             :
                             {'textShadow': '2px 4px var(--red-orange)'}}>Welcome to Starter!</h1>
-                    {/* {count === 1 && (
-                    <div>
-                        <img id='b-1' alt='sourdough boule' src={bread1}/>
-                    </div>
-                    )}
-                    {count === 2 && (
-                        <div>
-                            <img id='b-2' alt='sourdough baguette' src={bread2} style={{'width': '160%'}} />
-                        </div>
-                        )}
-                        {count === 3 && (
-                        <div>
-                            <img id='b-3' alt='sourdough batard' src={bread3}/>
-                        </div>
-                        )}
-                        {count === 4 && (
-                            <div>
-                            <img id='b-4' alt='sourdough seeded' src={bread4}/>
-                            </div>
-                        )} */}
                     <div>
                         <img id='b-1' alt='sourdough boule' src={bread1}/>
                     </div>
@@ -144,14 +120,15 @@ function HomePage() {
                     {/* <button onClick={() => setCount(count + 1)}></button> */}
                 {/* </div> */}
             </div>
-            <div className='github-links-container'>
+            {/* <Footer /> */}
+            {/* <div className='github-links-container'>
                 <a href='https://github.com/angMaidt' style={{ 'color': 'var(--off-black)' }}>
                     <i class="fa-brands fa-github"></i>
                 </a>
                 <a href='https://www.linkedin.com/in/angie-maidt-69b6b8248/' style={{ 'color': 'var(--off-black)' }}>
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
-            </div>
+            </div> */}
             {/* <div className='welcome-ribbon'></div> */}
         </div>
     )

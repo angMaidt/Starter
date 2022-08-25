@@ -131,12 +131,25 @@
     justify-self: flex-end;
 }
 
+/* footer */
+#footer {
+    background-color: var(--tan);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#footer-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .github-links-container {
     height: 18vh;
     width: 100vw;
-    background-color: var(--tan);
-    /* background-color: white; */
-    /* color: var(--tan); */
     font-size: 80px;
     display: flex;
     align-items: center;
@@ -146,7 +159,7 @@
 
 .github-links-container i:first-child:hover{
     color: var(--light-blue);
-    text-shadow: 0 0 2px var(--light-gray);
+    /* text-shadow: 0 2px 1px var(--yellow); */
     /* text-shadow: 4px 4px var(--red-orange); */
     cursor: pointer;
     font-size: 90px;
