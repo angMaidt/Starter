@@ -137,6 +137,9 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    height: 400px;
+    /* position: sticky; */
+    bottom: 0;
 }
 
 #footer-text-container {
