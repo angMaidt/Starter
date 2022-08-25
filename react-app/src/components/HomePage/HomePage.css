@@ -22,53 +22,30 @@
     padding-bottom: 10px;
 }
 
+#welcome {
+    position: absolute;
+    z-index: 2;
+    font-size: 120px;
+    color: var(--yellow);
+    /* text-shadow: 2px 4px var(--dark-blue); */
+    /* left: 0; */
+    /* bottom: 10%; */
+    /* right: 0 */
+}
+
 .banner-image-container {
     /* height: 10%; */
     overflow: hidden;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: pink;
 }
 
-.banner-image-container > * {
-    /* animation: 10s autoplay5 infinite linear; */
-    /* position: absolute; */
-    /* top: 10%;
-    left: 46%; */
-    /* opacity: 0.0 */
-}
-
-
-/* @keyframes autoplay5 {
-    0% {opacity: 0.0}
-    3% {opacity: 1.0}
-    17% {opacity: 1.0}
-    20% {opacity: 0.0}
-    100% {opacity: 0.0}
-} */
-
-/* .banner-image-container > *:nth-child(1) {animation-delay: 0s;}
-.banner-image-container > *:nth-child(1) {animation-delay: 2s;}
-.banner-image-container > *:nth-child(1) {animation-delay: 4s;}
-.banner-image-container > *:nth-child(1) {animation-delay: 8s;} */
-
 .banner-image-container img {
-    /* height: 400px;*/
     animation: rotation 8s infinite linear;
-    margin-right: 50px;
-    margin-left: 50px;
-    width: 90%;
-    /* object-fit: cover; */
-    /* transform: translate(0, -10%); */
-}
-
-.banner-image-container img:hover {
-    /* cursor: pointer;
-    width: 90%;
-    transition: width ease .5s; */
-    /* z-index: 4;*/
+    width: 100%;
 }
 
 @keyframes rotation {
@@ -99,16 +76,18 @@
 .banner-text {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     padding: 25px;
-    color: var(--off-black);
+    color: var(--dark-blue);
     /* margin-top: 70px; */
     font-weight: 200;
     /* font-family: 'Roboto'; */
     letter-spacing: 1px;
-    /* background-color: var(--pale-blue); */
+    /* background-color: var(--dark-blue); */
+    background-color: var(--off-white);
     font-size: 30px;
-    /* align-items: ; */
+    align-items: center;
+    justify-content: center;
 }
 
 .welcome-ribbon-text {
