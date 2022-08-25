@@ -19,8 +19,8 @@ function SingleRecipe() {
     const recipe = useSelector(state => state.recipes[id])
     const sessionUser = useSelector(state => state.session.user)
 
+    //edit recipe state
     const [showEditForm, setShowEditForm] = useState(false)
-    if (recipe) console.log(recipe.comments)
 
     //edit ingredient states
     const [showEditIng, setShowEditIng] = useState(false)
@@ -59,7 +59,7 @@ function SingleRecipe() {
         e.preventDefault()
 
         try {
-            const res = await dispatch(deleteRecipeThunk(recipe))
+            await dispatch(deleteRecipeThunk(recipe))
             history.push('/my-recipes')
 
         } catch (e) {
@@ -102,13 +102,22 @@ function SingleRecipe() {
         return sum/recipe.comments.length
     }
 
+    //time conversion variables
+    let active_time_converted, prep_time_converted, bake_time_converted, total_time_converted
+    if (recipe) {
+        active_time_converted = ms_converter(recipe.active_time)
+        prep_time_converted = ms_converter(recipe.prep_time)
+        bake_time_converted = ms_converter(recipe.bake_time)
+        total_time_converted = ms_converter(recipe.active_time + recipe.prep_time + recipe.bake_time)
+    }
+
 
     return (
         <div className='view-container single-recipe-view'>
             {recipe ?
             <>
                 <div className='recipe-header-container'>
-                    <h1>{recipe.title}</h1>
+                    <h1 style={{ 'fontWeight': '500' }}>{recipe.title}</h1>
                     <div className='recipe-ref-container'>
                         <div className='line-container'>
                             <div className='line'></div>
@@ -131,10 +140,13 @@ function SingleRecipe() {
                     </div>
                     <p id='recipe-description'>{recipe.description}</p>
                     <div className='posted-recipe'>
-                        <div className='.posted-info'>
+                        <div className='posted-info'>
+                            {/* <div className='round-profile-pic'>
+                                <img src={recipe.user.profile_pic} alt='profile-pic' />
+                            </div> */}
                             <h5>by {recipe.user.username}</h5>
                             {recipe.created_at === recipe.updated_at ?
-                                <span>Posted {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
+                                <span>Published {recipe.created_at.split(' ').slice(1, 4).join(' ')}</span>
                                 :
                                 <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
                             }
@@ -156,26 +168,72 @@ function SingleRecipe() {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
-                    <h3 className='wavy-underline'>Recipe Facts</h3>
-                    {sessionUser && sessionUser.id === recipe.user.id &&
+                    {/* <h3 className='wavy-underline'>Recipe Facts</h3> */}
+                    {/* {sessionUser && sessionUser.id === recipe.user.id &&
                     <div className='edit-button-container'>
-                        <div onClick={() => setShowEditForm(!showEditForm)}>
+                        <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
                             <i className="fa-solid fa-pen"></i>
                         </div>
-                        <div onClick={handleDelete}><i className="fa-solid fa-trash-can"></i></div>
+                        <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
                     </div>
-                    }
+                    } */}
                 </div>
                 {!showEditForm ?
                     <div className='recipe-facts'>
-                        <div>
-                            <h3>Active Time: {ms_converter(recipe.active_time)[0]} hrs {ms_converter(recipe.active_time)[1]} mins </h3>
-                            <h3>Proofing Time: {ms_converter(recipe.prep_time)[0]} hrs {ms_converter(recipe.prep_time)[1]} mins</h3>
-                            <h3>Baking Time: {ms_converter(recipe.bake_time)[0]} hrs {ms_converter(recipe.bake_time)[1]} mins</h3>
+                        <div className='facts-header-container'>
+                            <div>
+                                <h3 className='facts-header'>Recipe Facts</h3>
+                                <img
+                                    src='../../../../static/icon-ketchup-squirt.svg'
+                                    alt='icon-ketchup'
+                                    id='icon-ketchup'/>
+                            </div>
+                            {sessionUser && sessionUser.id === recipe.user.id &&
+                                <div className='edit-button-container'>
+                                    <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
+                                        <i className="fa-solid fa-pen"></i>
+                                    </div>
+                                    <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
+                                </div>
+                                }
                         </div>
-                        <div>
-                            <h3>Baking Temp: {recipe.baking_temp} °F</h3>
-                            <h3>Total Yield: {recipe.total_yield}</h3>
+                        <div className='facts'>
+                            <div className='facts-left'>
+                                <img
+                                    src='../../../../static/icon-timer.svg'
+                                    alt='icon-timer'
+                                    id='icon-timer'
+                                    title='time'/>
+                                <div>
+                                    <h3>Active: {active_time_converted[0] <= 0 ? null : active_time_converted[0] + ' hrs '}
+                                        {active_time_converted[1] <= 0 ? null : active_time_converted[1] + ' mins'}</h3>
+                                    <h3>Proof: {prep_time_converted[0] <= 0 ? null : prep_time_converted[0] + ' hrs '}
+                                        {prep_time_converted[1] <= 0 ? null : prep_time_converted[1] + ' mins'}</h3>
+                                    <h3>Baking: {bake_time_converted[0] <= 0 ? null : bake_time_converted[0] + ' hrs '}
+                                        {bake_time_converted[1] <= 0 ? null : bake_time_converted[1] + ' mins'}</h3>
+                                    <h3 className='yellow-highlight'>Total Time: {total_time_converted[0] <= 0 ? null : total_time_converted[0] + ' hrs '}
+                                        {total_time_converted[1] <= 0 ? null : total_time_converted[1] + ' mins'}</h3>
+                                </div>
+                            </div>
+                            <div className='facts-right'>
+                                <img
+                                    src='../../../../static/icon-servings.svg'
+                                    alt='icon-servings'
+                                    id='icon-servings'
+                                    title='servings'/>
+                                <div className='text-right'>
+                                    <h3>Baking Temp: {recipe.baking_temp} °F</h3>
+                                    <h3 className='yellow-highlight'>Total Yield: {recipe.total_yield}</h3>
+                                </div>
+                                {/* {sessionUser && sessionUser.id === recipe.user.id &&
+                                <div className='edit-button-container'>
+                                    <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
+                                        <i className="fa-solid fa-pen"></i>
+                                    </div>
+                                    <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
+                                </div>
+                                } */}
+                            </div>
                         </div>
                     </div>
                 :
@@ -190,21 +248,33 @@ function SingleRecipe() {
 
                 {/* Ingredients */}
                 <div>
-                    <div className='header-button-container ing'>
+                    <div className='header-button-container-ing'>
                         <h3 id='ingredients' className='straight-underline'>Ingredients</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.ingredients.length > 0 &&
                                 <>
                                     {showEditIng ?
-                                        <span onClick={() => setShowEditIng(!showEditIng)} className='done'>Done Editing</span>
+                                        <span
+                                            onClick={() => setShowEditIng(!showEditIng)}
+                                            className='done'>Done Editing</span>
                                     :
-                                        <div onClick={() => setShowEditIng(!showEditIng)} className='edit-pen'><i className="fa-solid fa-pen"></i></div>
+                                        <div
+                                            onClick={() => setShowEditIng(!showEditIng)}
+                                            className='edit-pen'
+                                            title='Edit Ingredients'>
+                                                <i className="fa-solid fa-pen"></i>
+                                        </div>
                                     }
                                     {showAddIng ?
-                                        <span onClick={() => setShowAddIng(!showAddIng)} className='done'>Done Adding</span>
+                                        <span
+                                            onClick={() => setShowAddIng(!showAddIng)}
+                                            className='done'>Done Adding</span>
                                     :
-                                        <div onClick={() => setShowAddIng(!showAddIng)}><i className="fa-solid fa-plus"></i></div>
+                                        <div
+                                            onClick={() => setShowAddIng(!showAddIng)}
+                                            title='Add Ingredients'><i className="fa-solid fa-plus"></i>
+                                        </div>
                                     }
                                 </>
                                 }
@@ -245,23 +315,29 @@ function SingleRecipe() {
 
                 {/* Instructions */}
                 <div>
-                    <div className='header-button-container inst-container'>
+                    <div className='header-button-container inst'>
                         <h3 id='instructions' className='straight-underline'>Instructions</h3>
                         {sessionUser && sessionUser.id === recipe.user.id &&
                             <div className='edit-button-container'>
                                 {recipe.instructions.length > 0 &&
                                 <>
                                     {showEditInst ?
-                                        <span onClick={() => setShowEditInst(!showEditInst)} className='done'>Done editing</span>
+                                        <span
+                                            onClick={() => setShowEditInst(!showEditInst)}
+                                            className='done'>Done editing</span>
                                     :
-                                        <div onClick={() => setShowEditInst(!showEditInst)}>
+                                        <div
+                                            onClick={() => setShowEditInst(!showEditInst)}
+                                            title='Edit Instructions'>
                                             <i className="fa-solid fa-pen"></i>
                                         </div>
                                     }
                                     {showAddInst ?
                                         <span onClick={() => setShowAddInst(!showAddInst)} className='done'>Done Adding</span>
                                     :
-                                        <div onClick={() => setShowAddInst(!showAddInst)}>
+                                        <div
+                                            onClick={() => setShowAddInst(!showAddInst)}
+                                            title='Add Instructions'>
                                             <i className="fa-solid fa-plus"></i>
                                         </div>
                                     }

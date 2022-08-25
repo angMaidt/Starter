@@ -21,6 +21,10 @@
     width: fit-content;
     display: flex;
     text-align: center;
+    margin-bottom: 20px;
+    /* text-decoration: underline var(--red-orange) 2px; */
+    /* color: var(--dark-blue); */
+    /* text-underline-offset: 4px; */
 }
 
 .login-input-container {
@@ -30,9 +34,14 @@
     width: 100%;
 }
 
+.login-input-container .input-container {
+    margin-bottom: 10px;
+}
+
 .submit-login {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
-    padding-right: 40px;
+    margin-top: 10px;
+    /* padding-right: 120px; */
 }

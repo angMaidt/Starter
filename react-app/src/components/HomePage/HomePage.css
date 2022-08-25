@@ -22,15 +22,39 @@
     padding-bottom: 10px;
 }
 
+#welcome {
+    position: absolute;
+    /* z-index: 1; */
+    font-size: 120px;
+    color: var(--yellow);
+    /* text-shadow: 2px 4px var(--dark-blue); */
+    /* left: 0; */
+    /* bottom: 10%; */
+    /* right: 0 */
+}
+
 .banner-image-container {
     /* height: 10%; */
     overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: pink;
 }
 
 .banner-image-container img {
-    /* height: 700px; */
-    /* object-fit: cover; */
-    transform: translate(0, -10%);
+    animation: rotation 8s infinite linear;
+    width: 100%;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }
 
 .taxonomy-bar {
@@ -52,16 +76,18 @@
 .banner-text {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 70%;
     padding: 25px;
-    color: var(--off-black);
+    color: var(--dark-blue);
     /* margin-top: 70px; */
     font-weight: 200;
     /* font-family: 'Roboto'; */
     letter-spacing: 1px;
-    /* background-color: var(--pale-blue); */
+    /* background-color: var(--dark-blue); */
+    background-color: var(--off-white);
     font-size: 30px;
-    /* align-items: ; */
+    align-items: center;
+    justify-content: center;
 }
 
 .welcome-ribbon-text {
@@ -105,12 +131,25 @@
     justify-self: flex-end;
 }
 
+/* footer */
+#footer {
+    background-color: var(--tan);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#footer-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .github-links-container {
     height: 18vh;
     width: 100vw;
-    background-color: var(--tan);
-    /* background-color: white; */
-    /* color: var(--tan); */
     font-size: 80px;
     display: flex;
     align-items: center;
@@ -120,7 +159,7 @@
 
 .github-links-container i:first-child:hover{
     color: var(--light-blue);
-    text-shadow: 0 0 2px var(--light-gray);
+    /* text-shadow: 0 2px 1px var(--yellow); */
     /* text-shadow: 4px 4px var(--red-orange); */
     cursor: pointer;
     font-size: 90px;

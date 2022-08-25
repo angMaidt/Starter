@@ -107,7 +107,8 @@ const SignUpForm = ({ showModal, setShowModal }) => {
         <button type='submit'>Sign Up</button>
       </div>
       <div className='signup-form-bottom'>
-        <div className='wavy-red-underline'></div>
+        {/* <div className='wavy-red-underline'></div> */}
+        <div className='red-underline'></div>
         <h3>Already have an account? Login here!</h3>
           <LoginFormModal setShowModal={setShowModal} showModal={showModal} />
       </div>

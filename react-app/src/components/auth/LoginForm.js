@@ -71,7 +71,8 @@ const LoginForm = ({ setShowModal2 }) => {
         <button type='submit'>Login</button>
       </div>
       <div className='signup-form-bottom'>
-        <div className='wavy-red-underline'></div>
+        {/* <div className='wavy-red-underline'></div> */}
+        <div className='red-underline'></div>
           <h3>Don't have an account? Sign up here!</h3>
           <SignUpFormModal />
         {/* render signup modal here */}

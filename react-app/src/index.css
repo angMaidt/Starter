@@ -8,6 +8,8 @@
     --light-gray: #767677;
     --yellow: #FFD12F;
     --off-white: #FBF9EE;
+    /* --off-white: #f3edcf; */
+    /* --tan: #c6ab57; */
     --tan: #f3edcf;
     --off-black: #333333;
     --red-orange: #ff575d;
@@ -72,18 +74,17 @@ button:hover:not(.submit) {
 }
 
 h1:not(#all-recipes, .logo-container h1) {
-    /* color: var(--dark-blue);
-    width: fit-content; */
-    text-transform: uppercase;
-    color: var(--dark-blue);
-    letter-spacing: 5px;
+    letter-spacing: .5px;
+    font-weight: 400;
 }
 
 h3:not(
     .welcome-ribbon h3,
     .card-container-right h3
-    ), h2:not(.banner-text h2) {
+    ),
+    h2:not(.banner-text h2) {
     color: var(--dark-blue);
+    /* font-size: 22px; */
 }
 
 .bottom-screen {
@@ -106,7 +107,11 @@ h3:not(
     width: 100%;
 } */
 
-p:not(.card-bottom-info p, .comment-text, .search-result p) {
+p:not(
+    .card-bottom-info p,
+    .comment-text,
+    .search-result p,
+    #recipe-description) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);

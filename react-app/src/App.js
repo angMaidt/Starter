@@ -16,6 +16,7 @@ import MyRecipes from './components/Recipes/MyRecipes/MyRecipes';
 // import LeftNav from './components/LeftNavigation/LeftNav';
 import HomePage from './components/HomePage/HomePage';
 import SearchResults from './components/Search/SearchResults';
+import Footer from './components/Footer';
 // import SystemProvider from './context/SystemContext';
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
           </Switch>
         {/* </div> */}
     </div>
+    <Footer />
     </BrowserRouter>
   );
 }
