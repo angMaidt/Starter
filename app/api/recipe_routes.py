@@ -191,13 +191,10 @@ def save_a_recipe(recipe_id):
     data = request.json
     user_id = data['user_id']
 
-    # new_save = { recipe_id, user_id }
-
     recipe = Recipe.query.get(recipe_id)
     user = User.query.get(user_id)
+
     recipe.save_recipe(user)
-    # recipe.saves.append(user_id)
-    # recipe.save_recipe({"id": 1})
     db.session.commit()
+
     return recipe.to_dict()
-    # return {'DATA': user_id}

@@ -48,3 +48,12 @@ class User(db.Model, UserMixin):
             # 'recipes': [recipe.to_dict() for recipe in self.recipes],
             # 'comments': [comment.to_dict() for comment in self.comments]
         }
+
+    def to_dict_with_saves(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'profile_pic': self.profile_pic,
+            'saved_recipes': self.saved_recipes
+        }
