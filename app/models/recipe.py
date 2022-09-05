@@ -1,6 +1,7 @@
 import datetime
 from sqlalchemy.sql import func
 from .db import db
+from .user import saved_recipe
 
 class Recipe(db.Model):
     __tablename__ = 'recipes'
@@ -25,6 +26,7 @@ class Recipe(db.Model):
     instructions = db.relationship('Instruction', back_populates='recipe', cascade="all, delete")
     ingredients = db.relationship('Ingredient', back_populates='recipe', cascade="all, delete")
     comments = db.relationship('Comment', back_populates='recipe', cascade="all, delete")
+    saves = db.relationship('User', secondary=saved_recipe, back_populates='saved_recipes')
 
 
     def to_dict(self):
@@ -43,5 +45,6 @@ class Recipe(db.Model):
             'updated_at': self.updated_at,
             'instructions': [instruction.to_dict() for instruction in self.instructions],
             'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'saves': self.saves
         }
