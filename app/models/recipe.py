@@ -26,8 +26,20 @@ class Recipe(db.Model):
     instructions = db.relationship('Instruction', back_populates='recipe', cascade="all, delete")
     ingredients = db.relationship('Ingredient', back_populates='recipe', cascade="all, delete")
     comments = db.relationship('Comment', back_populates='recipe', cascade="all, delete")
-    saves = db.relationship('User', secondary=saved_recipe, back_populates='saved_recipes')
 
+    saves = db.relationship('User', secondary=saved_recipe, back_populates='saved_recipes', cascade="all, delete")
+
+    def has_saved_recipe(self, user):
+        saved_recipes = [user.id for user in self.saves]
+        return user.id in saved_recipes
+
+    def save_recipe(self, user):
+        if not self.has_saved_recipe(user):
+            self.saves.append(user)
+
+    def unsave_recipe(self, user):
+        if self.has_saved_recipe(user):
+            self.saves.remove(user)
 
     def to_dict(self):
         return {
@@ -46,5 +58,5 @@ class Recipe(db.Model):
             'instructions': [instruction.to_dict() for instruction in self.instructions],
             'ingredients': [ingredient.to_dict() for ingredient in self.ingredients],
             'comments': [comment.to_dict() for comment in self.comments],
-            'saves': self.saves
+            'saves': [user.to_dict() for user in self.saves]
         }

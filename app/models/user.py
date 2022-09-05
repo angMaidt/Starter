@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     #relationships
     recipes = db.relationship('Recipe', back_populates='user', foreign_keys='[Recipe.user_id]')
     comments = db.relationship('Comment', back_populates='user', foreign_keys='[Comment.user_id]')
+
     saved_recipes = db.relationship('Recipe', secondary=saved_recipe, back_populates='saves')
 
     @property
@@ -43,7 +44,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'profile_pic': self.profile_pic,
-            'saved_recipes': self.saved_recipes
+            # 'saved_recipes': self.saved_recipes
             # 'recipes': [recipe.to_dict() for recipe in self.recipes],
             # 'comments': [comment.to_dict() for comment in self.comments]
         }
