@@ -1,3 +1,11 @@
 #liked, #not-liked {
-    color: var(--red-orange)
+    color: var(--red-orange);
+    font-size: 30px;
+    align-self: flex-end;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* top: 470px; */
+    /* position: fixed; */
+    /* left: 50%; */
+
 }
