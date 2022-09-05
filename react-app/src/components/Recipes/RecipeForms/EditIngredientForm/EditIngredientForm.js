@@ -44,7 +44,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
         }
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const payload = {

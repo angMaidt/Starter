@@ -20,7 +20,7 @@ function RecipeCard({ recipe }) {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='card-container-right'>
-                    <SaveRecipe />
+                    <SaveRecipe recipe={recipe}/>
                     <div className='card-bottom-info'>
                         <h3
                             className={hover ? 'yellow-bg': null }
