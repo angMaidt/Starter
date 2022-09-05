@@ -198,3 +198,17 @@ def save_a_recipe(recipe_id):
     db.session.commit()
 
     return recipe.to_dict()
+
+#forget a recipe
+@recipe_routes.route('/<int:recipe_id>/unsave', methods=['PUT'])
+def forget_a_recipe(recipe_id):
+    data = request.json
+    user_id = data['user_id']
+
+    recipe = Recipe.query.get(recipe_id)
+    user = User.query.get(user_id)
+
+    recipe.unsave_recipe(user)
+    db.session.commit()
+
+    return recipe.to_dict()
