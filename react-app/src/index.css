@@ -156,7 +156,8 @@ i:not(
     .add,
     .fa-github,
     .fa-linkedin,
-    .fa-arrow-down
+    .fa-arrow-down,
+    .fa-heart
     ) {
     color: var(--light-gray);
     font-size: 18px;
@@ -167,7 +168,8 @@ i:hover:not(
     .add,
     .fa-github,
     .fa-linkedin,
-    .fa-arrow-down
+    .fa-arrow-down,
+    .fa-heart
     ) {
     cursor: pointer;
     font-size: 20px;

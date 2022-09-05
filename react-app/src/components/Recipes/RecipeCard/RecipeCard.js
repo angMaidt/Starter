@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SaveRecipe from '../../SaveRecipe'
 import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
@@ -19,6 +20,7 @@ function RecipeCard({ recipe }) {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='card-container-right'>
+                    <SaveRecipe />
                     <div className='card-bottom-info'>
                         <h3
                             className={hover ? 'yellow-bg': null }

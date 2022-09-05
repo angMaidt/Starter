@@ -9,7 +9,7 @@ function EditIngredientForm({ ingredient, measurementUnits, recipe_id, showEdit,
     const dispatch = useDispatch()
     const [amount, setAmount] = useState(ingredient.amount)
     const [unit, setUnit] = useState(ingredient.measurement_unit.id)
-    console.log(unit)
+    // console.log(unit)
 
     const [food_stuff, setFood_stuff] = useState(ingredient.food_stuff)
     const [hasSubmitted, setHasSubmitted] = useState(false)
