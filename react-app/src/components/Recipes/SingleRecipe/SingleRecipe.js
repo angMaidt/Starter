@@ -90,17 +90,14 @@ function SingleRecipe() {
     //     behavior: 'smooth'
     // })
 
-    //calculate rating
+    //calculate avg rating
     const find_average = (recipe) => {
-        //find the avg
-        //add all comment.ratings together
-        //divide by length
-        //return
         let sum = 0
         recipe.comments.forEach(comment => {
             sum += comment.rating
         })
-        return sum/recipe.comments.length
+        //returns rounded to nearest 10th
+        return Math.round(sum/recipe.comments.length * 10) / 10
     }
 
     //time conversion variables
@@ -153,9 +150,13 @@ function SingleRecipe() {
                             }
                         </div>
                         <div className='likes-comments-wrapper'>
-                            <div className='like-container'>
+                            {/* <div className='like-container'>
                                 <i className='fa-solid fa-heart'></i>
                                 <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                            </div> */}
+                            <div className='avg-rating'>
+                                <i className='fa-solid fa-star'></i>
+                                <h3>{find_average(recipe)}/5 ({recipe.comments.length} reviews)</h3>
                             </div>
                             <div
                                 className='recipe-comment-info bubble bubble-bottom-left'
@@ -173,6 +174,10 @@ function SingleRecipe() {
                             currentTarget.onerror = null;
                             currentTarget.src ='../../../../../static/default-bread.jpg'
                     }} alt={`recipe-${recipe.id}`} />
+                </div>
+                <div className='like-container'>
+                    <i className='fa-solid fa-heart'></i>
+                    <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
                 </div>

@@ -145,7 +145,7 @@ h6 {
     margin: 0;
 }
 
-span:not(.welcome-ribbon span, .asterisk), .ing.submit {
+span:not(.welcome-ribbon span, .asterisk, .obelus), .ing.submit {
     font-family: Inter,Helvetica,sans-serif;
     color: var(--light-gray);
     font-size: 14px;
@@ -158,7 +158,8 @@ i:not(
     .fa-github,
     .fa-linkedin,
     .fa-arrow-down,
-    .fa-heart
+    .fa-heart,
+    .fa-star
     ) {
     color: var(--light-gray);
     font-size: 18px;
@@ -172,7 +173,8 @@ i:hover:not(
     .fa-arrow-down,
     .fa-heart,
     .fa-bookmark,
-    .fa-xmark
+    .fa-xmark,
+    .fa-star
     ) {
     cursor: pointer;
     font-size: 20px;

@@ -20,6 +20,7 @@ function StarRating({ rating, setRating }) {
                             />
                         <FaStar
                             color={ratingValue < (hover || rating) ? '#ff575d': '#DCDCDC'}
+                            // color={ratingValue < (hover || rating) ? 'var(--yellow)': '#DCDCDC'}
                             size={100}
                             className='star'
                             onMouseOver={() => setHover(ratingValue + 1)}
