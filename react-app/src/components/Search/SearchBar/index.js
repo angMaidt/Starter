@@ -75,7 +75,7 @@ function SearchBar({ setShowSearch }) {
                                     className='search-result'
                                     onClick={() => setShowSearch(false)}>
                                     {result.title}
-                                    {console.log(result.title)}
+                                    {/* {console.log(result.title)} */}
                                 </div>
                             </Link>
                         ))

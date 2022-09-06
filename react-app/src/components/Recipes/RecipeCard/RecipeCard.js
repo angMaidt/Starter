@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SaveRecipe from '../../SaveRecipe'
 import './RecipeCard.css'
 
 function RecipeCard({ recipe }) {
@@ -23,7 +24,7 @@ function RecipeCard({ recipe }) {
                         <h3
                             className={hover ? 'yellow-bg': null }
                             style={{ 'fontWeight': '500' }}>{recipe.title}</h3>
-                    {/* <div className='title-underline'></div> */}
+                        {/* <div className='title-underline'></div> */}
                         {/* <p>{recipe.description}</p> */}
                         <div className='username-info'>
                             <h4>by {recipe.user.username}</h4>
@@ -33,6 +34,7 @@ function RecipeCard({ recipe }) {
                         <i class="fa-solid fa-arrow-right-long"></i>
                     </div> */}
                 </div>
+                <SaveRecipe recipe={recipe}/>
             </div>
         </Link>
     )

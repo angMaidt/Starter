@@ -1,6 +1,7 @@
 from flask import Blueprint, request
-from ..forms.search_form import SearchForm
-from app.models import Recipe, Ingredient, Instruction, MeasurementUnit, db
+from flask_login import login_required, current_user
+# from ..forms.search_form import SearchForm
+from app.models import User, Recipe, Ingredient, Instruction, MeasurementUnit, db
 from ..forms import RecipeForm, IngredientForm, InstructionForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -176,27 +177,38 @@ def delete_instruction(inst_id):
     db.session.commit()
     return { "message": "Instruction Deleted!" }
 
+# MEASUREMENT UNITS
 # get all measurement units
 @recipe_routes.route('/units')
 def get_measurement_units():
     units = MeasurementUnit.query.all()
     return {"units": [unit.to_dict() for unit in units]}
 
+#SAVES
+#save a recipe
+@recipe_routes.route('/<int:recipe_id>/save', methods=['PUT'])
+def save_a_recipe(recipe_id):
+    data = request.json
+    user_id = data['user_id']
 
-# search for a recipe
-# @recipe_routes.route('/search', methods=['POST'])
-# def get_search_results():
-#     form = SearchForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         search_term = form.data['search_term']
+    recipe = Recipe.query.get(recipe_id)
+    user = User.query.get(user_id)
 
-#         recipe_results = Recipe.query.filter(Recipe.title.ilike(f'%{search_term}%')).all()
+    recipe.save_recipe(user)
+    db.session.commit()
 
-#         # print('RECIPE RESULTS', recipe_results)
-#         # ingredient_results = Recipe.query.filter(Recipe.ingredients.ilike(f'%{search_term}%')).all()
-#         # if not recipe_results:
-#         #     return {'search_results': 'There are no recipe titles that match this description!'}
-#         return {'search_results': [recipe.to_dict() for recipe in recipe_results]}
+    return recipe.to_dict()
 
-#     return {'error': 'Unable to complete search'}
+#forget a recipe
+@recipe_routes.route('/<int:recipe_id>/unsave', methods=['PUT'])
+def forget_a_recipe(recipe_id):
+    data = request.json
+    user_id = data['user_id']
+
+    recipe = Recipe.query.get(recipe_id)
+    user = User.query.get(user_id)
+
+    recipe.unsave_recipe(user)
+    db.session.commit()
+
+    return recipe.to_dict()

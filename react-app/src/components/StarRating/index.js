@@ -8,7 +8,7 @@ function StarRating({ rating, setRating }) {
 
     return (
         <div className='star-container'>
-            {[...Array(5)].map((star, idx) => {
+            {[...Array(5)].map((_star, idx) => {
                 const ratingValue = idx
                 return (
                     <label key={idx} className='star-label'>

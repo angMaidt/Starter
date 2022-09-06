@@ -377,3 +377,61 @@
     /* font-size: 25px; */
     /* color: red; */
 }
+
+/* Recipe Likes */
+.recipe-like-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid #1b4d7a;
+    box-shadow: 2px 2px 0 #26b7c5;
+    font-family: "SE Inter","Space Grotesk",Helvetica,sans-serif;
+    letter-spacing: -.01em;
+    background: #fbf9ee;
+    color: #1b4d7a;
+    border-radius: 3px;
+    align-self: flex-end;
+    margin-right: 5%;
+}
+
+.recipe-like-container:not(.logged-out):hover {
+    cursor: pointer;
+}
+
+.recipe-like-container h3 {
+    margin: 0;
+    margin-right: 5px;
+}
+
+#sp-liked {
+    color: var(--red-orange);
+}
+
+#sp-not-liked {
+    color: var(--red-orange);
+}
+
+.likes-comments-wrapper {
+    display: flex;
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    text-align: center;
+    margin-right: 25px;
+    /* position: absolute; */
+    /* right: 35%; */
+    /* top: 0; */
+    /* flex-direction: column; */
+}
+
+.like-container > .fa-heart {
+    color: var(--red-orange);
+    font-size: 25px;
+    margin-right: 10px;
+}

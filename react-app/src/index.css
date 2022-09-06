@@ -124,7 +124,8 @@ p:not(
     .card-bottom-info p,
     .comment-text,
     .search-result p,
-    #recipe-description) {
+    #recipe-description,
+    #like-login-prompt) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);
@@ -156,7 +157,8 @@ i:not(
     .add,
     .fa-github,
     .fa-linkedin,
-    .fa-arrow-down
+    .fa-arrow-down,
+    .fa-heart
     ) {
     color: var(--light-gray);
     font-size: 18px;
@@ -167,7 +169,8 @@ i:hover:not(
     .add,
     .fa-github,
     .fa-linkedin,
-    .fa-arrow-down
+    .fa-arrow-down,
+    .fa-heart
     ) {
     cursor: pointer;
     font-size: 20px;

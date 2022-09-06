@@ -27,7 +27,7 @@ function SearchResults() {
             return recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
         })
     }
-    console.log(searchResults)
+    // console.log(searchResults)
 
     return (
         <>
