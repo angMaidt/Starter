@@ -86,16 +86,16 @@ function SinglePageSaveRecipe({ recipe }) {
     if (!user) {
         return (
             <div
-                className='recipe-like-container'
+                className='recipe-like-container logged-out'
                 onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                onClick=''>
+                onMouseLeave={() => setHover(false)}>
                 <h3 id='sp-like-login-prompt'>Login to like this Recipe!</h3>
                 <i
-                id='sp-not-liked'
-                className={`${hover ? 'fa-solid' : 'fa-regular'} fa-heart`}
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}></i>
+                    id='sp-not-liked'
+                    // className={`${hover ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                    className='fa-regular fa-heart'
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}></i>
             </div>
         )
     }
@@ -103,7 +103,7 @@ function SinglePageSaveRecipe({ recipe }) {
     return (
         <div
             className='recipe-like-container'
-            title={like ? 'Click to Like' : 'Click to Unlike'}
+            title={like ? 'Click to Unlike' : 'Click to Like'}
             onClick={like ? handleUnlike : handleLike}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}>
