@@ -40,14 +40,14 @@
 }
 
 input:focus + label, textarea:focus + label{
-    color: var(--dark-blue);
+    /* color: var(--dark-blue);
     text-decoration: underline;
     background-color: var(--yellow);
-    font-size: 18px;
+    font-size: 18px; */
 }
 
-input:focus, textarea:focus {
-    outline: 2px solid var(--off-black)
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--dark-blue)
 }
 
 .arrow-button {

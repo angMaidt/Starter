@@ -195,10 +195,6 @@ function SingleRecipe() {
                                 </div>
                                 }
                         </div>
-                        {/* <div className='facts-like-container'>
-                            <i className='fa-solid fa-heart'></i>
-                            <h3> {recipe.saves.length} Like(s)</h3>
-                        </div> */}
                         <div className='facts'>
                             <div className='facts-left'>
                                 <img
@@ -227,18 +223,6 @@ function SingleRecipe() {
                                     <h3>Baking Temp: {recipe.baking_temp} °F</h3>
                                     <h3 className='yellow-highlight'>Total Yield: {recipe.total_yield}</h3>
                                 </div>
-                                    {/* <div className='facts-like-container'>
-                                        <i className='fa-solid fa-heart'></i>
-                                        <h3> {recipe.saves.length} Like(s)</h3>
-                                    </div> */}
-                                {/* {sessionUser && sessionUser.id === recipe.user.id &&
-                                <div className='edit-button-container'>
-                                    <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
-                                        <i className="fa-solid fa-pen"></i>
-                                    </div>
-                                    <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
-                                </div>
-                                } */}
                             </div>
                         </div>
                     </div>
@@ -356,7 +340,7 @@ function SingleRecipe() {
                         }
                     </div>
                         <div>
-                            {sessionUser && sessionUser.id === recipe.user.id && !recipe.instructions.length &&
+                            {sessionUser && sessionUser.id === recipe.user.id && !recipe.instructions.length && !showAddInst &&
                                 <div className='add-info' onClick={() => setShowAddInst(!showAddInst)}>
                                     <h2>Step 3. Click here to add Instructions to your recipe!</h2>
                                 </div>

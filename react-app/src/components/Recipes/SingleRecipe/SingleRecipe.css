@@ -135,6 +135,7 @@
     justify-content: center;
     background-color: pink;
     box-shadow: 10px 10px var(--light-blue);
+    margin-bottom: 25px;
 }
 
 .add-info:hover{
