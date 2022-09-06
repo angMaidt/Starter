@@ -6,24 +6,25 @@ import '../SaveRecipe.css'
 function SinglePageSaveRecipe({ recipe }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+
     let user_id
     if (user) {
         user_id = user.id
     }
-    // console.log("user id: " + user_id)
-    // const has_liked = recipe.saves.filter(user => (
-    //     user.id === user_id
-    // ))
-    // console.log(has_liked)
-    //map through arr
-    //see if current user id matches any user.id
+
     const [hover, setHover] = useState(false)
     const [like, setLike] = useState(false)
+    const [owner, setOwner] = useState(false)
 
     useEffect(() => {
-        for (let save of recipe.saves) {
-            if (save.id === user_id) {
-                setLike(true)
+        if (user_id === recipe.user.id) {
+            setOwner(true)
+        }
+        if (!owner) {
+            for (let save of recipe.saves) {
+                if (save.id === user_id) {
+                    setLike(true)
+                }
             }
         }
     },[user_id, recipe.saves])
@@ -98,6 +99,21 @@ function SinglePageSaveRecipe({ recipe }) {
                     onMouseLeave={() => setHover(false)}></i>
             </div>
         )
+    }
+
+    if (owner) {
+        return (
+            <div
+            className='recipe-like-container logged-out'>
+            <h3 id='sp-like-login-prompt'>You posted this recipe</h3>
+            <i
+                id='sp-not-liked'
+                style={{ 'color': 'var(--yellow)' }}
+                // className={`${hover ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                className='fa-solid fa-bookmark'></i>
+        </div>
+        )
+
     }
 
     return (

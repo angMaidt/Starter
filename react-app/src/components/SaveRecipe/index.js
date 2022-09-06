@@ -6,25 +6,29 @@ import './SaveRecipe.css'
 function SaveRecipe({ recipe }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+
     let user_id
     if (user) {
         user_id = user.id
     }
-    // console.log("user id: " + user_id)
-    // const has_liked = recipe.saves.filter(user => (
-    //     user.id === user_id
-    // ))
-    // console.log(has_liked)
-    //map through arr
-    //see if current user id matches any user.id
+
     const [hover, setHover] = useState(false)
     const [like, setLike] = useState(false)
+    const [owner, setOwner] = useState(false)
 
     useEffect(() => {
-        for (let save of recipe.saves) {
-            if (save.id === user_id) {
-                setLike(true)
-            }
+        //checks if owner of recipe
+        if (user_id === recipe.user.id) {
+            setOwner(true)
+        }
+
+        if (!owner) {
+            for (let save of recipe.saves) {
+                if (save.id === user_id) {
+                    setLike(true)
+                }
+        }
+
         }
     },[user_id, recipe.saves])
 
@@ -47,12 +51,12 @@ function SaveRecipe({ recipe }) {
             })
             if (res.ok) {
                 // const data = res.json()
-                console.log('good like!')
+                // console.log('good like!')
                 await dispatch(getRecipesThunk())
             }
 
         } catch (e) {
-            alert('Like Failed')
+            alert('Like Failed, Please Try Again')
         }
     }
 
@@ -75,11 +79,11 @@ function SaveRecipe({ recipe }) {
             })
             if (res.ok) {
                 // const data = res.json()
-                console.log('good unlike!')
+                // console.log('good unlike!')
                 await dispatch(getRecipesThunk())
             }
         } catch (e) {
-            alert('Unlike Failed')
+            alert('Unlike Failed, Please Try Again')
         }
     }
 
@@ -93,6 +97,18 @@ function SaveRecipe({ recipe }) {
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}></i>
             </div>
+        )
+    }
+
+    if (owner) {
+        return (
+            <div id='logged-out-like'>
+                <p id='like-login-prompt' style={{ 'color': 'var(--dark-blue)' }}>You posted this recipe!</p>
+                <i
+                id='not-liked'
+                className='fa-solid fa-bookmark'
+                style={{ 'color': 'var(--yellow)' }}></i>
+        </div>
         )
     }
 
