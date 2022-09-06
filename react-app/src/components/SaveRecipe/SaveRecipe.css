@@ -2,10 +2,31 @@
     color: var(--red-orange);
     font-size: 30px;
     align-self: flex-end;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    /* height: 40px; */
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
     /* top: 470px; */
-    /* position: fixed; */
+    /* position: relative; */
     /* left: 50%; */
 
+}
+
+#logged-out-like {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-left: 10px; */
+}
+
+#like-login-prompt {
+    margin: 0;
+    color: var(--red-orange);
+    font-size: 14px;
+    width: 100%;
+    padding-top: 0;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }

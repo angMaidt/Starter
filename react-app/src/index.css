@@ -124,7 +124,8 @@ p:not(
     .card-bottom-info p,
     .comment-text,
     .search-result p,
-    #recipe-description) {
+    #recipe-description,
+    #like-login-prompt) {
     font-family: Inter,Helvetica,sans-serif;
     font-size: 1.25rem;
     color: var(--off-black);

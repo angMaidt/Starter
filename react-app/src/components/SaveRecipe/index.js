@@ -5,7 +5,11 @@ import './SaveRecipe.css'
 
 function SaveRecipe({ recipe }) {
     const dispatch = useDispatch()
-    const user_id = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
+    let user_id
+    if (user) {
+        user_id = user.id
+    }
     // console.log("user id: " + user_id)
     // const has_liked = recipe.saves.filter(user => (
     //     user.id === user_id
@@ -79,24 +83,32 @@ function SaveRecipe({ recipe }) {
         }
     }
 
+    if (!user) {
+        return (
+            <div id='logged-out-like'>
+                <p id='like-login-prompt'>Login to like this Recipe!</p>
+                <i
+                id='not-liked'
+                className={`${hover ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}></i>
+            </div>
+        )
+    }
+
     return (
         <>
-            {/* <i
-                id='liked'
-                className={hover || liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                onClick={handleLike}
-                ></i> */}
             {like ?
                 <i
                     id='liked'
                     className="fa-solid fa-heart"
+                    title='Unlike this recipe!'
                     onClick={handleUnlike}></i>
                     :
                     <i
                     id='not-liked'
                     className={`${hover ? 'fa-solid' : 'fa-regular'} fa-heart`}
+                    title='Like this recipe!'
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                     // onMouseEnter={() => setHover(true)}
