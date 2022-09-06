@@ -377,3 +377,43 @@
     /* font-size: 25px; */
     /* color: red; */
 }
+
+/* Recipe Likes */
+.recipe-like-container {
+    width: fit-content;
+    /* height: fit-content; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid #1b4d7a;
+    box-shadow: 2px 2px 0 #26b7c5;
+    font-family: "SE Inter","Space Grotesk",Helvetica,sans-serif;
+    /* font-size: .875rem; */
+    /* font-weight: 600; */
+    /* line-height: 1.21; */
+    letter-spacing: -.01em;
+    /* text-align: center; */
+    background: #fbf9ee;
+    color: #1b4d7a;
+    border-radius: 3px;
+    /* text-transform: none; */
+    align-self: flex-end;
+}
+
+.recipe-like-container:hover {
+    cursor: pointer;
+}
+
+.recipe-like-container h3 {
+    margin: 0;
+    margin-right: 5px;
+}
+
+#sp-liked {
+    color: var(--red-orange);
+}
+
+#sp-not-liked {
+    color: var(--red-orange);
+}

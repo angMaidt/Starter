@@ -9,6 +9,7 @@ import NewInstructionForm from '../RecipeForms/NewInstructionForm/NewInstruction
 import './SingleRecipe.css'
 import Ingredient from '../../Ingredient/Ingredient'
 import Instruction from '../../Instruction/Instruction'
+import SinglePageSaveRecipe from '../../SaveRecipe/SinglePageSaveRecipe'
 
 function SingleRecipe() {
     const { id } = useParams()
@@ -151,6 +152,7 @@ function SingleRecipe() {
                                 <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
                             }
                         </div>
+
                         <div
                             className='recipe-comment-info bubble bubble-bottom-left'
                             onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
@@ -168,15 +170,6 @@ function SingleRecipe() {
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
-                    {/* <h3 className='wavy-underline'>Recipe Facts</h3> */}
-                    {/* {sessionUser && sessionUser.id === recipe.user.id &&
-                    <div className='edit-button-container'>
-                        <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>
-                            <i className="fa-solid fa-pen"></i>
-                        </div>
-                        <div onClick={handleDelete} title='Delete Recipe'><i className="fa-solid fa-trash-can"></i></div>
-                    </div>
-                    } */}
                 </div>
                 {!showEditForm ?
                     <div className='recipe-facts'>
@@ -245,6 +238,9 @@ function SingleRecipe() {
                         ordered_instructions={ordered_instructions} />
                 </div>
                 }
+
+                {/* Recipe Likes */}
+                <SinglePageSaveRecipe recipe={recipe}/>
 
                 {/* Ingredients */}
                 <div>
