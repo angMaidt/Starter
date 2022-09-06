@@ -65,7 +65,7 @@ function MyRecipes() {
                             <RecipeCard key={recipe.id} recipe={recipe} />
                         ))
                     :
-                    <h3 id='no-recipes'>Looks like you don't have any recipes!</h3>
+                    <h3 id='no-recipes'>Looks like you haven't posted any recipes!</h3>
                     }
                 </div>
             }

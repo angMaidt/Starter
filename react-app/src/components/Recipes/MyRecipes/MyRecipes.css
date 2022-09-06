@@ -37,6 +37,8 @@
 #no-recipes {
     position: absolute;
     width: fit-content;
-    /* margin-right: 100px; */
-    /* right: 35vw; */
+    /* left: 50%; */
+    right: 40vw;
+    /* padding-right: 300px; */
+    /* right: 10%; */
 }
