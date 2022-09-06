@@ -156,7 +156,11 @@ function SingleRecipe() {
                             </div> */}
                             <div className='avg-rating'>
                                 <i className='fa-solid fa-star'></i>
-                                <h3>{find_average(recipe)}/5 ({recipe.comments.length} reviews)</h3>
+                                {isNaN(find_average(recipe)) ?
+                                    <h3>0/5 ({recipe.comments.length} reviews)</h3>
+                                :
+                                    <h3>{find_average(recipe)}/5 ({recipe.comments.length} reviews)</h3>
+                                }
                             </div>
                             <div
                                 className='recipe-comment-info bubble bubble-bottom-left'
