@@ -158,12 +158,12 @@
     text-decoration: none;
 }
 
-.github-links-container i:first-child:hover{
+.github-links-container i:hover{
     color: var(--light-blue);
     /* text-shadow: 0 2px 1px var(--yellow); */
     /* text-shadow: 4px 4px var(--red-orange); */
     cursor: pointer;
-    font-size: 90px;
+    /* font-size: 90px; */
     transition: all .2s ease-in;
     /* text-decoration: none */
 }
