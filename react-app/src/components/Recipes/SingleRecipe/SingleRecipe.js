@@ -152,14 +152,19 @@ function SingleRecipe() {
                                 <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
                             }
                         </div>
-
-                        <div
-                            className='recipe-comment-info bubble bubble-bottom-left'
-                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
-                            >
-                            {/* <span>Rating</span>
-                            <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
-                            <div>{recipe.comments.length}<h6>comments</h6></div>
+                        <div className='likes-comments-wrapper'>
+                            <div className='like-container'>
+                                <i className='fa-solid fa-heart'></i>
+                                <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                            </div>
+                            <div
+                                className='recipe-comment-info bubble bubble-bottom-left'
+                                onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
+                                >
+                                {/* <span>Rating</span>
+                                <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
+                                <div>{recipe.comments.length}<h6>comments</h6></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,6 +195,10 @@ function SingleRecipe() {
                                 </div>
                                 }
                         </div>
+                        {/* <div className='facts-like-container'>
+                            <i className='fa-solid fa-heart'></i>
+                            <h3> {recipe.saves.length} Like(s)</h3>
+                        </div> */}
                         <div className='facts'>
                             <div className='facts-left'>
                                 <img
@@ -218,6 +227,10 @@ function SingleRecipe() {
                                     <h3>Baking Temp: {recipe.baking_temp} °F</h3>
                                     <h3 className='yellow-highlight'>Total Yield: {recipe.total_yield}</h3>
                                 </div>
+                                    {/* <div className='facts-like-container'>
+                                        <i className='fa-solid fa-heart'></i>
+                                        <h3> {recipe.saves.length} Like(s)</h3>
+                                    </div> */}
                                 {/* {sessionUser && sessionUser.id === recipe.user.id &&
                                 <div className='edit-button-container'>
                                     <div onClick={() => setShowEditForm(!showEditForm)} title='Edit Recipe'>

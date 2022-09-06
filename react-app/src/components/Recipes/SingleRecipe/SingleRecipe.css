@@ -381,23 +381,17 @@
 /* Recipe Likes */
 .recipe-like-container {
     width: fit-content;
-    /* height: fit-content; */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px;
+    padding: 5px 10px;
     border: 1px solid #1b4d7a;
     box-shadow: 2px 2px 0 #26b7c5;
     font-family: "SE Inter","Space Grotesk",Helvetica,sans-serif;
-    /* font-size: .875rem; */
-    /* font-weight: 600; */
-    /* line-height: 1.21; */
     letter-spacing: -.01em;
-    /* text-align: center; */
     background: #fbf9ee;
     color: #1b4d7a;
     border-radius: 3px;
-    /* text-transform: none; */
     align-self: flex-end;
     margin-right: 5%;
 }
@@ -417,4 +411,27 @@
 
 #sp-not-liked {
     color: var(--red-orange);
+}
+
+.likes-comments-wrapper {
+    display: flex;
+}
+
+.like-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    text-align: center;
+    margin-right: 25px;
+    /* position: absolute; */
+    /* right: 35%; */
+    /* top: 0; */
+    /* flex-direction: column; */
+}
+
+.like-container > .fa-heart {
+    color: var(--red-orange);
+    font-size: 25px;
+    margin-right: 10px;
 }
