@@ -189,7 +189,7 @@
     border: 1px solid var(--dark-blue);
     box-shadow: 5px 5px 0 var(--tan);
     padding: 15px 30px;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     margin-top: 50px;
     width: 90%;
     align-self: center;
@@ -394,6 +394,8 @@
     border-radius: 3px;
     align-self: flex-end;
     margin-right: 5%;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .recipe-like-container:not(.logged-out):hover {
