@@ -30,11 +30,12 @@
     height: 50px;
 }
 
-.comment-header .dot {
-    color: var(--off-black);
+.comment-header #dot {
+    color: var(--light-gray);
     font-size: 12px;
     margin-left: 5px;
     margin-right: 5px;
+    /* margin-bottom: 10px; */
 
 }
 

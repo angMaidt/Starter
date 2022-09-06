@@ -202,7 +202,7 @@ function NewRecipeForm() {
                             onChange={(e) => setTitle(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='title'>*Title: </label>
+                        <label for='title'><span className='asterisk'>*</span>Title: </label>
                     </div>
                     <div className="input-container">
                         <textarea
@@ -213,7 +213,7 @@ function NewRecipeForm() {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
-                        <label for='description'>*Description</label>
+                        <label for='description'><span className='asterisk'>*</span>Description</label>
                     </div>
                     <div className="input-container">
                         <input
@@ -224,7 +224,7 @@ function NewRecipeForm() {
                             onChange={(e) => setImage_url(e.target.value)}
                             style={{ 'width': '80%' }}
                         />
-                        <label for='image'>*Image Link</label>
+                        <label for='image'><span className='asterisk'>*</span>Image Link</label>
                     </div>
                     {/* </div> */}
                     <div className="input-container time">
@@ -246,7 +246,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setActive_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='active-time'l>*Hands On Time</label>
+                        <label for='active-time'l><span className='asterisk'>*</span>Hands On Time</label>
                     </div>
                     <div className="input-container time">
                         {/* <div> */}
@@ -268,7 +268,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setFerment_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='ferment'>*Ferment Time</label>
+                        <label for='ferment'><span className='asterisk'>*</span>Ferment Time</label>
                         {/* </div> */}
                     </div>
                     <div className="input-container time">
@@ -290,7 +290,7 @@ function NewRecipeForm() {
                                 onChange={(e) => setBake_time_mins(e.target.value)}
                             />
                         </div>
-                        <label for='bake-time'>*Bake Time</label>
+                        <label for='bake-time'><span className='asterisk'>*</span>Bake Time</label>
                     </div>
                     <div className='temp-container'>
                         <div className="input-container">
@@ -302,7 +302,10 @@ function NewRecipeForm() {
                                 value={baking_temp}
                                 onChange={(e) => setBaking_temp(e.target.value)}
                             />
-                            <label for='bake-temp'>*†Baking Temperature</label>
+                            <label for='bake-temp'><span className='asterisk'>*</span>
+                                <span className='obelus'>†</span>
+                                Baking Temperature
+                            </label>
                         </div>
                         {/* <label>°F</label> */}
                     </div>
@@ -315,13 +318,13 @@ function NewRecipeForm() {
                             value={total_yield}
                             onChange={(e) => setTotal_yield(e.target.value)}
                         />
-                        <label for='yield'>*Yield</label>
+                        <label for='yield'><span className='asterisk'>*</span>Yield</label>
                     </div>
                 </div>
                 <div className='form-bottom-container'>
                     <div className='footnotes'>
-                        <h6>* = required</h6>
-                        <h6>† = all temps displayed in °F</h6>
+                        <h6><span className='asterisk'>*</span> = required</h6>
+                        <h6><span className='obelus'>†</span> = all temps displayed in °F</h6>
                     </div>
                     <div className='next-button-container'>
                         <h3>Next</h3>

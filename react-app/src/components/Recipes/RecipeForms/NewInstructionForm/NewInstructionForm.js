@@ -26,7 +26,7 @@ function NewInstructionForm({ recipe_id, existing_list_order, edit }) {
         e.preventDefault()
 
         setHasSubmitted(true)
-        if (validationErrors.length) return alert('Cannot Submit!')
+        if (validationErrors.length) return
 
         const payload = {
             list_order,

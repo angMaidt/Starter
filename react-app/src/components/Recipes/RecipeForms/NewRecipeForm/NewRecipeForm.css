@@ -40,14 +40,14 @@
 }
 
 input:focus + label, textarea:focus + label{
-    color: var(--dark-blue);
+    /* color: var(--dark-blue);
     text-decoration: underline;
     background-color: var(--yellow);
-    font-size: 18px;
+    font-size: 18px; */
 }
 
-input:focus, textarea:focus {
-    outline: 2px solid var(--off-black)
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--dark-blue)
 }
 
 .arrow-button {
@@ -55,15 +55,15 @@ input:focus, textarea:focus {
     width: 35px;
     border-radius: 100%;
     font-size: 16px;
-    border: 1px solid var(--off-black);
-    color: var(--off-black);
+    border: 2px solid var(--dark-blue);
+    color: var(--dark-blue);
     background-color: transparent;
-    /* padding: 10px; */
+    padding-top: 3px;
 }
 
 .arrow-button:hover {
-    height: 40px;
-    width: 40px;
+    /* height: 40px;
+    width: 40px; */
     background-color: var(--yellow);
     color: var(--dark-blue)
 }
@@ -119,4 +119,8 @@ input:focus, textarea:focus {
 
 .input-container.time div{
     display: flex;
+}
+
+.obelus {
+    color: var(--dark-blue)
 }

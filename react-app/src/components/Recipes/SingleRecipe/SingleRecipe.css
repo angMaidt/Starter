@@ -135,6 +135,7 @@
     justify-content: center;
     background-color: pink;
     box-shadow: 10px 10px var(--light-blue);
+    margin-bottom: 25px;
 }
 
 .add-info:hover{
@@ -189,8 +190,8 @@
     border: 1px solid var(--dark-blue);
     box-shadow: 5px 5px 0 var(--tan);
     padding: 15px 30px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    /* margin-bottom: 50px; */
+    margin-top: 25px;
     width: 90%;
     align-self: center;
 }
@@ -394,6 +395,8 @@
     border-radius: 3px;
     align-self: flex-end;
     margin-right: 5%;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .recipe-like-container:not(.logged-out):hover {
@@ -403,6 +406,7 @@
 .recipe-like-container h3 {
     margin: 0;
     margin-right: 5px;
+    /* width: 350px; */
 }
 
 #sp-liked {
@@ -423,15 +427,35 @@
     justify-content: flex-end;
     justify-self: flex-end;
     text-align: center;
-    margin-right: 25px;
+    /* margin-right: 50px; */
+    width: 100%;
+    /* padding-right: 25px; */
     /* position: absolute; */
     /* right: 35%; */
     /* top: 0; */
     /* flex-direction: column; */
 }
 
+.like-container h3 {
+    padding-right: 8%;
+}
+
 .like-container > .fa-heart {
     color: var(--red-orange);
     font-size: 25px;
+    margin-right: 10px;
+}
+
+/* Avg Rating */
+.avg-rating {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.avg-rating i {
+    font-size: 25px;
+    color: var(--red-orange);
     margin-right: 10px;
 }

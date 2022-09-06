@@ -46,7 +46,7 @@ function SingleComment({ comment }) {
                         <div className='posted-rating'>
                             {/* <p className='dot'>●</p> */}
                             <span>Posted {comment.created_at.split(' ').slice(1, 4).join(' ')}</span>
-                            <p className='dot'>●</p>
+                            <p id='dot'>●</p>
                             <p className='comment-stars'>{ [...Array(comment.rating)].map(star => <FaStar className='rated' />) }</p>
                             <p className='comment-stars'>{ [...Array(5 - comment.rating)].map(star => <FaStar color='#DCDCDC' className='rated'/>) }</p>
 
