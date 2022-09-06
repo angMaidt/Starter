@@ -1,7 +1,8 @@
 .my-recipe-tabs {
     display: flex;
+    /* flex-direction: column; */
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 50px;
 }
@@ -18,8 +19,9 @@
 }
 
 
-.my-recipe-tabs div:nth-child(2) {
-    margin-left: 30px;
+.my-recipe-tabs div {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 
@@ -30,4 +32,11 @@
 
 .active-tab h2 {
     background-color: var(--yellow);
+}
+
+#no-recipes {
+    position: absolute;
+    width: fit-content;
+    /* margin-right: 100px; */
+    /* right: 35vw; */
 }
