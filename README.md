@@ -5,6 +5,9 @@
 
 ### Check out the live site [here](https://starter-bread.herokuapp.com/)!
 
+## Homepage
+![starter-homepage](https://user-images.githubusercontent.com/100968885/189215743-022ce2af-84f9-4acf-8ec4-d7e3d05af81a.gif)
+
 ## Technologies used
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
