@@ -21,7 +21,11 @@
 ## Features
 #### [Users](https://github.com/angMaidt/Starter/wiki/Features#1-users)
 #### [Recipes](https://github.com/angMaidt/Starter/wiki/Features#2-recipes)
-#### [Comments](https://github.com/angMaidt/Starter/wiki/Features#2-recipes)
+#### [Ingredients](https://github.com/angMaidt/Starter/wiki/Features#3-ingredients)
+#### [Instructions](https://github.com/angMaidt/Starter/wiki/Features#4-instructions)
+#### [Comments](https://github.com/angMaidt/Starter/wiki/Features#5-comments)
+#### [Likes](https://github.com/angMaidt/Starter/wiki/Features#6-likes)
+#### [Search Bar](https://github.com/angMaidt/Starter/wiki/Features#7-search-bar)
 
 ## Local Setup
 1. Clone this repository
