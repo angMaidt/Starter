@@ -1,7 +1,7 @@
 # Welcome to **Starter**!
 ### A full-stack site devoted to sourdough bread. Inspired by [seriouseats.com](https://www.seriouseats.com)
 
-### *Built for your beginner bread-head, **Starter** is geared towards helping sourdough noobies explore recipes and recieve feedback on their own recipes.*
+### *Built for your beginner bread-head, **Starter** is geared towards helping sourdough noobies explore recipes, share their own, and receive feedback on recipes.*
 
 ### Check out the live site [here](https://starter-bread.herokuapp.com/)!
 
