@@ -409,13 +409,13 @@
     /* width: 350px; */
 }
 
-#sp-liked {
+#sp-liked, #sp-not-liked {
     color: var(--red-orange);
 }
 
-#sp-not-liked {
+/* #sp-not-liked {
     color: var(--red-orange);
-}
+} */
 
 .likes-comments-wrapper {
     display: flex;
