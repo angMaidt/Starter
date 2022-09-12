@@ -9,6 +9,7 @@ import { getRecipesThunk } from '../../store/recipe'
 import RecipeCard from '../Recipes/RecipeCard/RecipeCard'
 import GenericBanner from './GenericBanner'
 import './HomePage.css'
+// import './UserBanner/UserBanner.css'
 import UserBanner from './UserBanner'
 
 function HomePage() {
@@ -35,7 +36,7 @@ function HomePage() {
 
             {/* render custom banner if logged in */}
             {sessionUser ?
-                <UserBanner />
+                <UserBanner sessionUser={sessionUser}/>
             :
                 <GenericBanner />
             }
