@@ -6,14 +6,6 @@
     flex-direction: column;
 }
 
-.banner {
-    display: flex;
-    /* justify-content: ; */
-    border-bottom: 1px solid var(--off-black);
-    height: 600px;
-    width: 100%;
-    overflow: hidden;
-}
 
 .welcome-ribbon {
     height: 50px;
@@ -29,6 +21,16 @@
     /* width: 100%; */
     /* font-stretch: condensed; */
     color: var(--yellow);
+}
+
+/* generic banner */
+.banner {
+    display: flex;
+    /* justify-content: ; */
+    border-bottom: 1px solid var(--off-black);
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .banner-image-container {
@@ -53,22 +55,6 @@
     to {
         transform: rotate(359deg);
     }
-}
-
-.taxonomy-bar {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    height: 110%;
-    width: 25px;
-    background-color: var(--yellow);
-    border-right: 1px solid var(--off-black);
-    border-left: 1px solid var(--off-black);
-    padding-left: 2px;
-    padding-right: 2px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--off-black);
-    /* padding-bottom: 5px; */
 }
 
 .banner-text {
@@ -127,6 +113,73 @@
     text-transform: uppercase;
     align-self: flex-end;
     justify-self: flex-end;
+}
+
+/* User Banner */
+.banner-left, .banner-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-right {
+    background-color: var(--tan);
+    display: flex;
+    flex-direction: column;
+}
+
+.banner-right:hover {
+    cursor: pointer;
+}
+
+.underlined {
+    text-decoration: underline 1px solid var(--dark-blue);
+}
+
+#yellow-bg {
+    background-color: var(--yellow);
+}
+
+.banner-left img{
+    animation: rotation 8s infinite linear;
+    width: 40%;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.user-banner-CTA {
+    display: flex;
+    align-items: center;
+}
+
+.user-banner-CTA button {
+    margin-left: 15px;
+}
+
+.taxonomy-bar {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    height: 110%;
+    /* width: 25px; */
+    background-color: var(--yellow);
+    border-right: 1px solid var(--off-black);
+    border-left: 1px solid var(--off-black);
+    padding-left: 2px;
+    padding-right: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--off-black);
+    overflow: hidden;
+    /* padding-bottom: 5px; */
 }
 
 /* footer */

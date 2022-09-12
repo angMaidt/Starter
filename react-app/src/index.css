@@ -82,7 +82,7 @@ button:not(.arrow-button, .submit) {
     src: local('SpaceGrotesk'), url(./fonts/SpaceGrotesk-2.0.0/ttf/SpaceGrotesk[wght].ttf) format('ttf') */
 }
 
-button:hover:not(.submit) {
+button:hover:not(.submit, #disabled-submit) {
     cursor: pointer;
     background-position: left bottom;
     /* color: var(--off-white) */
@@ -211,4 +211,12 @@ label {
 
 li {
     color: var(--red-orange)
+}
+
+#disabled-submit {
+    /* background-color: #eeeeee; */
+    color: var(--red-orange);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 100%;
 }

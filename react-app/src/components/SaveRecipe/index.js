@@ -127,8 +127,6 @@ function SaveRecipe({ recipe }) {
                     title='Like this recipe!'
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
-                    // onMouseEnter={() => setHover(true)}
-                    // onMouseLeave={() => setHover(false)}
                     onClick={handleLike}></i>
 
             }

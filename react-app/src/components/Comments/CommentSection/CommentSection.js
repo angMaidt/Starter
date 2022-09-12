@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NewCommentForm from '../NewCommentForm/NewCommentForm'
 import SingleComment from "../SingleComment/SingleComment"
@@ -6,10 +6,19 @@ import SingleComment from "../SingleComment/SingleComment"
 
 function CommentSection({ recipe }) {
     const sessionUser = useSelector(state => state.session.user)
-    // const [rating, setRating] = useState(0)
-    // const [showAddComment, setShowAddComment] = useState(false)
+    // console.log(recipe.comments)
 
-    const ordered_comments = Object.values(recipe.comments).sort((a, b) => a.created_at > b.created_at ? -1 : 1)
+    // //check if user has commented
+    // let commented = false
+    // for (let comment of recipe.comments) {
+    //     if (comment.user.id === sessionUser.id) {
+    //         commented = true
+    //     }
+    // }
+
+    // console.log(commented)
+
+    // const ordered_comments = Object.values(recipe.comments).sort((a, b) => a.created_at > b.created_at ? -1 : 1)
 
     return (
         <>
@@ -17,18 +26,18 @@ function CommentSection({ recipe }) {
             {sessionUser ?
                 <NewCommentForm recipe={recipe}/>
                 :
-                <p>Login to leave a comment!</p>
+                <h3>Login to leave a comment!</h3>
             }
             {recipe.comments.length > 0 ?
-                ordered_comments.map(comment => (
+                Object.values(recipe.comments).map(comment => (
                     <SingleComment comment={comment} />
                 ))
                 :
-                <p>Looks like no one has left a comment yet, be the first!</p>
+                <h3>Looks like no one has left a comment yet, be the first!</h3>
             }
 
         </>
     )
-}
+};
 
-export default CommentSection
+export default CommentSection;

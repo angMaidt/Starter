@@ -55,6 +55,14 @@ function NewCommentForm({ recipe }) {
         }
     }
 
+    //check if user has commented
+    let commented = false
+    for (let comment of recipe.comments) {
+        if (comment.user.id === sessionUser.id) {
+            commented = true
+        }
+    }
+
     return (
         <>
             {hasSubmitted && validationErrors.length > 0 &&
@@ -78,13 +86,22 @@ function NewCommentForm({ recipe }) {
                                 <img src={sessionUser.profile_pic} alt='profile-pic' />
                             </div>
                         </div>
-                        <textarea
-                            placeholder='Join the discussion...'
+                        {commented ?
+                            <textarea
+                            placeholder='Only one comment allowed per user!'
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
                             style={{ 'fontSize': '15px' }}
-                            >
-                        </textarea>
+                            disabled
+                            ></textarea>
+                        :
+                            <textarea
+                                placeholder='Join the discussion...'
+                                value={body}
+                                onChange={(e) => setBody(e.target.value)}
+                                style={{ 'fontSize': '15px' }}
+                                ></textarea>
+                        }
                         {/* <label>Comment</label> */}
                     </div>
                 </div>
@@ -93,7 +110,11 @@ function NewCommentForm({ recipe }) {
                         <span className='asterisk'>*</span>
                         Rating = required
                     </h6>
-                    <button>Submit</button>
+                    {commented ?
+                        <button id='disabled-submit' disabled>Cannot Submit</button>
+                    :
+                        <button>Submit</button>
+                    }
                 </div>
             </form>
         </>
