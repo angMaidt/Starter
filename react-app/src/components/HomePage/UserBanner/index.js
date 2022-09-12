@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import bread1 from '../../../images/boule.png'
 import bread2 from '../../../images/baguette.png'
@@ -9,16 +9,23 @@ function UserBanner({ sessionUser }) {
     const history = useHistory()
 
     const [hover, setHover] = useState(false)
+    const [bread, setBread] = useState('')
+    const [color, setColor] = useState('')
 
     //pick random bread and color for banner
     const breadArr = [bread1, bread2, bread3, bread4]
     const colorArr= ['var(--red-orange)', 'var(--light-blue)', 'pink', 'var(--pale-blue)']
 
+    useEffect(() => {
+        setBread(breadArr[Math.floor(Math.random()*breadArr.length)])
+        setColor(colorArr[Math.floor(Math.random()*colorArr.length)])
+    }, [])
+
     return (
         <div className="banner user">
             <div className='banner-left'
-                style={{ 'background-color': `${colorArr[Math.floor(Math.random()*colorArr.length)]}` }}>
-                <img src={breadArr[Math.floor(Math.random()*breadArr.length)]}/>
+                style={{ 'background-color': `${color}` }}>
+                <img src={bread}/>
                 {/* <h1>Welcome back, {sessionUser.username}!</h1> */}
             </div>
             <div className='taxonomy-bar'>
