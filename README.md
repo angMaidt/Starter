@@ -1,7 +1,7 @@
 # Welcome to **Starter**!
 ### A full-stack site devoted to sourdough bread. Inspired by [seriouseats.com](https://www.seriouseats.com)
 
-### *Built for your beginner bread-head, **Starter** is geared towards helping sourdough noobies explore recipes, share their own, and receive feedback on recipes.*
+### *Built for sourdough lovers to come together and share their favorite recipes, tips, and tricks.*
 
 ### Check out the live site [here](https://starter-bread.herokuapp.com/)!
 
@@ -21,8 +21,6 @@
 ## Features
 #### [Users](https://github.com/angMaidt/Starter/wiki/Features#1-users)
 #### [Recipes](https://github.com/angMaidt/Starter/wiki/Features#2-recipes)
-#### [Ingredients](https://github.com/angMaidt/Starter/wiki/Features#3-ingredients)
-#### [Instructions](https://github.com/angMaidt/Starter/wiki/Features#4-instructions)
 #### [Comments](https://github.com/angMaidt/Starter/wiki/Features#5-comments)
 #### [Likes](https://github.com/angMaidt/Starter/wiki/Features#6-likes)
 #### [Search Bar](https://github.com/angMaidt/Starter/wiki/Features#7-search-bar)
