@@ -444,7 +444,7 @@
 .like-counter > .fa-heart {
     color: var(--red-orange);
     font-size: 25px;
-    margin-right: 10px;
+    margin-right: 5px;
     /* margin-left: 20px; */
 }
 
@@ -453,11 +453,11 @@
     display: flex;
     width: 100%;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .avg-rating i {
     font-size: 25px;
     color: var(--red-orange);
-    margin-right: 10px;
+    margin-right: 5px;
 }
