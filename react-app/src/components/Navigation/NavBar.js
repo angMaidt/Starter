@@ -12,6 +12,7 @@ import SearchBar from '../Search/SearchBar';
 const NavBar = () => {
   // const [hover, setHover] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
+  // const [hover, setHover] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
 
   return (
@@ -40,12 +41,6 @@ const NavBar = () => {
               </>
             }
           </div>
-          {/* <div>
-            <img
-              src='../../../static/icon-search.svg'
-              alt='icon-search'
-              id='icon-search' />
-          </div> */}
 
           {/* search */}
             <div className='nav search-container'>
@@ -66,22 +61,13 @@ const NavBar = () => {
               to='/' exact={true}
               className='tab'
               activeClassName='active'
-              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
-              style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
-              {/* <div className='tab'> */}
-                <h3>Home</h3>
-              {/* </div> */}
+              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}>
+              <h3>Home</h3>
             </NavLink>
-            {/* <NavLink to='/sourdough-faq' exact={true} activeClassName='active' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-              <div className='tab'>
-                <h3>F.A.Q.</h3>
-              </div>
-            </NavLink> */}
             <NavLink to='/recipes'
               className='tab'
               activeClassName='active'
-              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
-              style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
+              activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}>
               {/* <div className='tab'> */}
                 <h3>Explore</h3>
               {/* </div> */}
@@ -93,19 +79,13 @@ const NavBar = () => {
                   exact={true}
                   className='tab'
                   activeClassName='active'
-                  activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}
-                  style={{ 'textDecoration': 'none', 'color': 'var(--dark-blue)' }}>
+                  activeStyle={{ 'textDecoration': 'underline var(--red-orange) 2px', 'textUnderlineOffset': '4px' }}>
                   {/* <div className='tab'> */}
                     <h3>My Recipes</h3>
                   {/* </div> */}
                 </NavLink>
               </>
             }
-            {/* <NavLink to='/about' activeStyle={{ 'textDecoration': 'underline' }} style={{ 'textDecoration': 'none' }}>
-              <div className='tab'>
-                <h3>About</h3>
-              </div>
-            </NavLink> */}
           </div>
         </div>
       </nav>

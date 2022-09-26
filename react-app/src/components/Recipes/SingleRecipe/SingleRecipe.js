@@ -79,17 +79,6 @@ function SingleRecipe() {
         ordered_ingredients = Object.values(recipe.ingredients).sort((a, b) => (a.id > b.id ? 1: -1))
     }
 
-    //scroll to ingredients header
-    // const comments = document.getElementById('comments')
-    // const headerOffset = 45
-    // const elementPosition = comments.getBoundingClientRect().top
-    // const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-    // window.scrollTo({
-    //     top: offsetPosition,
-    //     behavior: 'smooth'
-    // })
-
     //calculate avg rating
     const find_average = (recipe) => {
         let sum = 0
@@ -108,7 +97,6 @@ function SingleRecipe() {
         bake_time_converted = ms_converter(recipe.bake_time)
         total_time_converted = ms_converter(recipe.active_time + recipe.prep_time + recipe.bake_time)
     }
-
 
     return (
         <div className='view-container single-recipe-view'>
@@ -149,11 +137,7 @@ function SingleRecipe() {
                                 <span>Updated {recipe.updated_at.split(' ').slice(1, 4).join(' ')}</span>
                             }
                         </div>
-                        <div className='likes-comments-wrapper'>
-                            {/* <div className='like-container'>
-                                <i className='fa-solid fa-heart'></i>
-                                <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
-                            </div> */}
+                        {/* <div className='likes-comments-wrapper'>
                             <div className='avg-rating'>
                                 <i className='fa-solid fa-star'></i>
                                 {isNaN(find_average(recipe)) ?
@@ -166,11 +150,9 @@ function SingleRecipe() {
                                 className='recipe-comment-info bubble bubble-bottom-left'
                                 onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}
                                 >
-                                {/* <span>Rating</span>
-                                <p>{find_average(recipe)} stars from {recipe.comments.length} reviews</p> */}
                                 <div>{recipe.comments.length}<h6>comments</h6></div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='single-image-container'>
@@ -179,11 +161,33 @@ function SingleRecipe() {
                             currentTarget.src ='../../../../../static/default-bread.jpg'
                     }} alt={`recipe-${recipe.id}`} />
                 </div>
+
                 <div className='like-container'>
-                    <i className='fa-solid fa-heart'></i>
-                    <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                <div className='like-counter'>
+                        <i className='fa-solid fa-heart'></i>
+                        <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                    </div>
+                    <div className='likes-comments-wrapper'>
+                        <div className='avg-rating'>
+                            <i className='fa-solid fa-star'></i>
+                            {isNaN(find_average(recipe)) ?
+                                <h3>0/5 ({recipe.comments.length} reviews)</h3>
+                            :
+                                <h3>{find_average(recipe)}/5 ({recipe.comments.length} reviews)</h3>
+                            }
+                        </div>
+                        <div className='recipe-comment-info bubble bubble-bottom-left'
+                            title='Jump to comments!'
+                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}>
+                            <div>{recipe.comments.length}<h6>comments</h6></div>
+                        </div>
+                    </div>
+                    {/* <div className='like-counter'>
+                        <i className='fa-solid fa-heart'></i>
+                        <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                    </div> */}
                 </div>
-                <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '100px' }}>
+                <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '165px' }}>
                 </div>
                 {!showEditForm ?
                     <div className='recipe-facts'>

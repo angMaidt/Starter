@@ -51,6 +51,7 @@
     /* height: 0px; */
     position: absolute;
     border-left: 6px solid var(--tan);
+    /* border-right: 6px solid var(--tan); */
     /* border-right: 3px solid transparent; */
     border-top: 2px solid var(--tan);
     border-bottom: 10px solid transparent;
@@ -61,6 +62,7 @@
   .bubble-bottom-left:hover:before {
     /* background-color: yellow; */
     border-left: 6px solid var(--yellow);
+    /* border-right: 6px solid var(--yellow); */
     /* border-right: 12px solid transparent; */
     border-top: 2px solid var(--yellow);
     border-bottom: 10px solid transparent;
@@ -74,7 +76,7 @@
     background-color: var(--tan);
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-right: 10px;
+    /* margin-right: 5%; */
     align-self: flex-end;
 }
 
@@ -413,10 +415,6 @@
     color: var(--red-orange);
 }
 
-/* #sp-not-liked {
-    color: var(--red-orange);
-} */
-
 .likes-comments-wrapper {
     display: flex;
 }
@@ -429,6 +427,8 @@
     text-align: center;
     /* margin-right: 50px; */
     width: 100%;
+    /* box-sizing: border-box;
+    padding: 0 25px; */
     /* padding-right: 25px; */
     /* position: absolute; */
     /* right: 35%; */
@@ -436,14 +436,16 @@
     /* flex-direction: column; */
 }
 
-.like-container h3 {
-    padding-right: 8%;
+.like-counter {
+    display: flex;
+    align-items: center;
 }
 
-.like-container > .fa-heart {
+.like-counter > .fa-heart {
     color: var(--red-orange);
     font-size: 25px;
-    margin-right: 10px;
+    margin-right: 5px;
+    /* margin-left: 20px; */
 }
 
 /* Avg Rating */
@@ -451,11 +453,11 @@
     display: flex;
     width: 100%;
     align-items: center;
-    margin-right: 25px;
+    margin: 0 20px;
 }
 
 .avg-rating i {
     font-size: 25px;
     color: var(--red-orange);
-    margin-right: 10px;
+    margin-right: 5px;
 }
