@@ -41,12 +41,6 @@ const NavBar = () => {
               </>
             }
           </div>
-          {/* <div>
-            <img
-              src='../../../static/icon-search.svg'
-              alt='icon-search'
-              id='icon-search' />
-          </div> */}
 
           {/* search */}
             <div className='nav search-container'>

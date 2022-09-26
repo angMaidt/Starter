@@ -6,7 +6,7 @@
 #icon-search:hover {
     cursor: pointer;
     transition: all .5s ease-in;
-    /* fill: var(--yellow) */
+    fill: var(--yellow)
 }
 
 .search-inputs {

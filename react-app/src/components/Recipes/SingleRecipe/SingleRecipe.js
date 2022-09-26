@@ -163,12 +163,11 @@ function SingleRecipe() {
                 </div>
 
                 <div className='like-container'>
+                <div className='like-counter'>
+                        <i className='fa-solid fa-heart'></i>
+                        <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
+                    </div>
                     <div className='likes-comments-wrapper'>
-                        <div className='recipe-comment-info bubble bubble-bottom-left'
-                            title='Jump to comments!'
-                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}>
-                            <div>{recipe.comments.length}<h6>comments</h6></div>
-                        </div>
                         <div className='avg-rating'>
                             <i className='fa-solid fa-star'></i>
                             {isNaN(find_average(recipe)) ?
@@ -177,11 +176,16 @@ function SingleRecipe() {
                                 <h3>{find_average(recipe)}/5 ({recipe.comments.length} reviews)</h3>
                             }
                         </div>
+                        <div className='recipe-comment-info bubble bubble-bottom-left'
+                            title='Jump to comments!'
+                            onClick={() => commentRef.current.scrollIntoView({ behavior: 'smooth' })}>
+                            <div>{recipe.comments.length}<h6>comments</h6></div>
+                        </div>
                     </div>
-                    <div className='like-counter'>
+                    {/* <div className='like-counter'>
                         <i className='fa-solid fa-heart'></i>
                         <h3>{recipe.saves.length} {recipe.saves.length === 1 ? 'Like' : 'Likes'}</h3>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='header-button-container' ref={recipeRef} style={{ 'scrollMarginTop': '165px' }}>
                 </div>
